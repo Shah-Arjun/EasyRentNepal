@@ -6,9 +6,13 @@ import Home from './pages/Home'
 import Listing from './pages/Listing'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
+import { useState } from 'react'
 
 
 const App = () => {
+  
+
+
   return (
     <main>
       <Header/>
