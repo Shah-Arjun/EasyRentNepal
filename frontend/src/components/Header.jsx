@@ -46,7 +46,7 @@ const Header = () => {
           {/* Logo */}
           <div className='flex flex-1'>
             <Link to={'/'}>
-              <img src={assets.logoImg} alt="LogoImg" className={`${active && "invert"} h-11`} />
+              <img src={assets.logoImg} alt="LogoImg" className={`${active && "invert"} h-20`} />
             </Link>
           </div>
           {/* Navbar */}
