@@ -48,7 +48,7 @@ const Header = () => {
               <img
                 src={assets.logoImg}
                 alt="LogoImg"
-                className={`${!active && "invert"} h-20`}
+                className={`${!active && "invert"} h-15`}
               />
             </Link>
           </div>

@@ -101,14 +101,19 @@ export const assets = {
     user2,
     user3,
     user4,
-    createPrp
+    createPrp,
 }
 
 export const cities = [
-    "Abu Dhabi",
-    "New York",
-    "Toronto",
-    "Los Angeles"
+    "Itahari",
+    "Biratnagar",
+    "Dharan",
+    "Kathmandu",
+    "Pokhara",
+    "Dhangadhi",
+    "Dhulikhel",
+    "Birgunj",
+    "Dhangadhi",
 ];
 
 
