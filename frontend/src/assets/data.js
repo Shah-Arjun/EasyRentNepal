@@ -47,7 +47,13 @@ import img6 from "../assets/img6.png"
 import pImg2 from "../assets/pImg2.png"
 import pImg3 from "../assets/pImg3.png"
 import pImg4 from "../assets/pImg4.png"
+import client1 from '../assets/client1.jpg'
+import client2 from '../assets/client2.jpg'
+import client3 from '../assets/client3.jpg'
+import client4 from '../assets/client4.jpg'
+import about from '../assets/about.png'
 import createPrp from "../assets/createPrp.png"
+
 
 // Blogs
 import blog1 from "../assets/blogs/blog1.jpg";
@@ -102,6 +108,11 @@ export const assets = {
     user3,
     user4,
     createPrp,
+    client1,
+    client2,
+    client3,
+    client4,
+    about
 }
 
 export const cities = [
@@ -146,170 +157,170 @@ export const dummyAgentData = {
 
 // Property Listings Dummy Data
 export const dummyProperties = [
-    {
-        "_id": "67f7647c197ac559e4089b96",
-        "agency": dummyAgencyData,
-        "title": "Oceanview Oasis Serenity Escape",
-        "description": "Discover a harmonious blend of modern luxury and timeless elegance. Nestled in the heart of this area, our newest residency offers a sanctuary where every detail is meticulously crafted to elevate your lifestyle. From breathtaking architectural designs to unparalleled amenities, each aspect is thoughtfully curated to redefine the meaning of home. Step into a world of sophistication as you explore our spacious and meticulously designed residences, each boasting premium finishes and panoramic views that inspire awe. Whether you seek a serene retreat to unwind or a vibrant community to connect with, Offers an array of lifestyle amenities tailored to your every need.",
-        "address": "789 Park Lane, New York, USA",
-        "city": "New York",
-        "country": "USA",
-        "propertyType": "House",
-        "price":{
-          "rent": 299,
-          "sale": 33000
-        },
-        "facilities": {
-          "bedrooms": 3,
-          "bathrooms": 2,
-          "garages": 1
-        },
-        "area": 800,
-        "amenities": [ "Balcony", "High-Speed Internet", "Backyard",],
-        "images": [img1, pImg2, pImg3, pImg4],
-        "isAvailable": true,
-        "status": "available",
-        "createdAt": "2025-04-10T06:26:04.013Z",
-        "updatedAt": "2025-04-10T06:26:04.013Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76452197ac559e4089b8e",
-        "agency": dummyAgencyData,
-        "title": "Mountain Majesty Tranquility Haven",
-        "description": "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
-        "address": "301 Sunset Boulevard, Los Angeles, USA",
-        "city": "Los Angeles",
-        "country": "USA",
-        "propertyType": "Apartment",
-        "price":{
-         "rent": 599,
-         "sale": 99000
-        },
-         "facilities": {
-          "bedrooms": 2,
-          "bathrooms": 2,
-          "garages": 1
-        },
-        "area": 500,
-        "amenities": ["Backyard", "Garage", "Fireplace"],
-        "images": [img2, pImg3, pImg4, pImg2],
-        "isAvailable": true,
-        "status": "available",
-        "createdAt": "2025-04-10T06:25:22.593Z",
-        "updatedAt": "2025-04-10T06:25:22.593Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76406197ac559e4089b82",
-        "agency": dummyAgencyData,
-        "title": "Urban Elegance Sophistication Haven",
-        "description": "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
-        "address": "900 Bay Street, Toronto, Canada",
-        "city": "Toronto",
-        "country": "Canada",
-        "propertyType": "Villa",
-        "price":{
-          "rent": 299,
-          "sale": 20000
-        },
-         "facilities": {
-          "bedrooms": 2,
-          "bathrooms": 1,
-          "garages": 1
-        },
-        "area": 200,
-        "amenities": ["Fitness Center", "Terrace", "Parking"],
-        "images": [img3, pImg4, pImg3, pImg2],
-        "isAvailable": true,
-        "status": "available",
-        "createdAt": "2025-04-10T06:24:06.285Z",
-        "updatedAt": "2025-04-10T06:24:06.285Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f763d8197ac559e4089b7a",
-        "agency": dummyAgencyData,
-        "title": "Garden Grove Oasis Retreat Haven",
-        "description": "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
-        "address": "29 Alexanderplatz, Berlin, Germany",
-        "city": "Berlin",
-        "country": "Germany",
-        "propertyType": "Townhouse",
-         "price":{
-           "rent": 399,
-           "sale": 33000
-        },
-         "facilities": {
-          "bedrooms": 3,
-          "bathrooms": 2,
-          "garages": 1
-        },
-        "area": 500,
-        "amenities": ["Terrace", "Backyard", "Fitness Center"],
-        "images": [img4, pImg2, pImg3, pImg4],
-        "isAvailable": true,
-        "status": "available",
-        "createdAt": "2025-04-10T06:23:20.252Z",
-        "updatedAt": "2025-04-10T06:23:20.252Z",
-        "__v": 0
-    },
-    {
-    "_id": "67f765aa197ac559e4089b9c",
-    "agency": dummyAgencyData,
-    "title": "Seaside Bliss Modern Retreat",
-    "description": "Experience seaside living with contemporary design and ocean views from every room. Perfect for vacation rentals or permanent residence. Offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
-    "address": "45 Marina Bay, Miami, USA",
-    "city": "Miami",
-    "country": "USA",
+  {
+    "_id": "67f7647c197ac559e4089b96",
+    "agency": "dummyAgencyData",
+    "title": "Itahari Modern Family House",
+    "description": "A modern family home offering comfort and convenience in the heart of Itahari. This residence features spacious bedrooms, elegant interiors, and a balcony with city views. Perfect for families seeking a balance of tranquility and connectivity.",
+    "address": "23 Central Road, Itahari, Sunsari",
+    "city": "Itahari",
+    "country": "Nepal",
     "propertyType": "House",
-     "price":{
-      "rent": 499,
-      "sale": 44000
+    "price": {
+      "rent": 35000,
+      "sale": 6500000
+    },
+    "facilities": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1
+    },
+    "area": 1200,
+    "amenities": ["Balcony", "High-Speed Internet", "Backyard"],
+    "images": ["img1", "pImg2", "pImg3", "pImg4"],
+    "isAvailable": true,
+    "status": "available",
+    "createdAt": "2026-01-26T06:26:04.013Z",
+    "updatedAt": "2026-01-26T06:26:04.013Z",
+    "__v": 0
+  },
+  {
+    "_id": "67f76452197ac559e4089b8e",
+    "agency": "dummyAgencyData",
+    "title": "Dharan Hills Luxury Apartment",
+    "description": "Located in the serene hills of Dharan, this apartment combines modern architecture with scenic views. Features a rooftop terrace, well-ventilated rooms, and premium finishes for a luxurious lifestyle.",
+    "address": "12 Hillside Road, Dharan, Sunsari",
+    "city": "Dharan",
+    "country": "Nepal",
+    "propertyType": "Apartment",
+    "price": {
+      "rent": 45000,
+      "sale": 9000000
+    },
+    "facilities": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1
+    },
+    "area": 800,
+    "amenities": ["Backyard", "Garage", "Fireplace"],
+    "images": ["img2", "pImg3", "pImg4", "pImg2"],
+    "isAvailable": true,
+    "status": "available",
+    "createdAt": "2026-01-26T06:25:22.593Z",
+    "updatedAt": "2026-01-26T06:25:22.593Z",
+    "__v": 0
+  },
+  {
+    "_id": "67f76406197ac559e4089b82",
+    "agency": "dummyAgencyData",
+    "title": "Biratnagar Urban Villa",
+    "description": "A stunning villa in Biratnagar offering modern luxury with practical amenities. Ideal for families, with open spaces, elegant interiors, and a rooftop terrace.",
+    "address": "45 Riverside Road, Biratnagar, Morang",
+    "city": "Biratnagar",
+    "country": "Nepal",
+    "propertyType": "Villa",
+    "price": {
+      "rent": 40000,
+      "sale": 7000000
+    },
+    "facilities": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1
+    },
+    "area": 1000,
+    "amenities": ["Fitness Center", "Terrace", "Parking"],
+    "images": ["img3", "pImg4", "pImg3", "pImg2"],
+    "isAvailable": true,
+    "status": "available",
+    "createdAt": "2026-01-26T06:24:06.285Z",
+    "updatedAt": "2026-01-26T06:24:06.285Z",
+    "__v": 0
+  },
+  {
+    "_id": "67f763d8197ac559e4089b7a",
+    "agency": "dummyAgencyData",
+    "title": "Kathmandu Garden Townhouse",
+    "description": "Modern townhouse in Kathmandu, perfect for city dwellers seeking style and convenience. Enjoy a private garden, terrace, and easy access to nearby amenities.",
+    "address": "29 Lazimpat Road, Kathmandu",
+    "city": "Kathmandu",
+    "country": "Nepal",
+    "propertyType": "Townhouse",
+    "price": {
+      "rent": 55000,
+      "sale": 12000000
+    },
+    "facilities": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1
+    },
+    "area": 1100,
+    "amenities": ["Terrace", "Backyard", "Fitness Center"],
+    "images": ["img4", "pImg2", "pImg3", "pImg4"],
+    "isAvailable": true,
+    "status": "available",
+    "createdAt": "2026-01-26T06:23:20.252Z",
+    "updatedAt": "2026-01-26T06:23:20.252Z",
+    "__v": 0
+  },
+  {
+    "_id": "67f765aa197ac559e4089b9c",
+    "agency": "dummyAgencyData",
+    "title": "Pokhara Seaside Retreat",
+    "description": "Experience lakeside living in Pokhara. This modern house offers panoramic views, spacious interiors, and contemporary amenities, ideal for vacations or permanent residence.",
+    "address": "45 Lakeside Road, Pokhara, Kaski",
+    "city": "Pokhara",
+    "country": "Nepal",
+    "propertyType": "House",
+    "price": {
+      "rent": 60000,
+      "sale": 15000000
     },
     "facilities": {
       "bedrooms": 4,
       "bathrooms": 3,
       "garages": 2
     },
-    "area": 250,
-    "amenities": ["Swimming Pool", "Balcony", "Private Beach"],
-    "images": [img5, pImg3, pImg2, pImg4],
+    "area": 1300,
+    "amenities": ["Swimming Pool", "Balcony", "Private Garden"],
+    "images": ["img5", "pImg3", "pImg2", "pImg4"],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:27:30.013Z",
-    "updatedAt": "2025-04-10T06:27:30.013Z",
+    "createdAt": "2026-01-26T06:27:30.013Z",
+    "updatedAt": "2026-01-26T06:27:30.013Z",
     "__v": 0
   },
-
   {
     "_id": "67f765f4197ac559e4089ba4",
-    "agency": dummyAgencyData,
-    "title": "Countryside Charm Rustic Escape",
-    "description": "Enjoy a peaceful countryside retreat with spacious gardens, natural wood interiors, and cozy fireplaces. offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
-    "address": "88 Willow Lane, Edinburgh, UK",
-    "city": "Edinburgh",
-    "country": "UK",
+    "agency": "dummyAgencyData",
+    "title": "Dharan Countryside Apartment",
+    "description": "A peaceful apartment surrounded by greenery in Dharan. Featuring cozy interiors, spacious living areas, and a private garden for relaxation and serenity.",
+    "address": "88 Greenway Lane, Dharan, Sunsari",
+    "city": "Dharan",
+    "country": "Nepal",
     "propertyType": "Apartment",
-    "price":{
-      "rent": 199,
-      "sale": 12000
+    "price": {
+      "rent": 25000,
+      "sale": 4500000
     },
     "facilities": {
       "bedrooms": 2,
       "bathrooms": 1,
       "garages": 1
     },
-    "area": 700,
+    "area": 900,
     "amenities": ["Garden", "Fireplace", "Parking"],
-    "images": [img6, pImg2, pImg3, pImg4],
+    "images": ["img6", "pImg2", "pImg3", "pImg4"],
     "isAvailable": true,
     "status": "available",
-    "createdAt": "2025-04-10T06:28:50.013Z",
-    "updatedAt": "2025-04-10T06:28:50.013Z",
+    "createdAt": "2026-01-26T06:28:50.013Z",
+    "updatedAt": "2026-01-26T06:28:50.013Z",
     "__v": 0
   }
 ]
+
 
 
 
