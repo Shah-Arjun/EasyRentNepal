@@ -167,8 +167,7 @@ export const dummyProperties = [
     "country": "Nepal",
     "propertyType": "House",
     "price": {
-      "rent": 35000,
-      "sale": 6500000
+      "rent": 10000
     },
     "facilities": {
       "bedrooms": 3,
@@ -176,8 +175,8 @@ export const dummyProperties = [
       "garages": 1
     },
     "area": 1200,
-    "amenities": ["Balcony", "High-Speed Internet", "Backyard"],
-    "images": ["img1", "pImg2", "pImg3", "pImg4"],
+    "amenities": ["Balcony", "Backyard"],
+    "images": [img1, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:26:04.013Z",
@@ -194,8 +193,7 @@ export const dummyProperties = [
     "country": "Nepal",
     "propertyType": "Apartment",
     "price": {
-      "rent": 45000,
-      "sale": 9000000
+      "rent": 25000
     },
     "facilities": {
       "bedrooms": 2,
@@ -203,8 +201,8 @@ export const dummyProperties = [
       "garages": 1
     },
     "area": 800,
-    "amenities": ["Backyard", "Garage", "Fireplace"],
-    "images": ["img2", "pImg3", "pImg4", "pImg2"],
+    "amenities": ["Backyard", "Balcony", "Garden"],
+    "images": [img2, pImg3, pImg4, pImg2],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:25:22.593Z",
@@ -221,8 +219,7 @@ export const dummyProperties = [
     "country": "Nepal",
     "propertyType": "Villa",
     "price": {
-      "rent": 40000,
-      "sale": 7000000
+      "rent": 35000
     },
     "facilities": {
       "bedrooms": 3,
@@ -230,8 +227,8 @@ export const dummyProperties = [
       "garages": 1
     },
     "area": 1000,
-    "amenities": ["Fitness Center", "Terrace", "Parking"],
-    "images": ["img3", "pImg4", "pImg3", "pImg2"],
+    "amenities": ["Terrace", "Parking", "Balcony", "Garden"],
+    "images": [img3, pImg4, pImg3, pImg2],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:24:06.285Z",
@@ -248,8 +245,7 @@ export const dummyProperties = [
     "country": "Nepal",
     "propertyType": "Townhouse",
     "price": {
-      "rent": 55000,
-      "sale": 12000000
+      "rent": 15000
     },
     "facilities": {
       "bedrooms": 3,
@@ -257,8 +253,8 @@ export const dummyProperties = [
       "garages": 1
     },
     "area": 1100,
-    "amenities": ["Terrace", "Backyard", "Fitness Center"],
-    "images": ["img4", "pImg2", "pImg3", "pImg4"],
+    "amenities": ["Terrace", "Backyard", "Balcony", "Garden"],
+   "images": [img4, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:23:20.252Z",
@@ -268,15 +264,14 @@ export const dummyProperties = [
   {
     "_id": "67f765aa197ac559e4089b9c",
     "agency": "dummyAgencyData",
-    "title": "Pokhara Seaside Retreat",
+    "title": "Pokhara Lakeside House",
     "description": "Experience lakeside living in Pokhara. This modern house offers panoramic views, spacious interiors, and contemporary amenities, ideal for vacations or permanent residence.",
     "address": "45 Lakeside Road, Pokhara, Kaski",
     "city": "Pokhara",
     "country": "Nepal",
     "propertyType": "House",
     "price": {
-      "rent": 60000,
-      "sale": 15000000
+      "rent": 20000
     },
     "facilities": {
       "bedrooms": 4,
@@ -285,7 +280,7 @@ export const dummyProperties = [
     },
     "area": 1300,
     "amenities": ["Swimming Pool", "Balcony", "Private Garden"],
-    "images": ["img5", "pImg3", "pImg2", "pImg4"],
+    "images": [img5, pImg3, pImg2, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:27:30.013Z",
@@ -302,8 +297,7 @@ export const dummyProperties = [
     "country": "Nepal",
     "propertyType": "Apartment",
     "price": {
-      "rent": 25000,
-      "sale": 4500000
+      "rent": 17000
     },
     "facilities": {
       "bedrooms": 2,
@@ -312,7 +306,7 @@ export const dummyProperties = [
     },
     "area": 900,
     "amenities": ["Garden", "Fireplace", "Parking"],
-    "images": ["img6", "pImg2", "pImg3", "pImg4"],
+    "images": [img6, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:28:50.013Z",

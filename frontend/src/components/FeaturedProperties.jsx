@@ -21,7 +21,7 @@ const FeaturedProperties = () => {
       <h2 className='h2'>Discover Your Home Away From Home.</h2>
       <div className='flexBetween mt-8 mb-6'>
         <h5>
-          <span className='font-bold'>Displaying 1-5</span> from 50+ properties</h5>
+          <span className='font-bold'>Displaying 1-6</span> from 50+ properties</h5>
         <Link to={'/listing'} onClick={() => scrollTo(0, 0)} className='hg-secondary/10 ring-1 ring-slate-900/15 text-white text-2xl rounded-md p-2 flexCenter'>
           <img src={assets.sliders} alt="" />
         </Link>
