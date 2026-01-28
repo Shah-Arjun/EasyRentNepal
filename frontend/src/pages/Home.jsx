@@ -4,7 +4,7 @@ import FeaturedProperties from '../components/FeaturedProperties'
 import Faq from '../components/Faq'
 import Cta from '../components/Cta'
 import Testimonial from '../components/Testimonial'
-
+ 
 const Home = () => {
   return (
     <div className="bg-gradient-to-r from-[#fffbf0] to-white">
