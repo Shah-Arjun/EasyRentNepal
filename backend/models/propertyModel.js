@@ -100,11 +100,11 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
 
-    highlight: {
+    highlight: { //eye-catching selling point that will be shown in listing cards.
       type: String,
     },
 
-    highlightDesc: {
+    highlightDesc: {  //highlight description]
       type: String,
     },
 
@@ -120,17 +120,17 @@ const propertySchema = new mongoose.Schema(
       default: true,
     },
 
-    isVerified: {
+    isVerified: {       //indicates whether a property has been verified by admin
       type: Boolean,
       default: false,
     },
 
-    views: {
+    views: {          //counts how many times users opened the property detail page
       type: Number,
       default: 0,
     },
 
-    isDeleted: {
+    isDeleted: {   //soft delete
       type: Boolean,
       default: false,
     },
