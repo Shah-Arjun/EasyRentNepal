@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    userName: {
+    firstName: {
       type: String,
       required: [true, "Username must be provided"],
-      minlength: 3,
-      maxlength: 30,
+      trim: true,
+    },
+
+    lasttName: {
+      type: String,
+      required: [true, "Username must be provided"],
       trim: true,
     },
 
@@ -71,6 +75,21 @@ const userSchema = new mongoose.Schema(
       propertyType: [String],
       amenities: [String],
     },
+
+     wishList: {
+      type: Array,
+      default: [],
+    },
+
+    propertyList: {
+      type: Array,
+      default: [],
+    },
+    
+    reservationList: {
+      type: Array,
+      default: [],
+    }
     
   },
   {
