@@ -1,0 +1,82 @@
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema(
+  {
+    userName: {
+      type: String,
+      required: [true, "Username must be provided"],
+      minlength: 3,
+      maxlength: 30,
+      trim: true,
+    },
+
+    userEmail: {
+      type: String,
+      required: [true, "Email must be provided"],
+      unique: true,
+      lowercase: true,
+      trim: true,
+      match: [/^\S+@\S+\.\S+$/, "Please provide a valid email"],
+    },
+
+    phoneNumber: {
+      type: String,
+      required: [true, "Phone number must be provided"],
+      select: false,      //this field will not be returned in any query, hidden by default
+    },
+
+    password: {
+      type: String,
+      required: [true, "Password must be provided"],
+      minlength: 8,
+      select: false,
+    },
+
+    role: {
+      type: String,
+      enum: ["tenant", "owner", "admin"],
+      default: "tenant",
+    },
+
+    gender: {
+      type: String,
+      enum: ["male", "female", "unknown"],
+      default: "unknown",
+    },
+
+    location: {         //store tracked location by website
+      type: String,
+      trim: true,
+    },
+
+    profileImage: {
+      url: {           //to display image of particular url
+        type: String,
+        //default: "https://www.flaticon.com/free-icon/user_149071?term=avatar&page=1&position=3&origin=tag&related_id=149071"
+      },
+      public_id: {
+        //to work with cloudinary
+        type: String,
+      },
+    },
+
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+
+    preferences: {
+      location: [String],      //array of string
+      priceRange: { min: Number, max: Number },
+      propertyType: [String],
+      amenities: [String],
+    },
+    
+  },
+  {
+    timestamps: true,
+  },
+);
+
+const User = mongoose.model("User", userSchema);
+module.exports = User;
