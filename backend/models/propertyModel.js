@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const propertySchema = new mongoose.Schema(
   {
+    // OWNER (who listed the property)
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -15,18 +16,13 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
 
-    // BHK / ROOM CONFIGURATION
+    // BHK CONFIGURATION (for flat/house/apartment)
     bhk: {
       type: String,
-      enum: ["1BHK", "2BHK", "3BHK", "4BHK", "Studio"],
+      enum: ["Studio", "1BHK", "2BHK", "3BHK", "4BHK"],
       required: function () {
         return this.propertyType !== "room";
       },
-    },
-
-    rooms: {
-      type: Number,
-      default: 1,
     },
 
     // FURNISHING STATUS
@@ -36,7 +32,7 @@ const propertySchema = new mongoose.Schema(
       default: "unfurnished",
     },
 
-    // LOCATION
+    // LOCATION DETAILS
     location: {
       streetAddress: {
         type: String,
@@ -59,8 +55,8 @@ const propertySchema = new mongoose.Schema(
         type: String,
         default: "Nepal",
       },
-      lat: Number,   //latitude
-      lng: Number,   // longitude
+      lat: Number,
+      lng: Number,
     },
 
     // PROPERTY DETAILS
@@ -112,12 +108,13 @@ const propertySchema = new mongoose.Schema(
       type: String,
     },
 
+    // PRICING
     rent: {
       type: Number,
       required: true,
     },
 
-    // STATUS
+    // STATUS & META
     availability: {
       type: Boolean,
       default: true,
@@ -132,12 +129,15 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-const Property= mongoose.model("Property", propertySchema);
-module.exports = Property;
+module.exports = mongoose.model("Property", propertySchema);
