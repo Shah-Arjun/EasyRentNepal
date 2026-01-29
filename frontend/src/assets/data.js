@@ -65,8 +65,7 @@ import blog5 from "../assets/blogs/blog5.jpg";
 import blog6 from "../assets/blogs/blog6.jpg";
 import blog7 from "../assets/blogs/blog7.jpg";
 import blog8 from "../assets/blogs/blog8.jpg";
-import Faq from "../components/Faq";
-
+import Faq from '../components/Faq';
 
 export const assets = {
     logoImg,
@@ -165,7 +164,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Itahari Modern Family House",
     "description": "A modern family home offering comfort and convenience in the heart of Itahari. This residence features spacious bedrooms, elegant interiors, and a balcony with city views. Perfect for families seeking a balance of tranquility and connectivity.",
-    "address": "23 Central Road, Itahari, Sunsari",
+    "address": "Itahari-3, Sunsari",
     "city": "Itahari",
     "country": "Nepal",
     "propertyType": "House",
@@ -191,7 +190,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Dharan Hills Luxury Apartment",
     "description": "Located in the serene hills of Dharan, this apartment combines modern architecture with scenic views. Features a rooftop terrace, well-ventilated rooms, and premium finishes for a luxurious lifestyle.",
-    "address": "12 Hillside Road, Dharan, Sunsari",
+    "address": "Dharan-12, Sunsari",
     "city": "Dharan",
     "country": "Nepal",
     "propertyType": "Apartment",
@@ -217,7 +216,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Biratnagar Urban Villa",
     "description": "A stunning villa in Biratnagar offering modern luxury with practical amenities. Ideal for families, with open spaces, elegant interiors, and a rooftop terrace.",
-    "address": "45 Riverside Road, Biratnagar, Morang",
+    "address": "Biratnagar-9, Morang",
     "city": "Biratnagar",
     "country": "Nepal",
     "propertyType": "Villa",
@@ -243,7 +242,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Kathmandu Garden Townhouse",
     "description": "Modern townhouse in Kathmandu, perfect for city dwellers seeking style and convenience. Enjoy a private garden, terrace, and easy access to nearby amenities.",
-    "address": "29 Lazimpat Road, Kathmandu",
+    "address": "Lazimpat Road, Kathmandu",
     "city": "Kathmandu",
     "country": "Nepal",
     "propertyType": "Townhouse",
@@ -269,7 +268,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Pokhara Lakeside House",
     "description": "Experience lakeside living in Pokhara. This modern house offers panoramic views, spacious interiors, and contemporary amenities, ideal for vacations or permanent residence.",
-    "address": "45 Lakeside Road, Pokhara, Kaski",
+    "address": "Lakeside Road, Pokhara, Kaski",
     "city": "Pokhara",
     "country": "Nepal",
     "propertyType": "House",
@@ -295,7 +294,7 @@ export const dummyProperties = [
     "agency": "dummyAgencyData",
     "title": "Dharan Countryside Apartment",
     "description": "A peaceful apartment surrounded by greenery in Dharan. Featuring cozy interiors, spacious living areas, and a private garden for relaxation and serenity.",
-    "address": "88 Greenway Lane, Dharan, Sunsari",
+    "address": "Bhanu road, Dharan, Sunsari",
     "city": "Dharan",
     "country": "Nepal",
     "propertyType": "Apartment",

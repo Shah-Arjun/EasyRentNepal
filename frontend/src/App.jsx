@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Listing from './pages/Listing'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
+import PropertyDetails from './pages/PropertyDetails'
 //import { useState } from 'react'
 
 
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />  
         <Route path="/listing" element={<Listing />} />  
+        <Route path="/listing/:id" element={<PropertyDetails />} />  
         <Route path="/blog" element={<Blog />} />  
         <Route path="/contact" element={<Contact />} />  
 
