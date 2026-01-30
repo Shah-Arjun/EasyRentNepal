@@ -7,7 +7,7 @@ import { assets } from '../assets/data'
 const PropertyDetails = () => {
     const { properties } = useAppContext()
     const [property, setProperty] = useState(null)
-    const {id} = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
         const property = properties.find((property) => property._id === id)
@@ -18,17 +18,26 @@ const PropertyDetails = () => {
             <div className='bg-gradient-to-r from-[#fffbee] to-white py-28'>
                 <div className='max-padd-container'>
                     {/* Image */}
-                    <PropertyImages property = {property}/>
-                     {/* Container*/}
-                     <div>
+                    <PropertyImages property={property} />
+                    {/* Container*/}
+                    <div>
                         {/* Left Side */}
                         <div>
                             <p>
-                                <img src={assets.pin} alt="" width={19}/>
+                                <img src={assets.pin} alt="" width={19} />
                                 <span>{property.address}</span>
                             </p>
+                            <div>
+                                <h3 className="h3">{property.title}</h3>
+                                <div className='bold-18'>
+                                    Rs.{property.price.rent}.00/month
+                                </div>
+                            </div>
+                            <div>
+                                
+                            </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
 
