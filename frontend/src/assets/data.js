@@ -132,25 +132,25 @@ export const cities = [
 
 export const dummyAgentData = {
     "_id": "agent_2unqyL4diJFP1E3pIBnasc7w8hP",
-    "username": "Izabella Stress",
+    "username": "Ramesh Adhikari",
     "image": userImg,
-    "role": "agencyOwner", 
+    "role": "propertyOwner", 
     "createdAt": "2025-03-25T09:29:16.367Z",
     "updatedAt": "2025-04-10T06:34:48.719Z",
     "__v": 1,
-    "recentSearchedCities": ["Abu Dhabi", "New York", "Toronto", "Los Angeles"]
+    "recentSearchedCities": ["Kathmandu", "Lalitpur", "Bhaktapur"]
   }
   
   
   // Agency Dummy Data
   export const dummyAgencyData = {
     "_id": "67f7642a197ac559e4089b99",
-    "name": "Prime Solutions",
-    "contact": "0123456789",
-    "email": "contact@agencyname.com", 
-    "address": "Suite 405, Midtown Business Tower, Park Avenue",
+    "name": "Himalayan Property Services",
+    "contact": "01-5321456",
+    "email": "info@himalayanproperty.com", 
+    "address": "Putalisadak, Kathmandu, Nepal",
     "owner": dummyAgentData,
-    "city": "Los Angeles",
+    "city": "Kathmandu",
     "createdAt": "2025-04-12T10:45:30.000Z",
     "updatedAt": "2025-04-12T10:45:30.000Z",
     "__v": 0
@@ -161,7 +161,7 @@ export const dummyAgentData = {
 export const dummyProperties = [
   {
     "_id": "67f7647c197ac559e4089b96",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Itahari Modern Family House",
     "description": "A modern family home offering comfort and convenience in the heart of Itahari. This residence features spacious bedrooms, elegant interiors, and a balcony with city views. Perfect for families seeking a balance of tranquility and connectivity.",
     "address": "Itahari-3, Sunsari",
@@ -187,7 +187,7 @@ export const dummyProperties = [
   },
   {
     "_id": "67f76452197ac559e4089b8e",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Dharan Hills Luxury Apartment",
     "description": "Located in the serene hills of Dharan, this apartment combines modern architecture with scenic views. Features a rooftop terrace, well-ventilated rooms, and premium finishes for a luxurious lifestyle.",
     "address": "Dharan-12, Sunsari",
@@ -204,7 +204,7 @@ export const dummyProperties = [
     },
     "area": 800,
     "amenities": ["Backyard", "Balcony", "Garden"],
-    "images": [img2, pImg3, pImg4, pImg2],
+    "images": [img2, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:25:22.593Z",
@@ -213,7 +213,7 @@ export const dummyProperties = [
   },
   {
     "_id": "67f76406197ac559e4089b82",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Biratnagar Urban Villa",
     "description": "A stunning villa in Biratnagar offering modern luxury with practical amenities. Ideal for families, with open spaces, elegant interiors, and a rooftop terrace.",
     "address": "Biratnagar-9, Morang",
@@ -230,7 +230,7 @@ export const dummyProperties = [
     },
     "area": 1000,
     "amenities": ["Terrace", "Parking", "Balcony", "Garden"],
-    "images": [img3, pImg4, pImg3, pImg2],
+    "images": [img3, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:24:06.285Z",
@@ -239,7 +239,7 @@ export const dummyProperties = [
   },
   {
     "_id": "67f763d8197ac559e4089b7a",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Kathmandu Garden Townhouse",
     "description": "Modern townhouse in Kathmandu, perfect for city dwellers seeking style and convenience. Enjoy a private garden, terrace, and easy access to nearby amenities.",
     "address": "Lazimpat Road, Kathmandu",
@@ -265,7 +265,7 @@ export const dummyProperties = [
   },
   {
     "_id": "67f765aa197ac559e4089b9c",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Pokhara Lakeside House",
     "description": "Experience lakeside living in Pokhara. This modern house offers panoramic views, spacious interiors, and contemporary amenities, ideal for vacations or permanent residence.",
     "address": "Lakeside Road, Pokhara, Kaski",
@@ -282,7 +282,7 @@ export const dummyProperties = [
     },
     "area": 1300,
     "amenities": ["Swimming Pool", "Balcony", "Private Garden"],
-    "images": [img5, pImg3, pImg2, pImg4],
+    "images": [img5, pImg2, pImg3, pImg4],
     "isAvailable": true,
     "status": "available",
     "createdAt": "2026-01-26T06:27:30.013Z",
@@ -291,7 +291,7 @@ export const dummyProperties = [
   },
   {
     "_id": "67f765f4197ac559e4089ba4",
-    "agency": "dummyAgencyData",
+    "agency": dummyAgencyData,
     "title": "Dharan Countryside Apartment",
     "description": "A peaceful apartment surrounded by greenery in Dharan. Featuring cozy interiors, spacious living areas, and a private garden for relaxation and serenity.",
     "address": "Bhanu road, Dharan, Sunsari",
