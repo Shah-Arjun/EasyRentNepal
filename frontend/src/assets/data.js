@@ -188,7 +188,7 @@ export const dummyProperties = [
   {
     "_id": "67f76452197ac559e4089b8e",
     "agency": dummyAgencyData,
-    "title": "Dharan Hills Luxury Apartment",
+    "title": "Dharan Luxury Apartment",
     "description": "Located in the serene hills of Dharan, this apartment combines modern architecture with scenic views. Features a rooftop terrace, well-ventilated rooms, and premium finishes for a luxurious lifestyle.",
     "address": "Dharan-12, Sunsari",
     "city": "Dharan",
@@ -214,7 +214,7 @@ export const dummyProperties = [
   {
     "_id": "67f76406197ac559e4089b82",
     "agency": dummyAgencyData,
-    "title": "Biratnagar Urban Villa",
+    "title": "Biratnagar Villa",
     "description": "A stunning villa in Biratnagar offering modern luxury with practical amenities. Ideal for families, with open spaces, elegant interiors, and a rooftop terrace.",
     "address": "Biratnagar-9, Morang",
     "city": "Biratnagar",
@@ -240,7 +240,7 @@ export const dummyProperties = [
   {
     "_id": "67f763d8197ac559e4089b7a",
     "agency": dummyAgencyData,
-    "title": "Kathmandu Garden Townhouse",
+    "title": "Kathmandu Garden House",
     "description": "Modern townhouse in Kathmandu, perfect for city dwellers seeking style and convenience. Enjoy a private garden, terrace, and easy access to nearby amenities.",
     "address": "Lazimpat Road, Kathmandu",
     "city": "Kathmandu",
@@ -292,7 +292,7 @@ export const dummyProperties = [
   {
     "_id": "67f765f4197ac559e4089ba4",
     "agency": dummyAgencyData,
-    "title": "Dharan Countryside Apartment",
+    "title": "Dharan Apartment",
     "description": "A peaceful apartment surrounded by greenery in Dharan. Featuring cozy interiors, spacious living areas, and a private garden for relaxation and serenity.",
     "address": "Bhanu road, Dharan, Sunsari",
     "city": "Dharan",
@@ -323,53 +323,51 @@ export const dummyProperties = [
 // User Bookings Dummy Data
 export const dummyBookingsData = [
     {
-        "_id": "67f76839994a731e97d3b8ce",
-        "user": dummyAgentData,
-        "property": dummyProperties[1],
-        "agency": dummyAgencyData,
-        "checkInDate": "2025-04-30T00:00:00.000Z",
-        "checkOutDate": "2025-05-01T00:00:00.000Z",
-        "totalPrice": 299,
-        "guests": 4,
-        "status": "pending",
-        "paymentMethod": "Stripe",
-        "isPaid": false,
-        "createdAt": "2025-04-10T06:42:01.529Z",
-        "updatedAt": "2025-04-10T06:43:54.520Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76829994a731e97d3b8c3",
-        "user": dummyAgentData,
-        "property": dummyProperties[0],
-        "agency": dummyAgencyData,
-        "checkInDate": "2025-04-27T00:00:00.000Z",
-        "checkOutDate": "2025-04-28T00:00:00.000Z",
-        "totalPrice": 399,
-        "guests": 3,
-        "status": "pending",
-        "paymentMethod": "Pay at Check-in",
-        "isPaid": false,
-        "createdAt": "2025-04-10T06:41:45.873Z",
-        "updatedAt": "2025-04-10T06:41:45.873Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76810994a731e97d3b8b4",
-        "user": dummyAgentData,
-        "property": dummyProperties[3],
-        "agency": dummyAgencyData,
-        "checkInDate": "2025-04-11T00:00:00.000Z",
-        "checkOutDate": "2025-04-12T00:00:00.000Z",
-        "totalPrice": 199,
-        "guests": 3,
-        "status": "pending",
-        "paymentMethod": "Pay at Check-in",
-        "isPaid": true,
-        "createdAt": "2025-04-10T06:41:20.501Z",
-        "updatedAt": "2025-04-10T06:41:20.501Z",
-        "__v": 0
-    }
+    "_id": "67f76839994a731e97d3b8ce",
+    "user": dummyAgentData,
+    "property": dummyProperties[1],
+    "agency": dummyAgencyData,
+    "checkInDate": "2025-04-30T00:00:00.000Z",
+    "totalPrice": 25000,
+    "guests": 4,
+    "status": "pending",
+    "paymentMethod": "eSewa",
+    "isPaid": false,
+    "createdAt": "2025-04-10T06:42:01.529Z",
+    "updatedAt": "2025-04-10T06:43:54.520Z",
+    "__v": 0
+},
+{
+    "_id": "67f76829994a731e97d3b8c3",
+    "user": dummyAgentData,
+    "property": dummyProperties[0],
+    "agency": dummyAgencyData,
+    "checkInDate": "2025-04-27T00:00:00.000Z",
+    "totalPrice": 32000,
+    "guests": 3,
+    "status": "confirmed",
+    "paymentMethod": "Cash on Move-in",
+    "isPaid": true,
+    "createdAt": "2025-04-10T06:41:45.873Z",
+    "updatedAt": "2025-04-10T06:41:45.873Z",
+    "__v": 0
+},
+{
+    "_id": "67f76810994a731e97d3b8b4",
+    "user": dummyAgentData,
+    "property": dummyProperties[3],
+    "agency": dummyAgencyData,
+    "checkInDate": "2025-04-11T00:00:00.000Z",
+    "totalPrice": 12000,
+    "guests": 2,
+    "status": "active",
+    "paymentMethod": "Khalti",
+    "isPaid": true,
+    "createdAt": "2025-04-10T06:41:20.501Z",
+    "updatedAt": "2025-04-10T06:41:20.501Z",
+    "__v": 0
+}
+
 ]
 
 

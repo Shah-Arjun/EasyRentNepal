@@ -8,14 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 
 
-
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
-  const { navigate } = useAppContext();
-  const { user } = useUser();
+  const { navigate, user} = useAppContext();
   const { openSignIn } = useClerk();
 
 
