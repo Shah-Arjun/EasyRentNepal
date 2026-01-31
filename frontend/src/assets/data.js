@@ -376,53 +376,54 @@ export const dummyBookingsData = [
 // Blogs Dummy Data (Real Estate Website) with Descriptions
 export const blogs = [
   {
-    title: "Top 10 Cities to Buy Property in 2025",
-    category: "Market Trends",
-    image: blog1,
-    description: "Discover the most promising cities for real estate investment and future growth in 2025."
-  },
-  {
-    title: "How to Choose the Right Rental Property",
-    category: "Renting Guide",
-    image: blog2,
-    description: "A practical guide to help renters select the perfect home based on lifestyle, budget, and location."
-  },
-  {
-    title: "Interior Design Trends for Modern Apartments",
-    category: "Home Improvement",
-    image: blog3,
-    description: "Explore the latest interior design trends that add value and style to modern living spaces."
-  },
-  {
-    title: "A First-Time Home Buyer's Complete Checklist",
-    category: "Buying Tips",
-    image: blog4,
-    description: "Step-by-step checklist every new home buyer should follow to make confident purchase decisions."
-  },
-  {
-    title: "Maximizing ROI on Your Rental Property",
-    category: "Investment",
-    image: blog5,
-    description: "Proven strategies to increase income and long-term value from your rental properties."
-  },
-  {
-    title: "Pros and Cons of Living in a Gated Community",
-    category: "Lifestyle",
-    image: blog6,
-    description: "Weigh the benefits and drawbacks of buying or renting in a gated residential area."
-  },
-  {
-    title: "How to Stage Your Home for a Quick Sale",
-    category: "Selling Tips",
-    image: blog7,
-    description: "Learn simple yet effective tips to stage your home and attract serious buyers faster."
-  },
-  {
-    title: "2025 Real Estate Forecast: What to Expect",
-    category: "Market Trends",
-    image: blog8,
-    description: "An expert overview of the expected trends and shifts in the real estate market for 2025."
-  },
+  title: "Top Cities in Nepal to Rent Property in 2025",
+  category: "Market Trends",
+  image: blog1,
+  description: "Kathmandu, Pokhara, Lalitpur, Bhaktapur, and emerging cities like Itahari and Bharatpur—explore where property investment is growing fastest in Nepal."
+},
+{
+  title: "How to Choose the Right Rental Home in Nepal",
+  category: "Renting Guide",
+  image: blog2,
+  description: "From water supply and road access to proximity to schools and offices, learn how to choose the best rental home that fits your lifestyle and budget in Nepal."
+},
+{
+  title: "Interior Design Ideas for Modern Nepali Apartments",
+  category: "Home Improvement",
+  image: blog3,
+  description: "Simple, budget-friendly interior design trends popular in Kathmandu and Pokhara apartments that improve comfort and rental value."
+},
+{
+  title: "First-Time Home Renter’s Checklist in Nepal",
+  category: "Renting Tips",
+  image: blog4,
+  description: "A complete checklist for first-time renters in Nepal—covering land ownership, Lalpurja verification, bank loans, and legal procedures."
+},
+{
+  title: "How to Increase Rental Income from Your Property in Nepal",
+  category: "Investment",
+  image: blog5,
+  description: "Smart strategies to maximize rental income, attract long-term tenants, and improve ROI in Nepal’s growing rental market."
+},
+{
+  title: "Independent House vs Flat: What’s Better in Nepal?",
+  category: "Lifestyle",
+  image: blog6,
+  description: "Compare independent houses and apartment living in Nepal based on cost, security, maintenance, and lifestyle."
+},
+{
+  title: "How to Prepare Your House for Rent in Nepal",
+  category: "Landlord Tips",
+  image: blog7,
+  description: "Practical tips for Nepali landlords to get their house rental-ready, attract quality tenants, and avoid common mistakes."
+},
+{
+  title: "Nepal Rental Market Outlook for 2026",
+  category: "Market Trends",
+  image: blog8,
+  description: "An overview of Nepal’s rental trends in 2026, including rental demand, pricing, urban expansion, and investment opportunities."
+}
+
 ];
 
 
