@@ -2,21 +2,21 @@ const mongoose = require("mongoose");
 
 const propertySchema = new mongoose.Schema(
   {
-    // OWNER (who listed the property)
+    // Owner (who listed the property)
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
 
-    // PROPERTY TYPE
+    // Property type
     propertyType: {
       type: String,
       enum: ["room", "flat", "house", "apartment"],
       required: true,
     },
 
-    // BHK CONFIGURATION (for flat/house/apartment)
+    // BHK configuration (for flat/house/apartment)
     bhk: {
       type: String,
       enum: ["Studio", "1BHK", "2BHK", "3BHK", "4BHK"],
@@ -25,14 +25,24 @@ const propertySchema = new mongoose.Schema(
       },
     },
 
-    // FURNISHING STATUS
+    // Furnished status
     furnishedType: {
       type: String,
       enum: ["unfurnished", "semi-furnished", "fully-furnished"],
       default: "unfurnished",
     },
+    bathroomType: {
+      type: String,
+      enum: ["attached", "shared"],
+      default: "shared",
+    },
+    kitchenType: {
+      type: String,
+      enum: ["private", "shared"],
+      default: "shared",
+    },
 
-    // LOCATION DETAILS
+    // property location details
     location: {
       streetAddress: {
         type: String,
@@ -59,7 +69,7 @@ const propertySchema = new mongoose.Schema(
       lng: Number,
     },
 
-    // PROPERTY DETAILS
+    // Property details
     bedroomCount: {
       type: Number,
       default: 1,
@@ -73,14 +83,14 @@ const propertySchema = new mongoose.Schema(
       default: 1,
     },
 
-    // AMENITIES
+    // amenities
     amenities: {
       type: [String],
       enum: ["bed", "wifi", "parking", "water", "lpg", "tv", "lift"],
       default: [],
     },
 
-    // IMAGES (CLOUDINARY READY)
+    // images (CLOUDINARY ready)
     images: [
       {
         url: String,
@@ -88,7 +98,7 @@ const propertySchema = new mongoose.Schema(
       },
     ],
 
-    // LISTING INFO
+    // Listing info
     title: {
       type: String,
       required: true,
@@ -108,13 +118,13 @@ const propertySchema = new mongoose.Schema(
       type: String,
     },
 
-    // PRICING
+    // pricing
     rent: {
       type: Number,
       required: true,
     },
 
-    // STATUS & META
+    // status & meta
     availability: {
       type: Boolean,
       default: true,
