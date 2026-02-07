@@ -26,15 +26,10 @@ const propertySchema = new mongoose.Schema(
     },
 
     // Furnished status
-    furnishedType: {
+    furnishedStatus: {
       type: String,
       enum: ["unfurnished", "semi-furnished", "fully-furnished"],
       default: "unfurnished",
-    },
-    bathroomType: {
-      type: String,
-      enum: ["attached", "shared"],
-      default: "shared",
     },
     kitchenType: {
       type: String,
@@ -77,6 +72,11 @@ const propertySchema = new mongoose.Schema(
     bathroomCount: {
       type: Number,
       default: 1,
+    },
+     bathroomType: {
+      type: String,
+      enum: ["attached", "shared"],
+      default: "shared",
     },
     bedCount: {
       type: Number,
