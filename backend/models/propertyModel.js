@@ -7,6 +7,7 @@ const propertySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      // type: String
     },
 
     // Property type
@@ -37,15 +38,12 @@ const propertySchema = new mongoose.Schema(
       default: "shared",
     },
 
-    // property location details
+    // property location details-->object
     location: {
       streetAddress: {
         type: String,
         required: true,
         trim: true,
-      },
-      aptSuite: {
-        type: String,
       },
       city: {
         type: String,
@@ -93,8 +91,9 @@ const propertySchema = new mongoose.Schema(
     // images (CLOUDINARY ready)
     images: [
       {
-        url: String,
-        public_id: String,
+        // url: String,
+        // public_id: String,
+        type: String
       },
     ],
 
@@ -150,4 +149,5 @@ const propertySchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Property", propertySchema);
+const Property = mongoose.model("Property", propertySchema);
+module.exports = Property
