@@ -58,8 +58,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         //default: "https://www.flaticon.com/free-icon/user_149071?term=avatar&page=1&position=3&origin=tag&related_id=149071"
       },
-      public_id: {
-        //to work with cloudinary
+      public_id: {   //to work with cloudinary
         type: String,
       },
     },

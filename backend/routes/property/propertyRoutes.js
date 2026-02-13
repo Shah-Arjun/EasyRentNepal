@@ -5,7 +5,7 @@ const router = require('express').Router()
 
 
 // property routes endpoints
-router.route('/').post(catchAsync(createRoom))
+router.route('/create-room').post(catchAsync(createRoom))
 
 
 module.exports = router
