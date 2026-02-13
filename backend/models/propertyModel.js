@@ -7,6 +7,7 @@ const propertySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      // type: String
     },
 
     // Property type
@@ -14,6 +15,7 @@ const propertySchema = new mongoose.Schema(
       type: String,
       enum: ["room", "flat", "house", "apartment"],
       required: true,
+      index: true
     },
 
     // BHK configuration (for flat/house/apartment)
@@ -26,15 +28,10 @@ const propertySchema = new mongoose.Schema(
     },
 
     // Furnished status
-    furnishedType: {
+    furnishedStatus: {
       type: String,
       enum: ["unfurnished", "semi-furnished", "fully-furnished"],
       default: "unfurnished",
-    },
-    bathroomType: {
-      type: String,
-      enum: ["attached", "shared"],
-      default: "shared",
     },
     kitchenType: {
       type: String,
@@ -42,20 +39,18 @@ const propertySchema = new mongoose.Schema(
       default: "shared",
     },
 
-    // property location details
+    // property location details-->object
     location: {
       streetAddress: {
         type: String,
         required: true,
         trim: true,
       },
-      aptSuite: {
-        type: String,
-      },
       city: {
         type: String,
         required: true,
         trim: true,
+        index: true
       },
       province: {
         type: String,
@@ -78,6 +73,11 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
+     bathroomType: {
+      type: String,
+      enum: ["attached", "shared"],
+      default: "shared",
+    },
     bedCount: {
       type: Number,
       default: 1,
@@ -90,12 +90,24 @@ const propertySchema = new mongoose.Schema(
       default: [],
     },
 
-    // images (CLOUDINARY ready)
+    // images 
+    // images: [
+    //   {
+    //     // url: String,
+    //     // public_id: String,
+    //     type: String
+    //   },
+    // ],
+
+    //images--> cloudinary ready
     images: [
       {
-        url: String,
+        url: { 
+          type: String, 
+          required: true 
+        },
         public_id: String,
-      },
+      }
     ],
 
     // Listing info
@@ -122,17 +134,20 @@ const propertySchema = new mongoose.Schema(
     rent: {
       type: Number,
       required: true,
+      index: true
     },
 
     // status & meta
     availability: {
       type: Boolean,
       default: true,
+      index: true
     },
 
     isVerified: {       //indicates whether a property has been verified by admin
       type: Boolean,
       default: false,
+      index: true
     },
 
     views: {          //counts how many times users opened the property detail page
@@ -150,4 +165,17 @@ const propertySchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Property", propertySchema);
+
+//
+
+
+// search indexes - improves search by visiting all fields
+propertySchema.index({
+  title: "text",
+  description: "text",
+  highlight: "text"
+})
+
+
+const Property = mongoose.model("Property", propertySchema);
+module.exports = Property

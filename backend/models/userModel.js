@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
-    lasttName: {
+    lastName: {
       type: String,
       required: [true, "Username must be provided"],
       trim: true,
@@ -58,8 +58,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         //default: "https://www.flaticon.com/free-icon/user_149071?term=avatar&page=1&position=3&origin=tag&related_id=149071"
       },
-      public_id: {
-        //to work with cloudinary
+      public_id: {   //to work with cloudinary
         type: String,
       },
     },
@@ -76,20 +75,20 @@ const userSchema = new mongoose.Schema(
       amenities: [String],
     },
 
-     wishList: {
-      type: Array,
-      default: [],
-    },
+    //  wishList: {     //wishlistModel
+    //   type: Array,
+    //   default: [],
+    // },
 
-    propertyList: {
-      type: Array,
-      default: [],
-    },
+    // propertyList: {    //propertyModel
+    //   type: Array,
+    //   default: [],
+    // },
     
-    reservationList: {
-      type: Array,
-      default: [],
-    }
+    // reservationList: {    //bookingModel
+    //   type: Array,
+    //   default: [],
+    // }
     
   },
   {
