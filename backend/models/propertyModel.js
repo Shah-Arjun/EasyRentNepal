@@ -15,6 +15,7 @@ const propertySchema = new mongoose.Schema(
       type: String,
       enum: ["room", "flat", "house", "apartment"],
       required: true,
+      index: true
     },
 
     // BHK configuration (for flat/house/apartment)
@@ -49,6 +50,7 @@ const propertySchema = new mongoose.Schema(
         type: String,
         required: true,
         trim: true,
+        index: true
       },
       province: {
         type: String,
@@ -88,13 +90,24 @@ const propertySchema = new mongoose.Schema(
       default: [],
     },
 
-    // images (CLOUDINARY ready)
+    // images 
+    // images: [
+    //   {
+    //     // url: String,
+    //     // public_id: String,
+    //     type: String
+    //   },
+    // ],
+
+    //images--> cloudinary ready
     images: [
       {
-        // url: String,
-        // public_id: String,
-        type: String
-      },
+        url: { 
+          type: String, 
+          required: true 
+        },
+        public_id: String,
+      }
     ],
 
     // Listing info
@@ -121,17 +134,20 @@ const propertySchema = new mongoose.Schema(
     rent: {
       type: Number,
       required: true,
+      index: true
     },
 
     // status & meta
     availability: {
       type: Boolean,
       default: true,
+      index: true
     },
 
     isVerified: {       //indicates whether a property has been verified by admin
       type: Boolean,
       default: false,
+      index: true
     },
 
     views: {          //counts how many times users opened the property detail page
@@ -148,6 +164,18 @@ const propertySchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+
+//
+
+
+// search indexes - improves search by visiting all fields
+propertySchema.index({
+  title: "text",
+  description: "text",
+  highlight: "text"
+})
+
 
 const Property = mongoose.model("Property", propertySchema);
 module.exports = Property
