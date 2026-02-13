@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
-    lasttName: {
+    lastName: {
       type: String,
       required: [true, "Username must be provided"],
       trim: true,
@@ -75,20 +75,20 @@ const userSchema = new mongoose.Schema(
       amenities: [String],
     },
 
-     wishList: {
-      type: Array,
-      default: [],
-    },
+    //  wishList: {     //wishlistModel
+    //   type: Array,
+    //   default: [],
+    // },
 
-    propertyList: {
-      type: Array,
-      default: [],
-    },
+    // propertyList: {    //propertyModel
+    //   type: Array,
+    //   default: [],
+    // },
     
-    reservationList: {
-      type: Array,
-      default: [],
-    }
+    // reservationList: {    //bookingModel
+    //   type: Array,
+    //   default: [],
+    // }
     
   },
   {
