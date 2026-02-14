@@ -19,7 +19,7 @@ const MyBookings = () => {
   return (
     <div className='max-padd-container bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28'>
         {bookings?.map((booking)=>(
-            <div key={booking._id} className=''>
+            <div key={booking._id} className='bg-white ring-1 ring-slate-900/5 p-2 pr-4 mt -3 rounded-1g'>
                 {/* Property List */}
                 <div className='flexStart gap-3 mb-3 '>
                     <img src={booking.property.images[0]} alt="propertyImg" className='h-12 w-26 object-cover rounded-lg' />
@@ -37,15 +37,17 @@ const MyBookings = () => {
                                 <p className='text-gray-400 text-sm'>{currency}{booking.totalPrice}</p>
                             </div>
                         </div>
-                        <p>
+                        <p className='flex place-items-baseline gap-1 mt-0.5'>
                             <img src={assets.pin} alt="" width={13}/>
                             {booking.property.address}
                         </p>
                     </div>
                 </div>
 
-<div>
-    <div>
+{/* Booking summary */}
+
+<div className='flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 border-t border-gray-300 pt-3'>
+    <div className='flex gap-2 gap-x-4 flex-wrap'>
     <div className='flex items-center gap-x-2'>
             <h5 className='medium-14'>Booking ID:</h5>
             <p className='text-gray-400 text-xs break-all'>{booking._id}
@@ -53,14 +55,14 @@ const MyBookings = () => {
         </div>
 
         <div className='flex items-center gap-x-2'>
-            <h5 className='medium-14'>Check -In:</h5>
-            <p className='text-gray-400 text-xs break-all'>{new Date(booking.checkInDate).toDateString()}
+            <h5 className='medium-14'>Check-In:</h5>
+            <p className='text-gray-400 text-xs'>{new Date(booking.checkInDate).toDateString()}
             </p>
         </div>
 
         <div className='flex items-center gap-x-2'>
-            <h5 className='medium-14'>Check -Out:</h5>
-            <p className='text-gray-400 text-xs break-all'>{new Date(booking.checkOutDate).toDateString()}
+            <h5 className='medium-14'>Check-Out:</h5>
+            <p className='text-gray-400 text-xs'>{new Date(booking.checkOutDate).toDateString()}
             </p>
         </div>
     </div>
@@ -70,7 +72,7 @@ const MyBookings = () => {
           
           <h5 className='medium-14'>Payment:</h5>
           <div className='flex items-center gap-1'>
-            <span className={'min-w-2.5 h-2.5 rounded-full ${booking.isPaid ? "bg-green-500" : "bg-yellow-500"}'}></span>
+            <span className={`min-w-2.5 h-2.5 rounded-full ${booking.isPaid ? "bg-green-500" : "bg-yellow-500"}`}/>
             <p>{booking.isPaid ? "paid" : "unpaid"}</p>
           </div>
         </div>

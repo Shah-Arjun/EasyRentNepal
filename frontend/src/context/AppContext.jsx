@@ -8,8 +8,11 @@ const Appcontext = createContext()
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate();
-    const [properties, setProperties] = useState([]);
     const { user } = useUser();
+    const [properties, setProperties] = useState([]);
+    const [showAgencyReg, setShowAgencyReg] = useState(false)
+    
+
 
     const getProperties = () => {
         setProperties(dummyProperties)
@@ -23,8 +26,10 @@ export const AppContextProvider = ({ children }) => {
         navigate,
         properties,
         currency,
-        user
-    }
+        user,
+        showAgencyReg,
+        setShowAgencyReg
+    };
 
     return (
         <Appcontext.Provider value={value}>
