@@ -11,6 +11,7 @@ const userActivitySchema = new mongoose.Schema(
       ref: "User",
       unique: true,
       required: true,
+      index: true
     },
 
 
@@ -77,6 +78,18 @@ const userActivitySchema = new mongoose.Schema(
         },
       },
     ],
+
+
+    //extra info
+    signalWeight: Number,
+    sessionId: String,
+
+    //geo context
+    geoCity: String,
+    geoLat: Number,
+    geoLng: Number
+
+
   },
   {
     timestamps: true,      //updated time
