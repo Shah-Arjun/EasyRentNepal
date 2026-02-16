@@ -6,16 +6,19 @@ const reviewSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,    //for tenantId referenced to User model, stores tenant id
       ref: "User",
       required: true,
+      index: true
     }, 
     ownerId: {                    //foreign key
       type: mongoose.Schema.Types.ObjectId,  
       ref: "User",
       required: true,
+      index: true
     },
     propertyId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Property",
       required: true,
+      index: true
     },
     rating: {
       type: Number,
@@ -32,6 +35,7 @@ const reviewSchema = new mongoose.Schema(
     isApproved: {      //controlled by admin
       type: Boolean,
       default: true,
+      index: true
     },
   },
   {
