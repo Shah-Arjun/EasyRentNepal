@@ -25,11 +25,11 @@ const Sidebar = () => {
     },
   ]
 
-  useEffect(() => {
-    if (!isOwner) {
-      navigate('/')
-    }
-  }, [isOwner])
+  // useEffect(() => {
+  //   if (!isOwner) {
+  //     navigate('/')
+  //   }
+  // }, [isOwner])
 
   return (
     <div className='bg-gradient-to-r from-[#fffbee] to-white'>

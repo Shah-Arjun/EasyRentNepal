@@ -36,8 +36,9 @@ const App = () => {
         <Route path="/my-bookings" element={<MyBookings />} />  
         <Route path='/owner' element={<Sidebar />}>
           <Route index element={<Dashboard />}/>
-          <Route path='/owner/add-property' element={<AddProperty />}/>
-          <Route path='/owner/list-property' element={<ListProperty />}/>
+          <Route path='add-property' element={<AddProperty />}/>
+          <Route path='list-property' element={<ListProperty />}/>
+ 
 
 
         </Route>
