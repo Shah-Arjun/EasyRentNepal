@@ -2,6 +2,108 @@ const mongoose = require("mongoose");
 
 const propertySchema = new mongoose.Schema(
   {
+    //Basic
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 150,
+    },
+    slug: { //eye-catching selling point that will be shown in listing cards. ,,,, auto-generated from title + location for SEO/URL
+      type: String,
+    },
+    category: {
+      type: String,
+      enum: ['House', 'Land', 'Apartment', 'Flat', 'Office', 'Room', 'Shutter/Shop'],
+      default: 'Room',
+      required: true,
+      index: true
+    },
+    listingType: {
+      type: String,
+      enum: ['Sale', 'Rent'],
+      required: true
+    },
+
+    // Room / Structure counts (mainly for House/Apartment/Flat/Office)
+    noOfFlat: { type: Number, min:0},
+    bedrooms: { type: Number, min:0},
+    bathrooms: { type: Number, min:0},
+    bathroomType: {
+      type: String,
+      enum: ["attached", "shared"],
+      default: "shared",
+    },
+    bedCount: {
+      type: Number,
+      default: 1,
+    },
+    living: { type: Number, min:0},
+    kitchen: { type: Number, min:0},
+    parking: {
+      type: String,
+      enum: [
+        'Motorcycle', 'Car 1', 'Car 2', 'Cars 3-5', 'Cars 5-10', 'Cars 10-15', 'None'
+      ]
+    },
+
+    //Area and built info
+    builtYear: { type:Number, min:1900, max: new Date().getFullYear() + 5},
+    builtArea: {
+      value: { type: Number },
+      unit: {
+        type: String,
+        enum: ['sqft', 'aana', 'ropani', 'paisa', 'dam', 'haath', 'feet', 'sqm', 'other']
+      }
+    },
+    landArea: {
+      value: { type: Number },
+      unit: {
+        type: String,
+        enum: ['aana', 'ropani', 'paisa', 'dam', 'sqft', 'sqm', 'haath', 'dhur', 'kattha', 'bigha'],
+        default: 'dhur'     // common in Nepal
+      }
+    },
+
+    facing: {
+      type: String,
+      enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West']
+    },
+
+
+    // pricing
+    price: {
+      value: {type: Number, required: true},
+      currency: {type: String, default: 'NPR'},
+      perUnit: {
+        typr: String,
+        enum: ['total', 'per aana', 'per ropani', 'per sqft', 'per month', 'per year', 'per dhur', 'per kattha', 'per bigha'],
+      }
+    },
+
+
+    //location
+    location: {
+      province: { type: String, //enum: ['Koshi', 'Madhesh', 'Bagmati', 'Gandaki', 'Lumbini', 'Karnali', 'Sudurpashchim'], required: true,},
+      district: { type: String, required: true},
+      municipality: { type: String, required: true},
+      tole: { type: String, trim: true},
+      wardNo: { type: Number, min:1, max:35},
+    },
+    direction: {    //direction of property
+      type: String,
+      enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West', 'Other']
+    },
+    roadSize: {
+      value: { type: Number },
+      unit: { type: String, default: 'ft' }
+    },
+
+
+
+
+
+
     // Owner (who listed the property)
     owner: {
       type: mongoose.Schema.Types.ObjectId,
@@ -10,13 +112,6 @@ const propertySchema = new mongoose.Schema(
       // type: String
     },
 
-    // Property type
-    propertyType: {
-      type: String,
-      enum: ["room", "flat", "house", "apartment"],
-      required: true,
-      index: true
-    },
 
     // BHK configuration (for flat/house/apartment)
     bhk: {
@@ -33,11 +128,7 @@ const propertySchema = new mongoose.Schema(
       enum: ["unfurnished", "semi-furnished", "fully-furnished"],
       default: "unfurnished",
     },
-    kitchenType: {
-      type: String,
-      enum: ["private", "shared"],
-      default: "shared",
-    },
+  
 
     // property location details-->object
     location: {
@@ -65,23 +156,7 @@ const propertySchema = new mongoose.Schema(
     },
 
     // Property details
-    bedroomCount: {
-      type: Number,
-      default: 1,
-    },
-    bathroomCount: {
-      type: Number,
-      default: 1,
-    },
-     bathroomType: {
-      type: String,
-      enum: ["attached", "shared"],
-      default: "shared",
-    },
-    bedCount: {
-      type: Number,
-      default: 1,
-    },
+   
 
     // amenities
     amenities: {
@@ -111,31 +186,13 @@ const propertySchema = new mongoose.Schema(
     ],
 
     // Listing info
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
 
     description: {
       type: String,
       required: true,
     },
 
-    highlight: { //eye-catching selling point that will be shown in listing cards.
-      type: String,
-    },
-
-    highlightDesc: {  //highlight description]
-      type: String,
-    },
-
-    // pricing
-    rent: {
-      type: Number,
-      required: true,
-      index: true
-    },
+    
 
     // status & meta
     availability: {
