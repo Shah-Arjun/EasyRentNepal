@@ -118,7 +118,7 @@ const propertySchema = new mongoose.Schema(
   images: [{
     url: { type: String, required: true },
     public_id: String,
-    isPrimary: { type: Boolean, default: false }  // ← added for thumbnail selection
+    isPrimary: { type: Boolean, default: false }  // for thumbnail 
   }],
 
   videoUrl: String,
@@ -130,7 +130,7 @@ const propertySchema = new mongoose.Schema(
     profileImage: String
   },
 
-  amenities: [String],  // flexible array — no enum restriction
+  amenities: [String],  //wifi, water, ect
 
   status: {
     type: String,
