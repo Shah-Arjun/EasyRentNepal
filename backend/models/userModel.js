@@ -71,13 +71,13 @@ const userSchema = new mongoose.Schema(
 
     otp: {
       type: Number,
-      select: false
+      // select: false
     },
 
     isOtpVerified: {
       type: Boolean,
       default: false,
-      select: false
+      // select: false
     },
 
      wishList: {     //wishlistModel
