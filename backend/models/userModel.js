@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password must be provided"],
       minlength: 8,
-      select: false,
+      // select: false,
     },
 
     role: {
