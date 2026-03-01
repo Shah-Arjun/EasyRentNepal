@@ -5,6 +5,7 @@ const connectMongoDB = require("./database/db")
 
 //routes import
 const propertyRoutes = require("./routes/property/propertyRoutes")
+const authRoutes = require("./routes/auth/authRoutes")
 
 
 
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
 });
 
 
-
+//APIs
+app.use("/api/auth", authRoutes)
 app.use("/api/property", propertyRoutes)
 
 
