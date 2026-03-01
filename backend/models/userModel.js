@@ -69,10 +69,21 @@ const userSchema = new mongoose.Schema(
       amenities: [String],
     },
 
-    //  wishList: {     //wishlistModel
-    //   type: Array,
-    //   default: [],
-    // },
+    otp: {
+      type: Number,
+      select: false
+    },
+
+    isOtpVerified: {
+      type: Boolean,
+      default: false,
+      select: false
+    },
+
+     wishList: {     //wishlistModel
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Property',
+    },
 
     // propertyList: {    //propertyModel
     //   type: Array,

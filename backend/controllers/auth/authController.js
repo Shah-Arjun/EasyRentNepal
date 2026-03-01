@@ -1,6 +1,7 @@
 const UserModel = require('../../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const sendEmail = require('../../services/sendEmail')
 
 
 // REGISTER USER CONTROLLER
@@ -90,4 +91,47 @@ exports.loginUser = async(req, res) => {
             message: "Invalid credentials"
         })
     }
+}
+
+
+
+
+
+// FORGET PASSWORD
+exports.forgetPassword = async(req, res) => {
+    const {email} = req.body
+
+    if(!email){
+        return res.status(400).json({
+            message: "Please send an email"
+        })
+    }
+
+    //checks if the user exists
+    const userExist = await UserModel.find({ email : email})
+
+    if(userExist.length == 0){
+        return res.status(400).json({
+            message: "User not registered with this email."
+        })
+    }
+
+    //if user exists then send OTP to that email
+    const r_no = Math.random() //gives decimal no. in range 0 to 1
+    const fourDigit = r_no * 10000
+    const otp = Math.floor(fourDigit)  //converts into integer
+
+    // save otp in db
+    userExist[0].otp = otp
+    await userExist[0].save()
+
+    await sendEmail({
+        email: email,
+        subject: "OTP for HouseRentalNepal password reset",
+        message: `${otp}`
+    })
+
+    res.status(200).json({
+        message: "OTP sent successfully."
+    })
 }
