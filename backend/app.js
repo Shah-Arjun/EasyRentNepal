@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const connectMongoDB = require("./database/db")
+
 //routes import
 const propertyRoutes = require("./routes/property/propertyRoutes")
 
