@@ -92,7 +92,7 @@ exports.addProperty = async(req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: "Room created successfully",
+      message: "Property created successfully",
       data: property,
     });
 }
@@ -103,7 +103,17 @@ exports.addProperty = async(req, res) => {
 
 // GET ALL PROPERTY --> admin, tenant
 exports.getProperties = async(req, res) => {
-  const properties = await Property.find()
-  // if(!)
-  console.log(properties)
+  const properties = await Property.find()    //returns array of properties
+
+  if(properties.length === 0){
+    return res.status(400).json({
+      success: false,
+      message: "No property found"
+    })
+  }
+
+  res.status(200).json({
+    success: true,
+    properties 
+  })
 }
