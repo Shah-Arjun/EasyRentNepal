@@ -1,12 +1,46 @@
 const Property = require("../../models/propertyModel");
+const { generateSlug } = require("../../utils/generateSlug");
 
 
-// create room 
-exports.createRoom = async(req, res) => {
+// create room / ADD PROPERTY  --> owner
+exports.addProperty = async(req, res) => {
 
-    const userId = "101"  //form jwt middleware
+    // const userId = req.body.owner.user  //form jwt middleware
 
-    const {furnishedStatus, bathroomType, location, bedCount, amenities, images, title, description} = req.body;
+    const {
+      title,
+      category,
+      listingType,
+      noOfFlat,
+      bedrooms,
+      bathrooms,
+      bathroomType,
+      bedCount,
+      living,
+      kitchen,
+      parking,
+      furnishedStatus,
+      builtYear,
+      builtArea,
+      landArea,
+      facing,
+      price,
+      location,
+      direction,
+      roadSize,
+      fullDescription,
+      images,
+      amenities,
+      status,
+    } = req.body;
+
+    
+    if (!title || !fullDescription || !price?.value) {
+      return res.status(400).json({
+        success: false,
+        message: "Title, description and price are required",
+      });
+    }
 
     if (!location || !location.municipality || !location.district || !location.province) {
       return res.status(400).json({
@@ -15,48 +49,61 @@ exports.createRoom = async(req, res) => {
       });
     }
 
-    if (!title || !description) {
-      return res.status(400).json({
-        success: false,
-        message: "Title, description are required",
-      });
-    }
+    // id image provided then save the url else set default
+    const setImage = images || 
+       [{
+          url: "https://images.pexels.com/photos/7027844/pexels-photo-7027844.jpeg",
+          isPrimary: true
+        }]
+
 
     // create property object
-    const roomData = {
-        title,
-        category,
-        listingType,
-        noOfFlat,
-        bedrooms,
-        bathrooms,
-        bathroomType: bathroomType,
-        bedCount: bedCount,
-        living,
-        kitchens,
-        parking,
-        furnishedStatus,
-        builtYear,
-        builtArea,
-        landArea,
-        facing,
-        price,
-        location,
-        direction,
-        roadSize,
-        fullDescription: description,
-        images: images || ["https://images.pexels.com/photos/7027844/pexels-photo-7027844.jpeg"],
-        owner,
-        amenities,
-        status,
+    const propertyData = {
+      title,
+      category,
+      listingType,
+      noOfFlat,
+      bedrooms,
+      bathrooms,
+      bathroomType,
+      bedCount,
+      living,
+      kitchen,
+      parking,
+      furnishedStatus,
+      builtYear,
+      builtArea,
+      landArea,
+      facing,
+      price,
+      location,
+      direction,
+      roadSize,
+      fullDescription,
+      images: setImage,
+      amenities,
+      status,
     }
 
+    propertyData.slug = generateSlug(title, location);
+
     // insert into property collection/table
-    const room = await Property.create(roomData);
+    const property = await Property.create(propertyData);
 
     return res.status(201).json({
       success: true,
       message: "Room created successfully",
-      data: room,
+      data: property,
     });
+}
+
+
+
+
+
+// GET ALL PROPERTY --> admin, tenant
+exports.getProperties = async(req, res) => {
+  const properties = await Property.find()
+  // if(!)
+  console.log(properties)
 }

@@ -11,6 +11,8 @@ const provinceEnum = [
   "Sudurpashchim Pradesh",
 ];
 
+
+
 const propertySchema = new mongoose.Schema(
   {
     //Basic
@@ -42,104 +44,104 @@ const propertySchema = new mongoose.Schema(
     },
 
     // Room / Structure counts
-  noOfFlat: { type: Number, min: 0 },
-  bedrooms: { type: Number, min: 0 },
-  bathrooms: { type: Number, min: 0 },
-  bathroomType: { type: String, enum: ['attached', 'shared'], default: 'shared' },
-  bedCount: { type: Number, default: 1 },
-  living: { type: Number, min: 0 },
-  kitchen: { type: Number, min: 0 },
-  parking: {
-    type: String,
-    enum: ['Motorcycle', 'Car 1', 'Car 2', 'Cars 3-5', 'Cars 5-10', 'Cars 10-15', 'None']
-  },
-
-  furnishedStatus: {
-    type: String,
-    enum: ['unfurnished', 'semi-furnished', 'fully-furnished'],
-    default: 'unfurnished'
-  },
-
-
-  // Area
-  builtYear: { type: Number, min: 1900, max: new Date().getFullYear() + 5 },
-  builtArea: {
-    value: { type: Number },
-    unit: { type: String, enum: ['sqft', 'aana', 'ropani', 'paisa', 'dam', 'haath', 'feet', 'sqm', 'other'] }
-  },
-  landArea: {
-    value: { type: Number },
-    unit: {
+    noOfFlat: { type: Number, min: 0 },
+    bedrooms: { type: Number, min: 0 },
+    bathrooms: { type: Number, min: 0 },
+    bathroomType: { type: String, enum: ['attached', 'shared'], default: 'shared' },
+    bedCount: { type: Number, default: 1 },
+    living: { type: Number, min: 0 },
+    kitchen: { type: Number, min: 0 },
+    parking: {
       type: String,
-      enum: ['aana', 'ropani', 'paisa', 'dam', 'sqft', 'sqm', 'haath', 'dhur', 'kattha', 'bigha'],
-      default: 'dhur'
-    }
-  },
+      enum: ['Motorcycle', 'Car 1', 'Car 2', 'Cars 3-5', 'Cars 5-10', 'Cars 10-15', 'None']
+    },
 
-  facing: {
-    type: String,
-    enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West']
-  },
-
-  // Pricing
-  price: {
-    value: { type: Number, required: true, min: 0 },
-    currency: { type: String, default: 'NPR', enum: ['NPR', 'USD', 'INR'] },
-    perUnit: {
+    furnishedStatus: {
       type: String,
-      enum: ['total', 'per aana', 'per ropani', 'per sqft', 'per dhur', 'per kattha', 'per bigha', 'per month', 'per year']
-    }
-  },
+      enum: ['unfurnished', 'semi-furnished', 'fully-furnished'],
+      default: 'unfurnished'
+    },
 
-  // Location
-  location: {
-    province: { type: String, required: true, enum: provinceEnum },
-    district: { type: String, required: true },
-    municipality: { type: String, required: true },
-    tole: { type: String, trim: true },
-    wardNo: { type: Number, min: 1, max: 35 }
-  },
 
-  direction: {
-    type: String,
-    enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West', 'Other']
-  },
-  roadSize: {
-    value: { type: Number },
-    unit: { type: String, default: 'ft' }
-  },
+    // Area
+    builtYear: { type: Number, min: 1900, max: new Date().getFullYear() + 5 },
+    builtArea: {
+      value: { type: Number },
+      unit: { type: String, enum: ['sqft', 'aana', 'ropani', 'paisa', 'dam', 'haath', 'feet', 'sqm', 'other'] }
+    },
+    landArea: {
+      value: { type: Number },
+      unit: {
+        type: String,
+        enum: ['aana', 'ropani', 'paisa', 'dam', 'sqft', 'sqm', 'haath', 'dhur', 'kattha', 'bigha'],
+        default: 'dhur'
+      }
+    },
 
-  fullDescription: {
-    type: String,
-    required: true,
-    maxlength: 5000
-  },
+    facing: {
+      type: String,
+      enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West']
+    },
 
-  images: [{
-    url: { type: String, required: true },
-    public_id: String,
-    isPrimary: { type: Boolean, default: false }  // for thumbnail 
-  }],
+    // Pricing
+    price: {
+      value: { type: Number, required: true, min: 0 },
+      currency: { type: String, default: 'NPR', enum: ['NPR', 'USD', 'INR'] },
+      perUnit: {
+        type: String,
+        enum: ['total', 'per aana', 'per ropani', 'per sqft', 'per dhur', 'per kattha', 'per bigha', 'per month', 'per year']
+      }
+    },
 
-  videoUrl: String,
+    // Location
+    location: {
+      province: { type: String, required: true, enum: provinceEnum },
+      district: { type: String, required: true },
+      municipality: { type: String, required: true },
+      tole: { type: String, trim: true },
+      wardNo: { type: Number, min: 1, max: 35 }
+    },
 
-  owner: {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    phone: { type: String, required: true },
-    email: { type: String, lowercase: true },
-    profileImage: String
-  },
+    direction: {
+      type: String,
+      enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West', 'Other']
+    },
+    roadSize: {
+      value: { type: Number },
+      unit: { type: String, default: 'ft' }
+    },
 
-  amenities: [String],  //wifi, water, ect
+    fullDescription: {
+      type: String,
+      required: true,
+      maxlength: 5000
+    },
 
-  status: {
-    type: String,
-    enum: ['Pending', 'Active', 'Sold', 'Rented', 'Rejected', 'Expired'],
-    default: 'Pending'
-  },
-  isFeatured: { type: Boolean, default: false },
-  views: { type: Number, default: 0 },
-  expiresAt: Date
+    images: [{
+      url: { type: String, required: true },
+      public_id: String,
+      isPrimary: { type: Boolean, default: false }  // for thumbnail 
+    }],
+
+    videoUrl: String,
+
+    owner: {
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      phone: { type: String, },
+      email: { type: String, lowercase: true },
+      profileImage: String
+    },
+
+    amenities: [String],  //wifi, water, ect
+
+    status: {
+      type: String,
+      enum: ['Pending', 'Active', 'Sold', 'Rented', 'Rejected', 'Expired'],
+      default: 'Pending'
+    },
+    isFeatured: { type: Boolean, default: false },
+    views: { type: Number, default: 0 },
+    expiresAt: Date
 
 }, { 
   timestamps: true 
@@ -167,16 +169,6 @@ propertySchema.index({
   weights: { title: 10, fullDescription: 5, 'location.municipality': 3, 'location.district': 2 }
 });
 
-
-
-// Slug generation
-propertySchema.pre('save', function(next) {
-  if (this.isModified('title') || this.isModified('location')) {
-    const locPart = this.location?.municipality || this.location?.district || '';
-    this.slug = slugify(`${this.title} ${locPart}`, { lower: true, strict: true });
-  }
-  next();
-});
 
 
 

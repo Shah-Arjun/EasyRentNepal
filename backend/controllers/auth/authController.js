@@ -1,4 +1,4 @@
-const UserModel = require('../../models/userModel')
+const User = require('../../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendEmail = require('../../services/sendEmail')
@@ -15,7 +15,7 @@ exports.registerUser = async(req, res) => {
     }
 
     // check if user exists
-    const userFound = await UserModel.findOne({email : email})    //returns object
+    const userFound = await User.findOne({email : email})    //returns object
     // console.log(userFound)
 
     // if user exist
@@ -26,7 +26,7 @@ exports.registerUser = async(req, res) => {
     }
 
     // if user doesnot exist --> created new user with provided email
-    const user = await UserModel.create({
+    const user = await User.create({
         name,
         email,
         password: bcrypt.hashSync(password, 10) ,
@@ -64,7 +64,7 @@ exports.loginUser = async(req, res) => {
 
     
     // checks if user exist 
-    const userFound = await UserModel.find({ email: email })
+    const userFound = await User.find({ email: email })
 
 
     // if user not found i.e. not registered
@@ -108,7 +108,7 @@ exports.forgetPassword = async(req, res) => {
     }
 
     //checks if the user exists
-    const userExist = await UserModel.find({ email : email})
+    const userExist = await User.find({ email : email})
 
     if(userExist.length == 0){
         return res.status(400).json({
@@ -153,7 +153,7 @@ exports.verifyOtp = async (req, res) => {
 
 
     //CHECKS if otp is registered or not
-    const userExist = await UserModel.find({email : email})
+    const userExist = await User.find({email : email})
     if(userExist.length == 0){
         return res.status(404).json({
             message: "This email is not registered"
@@ -198,7 +198,7 @@ exports.resetPassword = async (req, res) => {
         })
     }
 
-    const userExist = await UserModel.find({email : email})
+    const userExist = await User.find({email : email})
     if(userExist.length == 0){
         return res.status(400).json({
             message: "The email you entered is not registered"
@@ -220,5 +220,4 @@ exports.resetPassword = async (req, res) => {
     res.status(200).json({
         message: "Password changed successfully"
     })
-
 }
