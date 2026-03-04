@@ -117,3 +117,33 @@ exports.getProperties = async(req, res) => {
     properties 
   })
 }
+
+
+
+
+// GET SINGLE PROPERTY BY ID
+exports.getSingleProperty = async(req, res) => {
+  const {id} = req.params
+
+  // console.log("\nreq.params---->\n" ,req.params)
+
+  if(!id){
+    return res.status(400).json({
+      message: "Please provide property id"
+    })
+  }
+  
+  const property = await Property.find({ _id : id })
+
+  if(property.length == 0){
+    return res.status(400).json({
+      message: "No property found with that id",
+      property: [],
+    })
+  }
+
+  return res.status(200).json({
+    message: "Property found with that id",
+    property
+  })
+}
