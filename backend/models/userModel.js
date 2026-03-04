@@ -80,10 +80,10 @@ const userSchema = new mongoose.Schema(
       // select: false
     },
 
-     wishList: {     //wishlistModel
+     wishList: [{     //wishlistModel
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Property',
-    },
+    }],
 
     // propertyList: {    //propertyModel
     //   type: Array,

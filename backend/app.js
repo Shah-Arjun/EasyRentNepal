@@ -6,6 +6,7 @@ const connectMongoDB = require("./database/db")
 //routes import
 const propertyRoutes = require("./routes/property/propertyRoutes")
 const authRoutes = require("./routes/auth/authRoutes")
+const wishlistRoutes = require("./routes/tenant/wishlistRoutes")
 
 
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 //APIs
 app.use("/api/auth", authRoutes)
 app.use("/api/property", propertyRoutes)
+app.use("/api/wishlist", wishlistRoutes)
 
 
 
