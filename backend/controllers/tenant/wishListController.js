@@ -67,3 +67,33 @@ exports.getMyWishlist = async(req, res) => {
         data: userData.wishList
     })
 }
+
+
+
+
+// REMOVE PROPERTY FROM WISHLIST
+exports.deletePropertyFromWishlist = async(req, res) => {
+    const { propertyId } = req.params
+    const userId = req.user.id
+
+    // check if the property exist or not
+    const property = await Property.findById(propertyId)
+    if(!property){
+        return res.status(200).json({
+            message: "No property found with that propertyId"
+        })
+    }
+
+    // console.log("property--->\n", property)
+
+    // get user wishlist
+    const userData = await User.findById(userId)
+    userData.wishList = userData.wishList.filter(pId => pId != propertyId)
+
+    await userData.save()
+
+    return res.status(200).json({
+        success: true,
+        message: "Property removed from wishlist"
+    })
+}
