@@ -1,6 +1,8 @@
 const Property = require("../../models/propertyModel")
 const User = require("../../models/userModel")
 
+
+
 // ADD PROPERTY TO WISHLIST CONTROLLER
 exports.addToWishlist = async (req, res) => {
     const userId = req.user.id                   // from token
@@ -24,7 +26,7 @@ exports.addToWishlist = async (req, res) => {
 
     // if the property is already in wishlist then return message
     if(user.wishList.includes(propertyId)){
-        return res.status(500).json({
+        return res.status(403).json({
             message: "This property is already in your wishlist"
         })
     }
@@ -34,6 +36,34 @@ exports.addToWishlist = async (req, res) => {
     await user.save()
 
     return res.status(200).json({
+        success: true,
         message: "Property added to wishlist",
+    })
+}
+
+
+
+// GET ALL WISHLIST PROPERTY BASED ON TENANT
+exports.getMyWishlist = async(req, res) => {
+    const userId = req.user.id
+
+    const userData = await User.findById(userId).select("-password -__v").populate({
+        path: 'wishList',
+        select: "-__v"
+    })
+
+    // console.log("\nuser data: \n", userData)
+
+    if(userData.wishList.length == 0){
+        return res.status(404).json({
+            message: "Your wishlist is empty",
+            data: []
+        })
+    }
+
+    return res.status(200).json({
+        success: true,
+        message: "Wishlist data fetched successfully",
+        data: userData.wishList
     })
 }
