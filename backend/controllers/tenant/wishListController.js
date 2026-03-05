@@ -22,6 +22,14 @@ exports.addToWishlist = async (req, res) => {
 
     const user = await User.findById(userId)
 
+    // if the property is already in wishlist then return message
+    if(user.wishList.includes(propertyId)){
+        return res.status(500).json({
+            message: "This property is already in your wishlist"
+        })
+    }
+
+    //if not in wishlist then add it
     user.wishList.push(propertyId)
     await user.save()
 
