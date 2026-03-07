@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       required: [true, "Phone number must be provided"],
-      select: false,      //this field will not be returned in any query, hidden by default
+      //select: false,      //this field will not be returned in any query, hidden by default
     },
 
     password: {
