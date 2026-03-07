@@ -1,3 +1,4 @@
+const { json } = require('express')
 const User = require('../../models/userModel')
 
 
@@ -41,5 +42,21 @@ exports.updateMyProfile = async(req, res) => {
     res.status(200).json({
         message: "Profile updated successfully",
         data : updatedProfile
+    })
+}
+
+
+
+
+// DELETE MY PROFILE CONTROLLER ---> for all users
+exports.deleteMyProfile = async(req,res) => {
+    const userId = req.user.id  //form isAuthenticated middleware
+
+    await User.findByIdAndDelete(userId)
+
+    res.status(200).json({
+        success: true,
+        message: "Profile deleted successfully.",
+        data: null
     })
 }
