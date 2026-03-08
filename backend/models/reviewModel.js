@@ -1,22 +1,24 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema
+
 
 const reviewSchema = new mongoose.Schema(
   {
-    tenantId: {         //foreign key
-      type: mongoose.Schema.Types.ObjectId,    //for tenantId referenced to User model, stores tenant id
+    userId: {         //foreign key
+      type: Schema.Types.ObjectId,    //for tenantId referenced to User model, stores tenant id
       ref: "User",
-      required: true,
+      required: [true, "The review must belong to user(tenant)"],
       index: true
     }, 
-    ownerId: {                    //foreign key
-      type: mongoose.Schema.Types.ObjectId,  
-      ref: "User",
-      index: true
-    },
-    propertyId: {
+    // ownerId: {                    //foreign key
+    //   type: mongoose.Schema.Types.ObjectId,  
+    //   ref: "User",
+    //   index: true
+    // },
+    propertyId: {                  //foreign key
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",
-      required: true,
+      required: [true, "A review must br of property"],
       index: true
     },
     rating: {
