@@ -6,6 +6,7 @@ const User = require('../../models/userModel')
 exports.getMyProfile = async(req, res) => {
     const userId = req.user.id      // from isAuthenticated middleware
 
+    // const myProfile = await User.findById(userId).select(['-password', '-__v']).populate('wishList')    //if want to populate
     const myProfile = await User.findById(userId).select(['-password', '-__v'])
 
     if(!myProfile){

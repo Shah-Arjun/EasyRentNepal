@@ -5,7 +5,7 @@ const { generateSlug } = require("../../utils/generateSlug");
 // create room / ADD PROPERTY  --> owner
 exports.addProperty = async(req, res) => {
 
-    // const userId = req.body.owner.user  //form jwt middleware
+    const ownerId = req.user.id  //form jwt middleware
 
     const {
       title,
@@ -59,6 +59,7 @@ exports.addProperty = async(req, res) => {
 
     // create property object
     const propertyData = {
+      owner : ownerId,
       title,
       category,
       listingType,

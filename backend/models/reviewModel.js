@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema(
   {
-    tenantId: {         //oreign key
+    tenantId: {         //foreign key
       type: mongoose.Schema.Types.ObjectId,    //for tenantId referenced to User model, stores tenant id
       ref: "User",
       required: true,
@@ -11,7 +11,6 @@ const reviewSchema = new mongoose.Schema(
     ownerId: {                    //foreign key
       type: mongoose.Schema.Types.ObjectId,  
       ref: "User",
-      required: true,
       index: true
     },
     propertyId: {
@@ -52,4 +51,6 @@ reviewSchema.index(
 );
 
 
-module.exports = mongoose.model("Review", reviewSchema)
+
+const Review = mongoose.model("Review", reviewSchema)
+module.exports = Review

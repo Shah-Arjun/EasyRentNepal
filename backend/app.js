@@ -8,6 +8,7 @@ const propertyRoutes = require("./routes/property/propertyRoutes")
 const authRoutes = require("./routes/auth/authRoutes")
 const wishlistRoutes = require("./routes/tenant/wishlistRoutes")
 const profileRoutes = require("./routes/profile/profileRoutes")
+const reviewsRoutes = require("./routes/tenant/reviewsRoutes")
 
 
 
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/property", propertyRoutes)
 app.use("/api/wishlist", wishlistRoutes)
 app.use("/api/profile", profileRoutes)
+app.use("/api/reviews", reviewsRoutes)
 
 
 

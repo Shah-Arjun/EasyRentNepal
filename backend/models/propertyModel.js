@@ -126,10 +126,12 @@ const propertySchema = new mongoose.Schema(
     videoUrl: String,
 
     owner: {
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      phone: { type: String, },
-      email: { type: String, lowercase: true },
-      profileImage: String
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'User',
+      // phone: { type: String, },
+      // email: { type: String, lowercase: true },
+      // profileImage: String
+      required: true
     },
 
     amenities: [String],  //wifi, water, ect
