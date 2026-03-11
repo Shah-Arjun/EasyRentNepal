@@ -38,6 +38,10 @@ const App = () => {
           <Route index element={<Dashboard />}/>
           <Route path='add-property' element={<AddProperty />}/>
           <Route path='list-property' element={<ListProperty />}/>
+          
+          
+          
+          <Route path='/map' element={<map/> }/>
  
 
 
