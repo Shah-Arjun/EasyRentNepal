@@ -1,4 +1,5 @@
 import logoImg from "./logo.png";
+import logoDuplicate from "./logoDuplicate.png";
 import search from './search.svg'
 import user from './user.svg'
 import menu from './menu.svg'
@@ -69,6 +70,7 @@ import Faq from '../components/Faq';
 
 export const assets = {
     logoImg,
+    logoDuplicate,
     search,
     user,
     menu,
