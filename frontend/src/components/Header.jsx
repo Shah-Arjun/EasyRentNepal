@@ -56,9 +56,9 @@ const Header = () => {
           <div className="flex flex-1">
             <Link to={"/"}>
               <img
-                src={assets.logoImg}
+                src={assets.logoDuplicate}
                 alt="LogoImg"
-                className={`${!active && "invert"} h-15`}
+                className={`${!active && "invert"} h-12`}
               />
             </Link>
           </div>
