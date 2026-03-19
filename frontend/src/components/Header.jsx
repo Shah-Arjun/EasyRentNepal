@@ -5,11 +5,7 @@ import Navbar from "./Navbar";
 import { useUser, useClerk, UserButton } from "@clerk/clerk-react";
 import { useAppContext } from "../context/Appcontext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-<<<<<<< HEAD
-import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
-=======
 import { faCalendarCheck, faRightLeft } from "@fortawesome/free-solid-svg-icons";
->>>>>>> 443063d (Made updates to frontend code)
 
 
 const Header = () => {
@@ -17,11 +13,8 @@ const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
-<<<<<<< HEAD
-  const { navigate, user} = useAppContext();
-=======
-  const { navigate, user, isOwner, setIsOwner } = useAppContext();
->>>>>>> 443063d (Made updates to frontend code)
+  const { navigate, isOwner, setIsOwner } = useAppContext();
+  const { user } = useUser();   // Get user directly from Clerk
   const { openSignIn } = useClerk();
 
 
@@ -80,8 +73,6 @@ const Header = () => {
           />
           {/* Buttons Searchbar & Profile */}
           <div className="flex sm:flex-1 items-center sm:justify-end gap-x-4 sm:gap-x-8">
-<<<<<<< HEAD
-=======
             {/* Owner Dashboard */}
             {user && isOwner && (
               <Link
@@ -94,7 +85,6 @@ const Header = () => {
               </Link>
             )}
             
->>>>>>> 443063d (Made updates to frontend code)
             {/* SearchBar */}
             <div className="relative hidden xl:flex items-center">
               <div
@@ -106,30 +96,17 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Type here..."
-<<<<<<< HEAD
-                  className="w-full text-sm outline-none pr-10 placeholder:text-gray-400"
-=======
                   className="w-full text-[14px] outline-none pr-10 placeholder:text-gray-400"
->>>>>>> 443063d (Made updates to frontend code)
                 />
               </div>
               <div
                 onClick={() => setShowSearch((prev) => !prev)}
-<<<<<<< HEAD
-                className={`${active ? "bg-secondary/10" : "bg-primary"} absolute right-0 ring-1 ring-slate-900/10 p-[8px] rounded-full
-              cursor-pointer z-10`}
-              >
-                <img src={assets.search} alt="searchIcon" />
-              </div>
-            </div>
-=======
                 className={`${active ? "bg-secondary/10" : "bg-primary"} absolute right-0 ring-1 ring-slate-900/10 p-[8px] rounded-full cursor-pointer z-10`}
               >
                 <img src={assets.search} alt="searchIcon" className="w-5 h-5" />
               </div>
             </div>
             
->>>>>>> 443063d (Made updates to frontend code)
             {/* Menu Toggle */}
             <>
               {menuOpened ? (
@@ -137,30 +114,18 @@ const Header = () => {
                   src={assets.close}
                   alt="closeMenuIcon"
                   onClick={toggleMenu}
-<<<<<<< HEAD
-                  className={`${!active && "invert"} lg:hidden cursor-pointer text-xl`}
-=======
                   className={`${!active && "invert"} lg:hidden cursor-pointer w-5 h-5`}
->>>>>>> 443063d (Made updates to frontend code)
                 />
               ) : (
                 <img
                   src={assets.menu}
                   alt="openMenuIcon"
                   onClick={toggleMenu}
-<<<<<<< HEAD
-                  className={`${!active && "invert"} lg:hidden cursor-pointer text-xl`}
-                />
-              )}
-            </>
-=======
                   className={`${!active && "invert"} lg:hidden cursor-pointer w-5 h-5`}
                 />
               )}
             </>
 
-
->>>>>>> 443063d (Made updates to frontend code)
             {/* User Profile */}
 
             <div className="group relative top-1 ">
@@ -187,8 +152,6 @@ const Header = () => {
                         }
                         onClick={() => navigate('/my-bookings')}
                       />
-<<<<<<< HEAD
-=======
                       <UserButton.Action
                         label={isOwner ? "Switch to Tenant" : "Switch to Owner"}
                         labelIcon={
@@ -199,7 +162,6 @@ const Header = () => {
                         }
                         onClick={() => setIsOwner(!isOwner)}
                       />
->>>>>>> 443063d (Made updates to frontend code)
                     </UserButton.MenuItems>
                   </UserButton>
                 ) : (

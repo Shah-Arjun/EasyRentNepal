@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-const AddProperty = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default AddProperty
-=======
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
@@ -216,6 +203,62 @@ const AddProperty = () => {
     }
   };
 
+  const validateStep = (stepIndex) => {
+    setError('');
+    
+    switch(stepIndex) {
+      case 0: // Basic Info & Pricing
+        if (!formData.title.trim()) {
+          setError('Property title is required');
+          return false;
+        }
+        if (!formData.price.value) {
+          setError('Price is required');
+          return false;
+        }
+        return true;
+        
+      case 1: // Location
+        if (!formData.location.province) {
+          setError('Province is required');
+          return false;
+        }
+        if (!formData.location.district.trim()) {
+          setError('District is required');
+          return false;
+        }
+        if (!formData.location.municipality.trim()) {
+          setError('Municipality / Rural Municipality is required');
+          return false;
+        }
+        return true;
+        
+      case 2: // Structure & Area
+        // No required fields for this step
+        return true;
+        
+      case 3: // Media & Description
+        if (!formData.fullDescription.trim()) {
+          setError('Property description is required');
+          return false;
+        }
+        return true;
+        
+      default:
+        return true;
+    }
+  };
+
+  const handleNextStep = () => {
+    if (validateStep(activeTab)) {
+      setActiveTab(Math.min(steps.length - 1, activeTab + 1));
+    }
+  };
+
+  const handlePrevStep = () => {
+    setActiveTab(Math.max(0, activeTab - 1));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -310,12 +353,11 @@ const AddProperty = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-primary py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-          <h1 className="h1 text-black mb-2">List Your Property</h1>
-          <p className="text-gray-50">Fill in the details to publish your listing to thousands of seekers.</p>
-        </div>
+    <div className="w-full p-8">
+      <div className="text-center mb-10">
+        <h1 className="h1 text-black mb-2">List Your Property</h1>
+        <p className="text-gray-50">Fill in the details to publish your listing to thousands of seekers.</p>
+      </div>
 
         {/* Progress Tracker */}
         <div className="flex justify-between items-center mb-8 relative">
@@ -361,7 +403,6 @@ const AddProperty = () => {
                     value={formData.title}
                     onChange={handleInputChange}
                     placeholder="e.g., Beautiful 3BHK Apartment in the heart of Kathmandu"
-                    required
                     maxLength={150}
                   />
                   <p className="text-[13px] text-gray-50 mt-2">Max 150 characters. Make it catchy and descriptive.</p>
@@ -405,7 +446,6 @@ const AddProperty = () => {
                       value={formData.price.value}
                       onChange={(e) => handleNestedChange('price', 'value', e.target.value)}
                       placeholder="e.g., 25000"
-                      required
                     />
                   </div>
                   <div>
@@ -440,7 +480,6 @@ const AddProperty = () => {
                   <Select
                     value={formData.location.province}
                     onChange={(e) => handleNestedChange('location', 'province', e.target.value)}
-                    required
                   >
                     <option value="" disabled>Select Province</option>
                     {provinceEnum.map(p => <option key={p} value={p}>{p}</option>)}
@@ -453,7 +492,6 @@ const AddProperty = () => {
                     value={formData.location.district}
                     onChange={(e) => handleNestedChange('location', 'district', e.target.value)}
                     placeholder="e.g., Kathmandu"
-                    required
                   />
                 </div>
                 <div>
@@ -463,7 +501,6 @@ const AddProperty = () => {
                     value={formData.location.municipality}
                     onChange={(e) => handleNestedChange('location', 'municipality', e.target.value)}
                     placeholder="e.g., Kathmandu Metropolitan"
-                    required
                   />
                 </div>
                 <div>
@@ -640,7 +677,6 @@ const AddProperty = () => {
                   value={formData.fullDescription}
                   onChange={handleInputChange}
                   rows="5"
-                  required
                   maxLength={5000}
                   placeholder="Describe your property in detail. Highlight key selling points, nearby places, community, etc."
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:bg-white focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none text-black resize-none"
@@ -758,7 +794,7 @@ const AddProperty = () => {
             <div className="pt-8 mt-8 border-t border-gray-200 flex justify-between items-center">
               <button
                 type="button"
-                onClick={() => setActiveTab(Math.max(0, activeTab - 1))}
+                onClick={handlePrevStep}
                 disabled={activeTab === 0}
                 className={`px-6 py-2.5 rounded-full text-[14px] font-[500] transition-all ${activeTab === 0 ? 'bg-primary text-gray-400 cursor-not-allowed' : 'btn-outline'}`}
               >
@@ -768,7 +804,7 @@ const AddProperty = () => {
               {activeTab < steps.length - 1 ? (
                 <button
                   type="button"
-                  onClick={() => setActiveTab(Math.min(steps.length - 1, activeTab + 1))}
+                  onClick={handleNextStep}
                   className="btn-dark flex items-center gap-2"
                 >
                   Next Step
@@ -799,10 +835,8 @@ const AddProperty = () => {
 
           </form>
         </div>
-      </div>
     </div>
   );
 };
 
 export default AddProperty;
->>>>>>> 443063d (Made updates to frontend code)

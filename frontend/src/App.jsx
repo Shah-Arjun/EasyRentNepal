@@ -9,7 +9,7 @@ import Contact from './pages/Contact'
 import PropertyDetails from './pages/PropertyDetails'
 import MyBookings from './pages/MyBookings'
 import AgencyReg from './components/AgencyReg'
-import { useAppContext } from './context/Appcontext'
+import { useAppContext } from './context/AppContext'
 import Sidebar from './components/owner/Sidebar'
 import Dashboard from './pages/owner/Dashboard'
 import AddProperty from './pages/owner/AddProperty'
@@ -38,13 +38,10 @@ const App = () => {
           <Route index element={<Dashboard />}/>
           <Route path='add-property' element={<AddProperty />}/>
           <Route path='list-property' element={<ListProperty />}/>
-<<<<<<< HEAD
-=======
           
           
           
           <Route path='map' element={<Map />} />
->>>>>>> 443063d (Made updates to frontend code)
  
 
 

@@ -147,8 +147,6 @@ exports.getSingleProperty = async(req, res) => {
     message: "Property found with that id",
     property
   })
-<<<<<<< HEAD
-=======
 }
 
 
@@ -182,5 +180,4 @@ exports.deleteProperty = async(req, res) => {
     success: true,
     message: "Property deleted successfully"
   });
->>>>>>> 443063d (Made updates to frontend code)
 }

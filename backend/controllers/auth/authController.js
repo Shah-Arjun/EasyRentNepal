@@ -80,7 +80,8 @@ exports.loginUser = async(req, res) => {
     // if matched, generate token
     if(isPwMatched){
         const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
-            expiresIn: '30d'
+            expiresIn: '30d',
+            algorithm: 'HS256'
         })
         res.status(200).json({
             message: "User logged in successfully",

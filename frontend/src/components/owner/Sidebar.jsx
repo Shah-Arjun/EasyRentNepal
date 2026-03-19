@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useAppContext } from '../../context/Appcontext'
+import { useAppContext } from '../../context/AppContext'
 import { assets } from '../../assets/data'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { UserButton } from '@clerk/clerk-react'
@@ -40,14 +40,9 @@ const Sidebar = () => {
             {/* Logo and Profile */}
             <div className='w-full flex justify-between md:flex-col'>
               <div className='flex flex-1 p-3 lg:pl-8'>
-<<<<<<< HEAD
-                <Link to={'/owner'}>
-                  <img src={assets.logoImg} alt="" className='h-15' /></Link>
-=======
                 <Link to={'/'}>
                   <img src={assets.logoImg} alt="Logo" className='h-28 lg:h-36 w-auto object-contain' />
                 </Link>
->>>>>>> 443063d (Made updates to frontend code)
               </div>
               <div className='md:hidden flex items-center gap-3 md:bg-primary rounded-b-xl p-2 pl-5 lg:pl-10 md:mt-10'>
                 <UserButton
