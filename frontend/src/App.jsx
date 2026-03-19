@@ -38,6 +38,13 @@ const App = () => {
           <Route index element={<Dashboard />}/>
           <Route path='add-property' element={<AddProperty />}/>
           <Route path='list-property' element={<ListProperty />}/>
+<<<<<<< HEAD
+=======
+          
+          
+          
+          <Route path='map' element={<Map />} />
+>>>>>>> 443063d (Made updates to frontend code)
  
 
 

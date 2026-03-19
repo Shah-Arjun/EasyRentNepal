@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
 import { dummyProperties } from '../assets/data'
 import { useUser } from "@clerk/clerk-react";
+=======
+import { useUser } from "@clerk/clerk-react";
+import useAxios from '../hooks/useAxios'
+>>>>>>> 443063d (Made updates to frontend code)
 
 const Appcontext = createContext()
 
@@ -12,11 +17,28 @@ export const AppContextProvider = ({ children }) => {
     const [properties, setProperties] = useState([]);
     const [showAgencyReg, setShowAgencyReg] = useState(false)
     const [isOwner, setIsOwner] = useState(true)
+<<<<<<< HEAD
     
 
 
     const getProperties = () => {
         setProperties(dummyProperties)
+=======
+    const api = useAxios();
+    
+
+    const getProperties = async () => {
+        try {
+            const { data } = await api.get('/property');
+            if (data.success) {
+                setProperties(data.properties);
+            }
+        } catch (error) {
+            console.error(error);
+            // Fallback to empty array if backend is down
+            setProperties([]);
+        }
+>>>>>>> 443063d (Made updates to frontend code)
     }
 
     useEffect(() => {
@@ -29,7 +51,13 @@ export const AppContextProvider = ({ children }) => {
         currency,
         user,
         showAgencyReg,
+<<<<<<< HEAD
         setShowAgencyReg
+=======
+        setShowAgencyReg,
+        isOwner,
+        setIsOwner
+>>>>>>> 443063d (Made updates to frontend code)
     };
 
     return (

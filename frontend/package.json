@@ -14,8 +14,16 @@
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
+<<<<<<< HEAD
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+=======
+    "axios": "^1.13.6",
+    "leaflet": "^1.9.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+>>>>>>> 443063d (Made updates to frontend code)
     "react-router-dom": "^7.12.0",
     "swiper": "^12.0.3",
     "tailwindcss": "^4.1.18"

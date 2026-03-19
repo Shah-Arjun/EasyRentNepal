@@ -147,4 +147,40 @@ exports.getSingleProperty = async(req, res) => {
     message: "Property found with that id",
     property
   })
+<<<<<<< HEAD
+=======
+}
+
+
+// GET OWNER PROPERTIES
+exports.getOwnerProperties = async(req, res) => {
+  const ownerId = req.user.id;
+  
+  const properties = await Property.find({ owner: ownerId });
+
+  res.status(200).json({
+    success: true,
+    properties 
+  });
+}
+
+// DELETE PROPERTY
+exports.deleteProperty = async(req, res) => {
+  const ownerId = req.user.id;
+  const { id } = req.params;
+
+  const property = await Property.findOneAndDelete({ _id: id, owner: ownerId });
+
+  if(!property){
+    return res.status(404).json({
+      success: false,
+      message: "Property not found or unauthorized to delete"
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Property deleted successfully"
+  });
+>>>>>>> 443063d (Made updates to frontend code)
 }
