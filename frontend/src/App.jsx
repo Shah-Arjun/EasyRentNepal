@@ -41,7 +41,7 @@ const App = () => {
           
           
           
-          <Route path='map' element={<Map />} />
+          <Route path='/map' element={<map/> }/>
  
 
 
