@@ -2,30 +2,41 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
+    clerkId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
+
     name: {
       type: String,
-      required: [true, "Username must be provided"],
       trim: true,
     },
 
     email: {
       type: String,
-      required: [true, "Email must be provided"],
-      unique: true,
       lowercase: true,
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please provide a valid email"],
     },
 
+    firstName: {
+      type: String,
+      trim: true,
+    },
+
+    lastName: {
+      type: String,
+      trim: true,
+    },
+
     phoneNumber: {
       type: String,
-      required: [true, "Phone number must be provided"],
       //select: false,      //this field will not be returned in any query, hidden by default
     },
 
     password: {
       type: String,
-      required: [true, "Password must be provided"],
       minlength: 8,
       // select: false,
     },

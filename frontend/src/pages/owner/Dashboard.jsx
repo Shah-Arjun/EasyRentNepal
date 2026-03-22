@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { useAppContext } from '../../context/Appcontext'
+import { useAppContext } from '../../context/AppContext'
 import { assets, dummyDashboardData } from '../../assets/data'
 
 const Dashboard = () => {
-  const {user, currency } = useAppContext()
-  const [dashboarData, setDashboarData] = useState({
+  const { user, currency } = useAppContext()
+
+  const [dashboardData, setDashboardData] = useState({
     bookings: [],
     totalBookings: 0,
     totalRevenue: 0,
   })
 
-  const getDashboardData = async ()=>{
-    setDashboarData(dummyDashboardData)
+  const getDashboardData = async () => {
+    setDashboardData(dummyDashboardData)
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     getDashboardData();
   }, [user]);
 
@@ -24,22 +25,22 @@ const Dashboard = () => {
         <div className='flexStart gap-7 p-5 bg-[#fff4d2] lg:min-w-56 rounded-xl'>
           <img src={assets.house} alt="" className='hidden sm:flex w-8' />
           <div>
-            <h4 className='h4'>{dashboarData.totalBookings.toString().padStart(2, "0")}</h4>
+            <h4 className='h4'>{dashboardData.totalBookings.toString().padStart(2, "0")}</h4>
             <h5 className='h5 text-secondary'>Total Sales</h5>
           </div>
         </div>
         <div className='flexStart gap-7 p-5 bg-[#d1e8ff] lg:min-w-56 rounded-xl'>
-          <img src={assets.dollar} alt="" 
-          className='hidden sm:flex w-8' />
+          <img src={assets.dollar} alt=""
+            className='hidden sm:flex w-8' />
           <div>
-            <h4 className='h4'>{currency}{dashboarData.totalRevenue}</h4>
+            <h4 className='h4'>{currency}{dashboardData.totalRevenue}</h4>
             <h5 className='h5 text-secondary'>Total Earnings</h5>
           </div>
         </div>
       </div>
-       {/*  Latest Booking/Sales  */} 
-       <div className='mt-4'>
-        <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr] px-6 py-3 bg-secondary border-b-1 border-slate-900/15 rounded-t-xl'>
+      {/*  Latest Booking/Sales  */}
+      <div className='mt-4'>
+        <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr] px-6 py-3 bg-secondary border-b-1 border-slate-900/15 rounded-t-xl'>
           <h5 className='h5 hidden lg:block'>Index</h5>
           <h5 className='h5'>Property</h5>
           <h5 className='h5'>Booking dates</h5>
@@ -48,9 +49,9 @@ const Dashboard = () => {
 
         </div>
         <div>
-          {dashboarData.booking?.map((booking, index) => (
+          {dashboardData.bookings?.map((booking, index) => (
             <div key={index} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr] px-6 py-3 bg-secondary/5 text-gray-50 medium-14 border-b-1 border-slate-900/15'>
-              <div className='hidden lg:block'>{index+1}</div>
+              <div className='hidden lg:block'>{index + 1}</div>
               <div className='flexStart-hidden rounded-lg'>
                 <div className='overflow-hidden rounded-lg'>
                   <img src={booking.property.images[0]} alt={booking.property.title} className='w-16 rounded-lg' />
@@ -58,17 +59,16 @@ const Dashboard = () => {
                 </div>
                 <div className='line-clamp-2'>{booking.property.title}</div>
               </div>
-              <div>{new Date(booking.checkInDate).toLocaleDateString()} to {new Date(booking.checkOutDate).toLocaleDateString()}</div>
+              <div>{new Date(booking.checkInDate).toLocaleDateString()}</div>
               <div>{currency}{booking.totalPrice}</div>
-              <button className={`${ 
-                booking.isPaid ? "bg-green-400/80 text-white" : "bg-secondary/10 text-red-500"
-              } w-22 py-0.5 rounded-full text-xs border border-green-500/30`}>
+              <button className={`${booking.isPaid ? "bg-green-400/80 text-white" : "bg-secondary/10 text-red-500"
+                } w-22 py-0.5 rounded-full text-xs border border-green-500/30`}>
                 {booking.isPaid ? "completed" : "Pending"}
               </button>
             </div>
           ))}
-        </div>
-       </div>
+        </div>      
+      </div>
     </div>
   );
 };
