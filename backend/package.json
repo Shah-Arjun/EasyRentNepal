@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@clerk/backend": "^3.2.2",
     "@clerk/express": "^2.0.5",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",

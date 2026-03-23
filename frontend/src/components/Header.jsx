@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { assets } from "../assets/data";
 import Navbar from "./Navbar";
 import { useUser, useClerk, UserButton } from "@clerk/clerk-react";
-import { useAppContext } from "../context/Appcontext";
+import { useAppContext } from "../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 

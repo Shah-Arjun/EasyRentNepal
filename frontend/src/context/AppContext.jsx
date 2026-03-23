@@ -6,12 +6,12 @@ import propertyService from '../services/propertyService'
 import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
 
-const Appcontext = createContext()
+const AppContext = createContext()
 
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate();
-    const { user: clerkUser } = useUser();
+    const { user: clerkUser, isLoaded } = useUser();
     
     const [properties, setProperties] = useState([]);
     const [ownerProperties, setOwnerProperties] = useState([]);
@@ -124,17 +124,17 @@ export const AppContextProvider = ({ children }) => {
 
     // Load user-specific data when authenticated
     useEffect(() => {
-        if (clerkUser) {
+        if (isLoaded && clerkUser) {
             setIsLoggedIn(true);
             getUserProfile();
             getWishlist();
             getOwnerProperties();
-        } else {
+        } else if(isLoaded && !clerkUser) {
             setIsLoggedIn(false);
             setUserProfile(null);
             setIsOwner(false);
         }
-    }, [clerkUser])
+    }, [clerkUser, isLoaded])
 
     const value = {
         navigate,
@@ -165,10 +165,10 @@ export const AppContextProvider = ({ children }) => {
     };
 
     return (
-        <Appcontext.Provider value={value}>
+        <AppContext.Provider value={value}>
             {children}
-        </Appcontext.Provider>
+        </AppContext.Provider>
     )
 }
 
-export const useAppContext = () => useContext(Appcontext)
+export const useAppContext = () => useContext(AppContext)
