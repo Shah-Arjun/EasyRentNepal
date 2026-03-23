@@ -7,6 +7,7 @@ const clerkClient = createClerkClient({
     publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
 });
 
+
 const isAuthenticated = async (req, res, next) => {
     try {
         // Read Bearer token from Authorization header
