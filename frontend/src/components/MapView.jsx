@@ -3,7 +3,7 @@ import L from 'leaflet'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-// Only inject what Tailwind cannot reach — Leaflet's internal tooltip DOM
+
 const LEAFLET_OVERRIDES = `
   .hostel-tooltip.leaflet-tooltip {
     padding: 0 !important;

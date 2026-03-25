@@ -84,11 +84,19 @@ exports.loginUser = async(req, res) => {
             algorithm: 'HS256'
         })
         res.status(200).json({
+            success: true,
             message: "User logged in successfully",
-            token
+            token,
+            user: {
+                id: userFound[0]._id,
+                name: userFound[0].name,
+                email: userFound[0].email,
+                role: userFound[0].role
+            }
         })
     } else {
         res.status(404).json({
+            success: false,
             message: "Invalid credentials"
         })
     }

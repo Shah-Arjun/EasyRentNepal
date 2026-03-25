@@ -46,10 +46,10 @@ const reviewSchema = new mongoose.Schema(
 
 
 
-// prevent multiple reviews by same tenant on same property 
+// prevent multiple reviews by same user on same property 
 reviewSchema.index(
-    { tenantId: 1, propertyId: 1 }, 
-    { unique: true }            //tells to mongoDb that the combination of tanant and property must be unique across the collection
+    { userId: 1, propertyId: 1 }, 
+    { unique: true }
 );
 
 

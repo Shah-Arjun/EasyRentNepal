@@ -1,3 +1,10 @@
+import axios from 'axios';
+
+/**
+ * A custom hook that creates an Axios instance automatically configured 
+ * with the Authentication token for the current user.
+ */
+const useAxios = () => {
 //overall axios instance for frontend apis that , automatically attach the logged-in user’s Clerk token in every request
 
 import axios from "axios";
@@ -18,17 +25,18 @@ const useAxios = () => {
     },
   });
 
-  // Request interceptor to add the Clerk JWT token automatically
+  // Request interceptor to add the JWT token automatically
   customAxios.interceptors.request.use(
-    async (config) => {
+    (config) => {
       try {
+        const token = localStorage.getItem('token');
         //attach token
         const token = await getToken(); //get token form
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
       } catch (error) {
-        console.error("Error fetching Clerk auth token:", error);
+        console.error("Error setting custom auth token:", error);
       }
       return config;
     },

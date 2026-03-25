@@ -25,7 +25,13 @@ exports.createPropertyReview = async(req, res) => {
         })
     }
 
-    // console.log(propertyExist)
+    // Check if the user is the owner of the property
+    if (propertyExist.owner.toString() === tenantId) {
+        return res.status(403).json({
+            success: false,
+            message: "Owners cannot review their own properties"
+        })
+    }
 
     // insert review to db
     await Review.create({
@@ -101,4 +107,26 @@ exports.deletePropertyReviewMe = async(req, res) => {
         success: true,
         message: "Review deleted successfully"
     })
+}
+
+// GET ALL REVIEWS FOR A PROPERTY
+exports.getPropertyReviews = async(req, res) => {
+    const { propertyId } = req.params;
+    
+    try {
+        const reviews = await Review.find({ propertyId: propertyId })
+            .populate('userId', 'name profileImage')
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            reviews
+        });
+    } catch (error) {
+        console.error("Error fetching reviews:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch reviews"
+        });
+    }
 }

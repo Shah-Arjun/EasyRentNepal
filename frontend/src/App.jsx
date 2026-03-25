@@ -1,22 +1,24 @@
-import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Listing from "./pages/Listing";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
-import PropertyDetails from "./pages/PropertyDetails";
-import MyBookings from "./pages/MyBookings";
-import AgencyReg from "./components/AgencyReg";
-import { useAppContext } from "./context/AppContext";
-import Sidebar from "./components/owner/Sidebar";
-import Dashboard from "./pages/owner/Dashboard";
-import AddProperty from "./pages/owner/AddProperty";
-import ListProperty from "./pages/owner/ListProperty";
-import MapView from "./components/MapView";
-//import { useState } from 'react'
-
+import React from 'react'
+import { Route,Routes, useLocation } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import Listing from './pages/Listing'
+import Blog from './pages/Blog'
+import BlogDetails from './pages/BlogDetails'
+import Contact from './pages/Contact'
+import PropertyDetails from './pages/PropertyDetails'
+import MyBookings from './pages/MyBookings'
+import AgencyReg from './components/AgencyReg'
+import { useAppContext } from './context/AppContext'
+import Sidebar from './components/owner/Sidebar'
+import Dashboard from './pages/owner/Dashboard'
+import AddProperty from './pages/owner/AddProperty'
+import ListProperty from './pages/owner/ListProperty'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const App = () => {
@@ -25,31 +27,30 @@ const App = () => {
   const { showAgencyReg } = useAppContext();
 
 
-
   return (
     <main>
-      {!isOwnerPath && <Header />}                  {/* id not owner then show header */}   
-      {showAgencyReg && <AgencyReg />}             {/*If showAgencyReg is true (from context), show the popup.*/}
-     
+      <ToastContainer position="bottom-right" />
+      {!isOwnerPath && <Header />}
+      {showAgencyReg && <AgencyReg />}
       <Routes>
-        {/* public routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/listing" element={<Listing />} />
-        <Route path="/listing/:id" element={<PropertyDetails />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/my-bookings" element={<MyBookings />} />
-
-        {/* owner routes */}
-        <Route path="/owner" element={<Sidebar />}>
-          <Route index element={<Dashboard />} />
-          <Route path="add-property" element={<AddProperty />} />
-          <Route path="list-property" element={<ListProperty />} />
-          <Route path="map" element={<MapView />} />
+        <Route path="/" element={<Home />} />  
+        <Route path="/listing" element={<Listing />} />  
+        <Route path="/listing/:id" element={<PropertyDetails />} />  
+        <Route path="/blog" element={<Blog />} />  
+        <Route path="/blog/:id" element={<BlogDetails />} />  
+        <Route path="/contact" element={<Contact />} />  
+        <Route path="/my-bookings" element={<MyBookings />} />  
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path='/owner' element={<Sidebar />}>
+          <Route index element={<Dashboard />}/>
+          <Route path='add-property' element={<AddProperty />}/>
+          <Route path='list-property' element={<ListProperty />}/>
+          <Route path='map' element={<Map />} />
         </Route>
         
       </Routes>
-      {!isOwnerPath && <Footer />}
+      {!isOwnerPath && <Footer/>}
     </main>
   );
 };

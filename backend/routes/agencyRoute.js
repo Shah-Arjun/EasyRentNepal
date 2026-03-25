@@ -1,9 +1,10 @@
-import express from "express";
-import {authUser} from "../middleware/auth"
-import {agencyReg} from "../controllers/agencyController"
+const express = require("express");
+const isAuthenticated = require("../middleware/isAuthenticated");
+const { registerAgency, getMyAgency } = require("../controllers/agencyController");
 
-const agencyRoute = express.Router()
+const router = express.Router();
 
-agencyRouter.post('/' , authUser , agencyReg)
+router.post('/', isAuthenticated, registerAgency);
+router.get('/my-agency', isAuthenticated, getMyAgency);
 
-export default agencyRoute
+module.exports = router;

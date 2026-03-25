@@ -379,54 +379,69 @@ export const dummyBookingsData = [
 // Blogs Dummy Data (Real Estate Website) with Descriptions
 export const blogs = [
   {
-  title: "Top Cities in Nepal to Rent Property in 2025",
-  category: "Market Trends",
-  image: blog1,
-  description: "Kathmandu, Pokhara, Lalitpur, Bhaktapur, and emerging cities like Itahari and Bharatpur—explore where property investment is growing fastest in Nepal."
-},
-{
-  title: "How to Choose the Right Rental Home in Nepal",
-  category: "Renting Guide",
-  image: blog2,
-  description: "From water supply and road access to proximity to schools and offices, learn how to choose the best rental home that fits your lifestyle and budget in Nepal."
-},
-{
-  title: "Interior Design Ideas for Modern Nepali Apartments",
-  category: "Home Improvement",
-  image: blog3,
-  description: "Simple, budget-friendly interior design trends popular in Kathmandu and Pokhara apartments that improve comfort and rental value."
-},
-{
-  title: "First-Time Home Renter’s Checklist in Nepal",
-  category: "Renting Tips",
-  image: blog4,
-  description: "A complete checklist for first-time renters in Nepal—covering land ownership, Lalpurja verification, bank loans, and legal procedures."
-},
-{
-  title: "How to Increase Rental Income from Your Property in Nepal",
-  category: "Investment",
-  image: blog5,
-  description: "Smart strategies to maximize rental income, attract long-term tenants, and improve ROI in Nepal’s growing rental market."
-},
-{
-  title: "Independent House vs Flat: What’s Better in Nepal?",
-  category: "Lifestyle",
-  image: blog6,
-  description: "Compare independent houses and apartment living in Nepal based on cost, security, maintenance, and lifestyle."
-},
-{
-  title: "How to Prepare Your House for Rent in Nepal",
-  category: "Landlord Tips",
-  image: blog7,
-  description: "Practical tips for Nepali landlords to get their house rental-ready, attract quality tenants, and avoid common mistakes."
-},
-{
-  title: "Nepal Rental Market Outlook for 2026",
-  category: "Market Trends",
-  image: blog8,
-  description: "An overview of Nepal’s rental trends in 2026, including rental demand, pricing, urban expansion, and investment opportunities."
-}
-
+    id: 1,
+    title: "Top Cities in Nepal to Rent Property in 2025",
+    category: "Market Trends",
+    image: blog1,
+    description: "Kathmandu, Pokhara, Lalitpur, Bhaktapur, and emerging cities like Itahari and Bharatpur—explore where property investment is growing fastest in Nepal.",
+    content: "The real estate market in Nepal is witnessing a significant shift. While Kathmandu remains the primary hub, cities like Pokhara and Itahari are emerging as top contenders for rental investments. In 2025, the demand for modern apartments with sustainable features is at an all-time high. Investors are looking beyond traditional residential areas towards developing outskirts where infrastructure projects are underway. This blog explores the top 5 cities and why they should be on your radar for rental properties."
+  },
+  {
+    id: 2,
+    title: "How to Choose the Right Rental Home in Nepal",
+    category: "Renting Guide",
+    image: blog2,
+    description: "From water supply and road access to proximity to schools and offices, learn how to choose the best rental home that fits your lifestyle and budget in Nepal.",
+    content: "Selecting a rental home in Nepal requires careful consideration of several factors. Water shortage is a common issue in urban areas, so ensure the property has a reliable source. Accessibility to main roads and public transport is crucial for daily commuting. Additionally, check for proximity to essential services like hospitals and grocery stores. Don't forget to verify the legal documents and have a clear rental agreement to avoid future disputes."
+  },
+  {
+    id: 3,
+    title: "Interior Design Ideas for Modern Nepali Apartments",
+    category: "Home Improvement",
+    image: blog3,
+    description: "Simple, budget-friendly interior design trends popular in Kathmandu and Pokhara apartments that improve comfort and rental value.",
+    content: "Modern Nepali apartments are embracing minimalism with a touch of traditional aesthetics. Using neutral color palettes with vibrant accent pieces can make a small space feel larger. Indoor plants are becoming increasingly popular for improving air quality and aesthetics. Incorporating traditional Nepali crafts, like Thangka paintings or handmade rugs, adds a unique cultural touch. This guide provides 10 affordable ways to transform your rental space into a cozy home."
+  },
+  {
+    id: 4,
+    title: "First-Time Home Renter’s Checklist in Nepal",
+    category: "Renting Tips",
+    image: blog4,
+    description: "A complete checklist for first-time renters in Nepal—covering land ownership, Lalpurja verification, bank loans, and legal procedures.",
+    content: "Renting for the first time can be overwhelming. Always start by setting a realistic budget that includes utility costs. Inspect the property thoroughly during daylight to identify any repairs needed. Ask about the landlord's policies on guests, pets, and maintenance. Most importantly, understand your rights as a tenant under Nepali law. This checklist ensures you don't miss any critical steps before moving in."
+  },
+  {
+    id: 5,
+    title: "How to Increase Rental Income from Your Property in Nepal",
+    category: "Investment",
+    image: blog5,
+    description: "Smart strategies to maximize rental income, attract long-term tenants, and improve ROI in Nepal’s growing rental market.",
+    content: "Landlords can significantly increase their rental income by making small yet impactful upgrades. A fresh coat of paint and modern lighting can drastically improve a property's appeal. Providing basic amenities like high-speed internet or dedicated parking can justify higher rent. Building a good relationship with tenants also ensures fewer vacancies. We discuss how to effectively market your property to attract high-quality tenants."
+  },
+  {
+    id: 6,
+    title: "Independent House vs Flat: What’s Better in Nepal?",
+    category: "Lifestyle",
+    image: blog6,
+    description: "Compare independent houses and apartment living in Nepal based on cost, security, maintenance, and lifestyle.",
+    content: "The choice between an independent house and a flat depends on your priorities. Flats often offer better security and shared amenities like gyms and elevators. Independent houses provide more privacy and space for gardening. In Kathmandu, flats are becoming more popular due to limited space and rising land costs. We weigh the pros and cons of both to help you decide which lifestyle suits you best."
+  },
+  {
+    id: 7,
+    title: "How to Prepare Your House for Rent in Nepal",
+    category: "Landlord Tips",
+    image: blog7,
+    description: "Practical tips for Nepali landlords to get their house rental-ready, attract quality tenants, and avoid common mistakes.",
+    content: "A well-prepared house attracts better tenants and rents faster. Start by decluttering and doing deep cleaning. Fix any leaking pipes or electrical issues. Enhancing the 'curb appeal' with a tidy entrance can make a great first impression. We also cover the importance of psychological pricing and effective photography for your property listing."
+  },
+  {
+    id: 8,
+    title: "Nepal Rental Market Outlook for 2026",
+    category: "Market Trends",
+    image: blog8,
+    description: "An overview of Nepal’s rental trends in 2026, including rental demand, pricing, urban expansion, and investment opportunities.",
+    content: "Looking ahead to 2026, the rental market in Nepal is poised for steady growth. Urban expansion in the Terai region is creating new investment pockets. Rental prices are expected to rise moderately in core city areas. Technological integration in property management will become more prevalent. This analysis provides a deep dive into the macroeconomic factors shaping the future of real estate in Nepal."
+  }
 ];
 
 

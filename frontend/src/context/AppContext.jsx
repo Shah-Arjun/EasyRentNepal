@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useUser } from '@clerk/clerk-react'
 import useAxios from '../hooks/useAxios'
 import propertyService from '../services/propertyService'
 import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
+import reviewService from '../services/reviewService'
+import { dummyProperties } from '../assets/data'
 
 const AppContext = createContext()
 
@@ -18,6 +19,7 @@ export const AppContextProvider = ({ children }) => {
     const [wishlist, setWishlist] = useState([]);
     const [userProfile, setUserProfile] = useState(null);
     const [showAgencyReg, setShowAgencyReg] = useState(false)
+    const [agency, setAgency] = useState(null)
     const [isOwner, setIsOwner] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loading, setLoading] = useState(false);
@@ -29,6 +31,7 @@ export const AppContextProvider = ({ children }) => {
     const propertyServices = propertyService(api);
     const wishlistServices = wishlistService(api);
     const profileServices = profileService(api);
+    const reviewServices = reviewService(api);
 
     // Fetch all properties for listing
     const getProperties = async () => {
@@ -40,7 +43,7 @@ export const AppContextProvider = ({ children }) => {
             }
         } catch (err) {
             console.error('Error fetching properties:', err);
-            setProperties([]);
+            setError('Failed to load properties. Please check your connection.');
         } finally {
             setLoading(false);
         }
@@ -49,7 +52,7 @@ export const AppContextProvider = ({ children }) => {
     // Fetch owner's properties
     const getOwnerProperties = async () => {
         try {
-            if (!clerkUser) return;
+            if (!localStorage.getItem('token')) return;
             setLoading(true);
             const response = await propertyServices.getOwnerProperties();
             if (response.success) {
@@ -65,7 +68,7 @@ export const AppContextProvider = ({ children }) => {
     // Get user profile
     const getUserProfile = async () => {
         try {
-            if (!clerkUser) return;
+            if (!localStorage.getItem('token')) return;
             const response = await profileServices.getProfile();
             if (response.success) {
                 setUserProfile(response.user);
@@ -79,13 +82,14 @@ export const AppContextProvider = ({ children }) => {
     // Get wishlist
     const getWishlist = async () => {
         try {
-            if (!clerkUser) return;
+            if (!localStorage.getItem('token')) return;
             const response = await wishlistServices.getMyWishlist();
             if (response.success) {
                 setWishlist(response.wishlist || []);
             }
         } catch (err) {
             console.error('Error fetching wishlist:', err);
+            // Don't set global error for wishlist, just log it
         }
     }
 
@@ -122,18 +126,96 @@ export const AppContextProvider = ({ children }) => {
         getProperties();
     }, [])
 
+    const loadUserData = async () => {
+        const token = localStorage.getItem('token');
+        if (token) {
     // Load user-specific data when authenticated
     useEffect(() => {
         if (isLoaded && clerkUser) {
             setIsLoggedIn(true);
-            getUserProfile();
+            await getUserProfile();
             getWishlist();
             getOwnerProperties();
+            
+            // Check if user has an agency if they are an owner
+            const profileRes = await profileServices.getProfile();
+            if (profileRes.success && profileRes.user.role === 'owner') {
+                try {
+                    const agencyRes = await api.get('/agency/my-agency');
+                    if (agencyRes.data.success) {
+                        setAgency(agencyRes.data.agency);
+                    } else {
+                        setAgency(null);
+                        setShowAgencyReg(true);
+                    }
+                } catch (err) {
+                    setAgency(null);
+                    if (err.response?.status === 404) {
+                        setShowAgencyReg(true);
+                    }
+                }
+            }
+        } else {
         } else if(isLoaded && !clerkUser) {
             setIsLoggedIn(false);
             setUserProfile(null);
             setIsOwner(false);
+            setOwnerProperties([]);
+            setWishlist([]);
         }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        setUserProfile(null);
+        setIsOwner(false);
+        setOwnerProperties([]);
+        setWishlist([]);
+        navigate('/');
+    };
+
+    // Load user-specific data when authenticated
+    useEffect(() => {
+        loadUserData();
+    }, []);
+
+    const toggleRole = async () => {
+        if (!userProfile) return;
+        const newRole = isOwner ? 'tenant' : 'owner';
+        try {
+            setLoading(true);
+            const response = await profileServices.updateProfile({ role: newRole });
+            if (response.success) {
+                setUserProfile(response.user);
+                setIsOwner(response.user?.role === 'owner');
+                
+                if (newRole === 'owner') {
+                    // Check if they already have an agency
+                    try {
+                        const agencyRes = await api.get('/agency/my-agency');
+                        if (agencyRes.data.success) {
+                            setAgency(agencyRes.data.agency);
+                        } else {
+                            setAgency(null);
+                            setShowAgencyReg(true);
+                        }
+                    } catch (err) {
+                        setAgency(null);
+                        if (err.response?.status === 404) {
+                            setShowAgencyReg(true);
+                        }
+                    }
+                }
+                // Redirect to homepage after successful role switch
+                navigate('/');
+            }
+        } catch (err) {
+            console.error('Error updating role:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
     }, [clerkUser, isLoaded])
 
     const value = {
@@ -143,6 +225,8 @@ export const AppContextProvider = ({ children }) => {
         wishlist,
         userProfile,
         currency,
+        agency,
+        setAgency,
         showAgencyReg,
         setShowAgencyReg,
         isOwner,
@@ -159,9 +243,14 @@ export const AppContextProvider = ({ children }) => {
         deleteProperty,
         toggleWishlist,
         // API Services
+        api,
         propertyServices,
         wishlistServices,
-        profileServices
+        profileServices,
+        reviewServices,
+        loadUserData,
+        logout,
+        toggleRole
     };
 
     return (

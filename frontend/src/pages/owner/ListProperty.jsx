@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 
 const ListProperty = () => {
- const { ownerProperties, currency, deleteProperty, getOwnerProperties, propertyServices, isLoggedIn } = useAppContext()
- const [localProperties, setLocalProperties] = useState([])
+  const { ownerProperties, currency, deleteProperty, loading, getOwnerProperties, propertyServices, isLoggedIn } = useAppContext()
+  const [localProperties, setLocalProperties] = useState([])
 
  useEffect(() => {
    setLocalProperties(ownerProperties)
@@ -38,7 +38,7 @@ const ListProperty = () => {
     <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-scroll lg:w-11/12 bg-white shadow rounded-xl'>
    {/*Latest Booking/Sales*/}
    <div>
-   <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary border-b-1 border-slate-900/15 rounded-t-xl'>
+   <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary border-b border-slate-900/15 rounded-t-xl'>
           <h5 className='h5 hidden lg:block'>Index</h5>
           <h5 className='h5'>Name</h5>
           <h5 className='h5'>Address</h5>
@@ -47,9 +47,14 @@ const ListProperty = () => {
           <h5 className='h5 flex justify-center'>Action</h5>
         </div>
         <div>
-          {localProperties && localProperties.length > 0 ? (
+          {loading ? (
+            <div className='flexCenter py-20'>
+              <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-secondary'></div>
+              <p className='ml-4 text-gray-500 medium-14'>Fetching your properties...</p>
+            </div>
+          ) : localProperties && localProperties.length > 0 ? (
             localProperties.map((property, index) => (
-              <div key={property._id} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary/5 text-gray-50 medium-14 font-semibold border-b-1 border-slate-900/15'>
+              <div key={property._id} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary/5 text-gray-50 medium-14 font-semibold border-b border-slate-900/15'>
                 <div className='hidden lg:block'>{index + 1}</div>
                 <div className='flexStart gap-x-2 rounded-lg'>
                   <div className='overflow-hidden rounded-lg'>

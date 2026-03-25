@@ -11,6 +11,7 @@ const authRoutes = require("./routes/auth/authRoutes")
 const wishlistRoutes = require("./routes/tenant/wishlistRoutes")
 const profileRoutes = require("./routes/profile/profileRoutes")
 const reviewsRoutes = require("./routes/tenant/reviewsRoutes")
+const agencyRoutes = require("./routes/agencyRoute")
 
 
 
@@ -48,10 +49,11 @@ app.use("/api/property", propertyRoutes)
 app.use("/api/wishlist", wishlistRoutes)
 app.use("/api/profile", profileRoutes)
 app.use("/api/reviews", reviewsRoutes)
+app.use("/api/agency", agencyRoutes)
 
 
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running at ${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
