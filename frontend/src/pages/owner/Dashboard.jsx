@@ -3,71 +3,144 @@ import { useAppContext } from '../../context/AppContext'
 import { assets, dummyDashboardData } from '../../assets/data'
 
 const Dashboard = () => {
-  const { user, currency } = useAppContext()
+  const { currency, propertyServices } = useAppContext()
 
   const [dashboardData, setDashboardData] = useState({
-    bookings: [],
-    totalBookings: 0,
-    totalRevenue: 0,
+    stats: {
+      totalProperties: 0,
+       totalReviews: 0,
+       averageRating: 0
+    },
+    latestReviews: [],
+    properties: []
   })
+  const [loading, setLoading] = useState(true)
 
   const getDashboardData = async () => {
-    setDashboardData(dummyDashboardData)
+    try {
+      setLoading(true)
+      const response = await propertyServices.getOwnerDashboardData()
+      if (response.success) {
+        setDashboardData(response)
+      }
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
     getDashboardData();
-  }, [user]);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className='flexCenter h-[80vh] w-full'>
+        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-secondary'></div>
+      </div>
+    )
+  }
 
   return (
     <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-scroll lg:w-11/12 bg-white shadow rounded-xl'>
-      <div className='grid grid-cols-2 gap-4'>
-        <div className='flexStart gap-7 p-5 bg-[#fff4d2] lg:min-w-56 rounded-xl'>
-          <img src={assets.house} alt="" className='hidden sm:flex w-8' />
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-8'>
+        <div className='flexStart gap-7 p-6 bg-[#fff4d2] rounded-2xl border border-[#fef08a] shadow-sm'>
+          <div className='bg-white/50 p-3 rounded-xl'>
+            <img src={assets.house} alt="" className='w-8' />
+          </div>
           <div>
-            <h4 className='h4'>{dashboardData.totalBookings.toString().padStart(2, "0")}</h4>
-            <h5 className='h5 text-secondary'>Total Sales</h5>
+            <h4 className='h4 text-slate-800'>{dashboardData.stats.totalProperties.toString().padStart(2, "0")}</h4>
+            <h5 className='medium-16 text-slate-500'>Properties</h5>
           </div>
         </div>
-        <div className='flexStart gap-7 p-5 bg-[#d1e8ff] lg:min-w-56 rounded-xl'>
-          <img src={assets.dollar} alt=""
-            className='hidden sm:flex w-8' />
+        <div className='flexStart gap-7 p-6 bg-[#d1e8ff] rounded-2xl border border-[#bae6fd] shadow-sm'>
+          <div className='bg-white/50 p-3 rounded-xl'>
+            <img src={assets.star} alt="" className='w-8' />
+          </div>
           <div>
-            <h4 className='h4'>{currency}{dashboardData.totalRevenue}</h4>
-            <h5 className='h5 text-secondary'>Total Earnings</h5>
+            <h4 className='h4 text-slate-800'>{dashboardData.stats.averageRating} / 5.0</h4>
+            <h5 className='medium-16 text-slate-500'>Avg Rating</h5>
+          </div>
+        </div>
+        <div className='flexStart gap-7 p-6 bg-green-50 rounded-2xl border border-green-100 shadow-sm'>
+          <div className='bg-white/50 p-3 rounded-xl'>
+            <img src={assets.calendar} alt="" className='w-8' />
+          </div>
+          <div>
+            <h4 className='h4 text-slate-800'>{dashboardData.stats.totalReviews.toString().padStart(2, "0")}</h4>
+            <h5 className='medium-16 text-slate-500'>Total Reviews</h5>
           </div>
         </div>
       </div>
-      {/*  Latest Booking/Sales  */}
-      <div className='mt-4'>
-        <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr] px-6 py-3 bg-secondary border-b-1 border-slate-900/15 rounded-t-xl'>
-          <h5 className='h5 hidden lg:block'>Index</h5>
-          <h5 className='h5'>Property</h5>
-          <h5 className='h5'>Booking dates</h5>
-          <h5 className='h5'>Amount</h5>
-          <h5 className='h5'>Status</h5>
 
-        </div>
-        <div>
-          {dashboardData.bookings?.map((booking, index) => (
-            <div key={index} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr] px-6 py-3 bg-secondary/5 text-gray-50 medium-14 border-b-1 border-slate-900/15'>
-              <div className='hidden lg:block'>{index + 1}</div>
-              <div className='flexStart-hidden rounded-lg'>
-                <div className='overflow-hidden rounded-lg'>
-                  <img src={booking.property.images[0]} alt={booking.property.title} className='w-16 rounded-lg' />
-
+      <div className='grid grid-cols-1 xl:grid-cols-2 gap-8'>
+        {/* Latest Reviews */}
+        <div className='p-6 rounded-2xl border border-slate-100 bg-slate-50/30'>
+          <h3 className='h3 mb-6'>Latest Reviews</h3>
+          <div className='space-y-4'>
+            {dashboardData.latestReviews.length > 0 ? (
+              dashboardData.latestReviews.map((rev) => (
+                <div key={rev._id} className='bg-white p-4 rounded-xl shadow-sm border border-slate-100'>
+                  <div className='flexBetween mb-2'>
+                    <div className='flexStart gap-3'>
+                      <img src={rev.userId?.profileImage || assets.user} alt="" className='w-8 h-8 rounded-full border' />
+                      <h5 className='bold-15'>{rev.userId?.name || 'User'}</h5>
+                    </div>
+                    <div className='flex gap-1'>
+                      {[...Array(5)].map((_, i) => (
+                        <img key={i} src={assets.star} alt="" width={12} className={i < rev.rating ? "" : "opacity-20"} />
+                      ))}
+                    </div>
+                  </div>
+                  <p className='text-xs font-semibold text-secondary mb-1'>on {rev.propertyId?.title}</p>
+                  <p className='text-sm text-slate-600 italic'>"{rev.comment}"</p>
+                  <p className='text-[10px] text-slate-400 mt-2'>{new Date(rev.createdAt).toLocaleDateString()}</p>
                 </div>
-                <div className='line-clamp-2'>{booking.property.title}</div>
-              </div>
-              <div>{new Date(booking.checkInDate).toLocaleDateString()}</div>
-              <div>{currency}{booking.totalPrice}</div>
-              <button className={`${booking.isPaid ? "bg-green-400/80 text-white" : "bg-secondary/10 text-red-500"
-                } w-22 py-0.5 rounded-full text-xs border border-green-500/30`}>
-                {booking.isPaid ? "completed" : "Pending"}
-              </button>
-            </div>
-          ))}
-        </div>      
+              ))
+            ) : (
+              <p className='text-slate-500 italic text-center py-10'>No reviews yet for your properties.</p>
+            )}
+          </div>
+        </div>
+
+        {/* My Properties Summary */}
+        <div className='p-6 rounded-2xl border border-slate-100 bg-slate-50/30'>
+          <h3 className='h3 mb-6'>My Properties</h3>
+          <div className='bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm'>
+            <table className='w-full text-left'>
+              <thead>
+                <tr className='bg-slate-50 border-b border-slate-100'>
+                  <th className='px-4 py-3 text-sm font-bold text-slate-600'>Property</th>
+                  <th className='px-4 py-3 text-sm font-bold text-slate-600'>Price</th>
+                </tr>
+              </thead>
+              <tbody className='divide-y divide-slate-50'>
+                {dashboardData.properties.length > 0 ? (
+                  dashboardData.properties.map((property) => (
+                    <tr key={property._id} className='hover:bg-slate-50/50 transition-colors'>
+                      <td className='px-4 py-3'>
+                        <div className='flexStart gap-3'>
+                          {property.images?.[0] && (
+                            <img src={property.images[0].url} alt="" className='w-10 h-10 rounded shadow-sm object-cover' />
+                          )}
+                          <p className='text-sm font-medium text-slate-700 line-clamp-1'>{property.title}</p>
+                        </div>
+                      </td>
+                      <td className='px-4 py-3 text-sm font-bold text-secondary'>
+                        {currency}{property.price?.value}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="2" className='px-4 py-10 text-center text-slate-500 italic'>No properties added yet.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

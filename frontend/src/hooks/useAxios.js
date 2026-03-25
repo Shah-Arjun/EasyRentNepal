@@ -1,13 +1,10 @@
 import axios from 'axios';
-import { useAuth } from '@clerk/clerk-react';
 
 /**
  * A custom hook that creates an Axios instance automatically configured 
- * with the Clerk Authentication token for the current user.
+ * with the Authentication token for the current user.
  */
 const useAxios = () => {
-  const { getToken } = useAuth();
-
   const customAxios = axios.create({
     // Replace this with your actual backend URL or define VITE_API_URL in your .env file
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
@@ -16,16 +13,16 @@ const useAxios = () => {
     },
   });
 
-  // Request interceptor to add the Clerk JWT token automatically
+  // Request interceptor to add the JWT token automatically
   customAxios.interceptors.request.use(
-    async (config) => {
+    (config) => {
       try {
-        const token = await getToken();
+        const token = localStorage.getItem('token');
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
       } catch (error) {
-        console.error("Error fetching Clerk auth token:", error);
+        console.error("Error setting custom auth token:", error);
       }
       return config;
     },

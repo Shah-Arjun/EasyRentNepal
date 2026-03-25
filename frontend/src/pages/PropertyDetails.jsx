@@ -3,12 +3,29 @@ import { useAppContext } from '../context/AppContext'
 import { useParams } from 'react-router-dom'
 import PropertyImages from '../components/PropertyImages'
 import { assets } from '../assets/data'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const PropertyDetails = () => {
-    const { properties, currency, propertyServices } = useAppContext()
+    const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn } = useAppContext()
     const [property, setProperty] = useState(null)
+    const [reviews, setReviews] = useState([])
     const [loading, setLoading] = useState(true)
+    const [reviewLoading, setReviewLoading] = useState(false)
+    const [rating, setRating] = useState(5)
+    const [comment, setComment] = useState("")
     const { id } = useParams()
+
+    const fetchReviews = async () => {
+        try {
+            const data = await reviewServices.getPropertyReviews(id)
+            if (data.success) {
+                setReviews(data.reviews)
+            }
+        } catch (error) {
+            console.error("Error fetching reviews:", error)
+        }
+    }
 
     useEffect(() => {
         const getPropertyDetails = async () => {
@@ -36,8 +53,65 @@ const PropertyDetails = () => {
 
         if (id) {
             getPropertyDetails()
+            fetchReviews()
         }
     }, [id, properties, propertyServices])
+
+    const handleReviewSubmit = async (e) => {
+        e.preventDefault()
+        if (!isLoggedIn) {
+            alert("Please login to submit a review")
+            return
+        }
+        if (userProfile?.role !== 'tenant') {
+            alert("Only tenants can submit reviews")
+            return
+        }
+
+        try {
+            setReviewLoading(true)
+            const response = await reviewServices.createReview(id, { rating, comment })
+            if (response.success) {
+                setComment("")
+                setRating(5)
+                fetchReviews() 
+                // We should also refresh property to get new average
+                const propResponse = await propertyServices.getPropertyById(id)
+                if (propResponse.success) {
+                    setProperty(propResponse.property)
+                }
+            }
+        } catch (error) {
+            console.error("Error submitting review:", error)
+            alert(error.message || "Failed to submit review. You might have already reviewed this property.")
+        } finally {
+            setReviewLoading(false)
+        }
+    }
+
+    const handleDeleteReview = async (reviewId) => {
+        if (!window.confirm("Are you sure you want to delete this review?")) return
+
+        try {
+            setReviewLoading(true)
+            const response = await reviewServices.deleteReview(reviewId)
+            if (response.success) {
+                fetchReviews()
+                // Refresh property data for new average
+                const propResponse = await propertyServices.getPropertyById(id)
+                if (propResponse.success) {
+                    setProperty(propResponse.property)
+                }
+            }
+        } catch (error) {
+            console.error("Error deleting review:", error)
+            alert(error.message || "Failed to delete review")
+        } finally {
+            setReviewLoading(false)
+        }
+    }
+
+    const hasReviewed = reviews.some(rev => rev.userId?._id === userProfile?._id)
 
     if (loading) {
         return (
@@ -82,10 +156,19 @@ const PropertyDetails = () => {
                         <div className='flex justify-between items-start my-1'>
                             <h4 className='h4 text-secondary'>{property.category}</h4>
                             <div className='flex items-baseline gap-2 text-secondary relative top-1.5'>
-                                <h4 className="bold-18 relative bottom-0.5 text-black">5.0</h4>
+                                <h4 className="bold-18 relative bottom-0.5 text-black">
+                                    {property.averageRating > 0 ? property.averageRating.toFixed(1) : '0.0'}
+                                </h4>
                                 {[...Array(5)].map((_, i) => (
-                                    <img key={i} src={assets.star} alt="" width={18} />
+                                    <img 
+                                        key={i} 
+                                        src={i < Math.round(property.averageRating || 0) ? assets.star : assets.star } 
+                                        alt="" 
+                                        width={18} 
+                                        className={i < Math.round(property.averageRating || 0) ? "" : "opacity-30"}
+                                    />
                                 ))}
+                                <span className='text-gray-500 medium-14'>({property.totalReviews || 0})</span>
                             </div>
                         </div>
                         <div className='flex gap-x-4 mt-3 flex-wrap'>
@@ -152,6 +235,108 @@ const PropertyDetails = () => {
                                 <span>Check</span>
                             </button>
                         </form>
+
+                        {/* Reviews Section */}
+                        <div className='mt-12'>
+                            <h3 className='h3 mb-6'>Reviews ({reviews.length})</h3>
+                            
+                            {/* Review List */}
+                            <div className='space-y-6 mb-10'>
+                                {reviews.length > 0 ? (
+                                    reviews.map((rev) => (
+                                        <div key={rev._id} className='flex gap-4 p-4 rounded-xl bg-white border border-slate-900/5 shadow-sm'>
+                                            <img src={rev.userId?.profileImage || assets.user} alt="" className='h-12 w-12 rounded-full object-cover border' />
+                                            <div className='flex-1'>
+                                                <div className='flexBetween'>
+                                                    <h5 className='bold-16'>{rev.userId?.name || 'Anonymous'}</h5>
+                                                    <div className='flex gap-1'>
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <img 
+                                                                key={i} 
+                                                                src={assets.star} 
+                                                                alt="" 
+                                                                width={14} 
+                                                                className={i < rev.rating ? "" : "opacity-20"}
+                                                            />
+                                                        ))}
+                                                        {userProfile?._id === rev.userId?._id && (
+                                                            <FontAwesomeIcon 
+                                                                icon={faTrash} 
+                                                                className='ml-4 text-red-500 cursor-pointer hover:scale-110 transition-transform' 
+                                                                onClick={() => handleDeleteReview(rev._id)}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                <p className='text-xs text-gray-400 mb-2'>
+                                                    {new Date(rev.createdAt).toLocaleDateString()}
+                                                </p>
+                                                <p className='text-gray-600 italic'>"{rev.comment}"</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className='text-gray-500 italic'>No reviews yet. Be the first to review!</p>
+                                )}
+                            </div>
+
+                            {/* Add Review Form */}
+                            {isLoggedIn && userProfile?.role === 'tenant' && !hasReviewed && property.owner?._id !== userProfile?._id && (
+                                <div className='p-6 rounded-xl bg-secondary/5 border border-secondary/20'>
+                                    <h4 className='h4 mb-4'>Write a Review</h4>
+                                    <form onSubmit={handleReviewSubmit} className='flex flex-col gap-4'>
+                                        <div className='flex items-center gap-4'>
+                                            <span className='medium-14'>Rating:</span>
+                                            <div className='flex gap-2'>
+                                                {[1, 2, 3, 4, 5].map((num) => (
+                                                    <img 
+                                                        key={num}
+                                                        src={assets.star}
+                                                        alt=""
+                                                        width={24}
+                                                        className={`cursor-pointer transition-transform hover:scale-110 ${rating >= num ? "" : "opacity-20"}`}
+                                                        onClick={() => setRating(num)}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <textarea 
+                                            value={comment}
+                                            onChange={(e) => setComment(e.target.value)}
+                                            rows={3} 
+                                            placeholder='Share your experience with this property...' 
+                                            className='p-3 border border-gray-200 rounded-lg text-sm bg-white focus:ring-1 focus:ring-secondary outline-none' 
+                                            required 
+                                        />
+                                        <button 
+                                            type="submit" 
+                                            disabled={reviewLoading}
+                                            className="btn-secondary rounded-lg py-2 w-max px-8"
+                                        >
+                                            {reviewLoading ? "Submitting..." : "Submit Review"}
+                                        </button>
+                                    </form>
+                                </div>
+                            )}
+
+                            {isLoggedIn && userProfile?.role === 'tenant' && hasReviewed && (
+                                <div className='p-4 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm'>
+                                    You have already reviewed this property. Thank you!
+                                </div>
+                            )}
+
+                            {isLoggedIn && property.owner?._id === userProfile?._id && (
+                                <div className='p-4 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 text-sm italic'>
+                                    You are the owner of this property and cannot leave a review.
+                                </div>
+                            )}
+
+                            {!isLoggedIn && (
+                                <p className='text-sm text-gray-500 text-center py-4 bg-secondary/5 rounded-lg'>
+                                    Please <span onClick={() => navigate('/login')} className='text-secondary cursor-pointer underline'>login</span> as a tenant to write a review.
+                                </p>
+                            )}
+                        </div>
                     </div>
                     {/* Right Side */}
                     <div className='flex-1 max-w-sm'>
@@ -168,24 +353,26 @@ const PropertyDetails = () => {
                                 <div className='flex item-start justify-between p-3'>
                                     <div>
                                         <div className='flex items-center space-x-2 '>
-                                            <h5 className='h5'>{property.agency.owner.username}</h5>
+                                            <h5 className='h5'>{property.agency?.name || property.owner?.name || 'N/A'}</h5>
                                             <p className='bg-green-500/20 px-2 py-0.5 rounded-full text-xs text-green-600 border border-green-500/30'>Owner</p>
                                         </div>
-                                        <p>Property Owner</p>
+                                        <p className='regular-14 text-gray-500'>
+                                            {property.agency ? `${property.agency.address}, ${property.agency.city}` : 'Property Owner'}
+                                        </p>
                                     </div>
-                                    <img src={property.agency.owner.image} alt="" className='h-10 w-10 rounded-full ' />
+                                    <img src={property.owner?.profileImage || assets.user} alt="" className='h-10 w-10 rounded-full ' />
                                 </div>
                                 <div className='flexStart gap-2 p-1.5'>
                                     <div className='bg-green-500/20 p-1 rounded-full border-green-500/30'>
                                         <img src={assets.phone} alt="" width={14} />
                                     </div>
-                                    <p>{property.agency.contact}</p>
+                                    <p className='regular-14'>{property.agency?.contact || property.owner?.phoneNumber || 'N/A'}</p>
                                 </div>
                                 <div className='flexStart gap-2 p-1.5'>
                                     <div className='bg-green-500/20 p-1 rounded-full border-green-500/30'>
                                         <img src={assets.mail} alt="" width={14} />
                                     </div>
-                                    <p>{property.agency.email}</p>
+                                    <p className='regular-14'>{property.agency?.email || property.owner?.email || 'N/A'}</p>
                                 </div>
                                 <div className='flex items-center divide-x divide-gray-500/30'>
                                     <button className='flex items-center justify-center gap-2 w-1/2 py-3 cursor-pointer '>

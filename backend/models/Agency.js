@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const agencySchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -17,4 +17,4 @@ const agencySchema = new mongoose.Schema({
 
 const Agency = mongoose.model("Agency", agencySchema);
 
-export default Agency;
+module.exports = Agency;

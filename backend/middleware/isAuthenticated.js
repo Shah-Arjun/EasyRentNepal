@@ -1,45 +1,31 @@
-const { verifyToken, createClerkClient } = require('@clerk/backend');
+const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-
-// Initialize Clerk client to fetch user details if needed
-const clerkClient = createClerkClient({
-    secretKey: process.env.CLERK_SECRET_KEY,
-    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
-});
 
 const isAuthenticated = async (req, res, next) => {
     try {
         // Read Bearer token from Authorization header
         const authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            console.log("Auth failed: No bearer token found");
             return res.status(403).json({ message: "Please Login" });
         }
 
         const token = authHeader.split(' ')[1];
 
-        // Verify the Clerk JWT token using secretKey only (no remote JWK fetch)
-        const payload = await verifyToken(token, {
-            secretKey: process.env.CLERK_SECRET_KEY,
-        });
+        // Verify the custom JWT token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-        const clerkUserId = payload.sub;
-
-        if (!clerkUserId) {
+        if (!decoded || !decoded.id) {
+            console.log("Auth failed: Invalid token structure", decoded);
             return res.status(403).json({ message: "Invalid token" });
         }
 
-        // Find or create the user in our DB using the Clerk userId
-        let user = await User.findOne({ clerkId: clerkUserId });
+        // Find the user in our DB
+        const user = await User.findById(decoded.id);
 
         if (!user) {
-            // Fetch user details from Clerk API to populate our DB
-            const clerkUser = await clerkClient.users.getUser(clerkUserId);
-            user = await User.create({
-                clerkId: clerkUserId,
-                email: clerkUser.emailAddresses?.[0]?.emailAddress || '',
-                firstName: clerkUser.firstName || '',
-                lastName: clerkUser.lastName || '',
-            });
+            console.log("Auth failed: User not found for ID:", decoded.id);
+            return res.status(403).json({ message: "User not found" });
         }
 
         req.user = user;

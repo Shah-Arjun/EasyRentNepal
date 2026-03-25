@@ -1,4 +1,4 @@
-const { createPropertyReview, getPropertyRviewsByMe, deletePropertyReviewMe } = require('../../controllers/tenant/reviewsController')
+const { createPropertyReview, getPropertyRviewsByMe, deletePropertyReviewMe, getPropertyReviews } = require('../../controllers/tenant/reviewsController')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
 const catchAsync = require('../../services/catchAsync')
@@ -13,5 +13,7 @@ router.route("/")
 router.route('/:id')
     .post(isAuthenticated, restrictTo('tenant'), catchAsync(createPropertyReview))
     .delete(isAuthenticated, catchAsync(deletePropertyReviewMe))
+
+router.get('/property/:propertyId', catchAsync(getPropertyReviews))
 
 module.exports = router

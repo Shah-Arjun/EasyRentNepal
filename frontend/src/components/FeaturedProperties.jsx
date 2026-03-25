@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { assets } from '../assets/data'
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
-// import required modules
 import { Autoplay } from 'swiper/modules';
-import { useAppContext } from '../context/Appcontext';
+import { useAppContext } from '../context/AppContext';
 import Item from './Item';
 
 

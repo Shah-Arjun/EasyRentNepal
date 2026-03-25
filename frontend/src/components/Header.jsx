@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { assets } from "../assets/data";
 import Navbar from "./Navbar";
-import { useUser, useClerk, UserButton } from "@clerk/clerk-react";
-import { useAppContext } from "../context/Appcontext";
+import { useAppContext } from "../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarCheck, faRightLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarCheck, faPlus, faRightLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const profileMenuRef = useRef(null);
   const location = useLocation();
-  const { navigate, isOwner, setIsOwner } = useAppContext();
-  const { user } = useUser();   // Get user directly from Clerk
-  const { openSignIn } = useClerk();
+  const { navigate, isOwner, setIsOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
 
+  const handleLogout = () => {
+    logout();
+  };
 
 
 
@@ -41,10 +43,22 @@ const Header = () => {
 
     handleScroll();
 
+    // Click outside handler for profile menu
+    const handleClickOutside = (event) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+
+    if (showProfileMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [location.pathname]);
+  }, [location.pathname, showProfileMenu]);
 
   return (
     <header
@@ -74,14 +88,37 @@ const Header = () => {
           {/* Buttons Searchbar & Profile */}
           <div className="flex sm:flex-1 items-center sm:justify-end gap-x-4 sm:gap-x-8">
             {/* Owner Dashboard */}
-            {user && isOwner && (
+            {isLoggedIn && isOwner && (
+              agency ? (
+                <Link
+                  to="/owner"
+                  className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
+                  title="Owner Dashboard"
+                >
+                  <img src={assets.dashboard} alt="Dashboard" className="w-5 h-5" />
+                  <span className="hidden sm:block text-[14px] font-medium text-black">Dashboard</span>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setShowAgencyReg(true)}
+                  className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
+                  title="Register Agency"
+                >
+                  <FontAwesomeIcon icon={faUserPlus} className="w-4 h-4" />
+                  <span className="hidden sm:block text-[14px] font-medium text-black">Register Owner</span>
+                </button>
+              )
+            )}
+
+            {/* My Bookings icon for tenant */}
+            {isLoggedIn && !isOwner && (
               <Link
-                to="/owner"
+                to="/my-bookings"
                 className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
-                title="Owner Dashboard"
+                title="My Bookings"
               >
-                <img src={assets.dashboard} alt="Dashboard" className="w-5 h-5" />
-                <span className="hidden sm:block text-[14px] font-medium text-black">Dashboard</span>
+                <FontAwesomeIcon icon={faCalendarCheck} className="text-black/80 w-5 h-5" />
+                <span className="hidden sm:block text-[14px] font-medium text-black">My Bookings</span>
               </Link>
             )}
             
@@ -127,45 +164,52 @@ const Header = () => {
             </>
 
             {/* User Profile */}
-
-            <div className="group relative top-1 ">
+            <div className="group relative top-1" ref={profileMenuRef}>
               <div>
-                {user ? (
-                  <UserButton
-                    appearance={{
-                      elements: {
-                        userButtonAvatarBox: {
-                          width: "42px",
-                          height: "42px",
-                        }
-                      }
-                    }}
-                  >
-                    <UserButton.MenuItems>
-                      <UserButton.Action
-                        label="My Bookings"
-                        labelIcon={
-                          <FontAwesomeIcon
-                            icon={faCalendarCheck}
-                            className="text-sm"
-                          />
-                        }
-                        onClick={() => navigate('/my-bookings')}
-                      />
-                      <UserButton.Action
-                        label={isOwner ? "Switch to Tenant" : "Switch to Owner"}
-                        labelIcon={
-                          <FontAwesomeIcon
-                            icon={faRightLeft}
-                            className="text-sm"
-                          />
-                        }
-                        onClick={() => setIsOwner(!isOwner)}
-                      />
-                    </UserButton.MenuItems>
-                  </UserButton>
+                {isLoggedIn ? (
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <button 
+                        onClick={() => setShowProfileMenu(!showProfileMenu)}
+                        className="w-[42px] h-[42px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-lg"
+                      >
+                        {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
+                      </button>
+                      
+                      {/* Role Indicator Badge Below Icon */}
+                      <div className={`hidden md:flex items-center px-2 py-0.5 absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full text-[8px] font-bold uppercase tracking-wider border whitespace-nowrap shadow-sm z-10 ${isOwner ? "bg-secondary border-white text-black" : "bg-green-600 border-white text-white"}`}>
+                        <span className={`w-1 h-1 rounded-full mr-1 ${isOwner ? "bg-black" : "bg-white"}`}></span>
+                        {isOwner ? "Owner" : "Tenant"}
+                      </div>
+                    {showProfileMenu && (
+                      <div className="absolute right-0 top-12 w-48 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5">
+                        {!isOwner && (
+                          <button 
+                            onClick={() => { navigate('/my-bookings'); setShowProfileMenu(false); }}
+                            className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2"
+                          >
+                            <FontAwesomeIcon icon={faCalendarCheck} /> My Bookings
+                          </button>
+                        )}
+                        <button 
+                          onClick={() => { toggleRole(); setShowProfileMenu(false); }}
+                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2"
+                        >
+                          <FontAwesomeIcon icon={faRightLeft} /> {isOwner ? "Switch to Tenant" : "Switch to Owner"}
+                        </button>
+                        <hr />
+                        <button 
+                          onClick={handleLogout}
+                          className="w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-slate-100 font-medium"
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                    </div>
+                  </div>
                 ) : (
-                  <button onClick={openSignIn} className="btn-secondary flexCenter gap-2 rounded-full">
+                  <button onClick={() => navigate('/login')} className="btn-secondary flexCenter gap-2 rounded-full">
                     Login
                     <img src={assets.user} alt="userIcon" />
                   </button>

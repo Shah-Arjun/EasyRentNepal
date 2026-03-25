@@ -61,8 +61,19 @@ export const propertyService = (axiosInstance) => {
       } catch (error) {
         throw error.response?.data || error.message
       }
+    },
+
+    // Get owner dashboard data
+    getOwnerDashboardData: async () => {
+      try {
+        const { data } = await axiosInstance.get('/property/owner-dashboard')
+        return data
+      } catch (error) {
+        throw error.response?.data || error.message
+      }
     }
   }
 }
+
 
 export default propertyService
