@@ -20,10 +20,12 @@ import Register from './pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+
 const App = () => {
-  const location = useLocation()
-  const isOwnerPath = location.pathname.includes("owner")
-  const {showAgencyReg} = useAppContext()
+  const location = useLocation();    //gives current url
+  const isOwnerPath = location.pathname.includes("owner");
+  const { showAgencyReg } = useAppContext();
+
 
   return (
     <main>
@@ -46,10 +48,11 @@ const App = () => {
           <Route path='list-property' element={<ListProperty />}/>
           <Route path='map' element={<Map />} />
         </Route>
+        
       </Routes>
       {!isOwnerPath && <Footer/>}
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;

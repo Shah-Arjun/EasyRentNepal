@@ -165,6 +165,7 @@ const AddProperty = () => {
         });
       } catch (err) {
         setError('Error processing image');
+        console.log("Error processing image", err)
         return;
       }
     }

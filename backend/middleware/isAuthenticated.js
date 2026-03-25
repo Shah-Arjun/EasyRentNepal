@@ -1,6 +1,13 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
+// Initialize Clerk client to fetch user details if needed
+const clerkClient = createClerkClient({
+    secretKey: process.env.CLERK_SECRET_KEY,
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+});
+
+
 const isAuthenticated = async (req, res, next) => {
     try {
         // Read Bearer token from Authorization header

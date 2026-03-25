@@ -12,6 +12,7 @@ const AppContext = createContext()
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate();
+    const { user: clerkUser, isLoaded } = useUser();
     
     const [properties, setProperties] = useState([]);
     const [ownerProperties, setOwnerProperties] = useState([]);
@@ -128,6 +129,9 @@ export const AppContextProvider = ({ children }) => {
     const loadUserData = async () => {
         const token = localStorage.getItem('token');
         if (token) {
+    // Load user-specific data when authenticated
+    useEffect(() => {
+        if (isLoaded && clerkUser) {
             setIsLoggedIn(true);
             await getUserProfile();
             getWishlist();
@@ -152,6 +156,7 @@ export const AppContextProvider = ({ children }) => {
                 }
             }
         } else {
+        } else if(isLoaded && !clerkUser) {
             setIsLoggedIn(false);
             setUserProfile(null);
             setIsOwner(false);
@@ -211,6 +216,7 @@ export const AppContextProvider = ({ children }) => {
             setLoading(false);
         }
     };
+    }, [clerkUser, isLoaded])
 
     const value = {
         navigate,

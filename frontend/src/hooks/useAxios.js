@@ -5,11 +5,23 @@ import axios from 'axios';
  * with the Authentication token for the current user.
  */
 const useAxios = () => {
+//overall axios instance for frontend apis that , automatically attach the logged-in user’s Clerk token in every request
+
+import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
+
+/**
+ * A custom hook that creates an Axios instance automatically configured
+ * with the Clerk Authentication token for the current user.
+ */
+const useAxios = () => {
+  const { getToken } = useAuth(); //getToken --> async function that returns the current user’s JWT token
+
   const customAxios = axios.create({
-    // Replace this with your actual backend URL or define VITE_API_URL in your .env file
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+    //  actual backend URL
+    baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -18,6 +30,8 @@ const useAxios = () => {
     (config) => {
       try {
         const token = localStorage.getItem('token');
+        //attach token
+        const token = await getToken(); //get token form
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -28,10 +42,16 @@ const useAxios = () => {
     },
     (error) => {
       return Promise.reject(error);
-    }
+    },
   );
 
   return customAxios;
 };
 
 export default useAxios;
+
+//can be used as:
+// const axiosInstance = useAxios();
+
+// axiosInstance.get('/teachers');
+// axiosInstance.post('/subjects', data);

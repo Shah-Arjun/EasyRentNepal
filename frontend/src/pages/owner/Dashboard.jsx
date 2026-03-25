@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useAppContext } from '../../context/AppContext'
+import { useAppContext } from '../../context/AppContext';
 import { assets, dummyDashboardData } from '../../assets/data'
 
 const Dashboard = () => {

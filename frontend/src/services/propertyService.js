@@ -1,4 +1,3 @@
-import useAxios from '../hooks/useAxios'
 
 // This needs to be called within a component
 export const propertyService = (axiosInstance) => {
