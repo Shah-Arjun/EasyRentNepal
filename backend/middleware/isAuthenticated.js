@@ -17,6 +17,9 @@ const isAuthenticated = async (req, res, next) => {
             return res.status(403).json({ message: "Please Login" });
         }
 
+
+        //token
+
         const token = authHeader.split(' ')[1];
 
         // Verify the custom JWT token
