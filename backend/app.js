@@ -1,7 +1,6 @@
 require('dotenv').config();   // ⚠️ Must be FIRST - loads .env before any other module reads env vars
 const express = require("express");
 const cors = require("cors");
-// @clerk/express clerkMiddleware removed - auth is now handled in isAuthenticated.js
 const app = express();
 const connectMongoDB = require("./database/db")
 
@@ -28,7 +27,6 @@ app.use(cors({
 }))
 app.use(express.json({ limit: '50mb' }))         //helps express to understand/parse JSON
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))     //handles data from frontend but doesnot handle file, we need multer for file
-// Clerk authentication is now handled per-route in isAuthenticated.js middleware
 
 
 

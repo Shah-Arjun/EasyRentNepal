@@ -25,7 +25,13 @@ const Login = () => {
                 localStorage.setItem('token', response.data.token);
                 await loadUserData(); // Refresh context
                 toast.success('Logged in successfully');
-                navigate('/');
+                
+                // Redirect based on user role
+                if (response.data.user?.role === 'owner') {
+                    navigate('/owner');
+                } else {
+                    navigate('/');
+                }
             }
         } catch (error) {
             toast.error(error.response?.data?.message || 'Login failed');

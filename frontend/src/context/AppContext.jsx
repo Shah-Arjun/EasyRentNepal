@@ -12,7 +12,6 @@ const AppContext = createContext()
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate();
-    const { user: clerkUser, isLoaded } = useUser();
     
     const [properties, setProperties] = useState([]);
     const [ownerProperties, setOwnerProperties] = useState([]);
@@ -33,7 +32,6 @@ export const AppContextProvider = ({ children }) => {
     const profileServices = profileService(api);
     const reviewServices = reviewService(api);
 
-    // Fetch all properties for listing
     const getProperties = async () => {
         try {
             setLoading(true);
@@ -52,10 +50,11 @@ export const AppContextProvider = ({ children }) => {
     // Fetch owner's properties
     const getOwnerProperties = async () => {
         try {
-            if (!localStorage.getItem('token')) return;
+            const token = localStorage.getItem('token');
+            if (!token) return;
             setLoading(true);
             const response = await propertyServices.getOwnerProperties();
-            if (response.success) {
+            if (response?.success) {
                 setOwnerProperties(response.properties || []);
             }
         } catch (err) {
@@ -68,28 +67,38 @@ export const AppContextProvider = ({ children }) => {
     // Get user profile
     const getUserProfile = async () => {
         try {
-            if (!localStorage.getItem('token')) return;
+            const token = localStorage.getItem('token');
+            if (!token) return;
             const response = await profileServices.getProfile();
-            if (response.success) {
+            if (response?.success) {
                 setUserProfile(response.user);
                 setIsOwner(response.user?.role === 'owner');
+                setIsLoggedIn(true);
+                return response.user;
+            } else {
+                setIsLoggedIn(false);
+                setUserProfile(null);
             }
         } catch (err) {
             console.error('Error fetching profile:', err);
+            setIsLoggedIn(false);
+            setUserProfile(null);
         }
+        return null;
     }
 
     // Get wishlist
     const getWishlist = async () => {
         try {
-            if (!localStorage.getItem('token')) return;
+            const token = localStorage.getItem('token');
+            if (!token) return;
             const response = await wishlistServices.getMyWishlist();
-            if (response.success) {
-                setWishlist(response.wishlist || []);
+            if (response?.success) {
+                // Backend returns data in 'data' field
+                setWishlist(response.data || []);
             }
         } catch (err) {
             console.error('Error fetching wishlist:', err);
-            // Don't set global error for wishlist, just log it
         }
     }
 
@@ -121,29 +130,25 @@ export const AppContextProvider = ({ children }) => {
         }
     }
 
-    // Initial load
-    useEffect(() => {
-        getProperties();
-    }, [])
-
     const loadUserData = async () => {
         const token = localStorage.getItem('token');
+        console.log('loadUserData checking token:', token ? 'Token exists' : 'No token found');
+        
         if (token) {
-    // Load user-specific data when authenticated
-    useEffect(() => {
-        if (isLoaded && clerkUser) {
             setIsLoggedIn(true);
-            await getUserProfile();
+            const user = await getUserProfile();
+            console.log('loadUserData got user profile:', user);
+            
             getWishlist();
             getOwnerProperties();
             
             // Check if user has an agency if they are an owner
-            const profileRes = await profileServices.getProfile();
-            if (profileRes.success && profileRes.user.role === 'owner') {
+            if (user && user.role === 'owner') {
                 try {
                     const agencyRes = await api.get('/agency/my-agency');
-                    if (agencyRes.data.success) {
+                    if (agencyRes.data?.success) {
                         setAgency(agencyRes.data.agency);
+                        setShowAgencyReg(false);
                     } else {
                         setAgency(null);
                         setShowAgencyReg(true);
@@ -156,12 +161,12 @@ export const AppContextProvider = ({ children }) => {
                 }
             }
         } else {
-        } else if(isLoaded && !clerkUser) {
             setIsLoggedIn(false);
             setUserProfile(null);
             setIsOwner(false);
             setOwnerProperties([]);
             setWishlist([]);
+            setAgency(null);
         }
     };
 
@@ -172,13 +177,15 @@ export const AppContextProvider = ({ children }) => {
         setIsOwner(false);
         setOwnerProperties([]);
         setWishlist([]);
+        setAgency(null);
         navigate('/');
     };
 
-    // Load user-specific data when authenticated
+    // Initial load for all properties
     useEffect(() => {
+        getProperties();
         loadUserData();
-    }, []);
+    }, [])
 
     const toggleRole = async () => {
         if (!userProfile) return;
@@ -196,6 +203,7 @@ export const AppContextProvider = ({ children }) => {
                         const agencyRes = await api.get('/agency/my-agency');
                         if (agencyRes.data.success) {
                             setAgency(agencyRes.data.agency);
+                            setShowAgencyReg(false);
                         } else {
                             setAgency(null);
                             setShowAgencyReg(true);
@@ -206,9 +214,15 @@ export const AppContextProvider = ({ children }) => {
                             setShowAgencyReg(true);
                         }
                     }
+                } else {
+                    setShowAgencyReg(false);
                 }
-                // Redirect to homepage after successful role switch
-                navigate('/');
+                // Redirect appropriately after successful role switch
+                if (newRole === 'owner') {
+                    navigate('/owner');
+                } else {
+                    navigate('/');
+                }
             }
         } catch (err) {
             console.error('Error updating role:', err);
@@ -216,7 +230,6 @@ export const AppContextProvider = ({ children }) => {
             setLoading(false);
         }
     };
-    }, [clerkUser, isLoaded])
 
     const value = {
         navigate,

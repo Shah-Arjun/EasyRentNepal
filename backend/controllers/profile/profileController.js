@@ -29,16 +29,24 @@ exports.getMyProfile = async(req, res) => {
 // UPDATE MY PROFILE CONTROLLER --> for all users
 exports.updateMyProfile = async(req, res) => {
     const userId = req.user.id      // from isAuthenticated middleware
-    const {name, email, phone, location, profileImg, role} = req.body 
+    
+    // Create an update object with only fields that are provided
+    const updateFields = {};
+    const allowedFields = ['name', 'email', 'phone', 'location', 'profileImg', 'role']; // Changed profileImage to profileImg to match req.body
 
-    const updatedProfile = await User.findByIdAndUpdate(userId, {
-        name,
-        email,
-        phoneNumber: phone,
-        location,
-        profileImage: profileImg,
-        role
-    }, {
+    // Special handling for phoneNumber mapping from phone
+    if (req.body.phone) updateFields.phoneNumber = req.body.phone;
+    // Special handling for profileImage mapping from profileImg
+    if (req.body.profileImg) updateFields.profileImage = req.body.profileImg;
+    
+    Object.keys(req.body).forEach(key => {
+        // Only include fields that are in allowedFields and not already handled by special mapping
+        if (allowedFields.includes(key) && key !== 'phone' && key !== 'profileImg') {
+            updateFields[key] = req.body[key];
+        }
+    });
+
+    const updatedProfile = await User.findByIdAndUpdate(userId, updateFields, {
         new : true,
         runValidators : true    //validate the frontend data according to User model/schema
     }).select(['-password', '-__v'])
