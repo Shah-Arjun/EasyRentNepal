@@ -9,6 +9,7 @@ const isAuthenticated = async (req, res, next) => {
             console.log("Auth failed: No bearer token found");
             return res.status(403).json({ message: "Please Login" });
         }
+        
 
         const token = authHeader.split(' ')[1];
 
