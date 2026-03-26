@@ -5,15 +5,15 @@ const User = require('../models/userModel');
 const isAuthenticated = async (req, res, next) => {
     try {
         // Read Bearer token from Authorization header
-        const authHeader = req.headers.authorization;
+        const authHeader = req.headers.authorization;   //from frontend
+
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             console.log("Auth failed: No bearer token found");
             return res.status(403).json({ message: "Please Login" });
         }
 
 
-        //token
-
+        //token 
         const token = authHeader.split(' ')[1];
 
         // Verify the custom JWT token
