@@ -8,7 +8,7 @@ const isAuthenticated = async (req, res, next) => {
         const authHeader = req.headers.authorization;   //from frontend
 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            console.log("Auth failed: No bearer token found");
+            console.log("Auth failed: No bearer token found");  //debug
             return res.status(403).json({ message: "Please Login" });
         }
 
@@ -20,12 +20,12 @@ const isAuthenticated = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
         if (!decoded || !decoded.id) {
-            console.log("Auth failed: Invalid token structure", decoded);
+            console.log("Auth failed: Invalid token structure", decoded);   //debug
             return res.status(403).json({ message: "Invalid token" });
         }
 
-        // Find the user in our DB
-        const user = await User.findById(decoded.id);
+        // Find the user in DB
+        const user = await User.findById(decoded.id);   //returns object
 
         if (!user) {
             console.log("Auth failed: User not found for ID:", decoded.id);

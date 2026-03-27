@@ -5,7 +5,7 @@ import propertyService from '../services/propertyService'
 import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
 import reviewService from '../services/reviewService'
-import { dummyProperties } from '../assets/data'
+// import { dummyProperties } from '../assets/data'
 
 const AppContext = createContext()
 
