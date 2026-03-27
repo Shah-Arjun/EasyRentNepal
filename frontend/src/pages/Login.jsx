@@ -1,90 +1,134 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
-import { toast } from 'react-toastify';
 import useAxios from '../hooks/useAxios';
+import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+// import { faEnvelope, faLock, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '', role: 'tenant' });
+    const [loading, setLoading] = useState(false);
     const { loadUserData } = useAppContext();
     const navigate = useNavigate();
     const api = useAxios();
 
+
+    // handle input change function
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCredentials(prev => ({ ...prev, [name]: value }));
     };
 
+
+    // triggers on login button click
     const handleLogin = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      if (loading) return;   //return if the login button is clicked
+
+        setLoading(true)
         try {
             const response = await api.post('/auth/login', credentials);
-            if (response.data.success || response.data.token) {
+            if (response.data.success && response.data.token) {
                 localStorage.setItem('token', response.data.token);
                 await loadUserData(); // Refresh context
+                
                 toast.success('Logged in successfully');
                 
                 // Redirect based on user role
-                if (response.data.user?.role === 'owner') {
-                    navigate('/owner');
-                } else {
-                    navigate('/');
+                const role = response.data.user?.role
+                if(role === 'owner'){
+                  navigate('/owner')
+                }
+                else if(role === 'tenant'){
+                  navigate('/tenant')
+                }
+                else {
+                  navigate('/')
                 }
             }
         } catch (error) {
-            toast.error(error.response?.data?.message || 'Login failed');
+            toast.error(error?.response?.data?.message || error.message || "Login failed");          
+        } finally {
+          setLoading(false)
         }
     };
 
+
     return (
-        <div className="flexCenter flex-col pt-32 pb-14 min-h-screen bg-linear-to-br from-[#fffbee] via-white to-[#f0f9ff]">
-            <div className="max-w-md w-full bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 p-10 transform transition-all hover:shadow-2xl">
-                <div className="flexCenter mb-6">
-                    <div className="bg-secondary/20 p-4 rounded-full">
-                        <FontAwesomeIcon icon={faRightToBracket} className="text-3xl text-secondary" />
-                    </div>
-                </div>
-                <h2 className="text-3xl font-extrabold text-center text-slate-800 mb-2">Welcome Back</h2>
-                <p className="text-center text-slate-500 mb-8 regular-14">Login to access your property dashboard</p>
-                
-                <form onSubmit={handleLogin} className="flex flex-col gap-5">
-                    <div className="relative">
-                        <FontAwesomeIcon icon={faEnvelope} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Email Address"
-                            value={credentials.email}
-                            onChange={handleChange}
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
-                            required 
-                        />
-                    </div>
-                    <div className="relative">
-                        <FontAwesomeIcon icon={faLock} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Password"
-                            value={credentials.password}
-                            onChange={handleChange}
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
-                            required 
-                        />
-                    </div>
-                    
-                    <button type="submit" className="btn-secondary w-full rounded-xl py-3 font-bold shadow-lg shadow-secondary/20 active:scale-[0.98] transition-all">
-                        Login
-                    </button>
-                </form>
-                
-                <div className="mt-8 text-center text-sm text-gray-500">
-                    Don't have an account? <Link to="/register" className="text-secondary font-bold hover:underline ml-1">Create Account</Link>
-                </div>
+      <div className="flexCenter flex-col pt-32 pb-14 min-h-screen bg-linear-to-br from-[#fffbee] via-white to-[#f0f9ff]">
+        <div className="max-w-md w-full bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 p-10 transform transition-all hover:shadow-2xl">
+            <button className="h-5 w-5" onClick={() => navigate("/")}>
+              <FontAwesomeIcon icon={faArrowLeft} className="top-0" />
+            </button>
+            <div className="flex justify-center mb-6">
+              <div className="bg-secondary/20 p-4 rounded-full flex items-center justify-center shadow-md">
+                <img className="h-8 w-8" src="/favicon.svg" alt="logo" />
+              </div>
             </div>
+          <h2 className="text-3xl font-extrabold text-center text-slate-800 mb-2">
+            Welcome Back
+          </h2>
+          <p className="text-center text-slate-500 mb-8 regular-14">
+            Login to access your property dashboard
+          </p>
+
+          <form onSubmit={handleLogin} className="flex flex-col gap-5">
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={credentials.email}
+                onChange={handleChange}
+                className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                required
+              />
+            </div>
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faLock}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={credentials.password}
+                onChange={handleChange}
+                className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                required
+              />
+            </div>
+
+            <button
+              disabled={loading}
+              type="submit"
+              className={`btn-secondary w-full rounded-xl py-3 font-bold shadow-lg transition-all 
+                ${loading ? "opacity-70 cursor-not-allowed" : "active:scale-[0.98]"}`}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </button>
+          </form>
+
+          <div className="mt-8 text-center text-sm text-gray-500">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-secondary font-bold hover:underline ml-1"
+            >
+              Create Account
+            </Link>
+          </div>
         </div>
+      </div>
     );
 };
 

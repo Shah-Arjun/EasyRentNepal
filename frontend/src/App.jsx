@@ -25,13 +25,14 @@ import ProtectedRoute from './components/ProtectedRoute'
 const App = () => {
   const location = useLocation();    //gives current url
   const isOwnerPath = location.pathname.includes("owner");
+  const isLoginPath = location.pathname.includes("login");
   const { showAgencyReg, isLoggedIn, loading } = useAppContext();
 
 
   return (
     <main>
       <ToastContainer position="bottom-right" />
-      {!isOwnerPath && <Header />}
+      {!isOwnerPath && !isLoginPath && <Header />}
       {showAgencyReg && <AgencyReg />}
       <Routes>
         <Route path="/" element={<Home />} />  
@@ -62,7 +63,7 @@ const App = () => {
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {!isOwnerPath && <Footer/>}
+      {!isOwnerPath && !isLoginPath && <Footer/>}
     </main>
   );
 };
