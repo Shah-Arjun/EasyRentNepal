@@ -7,30 +7,31 @@ const Faq = () => {
   const [openIndex, setOpenIndex] = React.useState(null)
   const faqsData = [
     {
-      question: 'Lightning-Fast Bookings',
-      answer: 'Find and book your ideal home in seconds - minimal wait times for a hassle-free experience.'
+      question: "How quickly can I book a property?",
+      answer: "You can find and book your ideal home in seconds with minimal wait time for a smooth experience."
     },
     {
-      question: 'Fully Customizable Homes',
-      answer: 'Filter by size, type, amenities, and location to match your exact needs.'
+      question: "Can I customize my property search?",
+      answer: "Yes, you can filter by size, type, amenities, price and location to match your exact needs."
     },
     {
-      question: 'Responsive by Location',
-      answer: 'View properties optimized for your city - Itahari, Dharan, Biratnagar, or anywhere in Nepal.'
+      question: "Do you show properties based on my preference?",
+      // answer: "Yes, we display listings tailored to your city such as Itahari, Dharan, Biratnagar, and other locations across Nepal."
+      answer: "Yes, we display listings based on your preferences across Nepal."
     },
     {
-      question: 'Verified Local Listings',
-      answer: 'All properties are checked for authenticity, giving you peace of mind when renting in any Nepali city.'
+      question: "Are the property listings verified?",
+      answer: "All properties are carefully checked for authenticity, so you can rent with confidence."
     },
     {
-      question: 'Community & Amenities Focused',
-      answer: 'Discover homes near schools, markets, and transport, making daily life in Nepal easier and more convenient.'
+      question: "Can I find homes near schools or markets?",
+      answer: "Yes, you can explore homes near schools, markets, and transportation for a more convenient lifestyle."
     }
   ]
 
 
   return (
-    <section className='max-padd-container py-16 xl:py-22'>
+    <section className='max-padd-container py-14 xl:py-20'>
       {/* Container */}
       <div className='flex flex-col gap-y-12 xl:flex-row '>
         {/* Image - Left Side  */}
@@ -45,7 +46,10 @@ const Faq = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>   {/*image section ends here */}
+
+
+
         {/* FAQs - Right Side  */}
         <div className="flex-1 flex flex-col justify-center">
           <Title
@@ -59,7 +63,10 @@ const Faq = () => {
               <div key={index} className='flex flex-col items-start w-full'>
                 <div className='flex items-center justify-between w-full cursor-pointer bg-secondary/10 border-slate-900/10 p-2 px-4 rounded-lg' onClick={() => setOpenIndex(openIndex === index ? null : index)}>
                   <h2 className='text-sm'>{faq.question}</h2>
-                  <img src={assets.down} alt="arrowDown" width={20} />
+                  <img
+                    src={assets.down}
+                    className={`transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
+                  />
                 </div>
                 <p className={`text-sm text-slate-500 px-4 transition-all duration-500 ease-in-out ${openIndex === index ? "opacity-100 max-h-[300px] translate-y-0 pt-4" : "opacity-0 max-h-0 -translate-y-2"}`} >
                   {faq.answer}
@@ -67,7 +74,8 @@ const Faq = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div>    {/*right div ends here */}
+
       </div>
     </section>
   )
