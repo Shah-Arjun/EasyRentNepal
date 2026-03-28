@@ -1,63 +1,83 @@
-import React from 'react'
-import Title from './Title'
-import { assets } from '../assets/data'
+import React from "react";
+import Title from "./Title";
+import { assets } from "../assets/data";
+
+
+
+// features list
+const info = [
+  {
+    num: 1,
+    icon: assets.calendarSecondary,
+    text: "In-app scheduling for property viewings",
+  },
+  {
+    num: 2,
+    icon: assets.graph,
+    text: "100% transparent pricing",
+  },
+  {
+    num: 3,
+    icon: assets.map,
+    text: "User-friendly interface for smooth navigation",
+  },
+  {
+    num: 4,
+    icon: assets.map,
+    text: "Access to off-market properties",
+  },
+];
+
+
+
+// client / raters
+const clients = [
+  { img: assets.client1 },
+  { img: assets.client4 },
+  { img: assets.client1 },
+];
+
+
 
 const About = () => {
   return (
     <section className="max-padd-container py-16 xl:py-28 !pt-36">
       {/* Container */}
       <div className="flex  items-center flex-col lg:flex-row gap-12">
-        {/* Info - Left Side */}
+        {/* Info - Left Side/div */}
         <div className="flex-1">
           <Title
             title1={"Your Trusted Home Rental Partner"}
             title2={"Helping You Every Step of the Way"}
-            para={"Trust, clarity and simplicity are the core of everything we do to make your property journey easy."}
+            para={
+              "Trust, clarity and simplicity are the core of everything we do to make your property journey easy."
+            }
             titleStyles={"mb-10"}
           />
 
-          <div className='flex flex-col gap-6 mt-5'>
-            <div className='flex gap-3'>
-              <img
-                src={assets.calendarSecondary}
-                alt=""
-                width={20}
-              />
-              <p>In-app scheduling for property viewings</p>
-            </div>
-            <div className='flex gap-3'>
-              <img
-                src={assets.graph}
-                alt=""
-                width={20}
-              />
-              <p>100% transparent pricing</p>
-            </div>
-            <div className='flex gap-3'>
-              <img
-                src={assets.map}
-                alt=""
-                width={20}
-              />
-              <p>User-friendly interface for smooth navigation</p>
-            </div>
-            <div className='flex gap-3'>
-              <img
-                src={assets.pound}
-                alt=""
-                width={20}
-              />
-              <p>Access to off-market properties</p>
-            </div>
-          </div>
+          {/* features list */}
+          <div className="flex flex-col gap-6 mt-5">
+            {info.map((data, index) => (
+              <div key={index} className="flex gap-3">
+                <img src={data.icon} alt="" width={20} />
+                <p>{data.text}</p>
+              </div>
+            ))}
+          </div> {/* features list section ends here*/}
+
+
           {/* Rating */}
           <div className="flex items-center divide-x divide-gray-300 mt-11">
             <div className="flex -space-x-3 pr-3">
-              <img src={assets.client1} alt="image" className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1" />
-              <img src={assets.client2} alt="image" className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1" />
-              <img src={assets.client3} alt="image" className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1" />
-              <img src={assets.client4} alt="image" className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1" />
+              {clients.map((c) => (
+                <img
+                  src={c.img}
+                  alt="image"
+                  className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1"
+                />
+              ))}
             </div>
+
             <div className="pl-3">
               <div className="flex items-center">
                 <img src={assets.star} alt="starIcon" width={17} />
@@ -65,21 +85,28 @@ const About = () => {
                 <img src={assets.star} alt="starIcon" width={17} />
                 <img src={assets.star} alt="starIcon" width={17} />
                 <img src={assets.star} alt="starIcon" width={17} />
-                <p className="text-gray-600 medium-16 ml-2">5.0</p>
+                <p className="text-gray-600 medium-16 ml-2">4.5</p>
               </div>
-              <p className="text-sm text-gray-500">Trusted by <span className="font-medium text-gray-800">5,000+</span> users</p>
+              <p className="text-sm text-gray-500">
+                Trusted by{" "}
+                <span className="font-medium text-gray-800">1,000+</span> users
+              </p>
             </div>
-          </div>
-        </div>
+          </div> {/* rating section ends here */}
+        </div>  {/* left div ends here */}
+
+
+
         {/* Image - Right Side */}
         <div className="flex-1">
-        <div className="relative flex justify-end">
-          <img src={assets.about} alt="aboutImg" className="rounded-3xl" />
+          <div className="relative flex justify-end">
+            <img src={assets.about} alt="aboutImg" className="rounded-3xl" />
+          </div>
         </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
-export default About
+      </div>   {/* container ends here */}
+    </section>
+  );
+};
+
+export default About;
