@@ -84,11 +84,11 @@ const About = () => {
                 <img src={assets.star} alt="starIcon" width={17} />
                 <img src={assets.star} alt="starIcon" width={17} />
                 <img src={assets.star} alt="starIcon" width={17} />
-                <img src={assets.star} alt="starIcon" width={17} />
+                <img src={assets.starHalf} alt="starIcon" width={17} />
                 <p className="text-gray-600 medium-16 ml-2">4.5</p>
               </div>
               <p className="text-sm text-gray-500">
-                Trusted by{" "}
+                Trusted by{' '}
                 <span className="font-medium text-gray-800">1,000+</span> users
               </p>
             </div>

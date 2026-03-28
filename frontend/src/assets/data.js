@@ -10,6 +10,7 @@ import calendar from './calendar.svg'
 import users from './users.svg'
 import badge from './badge.svg'
 import star from './star.svg'
+import starHalf from './star-half.svg'
 import sliders from './sliders.svg'
 import bath from './bath.svg'
 import bed from './bed.svg'
@@ -81,6 +82,7 @@ export const assets = {
     users,
     badge,
     star,
+    starHalf,
     sliders,
     bath,
     bed,
