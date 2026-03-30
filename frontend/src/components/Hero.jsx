@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { assets } from '../assets/data'
 import { cities } from '../assets/data'
 
 const Hero = () => {
+  const navigate = useNavigate()
+  const [place, setPlace] = useState('')
+  const [moveInDate, setMoveInDate] = useState('')
+  const [tenants, setTenants] = useState(1)
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const params = new URLSearchParams()
+    if (place.trim()) params.set('place', place.trim())
+    if (moveInDate) params.set('date', moveInDate)
+    if (tenants) params.set('tenants', tenants)
+    navigate(`/listing?${params.toString()}`)
+  }
   return (
     <section className="h-screen w-screen bg-[url('/src/assets/bg.png')] bg-cover bg-center bg-no-repeat">
       <div className="max-padd-container h-screen w-screen">
@@ -21,7 +35,7 @@ const Hero = () => {
             <h2 className='h2 capitalize leading-tight mt-3 my-2  text-white'>Your <span className='bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent'>perfect home</span> awaits in a place you’ll love.</h2>
           </div>
           {/* SEARCH/BOOKING FORM */}
-          <form className='bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 lg:gap-x-8 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative'>
+          <form onSubmit={handleSearch} className='bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 lg:gap-x-8 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative'>
             <div className='flex flex-col w-full'>
               <div className='flex items-center gap-2'>
                 <img src={assets.pin} alt="pinIcon" width={20}/>
@@ -33,7 +47,8 @@ const Hero = () => {
                type="text" 
                className='rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none'
                placeholder='Enter your preferred place.'
-               required
+               value={place}
+               onChange={(e) => setPlace(e.target.value)}
               />
               <datalist id='destinations'>
                 {cities.map((city, index) => (
@@ -47,16 +62,19 @@ const Hero = () => {
                 <label htmlFor="CheckIn">Move-In Date</label>
               </div>
               <input type="date" id="CheckIn" 
-              className='rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none'/>
+              className='rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none'
+              value={moveInDate}
+              onChange={(e) => setMoveInDate(e.target.value)}/>
             </div>
             <div className='flex flex-col w-full'>
               <div className='flex items-center gap-2'>
                 <img src={assets.user} alt="userIcon" width={20} />
                 <label htmlFor="guests">Tenants</label>
               </div>
-              <input id='guests' type='number' min={1} max={5}
+              <input id='guests' type='number' min={1} max={20}
               className='rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none'
-              placeholder='1'/>
+              value={tenants}
+              onChange={(e) => setTenants(e.target.value)}/>
             </div>
             <button type='submit' className='flex items-center justify-center gap-1 rounded-md bg-black py-3 px-6 text-white my-auto cursor-pointer max-md:w-full max-md:py-1'>
 
