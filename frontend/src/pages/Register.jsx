@@ -9,6 +9,10 @@ const Register = () => {
     const [userData, setUserData] = useState({
         name: '', email: '', password: '', phone: '', role: 'tenant'
     });
+    const [showOtp, setShowOtp] = useState(false);
+    const [otp, setOtp] = useState('');
+    const [userId, setUserId] = useState(null);
+
     const navigate = useNavigate();
     const api = useAxios();
 
@@ -21,12 +25,29 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await api.post('/auth/register', userData);
-            if (response.data.success || response.data.message) {
+            if (response.data.isOtpStep) {
+                setShowOtp(true);
+                setUserId(response.data.userId);
+                toast.success(response.data.message || 'OTP sent to your email');
+            } else if (response.data.success || response.data.message) {
                 toast.success('Registration successful! Please login.');
                 navigate('/login');
             }
         } catch (error) {
             toast.error(error.response?.data?.message || 'Registration failed');
+        }
+    };
+
+    const handleVerifyOtp = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await api.post('/auth/verifyRegistrationOtp', { userId, otp });
+            if (response.data.success) {
+                toast.success('Registration successful and verified! Please login.');
+                navigate('/login');
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message || 'Invalid OTP');
         }
     };
 
@@ -39,8 +60,11 @@ const Register = () => {
                     </div>
                 </div>
                 <h2 className="text-3xl font-extrabold text-center text-slate-800 mb-2">Join EasyRent</h2>
-                <p className="text-center text-slate-500 mb-8 regular-14">Find your perfect home in Nepal</p>
+                <p className="text-center text-slate-500 mb-8 regular-14">
+                    {!showOtp ? 'Find your perfect home in Nepal' : 'Enter the OTP sent to your email'}
+                </p>
                 
+                {!showOtp ? (
                 <form onSubmit={handleRegister} className="flex flex-col gap-5">
                     <div className="relative">
                         <FontAwesomeIcon icon={faUser} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -95,6 +119,29 @@ const Register = () => {
                         Create Account
                     </button>
                 </form>
+                ) : (
+                <form onSubmit={handleVerifyOtp} className="flex flex-col gap-5">
+                    <div className="relative">
+                        <FontAwesomeIcon icon={faLock} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input 
+                            type="text" 
+                            name="otp" 
+                            placeholder="Enter 4-digit OTP"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                            required 
+                        />
+                    </div>
+                    
+                    <button type="submit" className="btn-secondary w-full rounded-xl py-3 font-bold shadow-lg shadow-secondary/20 active:scale-[0.98] transition-all">
+                        Verify Account
+                    </button>
+                    <button type="button" onClick={() => setShowOtp(false)} className="text-sm text-slate-500 hover:text-secondary font-semibold transition-colors mt-2">
+                        Back to Registration
+                    </button>
+                </form>
+                )}
                 
                 <div className="mt-8 text-center text-sm text-gray-500">
                     Already have an account? <Link to="/login" className="text-secondary font-bold hover:underline ml-1">Login here</Link>

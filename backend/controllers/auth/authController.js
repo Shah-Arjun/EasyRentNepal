@@ -2,6 +2,7 @@ const User = require('../../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendEmail = require('../../services/sendEmail')
+const crypto = require('crypto')
 
 
 // REGISTER USER CONTROLLER
@@ -25,25 +26,85 @@ exports.registerUser = async(req, res) => {
         })
     }
 
+    // generate OTP
+    const r_no = Math.random() //gives decimal no. in range 0 to 1
+    const fourDigit = r_no * 10000
+    const otp = Math.floor(fourDigit)  //converts into integer
+
     // if user doesnot exist --> created new user with provided email
+    // Set as unverified and save OTP
     const user = await User.create({
         name,
         email,
         password: bcrypt.hashSync(password, 10) ,
         phoneNumber: phone,
-        role
+        role,
+        verified: false,
+        otp: otp,
+        isOtpVerified: false
     })
+
+    // send email with OTP
+    try {
+        await sendEmail({
+            email: email,
+            subject: "OTP for HouseRentalNepal Registration",
+            message: `Your registration OTP is: ${otp}`
+        })
+
+        res.status(200).json({
+            success: true,
+            message: "OTP sent successfully to your email. Please verify.",
+            isOtpStep: true,
+            userId: user._id
+        })
+    } catch (error) {
+        console.error("Email error:", error)
+        res.status(500).json({
+            success: false,
+            message: "Error sending OTP email"
+        })
+    }
+}
+
+
+// VERIFY REGISTRATION OTP
+exports.verifyRegistrationOtp = async (req, res) => {
+    const { userId, otp } = req.body;
+
+    if (!userId || !otp) {
+        return res.status(400).json({
+            success: false,
+            message: "User ID and OTP are required"
+        });
+    }
+
+    const userFound = await User.findById(userId);
+
+    if (!userFound) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found"
+        });
+    }
+
+    if (userFound.otp !== Number(otp)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid OTP. Try again"
+        });
+    }
+
+    // OTP matched perfectly, now verify the user
+    userFound.otp = undefined; // clear OTP
+    userFound.isOtpVerified = true;
+    userFound.verified = true; // Complete registration
+    await userFound.save();
 
     res.status(200).json({
         success: true,
-        message: "User registered successfully",
-        user: {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role
-        }
-    })
+        message: "User registered and verified successfully"
+    });
 }
 
 
@@ -52,7 +113,7 @@ exports.registerUser = async(req, res) => {
 
 // LOGIN USER
 exports.loginUser = async(req, res) => {
-    const {email, password, role} = req.body
+    const {email, password, role, deviceToken} = req.body
 
     if(!email || !password || !role){
         return res.send(400).json({
@@ -77,23 +138,58 @@ exports.loginUser = async(req, res) => {
     // match check the password if user exists
     const isPwMatched = bcrypt.compareSync(password, userFound[0].password)
 
-    // if matched, generate token
+    // if matched, check for existing known device token
     if(isPwMatched){
-        const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
-            expiresIn: '30d',
-            algorithm: 'HS256'
-        })
-        res.status(200).json({
-            success: true,
-            message: "User logged in successfully",
-            token,
-            user: {
-                id: userFound[0]._id,
-                name: userFound[0].name,
-                email: userFound[0].email,
-                role: userFound[0].role
-            }
-        })
+        // Bypass OTP if device is known
+        if (deviceToken && userFound[0].knownDevices && userFound[0].knownDevices.includes(deviceToken)) {
+            const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
+                expiresIn: '30d',
+                algorithm: 'HS256'
+            })
+            return res.status(200).json({
+                success: true,
+                message: "User logged in successfully (Recognized Device)",
+                token,
+                user: {
+                    id: userFound[0]._id,
+                    name: userFound[0].name,
+                    email: userFound[0].email,
+                    role: userFound[0].role
+                }
+            })
+        }
+
+        // generate OPT for unknown device
+        const r_no = Math.random() //gives decimal no. in range 0 to 1
+        const fourDigit = r_no * 10000
+        const otp = Math.floor(fourDigit)  //converts into integer
+
+        // save otp in db
+        userFound[0].otp = otp
+        userFound[0].isOtpVerified = false // reset verification status just in case
+        await userFound[0].save()
+
+        // send email with OTP
+        try {
+            await sendEmail({
+                email: email,
+                subject: "OTP for HouseRentalNepal Login",
+                message: `Your login OTP is: ${otp}`
+            })
+            
+            res.status(200).json({
+                success: true,
+                message: "OTP sent successfully to your email.",
+                isOtpStep: true,
+                userId: userFound[0]._id
+            })
+        } catch (error) {
+            console.error("Email error:", error)
+            res.status(500).json({
+                success: false,
+                message: "Error sending OTP email"
+            })
+        }
     } else {
         res.status(404).json({
             success: false,
@@ -101,6 +197,63 @@ exports.loginUser = async(req, res) => {
         })
     }
 }
+
+
+// VERIFY LOGIN OTP
+exports.verifyLoginOtp = async (req, res) => {
+    const { userId, otp } = req.body;
+
+    if (!userId || !otp) {
+        return res.status(400).json({
+            success: false,
+            message: "User ID and OTP are required"
+        });
+    }
+
+    const userFound = await User.findById(userId);
+
+    if (!userFound) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found"
+        });
+    }
+
+    if (userFound.otp !== Number(otp)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid OTP. Try again"
+        });
+    }
+
+    // OTP matched perfectly, generate device token and issue the JWT token
+    const newDeviceToken = crypto.randomBytes(32).toString('hex');
+
+    userFound.otp = undefined; // clear OTP
+    userFound.isOtpVerified = true;
+    userFound.knownDevices.push(newDeviceToken);
+    await userFound.save();
+
+    const token = jwt.sign({id: userFound._id}, process.env.JWT_SECRET_KEY, {
+        expiresIn: '30d',
+        algorithm: 'HS256'
+    });
+
+    res.status(200).json({
+        success: true,
+        message: "User logged in successfully",
+        token,
+        deviceToken: newDeviceToken,
+        user: {
+            id: userFound._id,
+            name: userFound.name,
+            email: userFound.email,
+            role: userFound.role
+        }
+    });
+}
+
+
 
 
 

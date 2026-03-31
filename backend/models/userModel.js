@@ -96,6 +96,11 @@ const userSchema = new mongoose.Schema(
       ref: 'Property',
     }],
 
+    knownDevices: {
+      type: [String],
+      default: [],
+    },
+
     // propertyList: {    //propertyModel
     //   type: Array,
     //   default: [],
