@@ -135,14 +135,28 @@ exports.loginUser = async(req, res) => {
         })
     }
 
+    const user = userFound[0];
+
+    // Check if account is locked
+    if (user.lockUntil && user.lockUntil > Date.now()) {
+        return res.status(403).json({
+            success: false,
+            message: "Account is locked due to too many failed attempts. Try again after 1 hour."
+        })
+    }
+
     // match check the password if user exists
-    const isPwMatched = bcrypt.compareSync(password, userFound[0].password)
+    const isPwMatched = bcrypt.compareSync(password, user.password)
 
     // if matched, check for existing known device token
     if(isPwMatched){
         // Bypass OTP if device is known
-        if (deviceToken && userFound[0].knownDevices && userFound[0].knownDevices.includes(deviceToken)) {
-            const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
+        if (deviceToken && user.knownDevices && user.knownDevices.includes(deviceToken)) {
+            user.loginAttempts = 0;
+            user.lockUntil = undefined;
+            await user.save();
+
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY, {
                 expiresIn: '30d',
                 algorithm: 'HS256'
             })
@@ -151,10 +165,10 @@ exports.loginUser = async(req, res) => {
                 message: "User logged in successfully (Recognized Device)",
                 token,
                 user: {
-                    id: userFound[0]._id,
-                    name: userFound[0].name,
-                    email: userFound[0].email,
-                    role: userFound[0].role
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role
                 }
             })
         }
@@ -165,9 +179,11 @@ exports.loginUser = async(req, res) => {
         const otp = Math.floor(fourDigit)  //converts into integer
 
         // save otp in db
-        userFound[0].otp = otp
-        userFound[0].isOtpVerified = false // reset verification status just in case
-        await userFound[0].save()
+        user.otp = otp
+        user.isOtpVerified = false // reset verification status just in case
+        user.loginAttempts = 0;
+        user.lockUntil = undefined;
+        await user.save()
 
         // send email with OTP
         try {
@@ -181,7 +197,7 @@ exports.loginUser = async(req, res) => {
                 success: true,
                 message: "OTP sent successfully to your email.",
                 isOtpStep: true,
-                userId: userFound[0]._id
+                userId: user._id
             })
         } catch (error) {
             console.error("Email error:", error)
@@ -191,9 +207,21 @@ exports.loginUser = async(req, res) => {
             })
         }
     } else {
+        user.loginAttempts += 1;
+        
+        if (user.loginAttempts >= 3) {
+            user.lockUntil = Date.now() + 60 * 60 * 1000; // 1 hour lockout
+            await user.save();
+            return res.status(403).json({
+                success: false,
+                message: "Account locked due to 3 failed attempts. Try again after 1 hour."
+            })
+        }
+
+        await user.save();
         res.status(404).json({
             success: false,
-            message: "Invalid credentials"
+            message: `Invalid credentials. ${3 - user.loginAttempts} attempts remaining.`
         })
     }
 }

@@ -101,6 +101,16 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
 
+    loginAttempts: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+
+    lockUntil: {
+      type: Date
+    },
+
     // propertyList: {    //propertyModel
     //   type: Array,
     //   default: [],
