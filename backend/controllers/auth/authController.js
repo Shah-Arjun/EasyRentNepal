@@ -2,17 +2,25 @@ const User = require('../../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendEmail = require('../../services/sendEmail')
+const { generateToken, sendTokenCookie, destroyCookie } = require('../../utils/tokenUtils')
+
+
 
 
 // REGISTER USER CONTROLLER
 exports.registerUser = async(req, res) => {
     const { name, email, password, phone, role} = req.body
-
+    
     if(!name || !email || !password || !phone || !role){
         return res.status(400).json({
             message: "Name, email, password, phoneNumber, role must be provided"
         })
     }
+
+    if(role === 'admin'){
+        return res.status(403).json({ success: false, message: 'Admin accounts cannot be created through registration' })
+    }
+
 
     // check if user exists
     const userFound = await User.findOne({email : email})    //returns object
@@ -55,7 +63,7 @@ exports.loginUser = async(req, res) => {
     const {email, password, role} = req.body
 
     if(!email || !password || !role){
-        return res.send(400).json({
+        return res.status(400).json({
             message: "Email, password and role must be provided"
         })
     }
@@ -64,36 +72,22 @@ exports.loginUser = async(req, res) => {
 
     
     // checks if user exist 
-    const userFound = await User.find({ email: email })
+    const userFound = await User.findOne({ email: email }).select("+password")
 
 
     // if user not found i.e. not registered
-    if(userFound.length == 0){
+    if(!userFound){
         return res.status(400).json({
             message: "User not registered"
         })
     }
 
     // match check the password if user exists
-    const isPwMatched = bcrypt.compareSync(password, userFound[0].password)
+    const isPwMatched = bcrypt.compareSync(password, userFound.password)
 
-    // if matched, generate token
+    // if matched, generate token and send it using helper function
     if(isPwMatched){
-        const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
-            expiresIn: '30d',
-            algorithm: 'HS256'
-        })
-        res.status(200).json({
-            success: true,
-            message: "User logged in successfully",
-            token,
-            user: {
-                id: userFound[0]._id,
-                name: userFound[0].name,
-                email: userFound[0].email,
-                role: userFound[0].role
-            }
-        })
+        sendTokenCookie(res, 200, 'Login successful', userFound);
     } else {
         res.status(404).json({
             success: false,
@@ -101,6 +95,27 @@ exports.loginUser = async(req, res) => {
         })
     }
 }
+
+
+
+
+// LOGOUT USER
+exports.logoutUser = (req, res) => {
+    const isDestroyed = destroyCookie(res);
+
+      if (isDestroyed) {
+    return res.json({
+      success: true,
+      message: 'Logged out successfully'
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: 'Failed to logout'
+  });
+}
+
 
 
 

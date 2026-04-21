@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="max-w-80">
             <div className="flex mb-4">
               <Link to={"/"}>
-                <img src={assets.logoImg} alt="LogoImg" className={`h-15`} />
+                <img src={assets.logoDuplicate} alt="LogoImg" className={`h-15`} />
               </Link>
             </div>
             <p className="text-sm">
@@ -37,7 +37,7 @@ const Footer = () => {
                 <a href="#">Press</a>
               </li>
               <li>
-                <a href="#">Blog</a>
+                <a href="/blog">Blog</a>
               </li>
               <li>
                 <a href="#">Partners</a>
@@ -58,7 +58,7 @@ const Footer = () => {
                 <a href="#">Cancellation Options</a>
               </li>
               <li>
-                <a href="#">Contact Us</a>
+                <a href="/contact">Contact Us</a>
               </li>
               <li>
                 <a href="#">Accessibility</a>
@@ -83,6 +83,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+
         <div className="flex flex-col md:flex-row gap-2 items-center justify-between py-5 mt-8">
           <p>
             © {new Date().getFullYear()}{" "}
@@ -101,6 +103,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+
       </div>
     </footer>
   );

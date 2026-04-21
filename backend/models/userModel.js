@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       minlength: 8,
-      // select: false,
+      select: false,
     },
 
     role: {
@@ -84,11 +84,6 @@ const userSchema = new mongoose.Schema(
       default: false,
       // select: false
     },
-
-     wishList: [{     //wishlistModel
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Property',
-    }],
 
     // propertyList: {    //propertyModel
     //   type: Array,

@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const connectMongoDB = require("./database/db")
+const cookieParser = require('cookie-parser');
+
 
 //routes import
 const propertyRoutes = require("./routes/property/propertyRoutes")
@@ -39,6 +41,10 @@ connectMongoDB();
 app.get("/", (req, res) => {
   res.send("Hello, this is home page");
 });
+
+
+
+app.use(cookieParser());
 
 
 //APIs

@@ -9,6 +9,8 @@ import reviewService from '../services/reviewService'
 
 const AppContext = createContext()
 
+
+
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate();
@@ -32,6 +34,9 @@ export const AppContextProvider = ({ children }) => {
     const profileServices = profileService(api);
     const reviewServices = reviewService(api);
 
+
+
+    //get all properties
     const getProperties = async () => {
         try {
             setLoading(true);

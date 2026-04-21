@@ -74,7 +74,12 @@ const Listing = () => {
   };
 
   useEffect(() => {
-    applyFilter();
+    const filterAndScroll = async () => {
+      await applyFilter(); // wait for data
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    filterAndScroll();
   }, [category, priceRange, sortType, properties]);
 
   return (

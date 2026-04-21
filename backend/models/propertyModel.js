@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const slugify = require("slugify");
 
 const provinceEnum = [
   "Koshi Pradesh",
@@ -43,6 +42,16 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
 
+    averageRating: {
+      type: Number,
+      default: 0
+    },
+
+    totalReviews: {
+      type: Number,
+      default: 0
+    },
+
     // Room / Structure counts
     noOfFlat: { type: Number, min: 0 },
     bedrooms: { type: Number, min: 0 },
@@ -53,7 +62,7 @@ const propertySchema = new mongoose.Schema(
     kitchen: { type: Number, min: 0 },
     parking: {
       type: String,
-      enum: ['Motorcycle', 'Car 1', 'Car 2', 'Cars 3-5', 'Cars 5-10', 'Cars 10-15', 'None']
+      // enum: ['Motorcycle', 'Car 1', 'Car 2', 'Cars 3-5', 'Cars 5-10', 'Cars 10-15', 'None']
     },
 
     furnishedStatus: {
@@ -100,6 +109,17 @@ const propertySchema = new mongoose.Schema(
       municipality: { type: String, required: true },
       tole: { type: String, trim: true },
       wardNo: { type: Number, min: 1, max: 35 }
+    },
+
+    coordinates: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        default: "Point"
+      },
+      coordinates: {
+        type: [Number]  // [lng, lat]
+      }
     },
 
     direction: {
