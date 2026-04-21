@@ -79,8 +79,8 @@ exports.loginUser = async(req, res) => {
 
     // if matched, generate token
     if(isPwMatched){
-        const token = jwt.sign({id: userFound[0]._id}, process.env.JWT_SECRET_KEY, {
-            expiresIn: '30d',
+        const token = jwt.sign({id: userFound[0]._id, role: userFound[0].role}, process.env.JWT_SECRET_KEY, {
+            expiresIn: '5h',
             algorithm: 'HS256'
         })
         res.status(200).json({

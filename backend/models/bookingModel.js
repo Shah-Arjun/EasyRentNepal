@@ -30,13 +30,13 @@ const bookingSchema = new mongoose.Schema(
 
     startDate: {
       type: Date,
-      // required: true,
+      required: [true, "Start date is required"],
       // index: true
     },
 
     endDate: {
       type: Date,
-      // required: true,
+      required: [true, "End date is required"],
       // index: true
     },
 
@@ -46,16 +46,16 @@ const bookingSchema = new mongoose.Schema(
     //   required: true
     // },
 
-    // totalAmount: {
-    //   type: Number,
-    //   required: true
-    // },
-
     status: {
       type: String,
       enum: ["pending", "approved", "rejected", "cancelled", "completed"],
       default: "pending",
       index: true
+    },
+    
+    totalAmount: {
+      type: Number,
+      required: true
     },
 
     paymentStatus: {
@@ -68,8 +68,15 @@ const bookingSchema = new mongoose.Schema(
     cancelledAt: Date,
     rejectedAt: Date,
 
-    cancellationReason: String,
-    rejectionReason: String,
+    cancellationReason: {
+       type: String,
+      maxlength: [500, 'Cancellation reason cannot exceed 500 characters']
+    },
+
+    rejectionReason: {
+      type: String,
+      maxlength: [500, 'Rejection reason cannot exceed 500 characters']
+    },
 
     isActive: {   //is booking active
       type: Boolean,
@@ -87,8 +94,5 @@ const bookingSchema = new mongoose.Schema(
   }
 );
 
-
-//prevent overlapping bookings for same property
-bookingSchema.index({ property: 1, startDate: 1, endDate: 1})
 
 module.exports = mongoose.model("Booking", bookingSchema);

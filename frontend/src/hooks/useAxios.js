@@ -4,6 +4,7 @@ import axios from 'axios';
  * A custom hook that creates an Axios instance automatically configured 
  * with the Authentication token for the current user.
  */
+//base axios instance
 const useAxios = () => {
   const customAxios = axios.create({
     baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",

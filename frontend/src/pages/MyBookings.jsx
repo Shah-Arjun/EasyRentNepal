@@ -19,10 +19,10 @@ const MyBookings = () => {
   return (
     <div className='max-padd-container bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28'>
         {bookings?.map((booking)=>(
-            <div key={booking._id} className='bg-white ring-1 ring-slate-900/5 p-2 pr-4 mt -3 rounded-1g'>
+            <div key={booking._id} className='bg-white ring-1 ring-slate-900/5 p-2 pr-4 mt -3 rounded-lg'>
                 {/* Property List */}
                 <div className='flexStart gap-3 mb-3 '>
-                    <img src={booking.property.images[0]} alt="propertyImg" className='h-12 w-26 object-cover rounded-lg' />
+                    <img src={booking.property.images[0]} alt="propertyImg" className='h-12 w-24 object-cover rounded-lg' />
                     <div>
                         <h5 className="h5 capitalize line-clamp-1">
                             {booking.property.title}
@@ -76,9 +76,9 @@ const MyBookings = () => {
             <p>{booking.isPaid ? "paid" : "unpaid"}</p>
           </div>
         </div>
-{!booking.isPaid &&(
-    <button className="btn-secondary !py-1 !text-xs rounded-sm">Pay Now</button>
-)}
+        {!booking.isPaid &&(
+            <button className="btn-secondary !py-1 !text-xs rounded-sm">Pay Now</button>
+        )}
 
     </div>
 </div>
