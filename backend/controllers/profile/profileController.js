@@ -1,5 +1,6 @@
-const { json } = require('express')
+const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
+const { sendTokenCookie } = require('../../utils/tokenUtils')
 
 
 // GET MY PROFILE CONTROLLER --> for all users
@@ -22,6 +23,49 @@ exports.getMyProfile = async(req, res) => {
         user: myProfile
     })
 }
+
+
+
+
+// POST CHANGE PW
+exports.changePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    const userFound = await User.findById(req.user._id).select('+password');
+
+    if (!userFound) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    // compare old password
+    const isPwMatched = bcrypt.compareSync(currentPassword, userFound.password);
+
+    if (!isPwMatched) {
+      return res.status(400).json({
+        success: false,
+        message: 'Current password is incorrect'
+      });
+    }
+
+    // hash new password
+    userFound.password = bcrypt.hashSync(newPassword, 10);
+    await userFound.save();
+
+    // send new token (important after password change)
+    sendTokenCookie(res, 200, 'Password changed successfully', userFound);
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+ 
 
 
 
@@ -64,7 +108,19 @@ exports.updateMyProfile = async(req, res) => {
 // DELETE MY PROFILE CONTROLLER ---> for all users
 exports.deleteMyProfile = async(req,res) => {
     const userId = req.user.id  //form isAuthenticated middleware
+    const { pw } = req.body
 
+    if(!pw){
+        return res.status(400).json({success:false, message:"Please enter password to delete."})
+    }
+
+    const userFound = await User.findById(userId).select('+password')
+    const isPwMatch = bcrypt.compareSync(pw, userFound.password)
+
+    if(!isPwMatch){
+        return res.status(400).json({success:false, message:"Enter correct password."})
+    }
+    
     await User.findByIdAndDelete(userId)
 
     res.status(200).json({
