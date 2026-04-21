@@ -23,6 +23,7 @@ export const AppContextProvider = ({ children }) => {
     const [agency, setAgency] = useState(null)
     const [isOwner, setIsOwner] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [authLoading, setAuthLoading] = useState(true)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     
@@ -55,8 +56,6 @@ export const AppContextProvider = ({ children }) => {
     // Fetch owner's properties
     const getOwnerProperties = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) return;
             setLoading(true);
             const response = await propertyServices.getOwnerProperties();
             if (response?.success) {
@@ -72,8 +71,6 @@ export const AppContextProvider = ({ children }) => {
     // Get user profile
     const getUserProfile = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) return;
             const response = await profileServices.getProfile();
             if (response?.success) {
                 setUserProfile(response.user);
@@ -85,7 +82,9 @@ export const AppContextProvider = ({ children }) => {
                 setUserProfile(null);
             }
         } catch (err) {
-            console.error('Error fetching profile:', err);
+            if (err?.status !== 401 && err?.status !== 403) {
+                console.error('Error fetching profile:', err);
+            }
             setIsLoggedIn(false);
             setUserProfile(null);
         }
@@ -95,8 +94,6 @@ export const AppContextProvider = ({ children }) => {
     // Get wishlist
     const getWishlist = async () => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) return;
             const response = await wishlistServices.getMyWishlist();
             if (response?.success) {
                 // Backend returns data in 'data' field
@@ -136,53 +133,66 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const loadUserData = async () => {
-        const token = localStorage.getItem('token');
-        console.log('loadUserData checking token:', token ? 'Token exists' : 'No token found');
-        
-        if (token) {
-            setIsLoggedIn(true);
-            const user = await getUserProfile();
-            console.log('loadUserData got user profile:', user);
-            
-            getWishlist();
-            getOwnerProperties();
-            
-            // Check if user has an agency if they are an owner
-            if (user && user.role === 'owner') {
-                try {
-                    const agencyRes = await api.get('/agency/my-agency');
-                    if (agencyRes.data?.success) {
-                        setAgency(agencyRes.data.agency);
-                        setShowAgencyReg(false);
-                    } else {
-                        setAgency(null);
-                        setShowAgencyReg(true);
-                    }
-                } catch (err) {
-                    setAgency(null);
-                    if (err.response?.status === 404) {
-                        setShowAgencyReg(true);
-                    }
-                }
-            }
-        } else {
+        setAuthLoading(true)
+        const user = await getUserProfile();
+
+        if (!user) {
             setIsLoggedIn(false);
             setUserProfile(null);
             setIsOwner(false);
             setOwnerProperties([]);
             setWishlist([]);
             setAgency(null);
+            setShowAgencyReg(false);
+            setAuthLoading(false)
+            return null;
         }
+
+        getWishlist();
+
+        if (user.role === 'owner') {
+            getOwnerProperties();
+            try {
+                const agencyRes = await api.get('/agency/my-agency');
+                if (agencyRes.data?.success) {
+                    setAgency(agencyRes.data.agency);
+                    setShowAgencyReg(false);
+                } else {
+                    setAgency(null);
+                    setShowAgencyReg(true);
+                }
+            } catch (err) {
+                setAgency(null);
+                if (err.response?.status === 404) {
+                    setShowAgencyReg(true);
+                }
+            }
+        } else {
+            setOwnerProperties([]);
+            setAgency(null);
+            setShowAgencyReg(false);
+        }
+
+        setAuthLoading(false)
+        return user;
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
+    const logout = async () => {
+        try {
+            await api.post('/auth/logout');
+        } catch (err) {
+            // Keep client state cleanup even if cookie already expired or request fails.
+            if (err?.status !== 401 && err?.status !== 403) {
+                console.error('Logout request failed:', err);
+            }
+        }
         setIsLoggedIn(false);
         setUserProfile(null);
         setIsOwner(false);
         setOwnerProperties([]);
         setWishlist([]);
         setAgency(null);
+        setShowAgencyReg(false);
         navigate('/');
     };
 
@@ -250,6 +260,7 @@ export const AppContextProvider = ({ children }) => {
         isOwner,
         setIsOwner,
         isLoggedIn,
+        authLoading,
         setIsLoggedIn,
         loading,
         error,

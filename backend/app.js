@@ -27,8 +27,8 @@ app.use(cors({
   ].filter(Boolean),
   credentials: true
 }))
-app.use(express.json({ limit: '50mb' }))         //helps express to understand/parse JSON
-app.use(express.urlencoded({ extended: true, limit: '50mb' }))     //handles data from frontend but doesnot handle file, we need multer for file
+app.use(express.json({ limit: '100mb' }))         //helps express to understand/parse JSON
+app.use(express.urlencoded({ extended: true, limit: '100mb' }))     //handles data from frontend but doesnot handle file, we need multer for file
 
 
 

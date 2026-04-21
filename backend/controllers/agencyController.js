@@ -4,7 +4,7 @@ const Agency = require('../models/Agency');
 exports.registerAgency = async (req, res) => {
     try {
         const { name, email, contact, address, city } = req.body;
-        const ownerId = req.user._id;
+        const ownerId = req.user.id;
 
         if (!name || !email || !contact || !address || !city) {
             return res.status(400).json({ 
@@ -48,7 +48,7 @@ exports.registerAgency = async (req, res) => {
 // GET MY AGENCY
 exports.getMyAgency = async (req, res) => {
     try {
-        const agency = await Agency.findOne({ owner: req.user._id });
+        const agency = await Agency.findOne({ owner: req.user.id });
         if (!agency) {
             return res.status(404).json({ 
                 success: false, 

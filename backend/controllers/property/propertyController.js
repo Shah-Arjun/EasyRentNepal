@@ -1,7 +1,6 @@
 const Property = require("../../models/propertyModel");
 const Agency = require("../../models/Agency");
 const Review = require("../../models/reviewModel");
-const { generateSlug } = require("../../utils/generateSlug");
 
 
 // create room / ADD PROPERTY  --> owner
@@ -51,8 +50,8 @@ exports.addProperty = async(req, res) => {
       });
     }
 
-    // id image provided then save the url else set default
-    const setImage = images || 
+     // If no images are provided, keep one default image.
+     const setImage = Array.isArray(images) && images.length > 0 ? images :
        [{
           url: "https://images.pexels.com/photos/7027844/pexels-photo-7027844.jpeg",
           isPrimary: true
@@ -88,10 +87,23 @@ exports.addProperty = async(req, res) => {
       status,
     }
 
-    propertyData.slug = generateSlug(title, location);
-
     // insert into property collection/table
-    const property = await Property.create(propertyData);
+    let property;
+    try {
+      property = await Property.create(propertyData);
+    } catch (error) {
+      // Legacy DBs may still have a unique slug index from older versions.
+      const isLegacySlugConflict =
+        error?.code === 11000 &&
+        (error?.keyPattern?.slug || String(error?.message || '').includes('slug_1'));
+
+      if (!isLegacySlugConflict) {
+        throw error;
+      }
+
+      await Property.collection.dropIndex('slug_1').catch(() => null);
+      property = await Property.create(propertyData);
+    }
 
     return res.status(201).json({
       success: true,

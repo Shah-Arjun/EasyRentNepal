@@ -2,7 +2,7 @@ const User = require('../../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendEmail = require('../../services/sendEmail')
-const { generateToken, sendTokenCookie, destroyCookie } = require('../../utils/tokenUtils')
+const { sendTokenCookie, destroyCookie } = require('../../utils/tokenUtils')
 
 
 
@@ -11,16 +11,11 @@ const { generateToken, sendTokenCookie, destroyCookie } = require('../../utils/t
 exports.registerUser = async(req, res) => {
     const { name, email, password, phone, role} = req.body
     
-    if(!name || !email || !password || !phone || !role){
+    if(!name || !email || !password || !phone){
         return res.status(400).json({
             message: "Name, email, password, phoneNumber, role must be provided"
         })
     }
-
-    if(role === 'admin'){
-        return res.status(403).json({ success: false, message: 'Admin accounts cannot be created through registration' })
-    }
-
 
     // check if user exists
     const userFound = await User.findOne({email : email})    //returns object
@@ -60,11 +55,11 @@ exports.registerUser = async(req, res) => {
 
 // LOGIN USER
 exports.loginUser = async(req, res) => {
-    const {email, password, role} = req.body
+    const {email, password} = req.body
 
-    if(!email || !password || !role){
+    if(!email || !password ){
         return res.status(400).json({
-            message: "Email, password and role must be provided"
+            message: "Email, password must be provided"
         })
     }
 

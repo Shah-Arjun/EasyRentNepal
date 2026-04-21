@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 
 const ListProperty = () => {
-  const { ownerProperties, currency, deleteProperty, loading, getOwnerProperties, propertyServices, isLoggedIn } = useAppContext()
+  const { ownerProperties, currency, deleteProperty, loading } = useAppContext()
   const [localProperties, setLocalProperties] = useState([])
+
+
+
 
  useEffect(() => {
    setLocalProperties(ownerProperties)
  }, [ownerProperties])
 
+
+
+ 
  const handleDelete = async (propertyId) => {
    const confirmed = window.confirm('Are you sure you want to delete this property?')
    if (confirmed) {
@@ -22,17 +28,7 @@ const ListProperty = () => {
    }
  }
 
- const handleAvailabilityToggle = async (propertyId, currentStatus) => {
-   try {
-     // You can update availability here when the API is ready
-     // For now, just toggle in UI
-     setLocalProperties(prev => prev.map(p => 
-       p._id === propertyId ? {...p, status: currentStatus === 'Available' ? 'Unavailable' : 'Available'} : p
-     ))
-   } catch (error) {
-     console.error('Error updating availability:', error)
-   }
- }
+
 
   return (
     <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-scroll lg:w-11/12 bg-white shadow rounded-xl'>

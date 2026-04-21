@@ -21,13 +21,6 @@ const propertySchema = new mongoose.Schema(
       trim: true,
       maxlength: 150,
     },
-    slug: {
-      //eye-catching selling point that will be shown in listing cards. ,,,, auto-generated from title + location for SEO/URL
-      type: String,
-      lowercase: true,
-      unique: true,
-      index: true,
-    },
     category: {
       type: String,
       enum: ["House", "Land", "Apartment", "Flat", "Office", "Room", "Shutter/Shop"],
@@ -172,7 +165,6 @@ const propertySchema = new mongoose.Schema(
 
 
 // Indexes
-propertySchema.index({ slug: 1 });
 propertySchema.index({ status: 1, category: 1, listingType: 1 });
 propertySchema.index({ 'location.district': 1, 'location.municipality': 1 });
 propertySchema.index({ 'price.value': 1 });
