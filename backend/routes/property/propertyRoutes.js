@@ -2,12 +2,14 @@ const { addProperty, getProperties, getSingleProperty, getOwnerProperties, delet
 const catchAsync = require('../../services/catchAsync')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
+const { createProperty } = require('../../controllers/uploadController')
+const upload = require('../../middleware/upload')
 
 const router = require('express').Router()
 
 
 // property routes endpoints
-router.route('/addProperty').post(isAuthenticated, restrictTo('owner'), catchAsync(addProperty))
+router.route('/addProperty').post(isAuthenticated, restrictTo('owner'), upload.array("images", 5), catchAsync(addProperty))   // //field name image will have max 5 files
 router.route('/owner').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerProperties))
 router.route('/owner-dashboard').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerDashboardData))
 router.route('/').get(catchAsync(getProperties))

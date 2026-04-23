@@ -115,10 +115,6 @@ const propertySchema = new mongoose.Schema(
       }
     },
 
-    direction: {
-      type: String,
-      enum: ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West', 'Other']
-    },
     roadSize: {
       value: { type: Number },
       unit: { type: String, default: 'ft' }

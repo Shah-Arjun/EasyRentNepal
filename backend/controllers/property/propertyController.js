@@ -1,116 +1,194 @@
 const Property = require("../../models/propertyModel");
 const Agency = require("../../models/Agency");
 const Review = require("../../models/reviewModel");
+const uploadToCloudinary = require("../../utils/uploadToCloudinary");
+
+
 
 
 // create room / ADD PROPERTY  --> owner
-exports.addProperty = async(req, res) => {
+exports.addProperty = async (req, res) => {
+  const ownerId = req.user.id;
 
-    const ownerId = req.user.id  //form jwt middleware
+  // Simple fields
+  const {
+    title,
+    category,
+    listingType,
+    noOfFlat,
+    bedrooms,
+    bathrooms,
+    bathroomType,
+    bedCount,
+    living,
+    kitchen,
+    parking,
+    furnishedStatus,
+    builtYear,
+    facing,
+    fullDescription,
+    status,
+  } = req.body;
 
-    const {
-      title,
-      category,
-      listingType,
-      noOfFlat,
-      bedrooms,
-      bathrooms,
-      bathroomType,
-      bedCount,
-      living,
-      kitchen,
-      parking,
-      furnishedStatus,
-      builtYear,
-      builtArea,
-      landArea,
-      facing,
-      price,
-      location,
-      direction,
-      roadSize,
-      fullDescription,
-      images,
-      amenities,
-      status,
-    } = req.body;
+  // JSON fields
+  let price, location, builtArea, landArea, roadSize, amenities;
 
-    
-    if (!title || !fullDescription || !price?.value) {
-      return res.status(400).json({
-        success: false,
-        message: "Title, description and price are required",
-      });
-    }
-
-    if (!location || !location.municipality || !location.district || !location.province) {
-      return res.status(400).json({
-        success: false,
-        message: "Complete location details are required",
-      });
-    }
-
-     // If no images are provided, keep one default image.
-     const setImage = Array.isArray(images) && images.length > 0 ? images :
-       [{
-          url: "https://images.pexels.com/photos/7027844/pexels-photo-7027844.jpeg",
-          isPrimary: true
-        }]
-
-
-    // create property object
-    const propertyData = {
-      owner : ownerId,
-      title,
-      category,
-      listingType,
-      noOfFlat,
-      bedrooms,
-      bathrooms,
-      bathroomType,
-      bedCount,
-      living,
-      kitchen,
-      parking,
-      furnishedStatus,
-      builtYear,
-      builtArea,
-      landArea,
-      facing,
-      price,
-      location,
-      direction,
-      roadSize,
-      fullDescription,
-      images: setImage,
-      amenities,
-      status,
-    }
-
-    // insert into property collection/table
-    let property;
-    try {
-      property = await Property.create(propertyData);
-    } catch (error) {
-      // Legacy DBs may still have a unique slug index from older versions.
-      const isLegacySlugConflict =
-        error?.code === 11000 &&
-        (error?.keyPattern?.slug || String(error?.message || '').includes('slug_1'));
-
-      if (!isLegacySlugConflict) {
-        throw error;
-      }
-
-      await Property.collection.dropIndex('slug_1').catch(() => null);
-      property = await Property.create(propertyData);
-    }
-
-    return res.status(201).json({
-      success: true,
-      message: "Property created successfully",
-      data: property,
+  try {
+    price = JSON.parse(req.body.price);
+    location = JSON.parse(req.body.location);
+    builtArea = JSON.parse(req.body.builtArea);
+    landArea = JSON.parse(req.body.landArea);
+    roadSize = JSON.parse(req.body.roadSize);
+    amenities = JSON.parse(req.body.amenities);
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid form data format",
     });
-}
+  }
+
+  // FILE VALIDATION
+  const files = req.files;
+
+  if (!files || files.length === 0) {
+    return res.status(400).json({
+      success: false,
+      message: "No images uploaded",
+    });
+  }
+
+  if (files.length > 5) {
+    return res.status(400).json({
+      success: false,
+      message: "Max 5 images allowed",
+    });
+  }
+
+  const MAX_SIZE = 5 * 1024 * 1024;
+
+  for (const file of files) {
+    if (!file.mimetype.startsWith("image/")) {
+      return res.status(400).json({
+        success: false,
+        message: "Only image files are allowed",
+      });
+    }
+
+    if (file.size > MAX_SIZE) {
+      return res.status(400).json({
+        success: false,
+        message: "Each image must be less than 5MB",
+      });
+    }
+  }
+
+  // FIELD VALIDATION
+  if (
+    !title?.trim() ||
+    !fullDescription?.trim() ||
+    !price?.value ||
+    price.value <= 0
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Title, description and valid price are required",
+    });
+  }
+
+  if (
+    !location?.province ||
+    !location?.district ||
+    !location?.municipality
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Complete location details are required",
+    });
+  }
+
+
+//  console.log("all validation done-backend")
+
+
+  // UPLOAD IMAGES
+  let uploadedImages;
+  try {
+    uploadedImages = await Promise.all(
+      files.map((file) =>
+        uploadToCloudinary(file.buffer, "house-rental-properties")
+      )
+    );
+  } catch (err) {
+    console.error("Cloudinary Error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Image upload failed",
+    });
+  }
+
+
+// console.log("images uploaded to cloudinary--")
+
+
+  // MARK PRIMARY IMAGE
+  const imagesWithPrimary = uploadedImages.map((img, index) => ({
+    ...img,
+    isPrimary: index === 0,
+  }));
+
+
+
+  // CLEAN DATA
+  const propertyData = {
+    owner: ownerId,
+    title: title.trim(),
+    category,
+    listingType,
+    noOfFlat,
+    bedrooms,
+    bathrooms,
+    bathroomType,
+    bedCount,
+    living,
+    kitchen,
+    parking,
+    furnishedStatus,
+    builtYear,
+    builtArea,
+    landArea,
+    facing,
+    price,
+    location,
+    roadSize,
+    fullDescription: fullDescription.trim(),
+    images: imagesWithPrimary,
+    amenities: Array.isArray(amenities) ? amenities : [],
+    status: status || "Pending",
+  };
+
+  // console.log("property data ready to save--", propertyData)
+
+
+  // SAVE TO DATABASE
+  let result;
+  try {
+    result = await Property.create(propertyData);
+  } catch (error) {
+    console.error("Database Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Database error while creating property",
+    });
+  }
+
+  // SUCCESS RESPONSE
+  return res.status(201).json({
+    success: true,
+    message: "Property created successfully",
+    data: result,
+  });
+};
+
 
 
 
@@ -190,6 +268,8 @@ exports.getSingleProperty = async(req, res) => {
 }
 
 
+
+
 // GET OWNER PROPERTIES
 exports.getOwnerProperties = async(req, res) => {
   const ownerId = req.user.id;
@@ -201,6 +281,9 @@ exports.getOwnerProperties = async(req, res) => {
     properties 
   });
 }
+
+
+
 
 // DELETE PROPERTY
 exports.deleteProperty = async(req, res) => {
@@ -221,6 +304,9 @@ exports.deleteProperty = async(req, res) => {
     message: "Property deleted successfully"
   });
 }
+
+
+
 
 // GET OWNER DASHBOARD DATA
 exports.getOwnerDashboardData = async(req, res) => {
