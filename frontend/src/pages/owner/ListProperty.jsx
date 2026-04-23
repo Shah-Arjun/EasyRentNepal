@@ -63,7 +63,7 @@ const ListProperty = () => {
                   <div className='line-clamp-2'>{property.title}</div>
                 </div>
                 <div className='line-clamp-2'>
-                  {property.location?.municipality}, {property.location?.district}
+                  {property.location?.municipality || 'N/A'}, {property.location?.district}
                 </div>
                 <div>
                   {currency}{property.price?.value || 'N/A'}
