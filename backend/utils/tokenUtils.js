@@ -12,7 +12,7 @@ const cookieOptions = () => ({
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',                      
   sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',  
-  maxAge: 7 * 24 * 60 * 60 * 1000,   // 7 days
+  maxAge: 12 * 60 * 60 * 1000,   // 12 hours
   path: '/'
 });
 
@@ -22,7 +22,7 @@ const cookieOptions = () => ({
 // function to generate token
 const generateToken = (id, role) => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRE || '7d',
+        expiresIn: process.env.JWT_EXPIRE || '12h',
         algorithm: 'HS256'
     })
 }
@@ -31,9 +31,9 @@ const generateToken = (id, role) => {
 
 // send login token
 const sendTokenCookie = (res, statusCode, message, user) => {
-    console.log(user)
+    // console.log(user)
   const token = generateToken(user._id, user.role);
-  console.log("from sendToken -> " ,token)
+//   console.log("from sendToken -> " ,token)
   res.status(statusCode)
     .cookie(COOKIE_NAME, token, cookieOptions())
     .json({ 

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
-const { sendTokenCookie } = require('../../utils/tokenUtils')
+const { sendTokenCookie, generateToken, cookieOptions } = require('../../utils/tokenUtils')
 
 
 // GET MY PROFILE CONTROLLER --> for all users
@@ -32,7 +32,7 @@ exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
-    const userFound = await User.findById(req.user._id).select('+password');
+    const userFound = await User.findById(req.user.id).select('+password');
 
     if (!userFound) {
       return res.status(404).json({
@@ -94,6 +94,10 @@ exports.updateMyProfile = async(req, res) => {
         new : true,
         runValidators : true    //validate the frontend data according to User model/schema
     }).select(['-password', '-__v'])
+
+    // Refresh auth cookie so role-based middleware sees the latest role immediately.
+    const refreshedToken = generateToken(updatedProfile._id, updatedProfile.role)
+    res.cookie('auth_token', refreshedToken, cookieOptions())
 
     res.status(200).json({
         success: true,

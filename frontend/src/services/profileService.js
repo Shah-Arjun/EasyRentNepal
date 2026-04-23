@@ -5,7 +5,7 @@ export const profileService = (axiosInstance) => {
     // Get my profile
     getProfile: async () => {
       try {
-        const { data } = await axiosInstance.get('/profile')
+        const { data } = await axiosInstance.get('/profile/me')
         return data
       } catch (error) {
         throw error.response?.data || error.message
@@ -15,7 +15,7 @@ export const profileService = (axiosInstance) => {
     // Update profile
     updateProfile: async (profileData) => {
       try {
-        const { data } = await axiosInstance.patch('/profile', profileData)
+        const { data } = await axiosInstance.patch('/profile/update', profileData)
         return data
       } catch (error) {
         throw error.response?.data || error.message
@@ -25,7 +25,7 @@ export const profileService = (axiosInstance) => {
     // Delete account
     deleteAccount: async () => {
       try {
-        const { data } = await axiosInstance.delete('/profile')
+        const { data } = await axiosInstance.delete('/profile/delete')
         return data
       } catch (error) {
         throw error.response?.data || error.message

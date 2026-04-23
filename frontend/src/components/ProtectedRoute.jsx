@@ -4,12 +4,12 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 
 const ProtectedRoute = ({ requiredRole = null }) => {
-  const { isLoggedIn, isOwner, userProfile, loading } = useAppContext();
+  const { isLoggedIn, isOwner, userProfile, authLoading } = useAppContext();
   const location = useLocation();
 
 
   // Still loading user data → show loader
-  if (loading) {
+  if (authLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-lg">Loading...</div>

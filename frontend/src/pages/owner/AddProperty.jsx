@@ -19,11 +19,12 @@ const furnishedStatuses = ['unfurnished', 'semi-furnished', 'fully-furnished'];
 const facingOptions = ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West'];
 const builtAreaUnits = ['sqft', 'aana', 'ropani', 'paisa', 'dam', 'haath', 'feet', 'sqm', 'other'];
 const landAreaUnits = ['aana', 'ropani', 'paisa', 'dam', 'sqft', 'sqm', 'haath', 'dhur', 'kattha', 'bigha'];
-const currencies = ['NPR', 'USD', 'INR'];
+const currencies = ['NPR'];
 const perUnits = ['total', 'per aana', 'per ropani', 'per sqft', 'per dhur', 'per kattha', 'per bigha', 'per month', 'per year'];
 const bathroomTypes = ['attached', 'shared'];
 const directionOptions = ['East', 'West', 'North', 'South', 'North-East', 'North-West', 'South-East', 'South-West', 'Other'];
 const suggestedAmenities = ['WiFi', 'Water Supply (24/7)', 'Electricity', 'Air Conditioning', 'Gym', 'Swimming Pool', 'Security', 'Elevator', 'Garden', 'Balcony', 'Parking', 'Heating'];
+const MAX_TOTAL_IMAGE_SIZE = 25 * 1024 * 1024;
 
 // Component definitions - moved outside to prevent recreation on every render
 const SectionTitle = ({ title, subtitle }) => (
@@ -134,6 +135,14 @@ const AddProperty = () => {
   const handleImageChange = async (files) => {
     setError('');
     const fileArray = Array.from(files);
+
+    const currentTotalSize = formData.images.reduce((sum, img) => sum + (img.size || 0), 0);
+    const incomingTotalSize = fileArray.reduce((sum, file) => sum + file.size, 0);
+
+    if (currentTotalSize + incomingTotalSize > MAX_TOTAL_IMAGE_SIZE) {
+      setError('Total image size must be less than 25MB');
+      return;
+    }
     
     // Validate file count
     if (formData.images.length + fileArray.length > 10) {
@@ -339,7 +348,11 @@ const AddProperty = () => {
       }
     } catch (err) {
       console.error('Submission error:', err);
-      const errorMsg = err.response?.data?.message || err.message || 'Error submitting property. Please try again.';
+      const errorMsg =
+        err.response?.data?.message ||
+        (err.response?.status === 413 ? 'Images are too large. Reduce image size/count and try again.' : '') ||
+        err.message ||
+        'Error submitting property. Please try again.';
       setError(errorMsg);
     } finally {
       setLoading(false);

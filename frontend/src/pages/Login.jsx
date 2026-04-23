@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import useAxios from '../hooks/useAxios';
-import {jwtDecode} from "jwt-decode";
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -34,22 +33,15 @@ const Login = () => {
     try {
       const response = await api.post('/auth/login', credentials);
 
-      if (response.data.success && response.data.token) {
-        const { token } = response.data;
-        localStorage.setItem('token', token);
-
-        // Decode token to get role and id
-        const decoded = jwtDecode(token);
-        localStorage.setItem('userRole', decoded.role);
-        localStorage.setItem('userId', decoded.id);
-
-        await loadUserData(); // Optional: refresh context with user data
+      if (response.data.success) {
+        const user = await loadUserData();
+        const userRole = user?.role || response?.data?.user?.role;
 
         toast.success('Logged in successfully');
 
         // Redirect based on role
-        if (decoded.role === 'owner') navigate('/owner');
-        else if (decoded.role === 'tenant') navigate('/listing');
+        if (userRole === 'owner') navigate('/owner');
+        else if (userRole === 'tenant') navigate('/listing');
         else navigate('/');
       }
     } catch (error) {
