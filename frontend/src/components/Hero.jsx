@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/data'
 import { cities } from '../assets/data'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+
+
 
 const Hero = () => {
+  const [location, setLocation] = useState('')
+  const navigate = useNavigate()
+
+
+  //function to handle search
+  const handleSearch = (e) => {
+    e.preventDefault()
+
+    if (!location) return
+
+    // navigate to listing page with location as query parameter
+    navigate(`/listing?location=${location}`)
+  }
+  
+
+
   return (
     <section className="h-screen w-screen bg-[url('/src/assets/bg.png')] bg-cover bg-center bg-no-repeat">
       <div className="max-padd-container h-screen w-screen">
@@ -22,16 +41,18 @@ const Hero = () => {
 
 
           {/* SEARCH FORM */}
-          <form className='flex items-center justify-center bg-white text-gray-500 rounded-lg px-6 py-4 flex-row lg:flex-row gap-4 lg:gap-x-8 max-w-full ring-1 ring-slate-900/5 relative'>
+          <form onSubmit={handleSearch} className='flex items-center justify-center bg-white text-gray-500 rounded-lg px-6 py-4 flex-row lg:flex-row gap-4 lg:gap-x-8 max-w-full ring-1 ring-slate-900/5 relative'>
             {/* location logo */}
             <div className='flex items-center justify-evenly'>
               <img src={assets.pin} alt="pinIcon" width={38} />
             </div>
             {/* input */}
             <input 
-              list="destinations"
+              list="destinations"   // connects input to datalist for autocomplete 
               id="destinationInput"
               type="text" 
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
               className='rounded border border-gray-300 px-3 py-2.5 text-sm outline-gray-500 w-full'
               placeholder='Enter your preferred location.'
               required
@@ -57,3 +78,5 @@ const Hero = () => {
 }
 
 export default Hero
+
+

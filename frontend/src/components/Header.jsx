@@ -4,14 +4,14 @@ import { assets } from "../assets/data";
 import Navbar from "./Navbar";
 import { useAppContext } from "../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarCheck, faPlus, faRightLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarCheck, faRightLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  // const [showSearch, setShowSearch] = useState(false);
   const profileMenuRef = useRef(null);
   const location = useLocation();
   const { navigate, isOwner, setIsOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
@@ -123,7 +123,7 @@ const Header = () => {
             )}
             
             {/* SearchBar */}
-            <div className="relative hidden xl:flex items-center">
+            {/* <div className="relative hidden xl:flex items-center">
               <div
                 className={`${active ? "bg-secondary/10" : "bg-white"} transition-all duration-300 ease-in-out ring-1 ring-slate-900/10 rounded-full overflow-hidden ${showSearch
                   ? "w-[266px] opacity-100 px-4 py-2"
@@ -142,7 +142,7 @@ const Header = () => {
               >
                 <img src={assets.search} alt="searchIcon" className="w-5 h-5" />
               </div>
-            </div>
+            </div> */}
             
             {/* Menu Toggle */}
             <>
