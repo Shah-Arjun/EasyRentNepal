@@ -31,7 +31,7 @@ const ListProperty = () => {
 
 
   return (
-    <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-scroll lg:w-11/12 bg-white shadow rounded-xl'>
+    <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-auto lg:w-11/12 bg-white shadow rounded-xl'>
    {/*Latest Booking/Sales*/}
    <div>
    <div className='flex justify-between flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary border-b border-slate-900/15 rounded-t-xl'>

@@ -95,7 +95,7 @@ exports.loginUser = async(req, res) => {
 
 
 // LOGOUT USER
-exports.logoutUser = (req, res) => {
+exports.logoutUser = async(req, res) => {
     const isDestroyed = destroyCookie(res);
 
       if (isDestroyed) {
