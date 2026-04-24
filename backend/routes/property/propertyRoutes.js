@@ -2,7 +2,6 @@ const { addProperty, getProperties, getSingleProperty, getOwnerProperties, delet
 const catchAsync = require('../../services/catchAsync')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
-const { createProperty } = require('../../controllers/uploadController')
 const upload = require('../../middleware/upload')
 
 const router = require('express').Router()
