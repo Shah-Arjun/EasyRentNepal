@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import Item from "../components/Item";
+import { useSearchParams } from "react-router-dom";
+import { assets, cities } from "../assets/data";
+
+
 
 const Listing = () => {
   const { properties, loading } = useAppContext();
   const [filterProperties, setFilterProperties] = useState([]);
   const [category, setCategory] = useState([]);
+  const [bedrooms, setBedrooms] = useState('');
   const [priceRange, setPriceRange] = useState([]);
   const [sortType, setSortType] = useState('Relevant');
+  const [searchParams, setSearchParams] = useSearchParams();      //to get searched text from url
+  const searchText = searchParams.get("location") || "";  //get from Hero section search and store search text from url  eg. /listing?location=Kathmandu
+  const [locationInput, setLocationInput] = useState(searchText);   // to control the input field value
+
 
   const propertyTypes = [
     "Room",
     "House",
     "Apartment",
-    "Villa",
+    "Flat",
+    "Office",
+    "Shutter",
+    "Land",
   ];
 
   const priceRanges = [
@@ -39,8 +51,23 @@ const Listing = () => {
     }
   };
 
+
+
   const applyFilter = () => {
     let tempProperties = properties.slice();
+
+    // location filter based on search text
+    if(locationInput){
+      console.log(locationInput)
+      tempProperties = tempProperties.filter(p =>
+        p.location?.province?.toLowerCase().includes(locationInput.toLowerCase()) ||
+        p.location?.district?.toLowerCase().includes(locationInput.toLowerCase()) ||
+        p.location?.municipality?.toLowerCase().includes(locationInput.toLowerCase()) ||
+        p.location?.tole?.toLowerCase().includes(locationInput.toLowerCase())  ||
+        p.title?.toLowerCase().includes(locationInput.toLowerCase())
+      )
+    }
+
 
     // Category Filter
     if (category.length > 0) {
@@ -59,6 +86,26 @@ const Listing = () => {
       });
     }
 
+
+    // Bedroom Filter
+    if (bedrooms) {
+      tempProperties = tempProperties.filter(p => {
+        const beds = p.bedrooms || 0;
+
+        if (bedrooms === "1") return beds === 1;
+
+        if (bedrooms.startsWith("upto-")) {
+          const max = Number(bedrooms.split("-")[1]);
+          return beds <= max;
+        }
+
+        if (bedrooms === "5+") return beds >= 5;
+
+        return true;
+      });
+    }
+
+
     // Sorting
     switch (sortType) {
       case 'Low to High':
@@ -73,6 +120,18 @@ const Listing = () => {
     }
   };
 
+
+
+  // handle search form submit
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    setSearchParams({ location: locationInput });
+  };
+
+
+
+
   useEffect(() => {
     const filterAndScroll = async () => {
       await applyFilter(); // wait for data
@@ -80,14 +139,17 @@ const Listing = () => {
     };
 
     filterAndScroll();
-  }, [category, priceRange, sortType, properties]);
+  }, [locationInput, searchText, category, priceRange, bedrooms, sortType, properties]);
+
+
+
 
   return (
     <div className="bg-linear-to-r from-[#fffbee] to-white py-16 pt-28">
       <div className="max-padd-container flex flex-col sm:flex-row gap-8 mb-16">
         {/* Left Side - Filters */}
         <div className="bg-secondary/10 ring-1 ring-slate-900/5 p-4 sm:min-w-60 sm:h-[600px] rounded-xl ">
-          {/* Sort by price */}
+          {/* Sort by price - order */}
           <div className="py-3 mt-4">
             <h5 className="h5 mb-3">Sort By</h5>
             <select 
@@ -114,6 +176,22 @@ const Listing = () => {
               </label>
             ))}
           </div>
+          {/* Bedroom filter */}
+          <div className="py-3 mt-4">
+            <h5 className="h5 mb-3">Bedrooms</h5>
+            <select
+              value={bedrooms}
+              onChange={(e) => setBedrooms(e.target.value)}
+              className="bg-secondary/10 border border-slate-900/10 outline-none text-gray-30 medium-14 h-8 w-full rounded px-2"
+            >
+              <option value="">Any</option>
+              <option value="1">1</option>
+              <option value="upto-2">Upto 2</option>
+              <option value="upto-3">Upto 3</option>
+              <option value="upto-4">Upto 4</option>
+              <option value="5+">5+</option>
+            </select>
+          </div>
           {/* Price Range */}
           <div className="py-3 mt-2">
             <h5 className="h5 mb-4">Price Range</h5>
@@ -130,8 +208,41 @@ const Listing = () => {
             ))}
           </div>
         </div>
+
+
+
         {/* Right Side  */}
-        <div className="min-h-[97vh] overflow-y-scroll rounded-xl w-full">
+        <div className="min-h-[97vh] overflow-y-scroll rounded-xl w-full ">
+          {/* SEARCH FORM */}
+          <form onSubmit={handleSearchSubmit} className='flex items-center justify-center bg-secondary/10 ring-1 ring-slate-900/5 text-gray-500 rounded-lg px-6 py-4 flex-row lg:flex-row gap-4 lg:gap-x-8 max-w-full mb-8 relative'>
+            {/* location logo */}
+            <div className='flex items-center justify-evenly'>
+              <img src={assets.pin} alt="pinIcon" width={38} />
+            </div>
+            {/* input */}
+            <input 
+              list="destinations"   // connects input to datalist for autocomplete 
+              id="destinationInput"
+              type="text" 
+              value={locationInput}
+              onChange={(e) => setLocationInput(e.target.value)}
+              className='rounded border bg-white/90 border-gray-300 px-3 py-2.5 text-sm outline-gray-500 w-full'
+              placeholder='Enter your preferred location.'
+              required
+            />
+            <datalist id='destinations'>
+              {cities.map((city, index) => (
+                <option value={city} key={index}/>
+              ))}
+            </datalist>
+
+            {/* button */}
+            <button type='submit' className='flex items-center justify-center gap-1 rounded-md bg-black p-2 md:py-3 md:px-6 lg:py-3 lg:px-6 text-white my-auto cursor-pointer'>
+              <img src={assets.search} alt="searchIcon" width={20} className='invert w-8'/>
+              <span className='hidden md:block lg:block'>Search</span>
+            </button>
+          </form>
+
           {loading ? (
             <div className="flexCenter flex-col mt-32 w-full">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary"></div>
