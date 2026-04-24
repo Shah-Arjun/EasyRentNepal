@@ -16,6 +16,10 @@ const Listing = () => {
   const [searchParams, setSearchParams] = useSearchParams();      //to get searched text from url
   const searchText = searchParams.get("location") || "";  //get from Hero section search and store search text from url  eg. /listing?location=Kathmandu
   const [locationInput, setLocationInput] = useState(searchText);   // to control the input field value
+  const pageFromUrl = Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
+  const [featuredOnly, setFeaturedOnly] = useState(false);
+
 
 
   const propertyTypes = [
@@ -87,6 +91,12 @@ const Listing = () => {
     }
 
 
+    // Featured Only Filter
+    if(featuredOnly){
+      tempProperties = tempProperties.filter(p => p.isFeatured === true);
+    }
+
+
     // Bedroom Filter
     if (bedrooms) {
       tempProperties = tempProperties.filter(p => {
@@ -139,8 +149,43 @@ const Listing = () => {
     };
 
     filterAndScroll();
-  }, [locationInput, searchText, category, priceRange, bedrooms, sortType, properties]);
+  }, [locationInput, searchText, category, priceRange,featuredOnly, bedrooms, sortType, properties]);
 
+
+
+  // sync url when page changes
+  useEffect(() => {
+    setSearchParams(prev => {
+      const params = new URLSearchParams(prev);
+      params.set("page", currentPage);
+      return params;
+    });
+  }, [currentPage]);
+
+
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [locationInput, category, priceRange, bedrooms, sortType]);
+
+
+  //Sync state when URL changes
+  useEffect(() => {
+    setCurrentPage(pageFromUrl);
+  }, [pageFromUrl]);
+
+
+
+  // apply pagination logic
+  const itemsPerPage = 15;
+
+  const totalPages = Math.ceil(filterProperties.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentItems = filterProperties.slice(startIndex, endIndex);
 
 
 
@@ -148,8 +193,7 @@ const Listing = () => {
     <div className="bg-linear-to-r from-[#fffbee] to-white py-16 pt-28">
       <div className="max-padd-container flex flex-col sm:flex-row gap-8 mb-16">
         {/* Left Side - Filters */}
-        <div className="bg-secondary/10 ring-1 ring-slate-900/5 p-4 sm:min-w-60 sm:h-[600px] rounded-xl ">
-          {/* Sort by price - order */}
+        <div className="sticky top-20 bg-secondary/10 ring-1 ring-slate-900/5 p-4 sm:min-w-60 rounded-xl h-fit">          {/* Sort by price - order */}
           <div className="py-3 mt-4">
             <h5 className="h5 mb-3">Sort By</h5>
             <select 
@@ -175,6 +219,17 @@ const Listing = () => {
                 {type}
               </label>
             ))}
+          </div>
+          {/* featured only */}
+          <div className="py-3 mt-4">
+            <label className="flex gap-2 medium-14 text-black font-bold cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={featuredOnly}
+                onChange={(e) => setFeaturedOnly(e.target.checked)}
+              />
+              Featured Properties Only
+            </label>
           </div>
           {/* Bedroom filter */}
           <div className="py-3 mt-4">
@@ -212,9 +267,9 @@ const Listing = () => {
 
 
         {/* Right Side  */}
-        <div className="min-h-[97vh] overflow-y-scroll rounded-xl w-full ">
+        <div className="min-h-[97vh] rounded-xl w-full ">
           {/* SEARCH FORM */}
-          <form onSubmit={handleSearchSubmit} className='flex items-center justify-center bg-secondary/10 ring-1 ring-slate-900/5 text-gray-500 rounded-lg px-6 py-4 flex-row lg:flex-row gap-4 lg:gap-x-8 max-w-full mb-8 relative'>
+          <form onSubmit={handleSearchSubmit} className='flex items-center justify-center bg-secondary/10 ring-1 ring-slate-900/5 text-gray-500 rounded-lg px-6 py-4 flex-row lg:flex-row gap-4 lg:gap-x-8 max-w-full mb-4 relative'>
             {/* location logo */}
             <div className='flex items-center justify-evenly'>
               <img src={assets.pin} alt="pinIcon" width={38} />
@@ -243,17 +298,41 @@ const Listing = () => {
             </button>
           </form>
 
+
+          {/* listings */}
           {loading ? (
             <div className="flexCenter flex-col mt-32 w-full">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary"></div>
               <p className="mt-4 text-gray-400 medium-14">Searching for properties...</p>
             </div>
-          ) : filterProperties.length > 0 ? (
-            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 ">
-              {filterProperties.map((property) => (
-                <Item key={property._id} property={property}/>
-              ))}
+          ) : currentItems.length > 0 ? (
+            // show filtered and paginated properties
+            <>
+            {properties.length !== filterProperties.length && <div className="text-sm "><span>Searched Result: {filterProperties.length}</span></div>}
+              <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mt-8">
+                {currentItems.map((property) => (
+                  <Item key={property._id} property={property}/>
+                ))}
+              </div>
+              <div className="flex justify-center items-center gap-4 mt-16">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+              >
+                Prev
+              </button>
+                <span className="text-sm">Showing ({startIndex + 1}-{Math.min(endIndex, filterProperties.length)}) of {filterProperties.length}</span>
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+              >
+                Next
+              </button>
+
             </div>
+            </>
           ) :(
             <div className="text-center text-gray-500 mt-20">No matches found for the selected filters.</div>
           )}
