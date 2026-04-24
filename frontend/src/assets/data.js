@@ -127,6 +127,8 @@ export const cities = [
     "Dharan",
     "Kathmandu",
     "Pokhara",
+    "Lalitpur",
+    "Bhaktapur",
     "Dhangadhi",
     "Dhulikhel",
     "Birgunj",
@@ -147,17 +149,17 @@ export const dummyAgentData = {
   
   
   // Agency Dummy Data
-  export const dummyAgencyData = {
-    "_id": "67f7642a197ac559e4089b99",
-    "name": "Himalayan Property Services",
-    "contact": "01-5321456",
-    "email": "info@himalayanproperty.com", 
-    "address": "Putalisadak, Kathmandu, Nepal",
-    "owner": dummyAgentData,
-    "city": "Kathmandu",
-    "createdAt": "2025-04-12T10:45:30.000Z",
-    "updatedAt": "2025-04-12T10:45:30.000Z",
-    "__v": 0
+export const dummyAgencyData = {
+  "_id": "67f7642a197ac559e4089b99",
+  "name": "Himalayan Property Services",
+  "contact": "01-5321456",
+  "email": "info@himalayanproperty.com", 
+  "address": "Putalisadak, Kathmandu, Nepal",
+  "owner": dummyAgentData,
+  "city": "Kathmandu",
+  "createdAt": "2025-04-12T10:45:30.000Z",
+  "updatedAt": "2025-04-12T10:45:30.000Z",
+  "__v": 0
 }
 
 
