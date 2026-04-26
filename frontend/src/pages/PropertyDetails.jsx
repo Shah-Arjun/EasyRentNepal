@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import PropertyImages from '../components/PropertyImages'
 import { assets } from '../assets/data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import Item from '../components/Item'
 
 const PropertyDetails = () => {
     const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn } = useAppContext()
     const [property, setProperty] = useState(null)
     const [reviews, setReviews] = useState([])
+    const [recommendedItems, setRecommendedItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [reviewLoading, setReviewLoading] = useState(false)
     const [rating, setRating] = useState(5)
     const [comment, setComment] = useState("")
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const fetchReviews = async () => {
         try {
@@ -113,6 +117,31 @@ const PropertyDetails = () => {
 
     const hasReviewed = reviews.some(rev => rev.userId?._id === userProfile?._id)
 
+
+
+    // get recommended properties based on current property
+    const fetchRecommendedProperties = async () => {
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/property/recommend/${id}`)            
+            console.log("reco properties-->", res.data)  // debug
+            
+            if (res.data.success) {
+                setRecommendedItems(res.data.data)
+            }
+        } catch (error) {
+            console.error("Error fetching recommended properties:", error)
+        }
+    }
+
+    useEffect(() => {
+        if (property?._id) {
+            fetchRecommendedProperties()
+        }
+    }, [property?._id])
+
+
+
+
     if (loading) {
         return (
             <div className='bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28 h-screen flex items-center justify-center'>
@@ -134,7 +163,10 @@ const PropertyDetails = () => {
         )
     }
 
+
+
     return (
+        <>
         <div className='bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28'>
             <div className='max-padd-container'>
                 {/* Image */}
@@ -389,8 +421,25 @@ const PropertyDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
 
+
+
+            {/* recommendated properties based on vector search semantic similarity */}
+             <div className="max-padd-container py-16 xl:py-22 mb-">
+                <h3 className='h3'>Recommended For You</h3>
+
+                {recommendedItems.length === 0 ? (
+                    <p className="text-gray-500 mt-6">No recommendations found</p>
+                ) : (
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
+                    {recommendedItems.map((property) => (
+                        <Item key={property._id} property={property} />
+                    ))}
+                </div>
+                )}
+            </div>
+        </div>
+        </>                   
     )
     
 }

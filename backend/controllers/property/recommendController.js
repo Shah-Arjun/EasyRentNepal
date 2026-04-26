@@ -26,6 +26,7 @@ exports.getSimilarRecommendProperties = async (req, res) => {
         const properties = await Property.aggregate(aggregationPipeline);
 
         res.status(200).json({
+            success: true,
             message: "Top 10 similar properties are:",
             length: properties.length,
             data: properties
@@ -34,6 +35,7 @@ exports.getSimilarRecommendProperties = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
+            success: false,
             message: 'Internal Server Error',
             error: error.message
         });

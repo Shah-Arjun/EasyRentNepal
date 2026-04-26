@@ -11,7 +11,7 @@ const Item = ({ property }) => {
     >
       {/* Image */}
       <div className='relative'>
-        <img src={property.images[0]?.url || property.images[0]} alt={property.title}
+        <img src={property.images[0]?.url || property?.images[0] || "https://propertynepal.com/images/properties/1026/168405890059.jpg"} alt={property.title}
           className='h-[13rem] w-full aspect-square object-cover rounded-t-xl'/>
       </div>
       {/* Info */}

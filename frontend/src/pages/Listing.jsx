@@ -178,7 +178,7 @@ const Listing = () => {
 
 
   // apply pagination logic
-  const itemsPerPage = 15;
+  const itemsPerPage = 30;
 
   const totalPages = Math.ceil(filterProperties.length / itemsPerPage);
 

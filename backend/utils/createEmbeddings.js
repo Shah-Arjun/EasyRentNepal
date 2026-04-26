@@ -23,7 +23,7 @@ async function updatePropertyDataWithEmbeddings() {
 
         // only process documents that don't have embedding yet
         const cursor = Property.find({                                     // creates a cursor (pointer) to fetch only those properties that:-
-            fullDescription: { $exists: true, $ne: "" },                                               // have a Plot field, and
+            title: { $exists: true, $ne: "" },                                               // have a Plot field, and
             plot_embedding: { $exists: false }   // skip already processed ones    //do not have plot_embedding yet
         }).cursor();
 
