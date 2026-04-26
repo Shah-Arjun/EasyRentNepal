@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const provinceEnum = [
-  "Koshi Pradesh",
-  "Madhesh Pradesh",
-  "Bagmati Pradesh",
-  "Gandaki Pradesh",
-  "Lumbini Pradesh",
-  "Karnali Pradesh",
-  "Sudurpashchim Pradesh",
+  "Koshi",
+  "Madhesh",
+  "Bagmati",
+  "Gandaki",
+  "Lumbini",
+  "Karnali",
+  "Sudurpashchim",
 ];
 
 
@@ -23,7 +23,7 @@ const propertySchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["House", "Land", "Apartment", "Flat", "Office", "Room", "Shutter/Shop"],
+      enum: ["House", "Land", "Apartment", "Flat", "Office", "Room", "Shutter"],
       default: "Room",
       required: true,
       index: true,
@@ -66,7 +66,8 @@ const propertySchema = new mongoose.Schema(
 
 
     // Area
-    builtYear: { type: Number, min: 1900, max: new Date().getFullYear() + 5 },
+    // builtYear: { type: Number, min: 0, max: new Date().getFullYear() + 5 },
+    builtYear: { type: Number, min: 0, max: 2083 },
     builtArea: {
       value: { type: Number },
       unit: { type: String, enum: ['sqft', 'aana', 'ropani', 'paisa', 'dam', 'haath', 'feet', 'sqm', 'other'] }
@@ -100,8 +101,9 @@ const propertySchema = new mongoose.Schema(
       province: { type: String, required: true, enum: provinceEnum },
       district: { type: String, required: true },
       municipality: { type: String, required: true },
+      city: { type: String, default: '' },
       tole: { type: String, trim: true },
-      wardNo: { type: Number, min: 1, max: 35 }
+      wardNo: { type: Number, min: 0, max: 35 }
     },
 
     coordinates: {
@@ -140,7 +142,7 @@ const propertySchema = new mongoose.Schema(
       // phone: { type: String, },
       // email: { type: String, lowercase: true },
       // profileImage: String
-      required: true
+      // required: true
     },
 
     amenities: [String],  //wifi, water, ect
@@ -152,7 +154,12 @@ const propertySchema = new mongoose.Schema(
     },
     isFeatured: { type: Boolean, default: false },
     views: { type: Number, default: 0 },
-    expiresAt: Date
+
+    // Vector representation for similarity search
+    plot_embedding: {
+      type: [Number],
+      default: undefined
+    }
 
 }, { 
   timestamps: true 
