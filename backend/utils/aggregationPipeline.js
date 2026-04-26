@@ -16,7 +16,7 @@ function getAggregationPipeline(embeddings, id) {
                 path: "plot_embedding",                    // name of field that contains the embedding
                 queryVector: embeddings,
                 numCandidates: 100,                       // search 100 nearest docs
-                limit: 11,                                // seturn top 11 results, 1 is that exactly same property
+                limit: 16,                                // seturn top 11 results, 1 is that exactly same property
             },
         },
         // stage-2: Projection Stage

@@ -3,7 +3,7 @@ const catchAsync = require('../../services/catchAsync')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
 const upload = require('../../middleware/upload')
-const { getSimilarRecommendProperties } = require('../../controllers/property/recommendController')
+const { getSimilarRecommendProperties, getRecommendPropertiesBySearchTerm } = require('../../controllers/property/recommendController')
 
 const router = require('express').Router()
 
@@ -13,9 +13,10 @@ router.route('/addProperty').post(isAuthenticated, restrictTo('owner'), upload.a
 router.route('/owner').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerProperties))
 router.route('/owner-dashboard').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerDashboardData))
 router.route('/').get(catchAsync(getProperties))
+router.route('/search').get(catchAsync(getRecommendPropertiesBySearchTerm))   // get top 10 similar properties based on search text
 router.route('/:id').get(catchAsync(getSingleProperty))
 router.route('/:id').delete(isAuthenticated, restrictTo('owner'), catchAsync(deleteProperty))
-router.route('/recommend/:id').get(catchAsync(getSimilarRecommendProperties))   // get top 10 similar properties based on vector search
+router.route('/recommend/:id').get(catchAsync(getSimilarRecommendProperties))   // get top 10 similar properties based on semantic similarity
 
 
 module.exports = router
