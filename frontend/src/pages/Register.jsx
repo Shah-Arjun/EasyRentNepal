@@ -4,6 +4,7 @@ import useAxios from '../hooks/useAxios';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faLock, faPhone, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import VerifyOtp from '../components/VerifyOtp';
 
 const Register = () => {
     const [userData, setUserData] = useState({
@@ -21,9 +22,11 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await api.post('/auth/register', userData);
+            
             if (response.data.success || response.data.message) {
-                toast.success('Registration successful! Please login.');
-                navigate('/login');
+                navigate('/verify-otp', {
+                    state: { email: userData.email},
+                });
             }
         } catch (error) {
             toast.error(error.response?.data?.message || 'Registration failed');
@@ -91,8 +94,8 @@ const Register = () => {
                         />
                     </div>
                     
-                    <button type="submit" className="btn-secondary w-full rounded-xl py-3 font-bold shadow-lg shadow-secondary/20 active:scale-[0.98] transition-all">
-                        Create Account
+                    <button onClick={handleRegister} type="submit" className="btn-secondary w-full rounded-xl py-3 font-bold shadow-lg shadow-secondary/20 active:scale-[0.98] transition-all">
+                        Register
                     </button>
                 </form>
                 

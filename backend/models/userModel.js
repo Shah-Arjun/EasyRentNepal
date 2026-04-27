@@ -14,15 +14,15 @@ const userSchema = new mongoose.Schema(
       match: [/^\S+@\S+\.\S+$/, "Please provide a valid email"],
     },
 
-    firstName: {
-      type: String,
-      trim: true,
-    },
+    // firstName: {
+    //   type: String,
+    //   trim: true,
+    // },
 
-    lastName: {
-      type: String,
-      trim: true,
-    },
+    // lastName: {
+    //   type: String,
+    //   trim: true,
+    // },
 
     phoneNumber: {
       type: String,
@@ -41,11 +41,11 @@ const userSchema = new mongoose.Schema(
       default: "tenant",
     },
 
-    gender: {
-      type: String,
-      enum: ["male", "female", "unknown"],
-      default: "unknown",
-    },
+    // gender: {
+    //   type: String,
+    //   enum: ["male", "female", "unknown"],
+    //   default: "unknown",
+    // },
 
     location: {         //store tracked location by website
       type: String,
@@ -62,10 +62,10 @@ const userSchema = new mongoose.Schema(
       },
     },
 
-    verified: {
-      type: Boolean,
-      default: false,
-    },
+    // isVerified: {
+    //   type: Boolean,
+    //   default: false,
+    // },
 
     preferences: {
       location: [String],      //array of string
@@ -75,13 +75,17 @@ const userSchema = new mongoose.Schema(
     },
 
     otp: {
-      type: Number,
+      type: String,
       // select: false
     },
 
     isOtpVerified: {
       type: Boolean,
       default: false,
+      // select: false
+    },
+    otpExpiry: {
+      type: Date,
       // select: false
     },
 

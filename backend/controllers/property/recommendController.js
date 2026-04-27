@@ -67,7 +67,7 @@ exports.getRecommendPropertiesBySearchTerm = async (req, res) => {
         }
         // console.log('query->', query);
 
-        const plot_embedding = await getEmbeddings(query);      // converts the users search text into a 384-dimensional embedding using Hugging Face.
+        const plot_embedding = await getEmbeddings(query.trim());      // converts the users search text into a 384-dimensional embedding using Hugging Face.
 
         // console.log('movie------>', plot_embedding.length);
         if (!Array.isArray(plot_embedding) || plot_embedding.length !== 384) {
