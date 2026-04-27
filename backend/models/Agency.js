@@ -13,6 +13,13 @@ const agencySchema = new mongoose.Schema({
         required: true
     },
 
+    // for khalti
+    khaltiNumber: { type: String },
+    khaltiQR : {
+        qrUrl: String,
+        qrPublicId: String
+    },
+
     otp: { type: String },
     isOtpVerified: { type: Boolean, default: false },
     otpExpiry: { type: Date }
