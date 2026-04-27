@@ -1,5 +1,6 @@
-const Property = require("../../models/propertyModel");
+// const Property = require("../../models/propertyModel");
 const Agency = require("../../models/Agency");
+const Property = require("../../models/propertyModel");
 const Review = require("../../models/reviewModel");
 const uploadToCloudinary = require("../../utils/uploadToCloudinary");
 
@@ -207,7 +208,6 @@ exports.addProperty = async (req, res) => {
 // GET ALL PROPERTY --> admin, tenant
 exports.getProperties = async(req, res) => {
   const properties = await Property.find().populate('owner', 'name email phoneNumber')    //returns array of properties
-
   if(properties.length === 0){
     return res.status(400).json({
       success: false,

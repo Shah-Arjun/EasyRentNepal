@@ -78,6 +78,13 @@ exports.loginUser = async(req, res) => {
         })
     }
 
+    // if user exist but not verified
+    if(!userFound.isOtpVerified){
+        return res.status(403).json({
+            message: "Please verify your account first"
+        })
+    }
+
     // match check the password if user exists
     const isPwMatched = bcrypt.compareSync(password, userFound.password)
 

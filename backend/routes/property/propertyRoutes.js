@@ -9,14 +9,15 @@ const router = require('express').Router()
 
 
 // property routes endpoints
+router.route('/').get(catchAsync(getProperties))
 router.route('/addProperty').post(isAuthenticated, restrictTo('owner'), upload.array("images", 5), catchAsync(addProperty))   // //field name image will have max 5 files
 router.route('/owner').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerProperties))
 router.route('/owner-dashboard').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerDashboardData))
-router.route('/').get(catchAsync(getProperties))
 router.route('/search').get(catchAsync(getRecommendPropertiesBySearchTerm))   // get top 10 similar properties based on search text
-router.route('/:id').get(catchAsync(getSingleProperty))
-router.route('/:id').delete(isAuthenticated, restrictTo('owner'), catchAsync(deleteProperty))
 router.route('/recommend/:id').get(catchAsync(getSimilarRecommendProperties))   // get top 10 similar properties based on semantic similarity
+router.route('/:id')
+    .get(catchAsync(getSingleProperty))
+    .delete(isAuthenticated, restrictTo('owner'), catchAsync(deleteProperty))
 
 
 module.exports = router
