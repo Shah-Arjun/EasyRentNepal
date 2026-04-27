@@ -1,9 +1,9 @@
-require('dotenv').config();   // ⚠️ Must be FIRST - loads .env before any other module reads env vars
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const connectMongoDB = require("./database/db")
 const cookieParser = require('cookie-parser');
+require('dotenv').config();   // ⚠️ Must be FIRST - loads .env before any other module reads env vars
 
 
 //routes import

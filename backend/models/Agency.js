@@ -11,7 +11,11 @@ const agencySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+
+    otp: { type: String },
+    isOtpVerified: { type: Boolean, default: false },
+    otpExpiry: { type: Date }
 
 }, { timestamps: true });
 

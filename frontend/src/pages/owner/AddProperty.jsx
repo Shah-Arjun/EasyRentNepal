@@ -22,7 +22,7 @@ const categories = [
   "Flat",
   "Office",
   "Room",
-  "Shutter/Shop",
+  "Shutter",
 ];
 
 const listingTypes = ["Rent"];
@@ -153,7 +153,7 @@ const AddProperty = () => {
     bedrooms: 1,
     bathrooms: 1,
     bathroomType: "shared",
-    bedCount: 1,
+    bedCount: 0,
     living: 0,
     kitchen: 0,
     parking: "None",
@@ -628,7 +628,7 @@ useEffect(() => {
               </div>
               <div>
                 <Label>Bed Count</Label>
-                <Input type="number" min="1" name="bedCount" value={formData.bedCount} onChange={handleInputChange} />
+                <Input type="number" min="0" name="bedCount" value={formData.bedCount} onChange={handleInputChange} />
               </div>
               <div>
                 <Label>Furnishing</Label>

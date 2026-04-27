@@ -24,6 +24,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import VerifyOtp from './components/VerifyOtp';
 
 
 
@@ -33,7 +34,7 @@ const App = () => {
 
 
   const isOwnerPath = location.pathname.startsWith('/owner');
-  const isAuthPath = location.pathname === '/login' || location.pathname === '/register';
+  const isAuthPath = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/verify-otp';
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -66,6 +67,7 @@ const App = () => {
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
 
         {/* Protected Owner Routes with Layout */}
         <Route element={<ProtectedRoute requiredRole="owner" />}>

@@ -1,13 +1,13 @@
-const slugify = require("slugify");
+// const slugify = require("slugify");
 
-exports.generateSlug = (title, location) => {
-  const locPart =
-    location?.municipality ||
-    location?.district ||
-    '';
+// exports.generateSlug = (title, location) => {
+//   const locPart =
+//     location?.municipality ||
+//     location?.district ||
+//     '';
 
-  return slugify(
-    `${title} ${locPart}`,
-    { lower: true, strict: true }
-  );
-};
+//   return slugify(
+//     `${title} ${locPart}`,
+//     { lower: true, strict: true }
+//   );
+// };

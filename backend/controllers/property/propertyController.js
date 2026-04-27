@@ -27,6 +27,7 @@ exports.addProperty = async (req, res) => {
     builtYear,
     facing,
     fullDescription,
+    videoUrl,
     status,
   } = req.body;
 
@@ -142,7 +143,8 @@ exports.addProperty = async (req, res) => {
   const propertyData = {
     owner: ownerId,
     title: title.trim(),
-    category,
+    // Keep backward compatibility with older clients using "Shutter/Shop".
+    category: category === "Shutter/Shop" ? "Shutter" : category,
     listingType,
     noOfFlat,
     bedrooms,
@@ -161,6 +163,7 @@ exports.addProperty = async (req, res) => {
     location,
     roadSize,
     fullDescription: fullDescription.trim(),
+    videoUrl,
     images: imagesWithPrimary,
     amenities: Array.isArray(amenities) ? amenities : [],
     status: status || "Pending",
@@ -175,6 +178,13 @@ exports.addProperty = async (req, res) => {
     result = await Property.create(propertyData);
   } catch (error) {
     console.error("Database Error:", error);
+    if (error.name === "ValidationError") {
+      const firstError = Object.values(error.errors)[0]?.message;
+      return res.status(400).json({
+        success: false,
+        message: firstError || "Invalid property data",
+      });
+    }
     return res.status(500).json({
       success: false,
       message: "Database error while creating property",
