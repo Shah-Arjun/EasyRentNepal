@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
 import { assets, cities } from '../assets/data'
 

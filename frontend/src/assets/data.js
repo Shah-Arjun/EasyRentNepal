@@ -16,6 +16,8 @@ import bath from './bath.svg'
 import bed from './bed.svg'
 import car from './car.svg'
 import ruler from './ruler.svg'
+import building from './building-2.svg'
+import compass from './compass.svg'
 import facebook from './facebook.svg'
 import instagram from './instagram.svg'
 import twitter from './twitter.svg'
@@ -56,6 +58,7 @@ import client4 from '../assets/client4.jpg'
 import about from '../assets/about.png'
 import faq from '../assets/faq.png'
 import createPrp from "../assets/createPrp.png"
+import downArrow from "../assets/chevron-down.svg"
 
 
 // Blogs
@@ -88,6 +91,8 @@ export const assets = {
     bed,
     car,
     ruler,
+    building,
+    compass,
     facebook,
     instagram,
     twitter,
@@ -118,7 +123,8 @@ export const assets = {
     client3,
     client4,
     about,
-    faq
+    faq,
+    downArrow
 }
 
 export const cities = [
