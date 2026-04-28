@@ -6,6 +6,7 @@ const User = require("../../models/userModel")
 
 // CREATE PROPERTY REVIEW  --> only by tenent
 exports.createPropertyReview = async(req, res) => {
+    console.log("hello for create review")
     const propertyId = req.params.id
     const tenantId = req.user.id
     const { rating, comment } = req.body
@@ -73,7 +74,7 @@ exports.getPropertyRviewsByMe = async(req, res) => {
 // DELETE PROPERTY REVIEW by me
 exports.deletePropertyReviewMe = async(req, res) => {
     const reviewId = req.params.id
-    console.log(reviewId)
+    // console.log(reviewId)
 
     if(!reviewId){
         return res.status(400).json({
@@ -87,16 +88,16 @@ exports.deletePropertyReviewMe = async(req, res) => {
 
     if(!reviewExist){
         return res.status(404).json({
-            message: "Property not found with that id"
+            message: "Review not found with that id"
         })
     }
 
     // check if that(current) user has created the review 
     const userId = req.user.id
-    const ownerOfReview = reviewExist.userId
-    if(ownerOfReview != userId){
+    const ownerOfReview = String(reviewExist.userId)
+    if(ownerOfReview !== String(userId)){
         return res.status(403).json({
-            message: "You dont have permission to delete this review (you are not a owner of this review"
+            message: "You don't have permission to delete this review (you are not the owner of this review)"
         })
     }
     
@@ -108,6 +109,8 @@ exports.deletePropertyReviewMe = async(req, res) => {
         message: "Review deleted successfully"
     })
 }
+
+
 
 // GET ALL REVIEWS FOR A PROPERTY
 exports.getPropertyReviews = async(req, res) => {
