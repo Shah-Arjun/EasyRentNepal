@@ -14,11 +14,11 @@ const agencySchema = new mongoose.Schema({
     },
 
     // for khalti
-    khaltiNumber: { type: String },
-    khaltiQR : {
-        qrUrl: String,
-        qrPublicId: String
-    },
+    // khaltiNumber: { type: String },
+    // khaltiQR : {
+    //     qrUrl: String,
+    //     qrPublicId: String
+    // },
 
     otp: { type: String },
     isOtpVerified: { type: Boolean, default: false },

@@ -216,6 +216,7 @@ exports.registerUser = async (req, res) => {
     
     if(!name || !email || !password || !phone){
         return res.status(400).json({
+            success: false,
             message: "Name, email, password, phoneNumber must be provided"
         })
     }
