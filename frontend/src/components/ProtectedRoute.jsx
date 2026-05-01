@@ -28,7 +28,7 @@ const ProtectedRoute = ({ requiredRole = null }) => {
     const userRole = userProfile?.role || (isOwner ? 'owner' : 'tenant');
 
     if (requiredRole === 'owner' && userRole !== 'owner') {
-      return <Navigate to="/unauthorized" replace />;
+      return <Navigate to="/listing" replace />;
       // Or to a better "unauthorized" page: <Navigate to="/unauthorized" replace />
     }
 

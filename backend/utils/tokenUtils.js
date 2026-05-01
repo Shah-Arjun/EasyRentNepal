@@ -8,13 +8,28 @@ const COOKIE_NAME = "auth_token"
 
 
 //cookie behavior
-const cookieOptions = () => ({
-  httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',                      
-  sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',  
-  maxAge: 12 * 60 * 60 * 1000,   // 12 hours
-  path: '/'
-});
+// const cookieOptions = () => ({
+//   httpOnly: true,
+//   secure: process.env.NODE_ENV === 'production',                      
+//   sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',  
+//   maxAge: 12 * 60 * 60 * 1000,   // 12 hours
+//   path: '/'
+// });
+
+
+
+const cookieOptions = () => {
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    return {
+        httpOnly: true,
+        secure: isProduction,
+        // Use None in production so the auth cookie is accepted on cross-origin frontends.
+        sameSite: isProduction ? 'none' : 'lax',
+        maxAge: 1 * 60 * 60 * 1000,   // 1 hour
+        path: '/'
+    };
+};
 
 
 
@@ -22,7 +37,7 @@ const cookieOptions = () => ({
 // function to generate token
 const generateToken = (id, role) => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRE || '12h',
+        expiresIn: process.env.JWT_EXPIRE || '1h',
         algorithm: 'HS256'
     })
 }

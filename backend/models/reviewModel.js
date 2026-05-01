@@ -46,13 +46,5 @@ const reviewSchema = new mongoose.Schema(
 
 
 
-// prevent multiple reviews by same user on same property 
-reviewSchema.index(
-    { userId: 1, propertyId: 1 }, 
-    { unique: true }
-);
-
-
-
 const Review = mongoose.model("Review", reviewSchema)
 module.exports = Review

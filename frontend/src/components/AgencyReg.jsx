@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
 import { assets, cities } from '../assets/data'
 
@@ -13,11 +13,11 @@ const AgencyReg = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log("Hello from agency reg frontend")
         try {
             setLoading(true)
-            const response = await api.post('/agency', {
-                name, email, contact, address, city
-            })
+            const response = await api.post('/agency', { name, email, contact, address, city })
+            
             if (response.data.success) {
                 await loadUserData() // Refresh user data to include agency
                 setShowAgencyReg(false)
@@ -32,8 +32,8 @@ const AgencyReg = () => {
     }
 
   return (
-    <div onClick={()=>setShowAgencyReg(false)} className='fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black/80'>
-        <form onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}className="flexCenter bg-white rounded-xl max-md:mx-2 relative">
+    <div onClick={()=>setShowAgencyReg(false)} className='fixed left-0 right-0 z-50 flex items-center justify-center bg-black/80'>
+        <form onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}className="flexCenter bg-white rounded-xl relative w-full max-w-5xl">
             <img src={assets.createPrp} alt="createPrep img" className='w-1/2 rounded-1-xl hidden md:block' />
             <div className='flex flex-col md:w-1/2 p-8 md:p-10'>
                 <img onClick={()=>setShowAgencyReg(false)} src={assets.close} alt="" className='absolute top-4 right-4 h-6 w-6 p-1 cursor-pointer bg-secondary/50 rounded full shadow-md'/>

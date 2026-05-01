@@ -1,5 +1,5 @@
 // const Property = require("../../models/propertyModel");
-const Agency = require("../../models/Agency");
+const Agency = require("../../models/agencyModel");
 const Property = require("../../models/propertyModel");
 const Review = require("../../models/reviewModel");
 const uploadToCloudinary = require("../../utils/uploadToCloudinary");

@@ -117,9 +117,10 @@ const propertySchema = new mongoose.Schema(
       }
     },
 
-    roadSize: {
+    road: {
       value: { type: Number },
-      unit: { type: String, default: 'ft' }
+      unit: { type: String, default: 'ft' },
+      type: { type: String, enum: ['pitched', 'gravelled', 'block', "no road", 'other'] }
     },
 
     fullDescription: {

@@ -58,7 +58,7 @@ const About = () => {
           {/* features list */}
           <div className="flex flex-col gap-6 mt-5">
             {info.map((data, index) => (
-              <div key={index} className="flex gap-3">
+              <div key={data.num || index} className="flex gap-3">
                 <img src={data.icon} alt="" width={20} />
                 <p>{data.text}</p>
               </div>
@@ -69,11 +69,12 @@ const About = () => {
           {/* Rating */}
           <div className="flex items-center divide-x divide-gray-300 mt-11">
             <div className="flex -space-x-3 pr-3">
-              {clients.map((c) => (
+              {clients.map((c, i) => (
                 <img
-                  src={c.img}
-                  alt="image"
-                  className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-1"
+                  key={c.id || i}
+                  src={c.img || "/def"}
+                  alt="client"
+                  className="w-12 h-12 rounded-full border-2 border-white hover:-translate-y-1 transition z-10"
                 />
               ))}
             </div>

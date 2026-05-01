@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const Agency = require('../models/Agency');
+const Agency = require('../models/agencyModel');
 const generateOtp = require('../utils/generateOtp');
 
 

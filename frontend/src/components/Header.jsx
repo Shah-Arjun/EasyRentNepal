@@ -14,7 +14,7 @@ const Header = () => {
   // const [showSearch, setShowSearch] = useState(false);
   const profileMenuRef = useRef(null);
   const location = useLocation();
-  const { navigate, isOwner, setIsOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
+  const { navigate, isOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
 
   const handleLogout = () => {
     logout();
