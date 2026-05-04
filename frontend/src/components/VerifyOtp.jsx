@@ -78,14 +78,14 @@ const VerifyOtp = () => {
     setLoading(true);
 
     try {
-      console.log("🔐 Verifying OTP for:", role)
+      console.log("Verifying OTP for:", role)
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/${role === 'tenant' ? 'auth/register' : 'agency'}/verify-otp`, 
         { email, otp: finalOtp },
         { withCredentials: true }
       );
 
       toast.success(res.data.message);
-      console.log("✅ OTP verified successfully")
+      console.log("OTP verified successfully")
 
       localStorage.removeItem("verifyEmail");
       localStorage.removeItem("verifyRole");
@@ -94,9 +94,9 @@ const VerifyOtp = () => {
         navigate("/login");
       } else if(role === "owner") {
         // Reload user data to refresh the context with new role
-        console.log("📊 Reloading user data after agency OTP verification...")
+        console.log("Reloading user data after agency OTP verification...")
         await loadUserData()
-        console.log("🚀 Navigating to /owner")
+        console.log("Navigating to /owner")
         navigate("/owner");
       } else {
         navigate("/");
@@ -184,6 +184,7 @@ const VerifyOtp = () => {
 
   //   RESEND OTP
   const resendOtp = async () => {
+    setLoading(true)
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/${role === 'tenant' ? 'auth/register' : 'agency'}/resend-otp`,
@@ -191,6 +192,7 @@ const VerifyOtp = () => {
       );
 
       toast.success(res.data.message);
+      setLoading(false)
 
       setOtp(new Array(length).fill(""));
       inputsRef.current[0]?.focus();
@@ -199,6 +201,7 @@ const VerifyOtp = () => {
       setCanResend(false);
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to resend OTP");
+      setLoading(false);
     }
   };
 
@@ -260,7 +263,7 @@ const VerifyOtp = () => {
       <div style={{ marginTop: "15px" }}>
         {canResend ? (
           <button onClick={resendOtp} style={styles.resend}>
-            Resend OTP
+            {loading ? "Resending..." : "Resend OTP" }
           </button>
         ) : (
           <p>Resend OTP in {timer}s</p>

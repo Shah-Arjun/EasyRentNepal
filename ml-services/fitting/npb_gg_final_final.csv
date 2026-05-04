@@ -1,0 +1,1022 @@
+listing_id,property_type,usage_type,is_commercial,price,rent_period,road_size(ft),road_type,no_of_flat,rooms,bath,kitchen,shutter,furnishing,state,district,city,built_year,parking_no,parking_type,views,facing,area_sqft,age,transport_distance,entrance_type,service_charge,amenities_count,water_supply
+5975,land,commercial,1,1000,month,32,pitched,0,0,0,0,0,unfurnished,bagmati,kavrepalanchok,namobuddha,0,2,bike,1107,east,328560,0,200,unknown,0,0,24_hours
+5974,land,commercial,1,1000,month,30,pitched,0,0,0,0,0,unfurnished,bagmati,kavrepalanchok,namobuddha,0,2,bike,977,east,15059,0,200,unknown,0,0,24_hours
+7327,land,commercial,1,1000,month,32,pitched,0,0,0,0,0,unfurnished,bagmati,kavrepalanchok,namobuddha,0,2,bike,2970,unknown,328560,0,200,unknown,0,0,24_hours
+7326,land,commercial,1,1000,month,30,pitched,0,0,0,0,0,unfurnished,bagmati,kavrepalanchok,namobuddha,0,2,bike,1820,unknown,15059,0,200,unknown,0,0,24_hours
+5843,land,commercial,1,4500,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,2,bike,1777,north,5012.1,0,200,unknown,0,0,24_hours
+3149,land,commercial,1,5000,month,13,pitched,0,0,0,0,0,unfurnished,bagmati,makawanpur,hetauda,0,4,car,2541,east,10,0,200,unknown,0,0,24_hours
+3926,land,commercial,1,7000,unknown,13,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3151,east,1280,0,200,unknown,0,0,24_hours
+8987,land,commercial,1,10000,month,6,gravel,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,161,unknown,1026.75,0,200,unknown,0,0,24_hours
+4253,land,commercial,1,10000,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,4390,north,4,0,200,unknown,0,0,24_hours
+2421,land,commercial,1,10000,month,16,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,1,car,5334,east,13.2,0,200,unknown,0,0,24_hours
+7231,land,commercial,1,10000,month,16,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,2496,unknown,1026.75,0,200,unknown,0,0,24_hours
+3473,land,commercial,1,15000,month,16,pitched,0,0,0,0,0,unfurnished,gandaki,kaski,pokhara,0,2,bike,2844,north,43808,0,200,unknown,0,0,24_hours
+3263,land,commercial,1,20000,unknown,6,gravel,0,0,0,0,0,unfurnished,gandaki,kaski,pokhara,0,2,bike,3923,east,72000,0,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-ropani-commercial-land-for-rent-in-hattiban-lalitpur/,land,commercial,1,20000,yearly,16,pitched,0,0,0,0,0,unfurnished,bagmati,lalitpur,lalitpur,0,15,unknown,2198.5,unknown,5476,0,200,unknown,0,0,24_hours
+2921,land,commercial,1,25000,yearly,30,pitched,0,0,0,0,0,unfurnished,bagmati,sindhuli,sindhuli,0,7.5,car,1874,north east,41000,0,200,unknown,0,0,24_hours
+4543,land,commercial,1,30000,month,16,pitched,0,0,0,0,0,unfurnished,gandaki,gorkha,gorkha,0,2,bike,3427,east,136900,0,200,unknown,0,0,24_hours
+3982,land,commercial,1,30000,month,12,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3987,east,1200,0,200,unknown,0,0,24_hours
+4156,land,commercial,1,32000,month,36,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,2,bike,3735,north,15000,0,200,unknown,0,0,24_hours
+4856,land,commercial,1,35000,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3069,south,1197.875,0,200,unknown,0,0,24_hours
+8398,land,commercial,1,35000,month,12,gravel,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,1,car,868,east,2395.75,0,200,unknown,0,0,24_hours
+7990,land,commercial,1,40000,month,24,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,2582,unknown,4107,0,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/14-aana-land-lease-or-rent-in-madhyapur-thimi-bhaktapur/,land,commercial,1,40000,yearly,40,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,madhyapur thimi,0,0,unknown,2198.5,east,4791.5,0,800,unknown,1,0,24_hours
+4339,land,commercial,1,45000,month,30,pitched,0,0,0,0,0,unfurnished,bagmati,makawanpur,hetauda,0,2,bike,4128,east,3,0,200,unknown,0,0,24_hours
+3489,land,commercial,1,50000,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,2,bike,3981,east,5476,0,200,unknown,0,0,24_hours
+3614,land,commercial,1,55000,month,12,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3791,east,12663,0,200,unknown,0,0,24_hours
+7324,land,commercial,1,55000,month,26,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,7.5,car,1824,east,23,0,200,unknown,0,0,24_hours
+2827,land,commercial,1,60000,month,16,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3487,north,7.5,0,200,unknown,0,0,24_hours
+4405,land,commercial,1,70000,month,13,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,unknown,2967,north,2053.5,0,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/20-aana-land-lease-or-rent-in-balkot-bhaktapur/,land,commercial,1,70000,yearly,24,pitched,0,0,0,0,0,unfurnished,bagmati,bhaktapur,bhaktapur,0,0,unknown,2198.5,east,6845,0,200,unknown,1,0,24_hours
+2691,land,commercial,1,99999,unknown,20,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,1,car,2567,south,6,0,200,unknown,0,0,24_hours
+3094,land,commercial,1,100000,yearly,20,pitched,0,0,0,0,0,unfurnished,bagmati,kavrepalanchok,kavrepalanchok,0,4,car,1650,south,1026.75,0,200,unknown,0,0,24_hours
+2811,land,commercial,1,100000,yearly,20,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,7.5,car,2573,east,27380,0,200,unknown,0,0,24_hours
+2490,land,commercial,1,100000,unknown,30,pitched,0,0,0,0,0,unfurnished,lumbini,rupandehi,bhairahwa,0,3,car,2871,west,8448,0,200,unknown,0,0,24_hours
+3006,land,commercial,1,100000,month,16,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,car,2812,east,16,0,200,unknown,0,0,24_hours
+2824,land,commercial,1,100000,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,3907,east,5476,0,200,unknown,0,0,24_hours
+7431,land,commercial,1,100000,unknown,13,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,1,car,2559,west,19166,0,200,unknown,0,0,24_hours
+9058,land,commercial,1,120000,month,13,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,101,south,15059,0,200,unknown,0,0,24_hours
+8781,land,commercial,1,150000,month,20,pitched,0,0,0,0,0,unfurnished,bagmati,lalitpur,lalitpur,0,2,bike,273,east,11,0,200,unknown,0,0,24_hours
+6575,land,commercial,1,225000,unknown,20,pitched,0,0,0,0,0,unfurnished,koshi,sunsari,sunsari,0,2,unknown,2013,unknown,20,0,200,unknown,0,0,24_hours
+5746,land,commercial,1,250000,month,30,pitched,0,0,0,0,0,unfurnished,bagmati,kathmandu,kathmandu,0,2,bike,1311,unknown,10952,0,200,unknown,0,0,24_hours
+3778,land,commercial,1,300000,month,12,pitched,0,0,0,0,0,unfurnished,gandaki,kaski,lalitpur,0,2,bike,2627,west,24642,0,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-plotted-land-for-sale-in-harisiddhi-lalitpur/,land,commercial,1,4000000,yearly,16,pitched,0,0,0,0,0,unfurnished,bagmati,lalitpur,lalitpur,0,15,unknown,2198.5,unknown,1690,0,200,unknown,0,0,24_hours
+3249,other,residential,0,1500,month,12,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2721,east,350,6,200,unknown,0,4,24_hours
+2770,other,residential,0,3000,unknown,16,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,7.5,car,2396,east,2,6,200,unknown,0,4,24_hours
+2764,other,residential,0,4000,unknown,13,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3637,east,1500,6,200,unknown,0,4,24_hours
+3869,shutter,commercial,1,5000,month,16,pitched,1,1,1,2,1,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,1184,east,1000,6,200,unknown,0,4,24_hours
+2715,other,residential,0,7000,month,20,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2070,2,bike,2588,east,1000,12,200,unknown,0,4,24_hours
+2781,commercial,commercial,1,7500,month,13,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,2501,east,2,6,200,unknown,0,4,24_hours
+6881,room,residential,0,8000,unknown,20,pitched,1,4,2,2,0,unfurnished,gandaki,kaski,pokhara,2080,2,unknown,4124,east,2,2,200,unknown,0,4,24_hours
+5518,flat,residential,0,8000,unknown,16,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2712,unknown,3,2,200,unknown,0,4,24_hours
+3592,office,commercial,1,8500,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1672,east,1000,6,200,unknown,0,4,24_hours
+4151,flat,residential,0,9000,month,20,pitched,1,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,1723,east,1500,16,200,unknown,0,4,24_hours
+4209,flat,residential,0,10000,unknown,16,pitched,1,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1323,east,900,6,200,unknown,0,4,24_hours
+4291,shutter,commercial,1,11000,month,12,pitched,1,1,1,1,1,unfurnished,bagmati,kathmandu,kathmandu,2067,2,bike,3886,north,4,15,200,unknown,0,4,24_hours
+3766,flat,residential,0,12000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,2,bike,4783,east,1369,7,200,unknown,0,4,24_hours
+3554,flat,residential,0,12000,month,10,marble,1,2,1,2,0,unfurnished,madhesh,parsa,parsa,2066,1,car,2738,east,1369,16,200,unknown,0,4,24_hours
+3536,other,residential,0,12000,unknown,16,pitched,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2074,2,bike,2319,south west,1100,8,200,unknown,0,4,24_hours
+3625,commercial,commercial,1,12500,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,7.5,car,1997,east,13184,6,200,unknown,0,4,24_hours
+9064,flat,residential,0,12500,month,10,marble,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2074,1,car,224,east,1369,8,200,unknown,0,4,24_hours
+3377,flat,residential,0,13000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1943,east,2053.5,6,200,unknown,0,4,24_hours
+3376,flat,residential,0,13000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1548,east,2053.5,6,200,unknown,0,4,24_hours
+2633,other,residential,0,13000,unknown,10,marble,1,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2069,2,bike,5498,east,4,13,200,unknown,0,4,24_hours
+4091,other,residential,0,14000,unknown,16,pitched,1,2,1,2,0,unfurnished,koshi,morang,morang,2076,1,car,1624,south east,800,6,200,unknown,0,4,24_hours
+8914,flat,residential,0,15000,month,15,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,1,car,888,west,1026.75,1,200,unknown,0,4,24_hours
+5966,flat,residential,0,15000,month,10,marble,1,2,1,1,0,unfurnished,koshi,sunsari,itahari,2076,2,car,783,east,1,6,200,unknown,0,4,24_hours
+2375,flat,residential,0,15000,unknown,12,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2395,east,700,6,200,unknown,0,4,24_hours
+1831,flat,residential,0,15000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2582,east,2,6,200,unknown,0,4,24_hours
+1633,other,residential,0,15000,unknown,16,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4612,east,10,6,200,unknown,0,4,24_hours
+8148,flat,residential,0,15000,month,14,pitched,1,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2467,east,1540.125,6,200,unknown,0,4,24_hours
+3827,other,residential,0,15500,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2500,east,7,6,200,unknown,0,4,24_hours
+2316,flat,residential,0,15500,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,2737,east,1000,6,200,unknown,0,4,24_hours
+2740,other,residential,0,16000,unknown,20,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,3172,east,16,6,200,unknown,0,4,24_hours
+5327,office,commercial,1,16000,month,12,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,4482,north,1369,2,200,unknown,0,4,24_hours
+5297,room,residential,0,16000,unknown,9,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2065,1,car,5481,west,4,17,200,unknown,0,4,24_hours
+3944,other,residential,0,16000,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,1883,south east,1100,6,200,unknown,0,4,24_hours
+2277,other,residential,0,16000,month,13,pitched,1,4,1,2,0,unfurnished,koshi,bhaktapur,bhaktapur,2076,2,bike,3705,east,1200,6,200,unknown,0,4,24_hours
+1895,flat,residential,0,16000,month,14,pitched,1,2,2,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,4403,east,4,6,200,unknown,0,4,24_hours
+4010,office,commercial,1,16500,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3528,south,1000,6,200,unknown,0,4,24_hours
+6063,flat,residential,0,17000,unknown,15,pitched,1,4,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2077,2,car,3631,south,1369,5,200,unknown,0,4,24_hours
+2175,flat,residential,0,17000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2071,2,bike,3835,east,800,11,200,unknown,0,4,24_hours
+4681,flat,residential,0,18000,month,16,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,car,2225,east,2053.5,6,200,unknown,0,4,24_hours
+4134,flat,residential,0,18000,month,13,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,car,3044,east,900,6,200,unknown,0,4,24_hours
+4123,flat,residential,0,18000,month,20,pitched,1,6,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1636,east,4,6,200,unknown,0,4,24_hours
+3806,flat,residential,0,18000,unknown,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2074,2,car,2102,north,2053.5,8,200,unknown,0,4,24_hours
+3652,flat,residential,0,18000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,3116,north east,1200,6,200,unknown,0,4,24_hours
+3501,other,residential,0,18000,unknown,20,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2074,2,car,2811,south west,4449.25,8,200,unknown,0,4,24_hours
+8669,flat,residential,0,18000,month,16,pitched,1,4,1,1,0,semi-furnished,bagmati,bhaktapur,bhaktapur,2069,2,bike,1136,west,1369,13,200,unknown,0,4,24_hours
+2756,flat,residential,0,18000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,7.5,car,12285,east,1711.25,7,200,unknown,0,4,24_hours
+3508,flat,residential,0,18500,month,13,pitched,1,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,3905,south,900,6,200,unknown,0,4,24_hours
+5939,flat,residential,0,19000,month,16,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2075,1,car,1114,east,2395.75,7,200,unknown,0,4,24_hours
+7569,flat,residential,0,19500,month,15,pitched,1,4,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,1,car,2727,south,1711.25,1,200,unknown,0,4,24_hours
+4252,flat,residential,0,20000,month,13,pitched,1,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2067,1,car,3439,south west,4.5,15,200,unknown,0,4,24_hours
+3878,office,commercial,1,20000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,4215,north,3000,6,200,unknown,0,4,24_hours
+3533,flat,residential,0,20000,unknown,16,pitched,1,2,2,2,0,unfurnished,gandaki,kaski,lalitpur,2076,2,car,1854,north east,800,6,200,unknown,0,4,24_hours
+3468,flat,residential,0,20000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,2487,east,2,6,200,unknown,0,4,24_hours
+3358,flat,residential,0,20000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2979,north,6,6,200,unknown,0,4,24_hours
+2187,flat,residential,0,20000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4187,east,1500,6,200,unknown,0,4,24_hours
+1882,other,residential,0,20000,unknown,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,bara,2067,3,car,5692,west,1711.25,15,200,unknown,0,4,24_hours
+7533,other,residential,0,20000,month,15,pitched,1,4,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,1,car,3267,south,1711.25,1,200,unknown,0,4,24_hours
+6891,flat,residential,0,20000,month,10,marble,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,4416,east,1197.875,2,200,unknown,0,4,24_hours
+2548,flat,residential,0,21000,month,13,pitched,1,2,1,2,0,unfurnished,koshi,morang,morang,2066,2,bike,3665,west,3600,16,200,unknown,0,4,24_hours
+7539,flat,residential,0,21000,month,15,pitched,1,4,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,1,car,2423,south,1711.25,1,200,unknown,0,4,24_hours
+3834,flat,residential,0,22000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,2144,east,1711.25,6,200,unknown,0,4,24_hours
+3518,flat,residential,0,22000,unknown,12,pitched,1,3,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,1323,south,900,6,200,unknown,0,4,24_hours
+2939,flat,residential,0,22000,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,4910,south east,1050,6,200,unknown,0,4,24_hours
+2590,office,commercial,1,22000,unknown,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,3004,east,700,6,200,unknown,0,4,24_hours
+2334,room,residential,0,22000,unknown,16,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2068,2,bike,4011,east,1500,14,200,unknown,0,4,24_hours
+2192,flat,residential,0,23000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1489,east,1711.25,6,200,unknown,0,4,24_hours
+5296,room,residential,0,24000,unknown,9,marble,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,1,car,3757,west,1369,17,200,unknown,0,4,24_hours
+7442,shutter,commercial,1,24000,month,14,pitched,1,2,2,2,1,unfurnished,gandaki,kaski,pokhara,2077,1,car,3691,east,2053.5,5,200,unknown,0,4,24_hours
+8806,flat,residential,0,25000,month,12,pitched,1,4,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,1281,south,1369,6,200,unknown,0,4,24_hours
+5608,other,residential,0,25000,unknown,6,gravel,1,5,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2079,2,bike,1303,east,1711.25,3,200,unknown,0,4,24_hours
+3917,flat,residential,0,25000,month,8,marble,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,car,3218,east,1500,6,200,unknown,0,4,24_hours
+3911,flat,residential,0,25000,month,12,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2066,2,bike,2947,north,1369,16,200,unknown,0,4,24_hours
+3626,flat,residential,0,25000,month,12,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,2,bike,2170,north,1369,7,200,unknown,0,4,24_hours
+2588,flat,residential,0,25000,month,7,gravel,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,4,car,1850,west,4.7,6,200,unknown,0,4,24_hours
+1690,flat,residential,0,25000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,4338,north,965,6,200,unknown,0,4,24_hours
+6161,apartment,residential,0,26000,month,16,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2070,2,car,3235,unknown,2395.75,12,200,unknown,0,4,24_hours
+3643,house,residential,0,26000,month,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,2249,east,4,16,200,unknown,0,4,24_hours
+6020,flat,residential,0,28000,month,16,pitched,1,3,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,1468,unknown,1369,1,200,unknown,0,4,24_hours
+1706,flat,residential,0,28000,unknown,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2352,east,1000,6,200,unknown,0,4,24_hours
+8792,apartment,residential,0,29000,month,13,pitched,1,3,1,1,0,furnished,bagmati,lalitpur,lalitpur,2075,1,car,1265,east,14,7,200,unknown,0,4,24_hours
+6405,other,residential,0,29000,unknown,16,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,car,3377,east,1026.75,17,200,unknown,0,4,24_hours
+5960,apartment,residential,0,30000,unknown,16,pitched,1,3,1,1,0,unfurnished,bagmati,lalitpur,hattiban,2081,1,car,1059,unknown,1026.75,1,200,unknown,0,4,24_hours
+5600,flat,residential,0,30000,month,16,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2071,1,car,1161,south east,1250,11,200,unknown,0,4,24_hours
+5328,flat,residential,0,30000,month,13,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,3158,east,2395.75,2,200,unknown,0,4,24_hours
+4735,flat,residential,0,30000,month,13,pitched,1,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3182,east,1711.25,6,200,unknown,0,4,24_hours
+4078,other,residential,0,30000,unknown,16,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,4,car,1747,east,20,6,200,unknown,0,4,24_hours
+3772,flat,residential,0,30000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2072,1,car,4381,south east,700,10,200,unknown,0,4,24_hours
+3563,flat,residential,0,30000,month,12,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2398,east,2,6,200,unknown,0,4,24_hours
+3516,flat,residential,0,30000,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1519,west,1500,6,200,unknown,0,4,24_hours
+3176,flat,residential,0,30000,unknown,16,pitched,1,5,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,car,3529,south,1000,6,200,unknown,0,4,24_hours
+2929,apartment,residential,0,30000,unknown,10,marble,1,2,1,2,0,furnished,bagmati,kathmandu,kathmandu,2076,2,bike,3913,east,900,6,200,unknown,0,4,24_hours
+2650,house,residential,0,30000,unknown,8,marble,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2074,7.5,car,5471,east,900,8,200,unknown,0,4,24_hours
+2001,other,residential,0,30000,month,8,gravel,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2751,east,770,6,200,unknown,0,4,24_hours
+1713,flat,residential,0,30000,month,12,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,3931,east,1100,6,200,unknown,0,4,24_hours
+6569,apartment,residential,0,30000,month,20,pitched,1,5,1,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2275,east,2,1,200,unknown,0,4,24_hours
+3713,flat,residential,0,32000,month,8,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,2529,east,5476,16,200,unknown,0,4,24_hours
+3606,commercial,commercial,1,35000,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,1,car,2430,east,1500,16,200,unknown,0,4,24_hours
+2926,flat,residential,0,35000,month,4,gravel,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,car,2723,east,6,6,200,unknown,0,4,24_hours
+2515,flat,residential,0,35000,month,16,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,4256,north,3764.75,6,200,unknown,0,4,24_hours
+8313,apartment,residential,0,35000,unknown,13,pitched,1,3,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,unknown,1431,south,13,6,200,unknown,0,4,24_hours
+8257,apartment,residential,0,35000,month,20,pitched,1,3,1,1,0,furnished,bagmati,lalitpur,lalitpur,2077,2,bike,2033,north east,13,5,200,unknown,0,4,24_hours
+6570,apartment,residential,0,35000,month,20,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,4278,east,2,1,200,unknown,0,4,24_hours
+8625,apartment,residential,0,36000,month,13,pitched,1,2,1,1,0,fully-furnished,bagmati,kathmandu,kathmandu,2080,7.5,car,798,east,2395.75,2,200,unknown,0,4,24_hours
+2736,apartment,residential,0,38000,month,20,pitched,1,4,1,2,0,furnished,bagmati,lalitpur,lalitpur,2076,7.5,car,7266,east,640,6,200,unknown,0,4,24_hours
+9031,apartment,residential,0,39000,month,13,pitched,1,3,1,1,0,furnished,bagmati,lalitpur,lalitpur,2076,1,car,105,north east,14,6,200,unknown,0,4,24_hours
+6351,other,residential,0,40000,unknown,12,pitched,1,4,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2070,1,car,4354,north,8,12,200,unknown,0,4,24_hours
+4187,flat,residential,0,40000,month,3,gravel,1,6,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,2780,west,6,16,200,unknown,0,4,24_hours
+8187,room,residential,0,40000,month,16,pitched,1,3,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1832,unknown,3,2,200,unknown,0,4,24_hours
+7997,house,residential,0,40000,month,10,marble,1,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2081,2,car,2206,south,2053.5,1,200,unknown,0,4,24_hours
+7663,office,commercial,1,40000,month,13,pitched,1,6,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2073,1,car,2807,south,2,9,200,unknown,0,4,24_hours
+7188,apartment,residential,0,40000,month,20,pitched,1,3,1,1,0,furnished,bagmati,lalitpur,hattiban,2077,2,car,2613,north,1026.75,5,200,unknown,0,4,24_hours
+7040,apartment,residential,0,40000,month,22,pitched,1,5,1,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,3486,east,0,1,200,unknown,0,4,24_hours
+8746,other,residential,0,45000,month,20,pitched,1,2,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2077,2,car,885,east,1112.3125,5,200,unknown,0,4,24_hours
+6458,flat,residential,0,45000,month,10,marble,1,7,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,3675,south east,2738,2,200,unknown,0,4,24_hours
+3095,apartment,residential,0,45000,month,13,pitched,1,2,1,2,0,furnished,bagmati,kathmandu,kathmandu,2071,2,bike,4176,north,1500,11,200,unknown,0,4,24_hours
+2254,office,commercial,1,45000,unknown,10,marble,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,3072,south west,5,6,200,unknown,0,4,24_hours
+2168,flat,residential,0,45000,month,8,gravel,1,2,2,2,0,fully-furnished,bagmati,kathmandu,kathmandu,2076,3,car,3484,south,1500,6,200,unknown,0,4,24_hours
+8365,apartment,residential,0,45000,month,13,pitched,1,3,1,1,0,furnished,bagmati,lalitpur,lalitpur,2075,1,car,1325,north east,14,7,200,unknown,0,4,24_hours
+8016,apartment,residential,0,45000,month,26,pitched,1,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2073,2,unknown,1215,north east,1026.75,9,200,unknown,0,4,24_hours
+7991,office,commercial,1,45000,month,13,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,7.5,car,1603,unknown,800,1,200,unknown,0,4,24_hours
+6742,other,residential,0,45000,unknown,13,pitched,1,5,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,3726,east,2,1,200,unknown,0,4,24_hours
+8627,other,residential,0,46000,unknown,13,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,654,east,2395.75,2,200,unknown,0,4,24_hours
+8626,apartment,residential,0,48000,month,13,pitched,1,4,1,1,0,furnished,bagmati,kathmandu,kathmandu,2080,7.5,car,526,east,2395.75,2,200,unknown,0,4,24_hours
+6442,other,residential,0,50000,unknown,20,pitched,1,5,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,4072,west,2,1,200,unknown,0,4,24_hours
+6228,apartment,residential,0,50000,month,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,3481,north,375,1,200,unknown,0,4,24_hours
+6227,apartment,residential,0,50000,month,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2629,north,375,1,200,unknown,0,4,24_hours
+4188,flat,residential,0,50000,month,3,gravel,1,6,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,2283,west,6,16,200,unknown,0,4,24_hours
+4049,house,residential,0,50000,unknown,16,pitched,1,1,1,2,0,unfurnished,lumbini,rupandehi,bhairahwa,2076,2,bike,2061,east,700,6,200,unknown,0,4,24_hours
+3821,office,commercial,1,50000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1044,east,4,6,200,unknown,0,4,24_hours
+3266,office,commercial,1,50000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3192,north,700,6,200,unknown,0,4,24_hours
+8657,other,residential,0,50000,month,20,pitched,1,2,1,2,0,unfurnished,gandaki,kaski,pokhara,2075,1,car,911,east,2395.75,7,200,unknown,0,4,24_hours
+2856,flat,residential,0,50000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,chitwan,chitwan,2076,2,bike,2029,east,1200,6,200,unknown,0,4,24_hours
+2499,flat,residential,0,50000,month,13,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2068,2,bike,3973,west,1200,14,200,unknown,0,4,24_hours
+8364,apartment,residential,0,50000,month,20,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2078,2,bike,1203,east,684.5,4,200,unknown,0,4,24_hours
+8320,other,residential,0,50000,unknown,20,pitched,1,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,948,north,800,2,200,unknown,0,4,24_hours
+6935,apartment,residential,0,50000,month,20,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2920,east,0,1,200,unknown,0,4,24_hours
+6778,other,residential,0,50000,unknown,20,pitched,1,5,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,4872,east,2,1,200,unknown,0,4,24_hours
+6760,office,commercial,1,53000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2079,4,car,2588,west,2052,3,200,unknown,0,4,24_hours
+9043,other,residential,0,55000,unknown,16,pitched,1,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,bike,68,unknown,1369,17,200,unknown,0,4,24_hours
+4052,office,commercial,1,55000,month,6,gravel,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,car,4364,south,7,6,200,unknown,0,4,24_hours
+3711,flat,residential,0,55000,month,10,marble,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,1939,east,5476,6,200,unknown,0,4,24_hours
+3619,other,residential,0,55000,unknown,16,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,7646,east,1200,6,200,unknown,0,4,24_hours
+1684,office,commercial,1,55000,month,20,pitched,1,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2072,2,bike,5316,north,1369,10,200,unknown,0,4,24_hours
+7360,apartment,residential,0,55000,month,20,pitched,1,2,1,1,0,furnished,bagmati,lalitpur,lalitpur,2080,7.5,car,2849,east,0,2,200,unknown,0,4,24_hours
+7039,other,residential,0,55000,unknown,26,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,1983,east,0,1,200,unknown,0,4,24_hours
+6781,other,residential,0,55000,unknown,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2306,east,400,1,200,unknown,0,4,24_hours
+6758,office,commercial,1,55000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2079,2,unknown,3714,west,2052,3,200,unknown,0,4,24_hours
+8842,office,commercial,1,60000,month,24,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,897,south,645,2,200,unknown,0,4,24_hours
+6215,other,residential,0,60000,unknown,20,pitched,1,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2915,unknown,2,2,200,unknown,0,4,24_hours
+6214,apartment,residential,0,60000,month,16,pitched,1,5,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,4207,unknown,2,2,200,unknown,0,4,24_hours
+2404,office,commercial,1,60000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,3,car,3850,east,5,7,200,unknown,0,4,24_hours
+2043,apartment,residential,0,60000,month,20,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,3,car,4785,east,700,6,200,unknown,0,4,24_hours
+6722,other,residential,0,60000,unknown,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,3104,east,2,1,200,unknown,0,4,24_hours
+6512,office,commercial,1,60000,month,20,pitched,1,3,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2077,7.5,car,4465,east,1711.25,5,200,unknown,0,4,24_hours
+6224,apartment,residential,0,65000,month,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,3177,unknown,750,1,200,unknown,0,4,24_hours
+6223,apartment,residential,0,65000,month,20,pitched,1,5,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2747,south east,1346,1,200,unknown,0,4,24_hours
+4036,other,residential,0,65000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,bike,3551,east,1000,6,200,unknown,0,4,24_hours
+3330,apartment,residential,0,65000,month,6,gravel,1,2,2,2,0,furnished,bagmati,kathmandu,kathmandu,2070,1,car,8381,south east,1187,12,200,unknown,0,4,24_hours
+2616,other,residential,0,65000,unknown,10,marble,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4119,south,850,6,200,unknown,0,4,24_hours
+2064,apartment,residential,0,65000,month,16,pitched,1,2,2,2,0,fully-furnished,bagmati,lalitpur,lalitpur,2076,2,bike,5932,east,1026.75,6,200,unknown,0,4,24_hours
+8538,apartment,residential,0,65000,month,16,pitched,1,5,2,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2071,4,car,1019,north east,15,11,200,unknown,0,4,24_hours
+6851,apartment,residential,0,65000,month,22,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,3235,east,0,1,200,unknown,0,4,24_hours
+6743,other,residential,0,65000,unknown,13,pitched,1,7,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,3482,east,2,1,200,unknown,0,4,24_hours
+6740,apartment,residential,0,65000,month,20,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,4,car,2688,east,0,1,200,unknown,0,4,24_hours
+6583,apartment,residential,0,65000,month,20,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,bike,2881,east,2,1,200,unknown,0,4,24_hours
+3223,office,commercial,1,66000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,1,car,2131,east,1100,7,200,unknown,0,4,24_hours
+6231,apartment,residential,0,70000,month,20,pitched,1,6,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2237,south,2,1,200,unknown,0,4,24_hours
+5854,other,residential,0,70000,unknown,13,pitched,1,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2069,12.5,bike,2344,south east,54760,13,200,unknown,0,4,24_hours
+8471,apartment,residential,0,70000,month,20,pitched,1,5,2,1,0,furnished,bagmati,lalitpur,lalitpur,2075,2,car,1261,south,15,7,200,unknown,0,4,24_hours
+8824,office,commercial,1,75000,month,16,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2185,unknown,865,2,200,unknown,0,4,24_hours
+6443,other,residential,0,75000,unknown,20,pitched,1,7,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2986,east,2,1,200,unknown,0,4,24_hours
+6305,apartment,residential,0,75000,month,20,pitched,1,9,3,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2691,south east,1625,1,200,unknown,0,4,24_hours
+2058,apartment,residential,0,75000,month,16,pitched,1,2,2,2,0,fully-furnished,bagmati,kathmandu,kathmandu,2076,2,bike,6128,east,3,6,200,unknown,0,4,24_hours
+6779,other,residential,0,75000,unknown,20,pitched,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2590,east,550,1,200,unknown,0,4,24_hours
+6744,apartment,residential,0,75000,month,20,pitched,1,7,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2401,east,0,1,200,unknown,0,4,24_hours
+6318,apartment,residential,0,80000,month,20,pitched,1,9,3,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2661,east,1800,1,200,unknown,0,4,24_hours
+5146,office,commercial,1,80000,month,30,pitched,1,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3232,east,450,6,200,unknown,0,4,24_hours
+1966,office,commercial,1,80000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,4005,east,1100,6,200,unknown,0,4,24_hours
+6446,apartment,residential,0,85000,unknown,13,pitched,1,3,1,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2069,2,bike,5140,north,1100,13,200,unknown,0,4,24_hours
+6444,other,residential,0,85000,unknown,20,pitched,1,7,2,1,0,fully-furnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2971,east,2,1,200,unknown,0,4,24_hours
+8231,flat,residential,0,85000,month,16,pitched,1,2,2,1,0,unfurnished,bagmati,kathmandu,bara,2080,2,unknown,1351,unknown,1369,2,200,unknown,0,4,24_hours
+6229,apartment,residential,0,90000,month,20,pitched,1,6,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2666,south west,1200,1,200,unknown,0,4,24_hours
+6225,apartment,residential,0,90000,month,20,pitched,1,8,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,1917,south,1250,1,200,unknown,0,4,24_hours
+7925,apartment,residential,0,90000,month,20,marble,1,2,2,1,0,furnished,bagmati,kathmandu,kathmandu,2080,1,car,3081,unknown,5476,2,200,unknown,0,4,24_hours
+2147,office,commercial,1,95000,month,16,pitched,1,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2811,east,2616.34,6,200,unknown,0,4,24_hours
+2137,other,residential,0,95000,unknown,16,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2657,north,1500,6,200,unknown,0,4,24_hours
+9019,apartment,residential,0,100000,month,26,pitched,1,2,2,1,0,furnished,bagmati,lalitpur,lalitpur,2080,1,car,111,east,1200,2,200,unknown,0,4,24_hours
+6230,apartment,residential,0,100000,month,20,pitched,1,8,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,2045,south west,1300,1,200,unknown,0,4,24_hours
+4125,office,commercial,1,100000,month,20,pitched,1,2,2,2,0,furnished,bagmati,kathmandu,kathmandu,2076,4,car,5952,south west,1800,6,200,unknown,0,4,24_hours
+3009,apartment,residential,0,100000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,bara,2076,2,bike,3551,east,1500,6,200,unknown,0,4,24_hours
+2775,house,residential,0,100000,month,16,pitched,1,5,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2073,7.5,car,3612,south east,1200,9,200,unknown,0,4,24_hours
+7223,other,residential,0,100000,month,16,pitched,1,2,1,2,0,semi-furnished,bagmati,kathmandu,kathmandu,2065,2,car,2036,west,1026.75,17,200,unknown,0,4,24_hours
+3658,apartment,residential,0,110000,month,16,pitched,1,2,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,2381,east,2100,6,200,unknown,0,4,24_hours
+1975,flat,residential,0,120000,month,25,pitched,1,2,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2067,2,bike,2525,east,4000,15,200,unknown,0,4,24_hours
+7361,other,residential,0,120000,month,20,pitched,1,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1377,west,2,2,200,unknown,0,4,24_hours
+6849,other,residential,0,120000,unknown,22,pitched,1,7,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,1,car,3348,east,0,1,200,unknown,0,4,24_hours
+6782,apartment,residential,0,120000,month,20,pitched,1,7,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,3157,west,0,1,200,unknown,0,4,24_hours
+1965,apartment,residential,0,125000,month,20,pitched,1,2,1,2,0,furnished,bagmati,lalitpur,lalitpur,2076,3,car,3487,east,1700,6,200,unknown,0,4,24_hours
+5686,apartment,residential,0,130000,month,20,pitched,1,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1010,unknown,20,2,200,unknown,0,4,24_hours
+7343,apartment,residential,0,130000,month,16,pitched,1,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,1772,unknown,0,2,200,unknown,0,4,24_hours
+8666,apartment,residential,0,140000,month,20,pitched,1,5,2,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2074,1,car,876,south,54760,8,200,unknown,0,4,24_hours
+2051,house,residential,0,140000,month,16,pitched,1,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,5050,east,1369,6,200,unknown,0,4,24_hours
+8199,office,commercial,1,140000,unknown,10,marble,1,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,1750,east,2738,2,200,unknown,0,4,24_hours
+5681,office,commercial,1,150000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,806,unknown,9,2,200,unknown,0,4,24_hours
+4612,house,residential,0,150000,unknown,16,pitched,1,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1107,east,10952,6,200,unknown,0,4,24_hours
+2486,apartment,residential,0,150000,month,20,pitched,1,2,2,2,0,furnished,bagmati,kathmandu,kathmandu,2075,3,car,3585,east,1400,7,200,unknown,0,4,24_hours
+5680,office,commercial,1,170000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,768,unknown,11,2,200,unknown,0,4,24_hours
+6007,office,commercial,1,175000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,1118,unknown,14,2,200,unknown,0,4,24_hours
+4692,other,residential,0,175000,unknown,13,pitched,1,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2335,east,3422.5,6,200,unknown,0,4,24_hours
+6647,flat,residential,0,180000,month,30,pitched,1,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2070,2,bike,3915,unknown,5476,12,200,unknown,0,4,24_hours
+4624,house,residential,0,185000,month,13,pitched,1,2,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2067,2,bike,1262,east,5476,15,200,unknown,0,4,24_hours
+6244,other,residential,0,200000,unknown,13,pitched,1,11,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,unknown,4253,east,1369,1,200,unknown,0,4,24_hours
+2030,other,residential,0,200000,month,16,pitched,1,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,4714,east,14,6,200,unknown,0,4,24_hours
+6003,office,commercial,1,210000,month,30,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,675,unknown,32,2,200,unknown,0,4,24_hours
+6009,apartment,residential,0,240000,month,16,pitched,1,2,3,1,0,furnished,bagmati,lalitpur,lalitpur,2080,1,car,1602,unknown,30,2,200,unknown,0,4,24_hours
+2646,office,commercial,1,250000,month,16,pitched,1,2,3,2,0,fully-furnished,bagmati,kathmandu,kathmandu,2068,2,bike,4364,east,3000,14,200,unknown,0,4,24_hours
+4587,house,residential,0,275000,month,18,pitched,1,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1048,east,5476,6,200,unknown,0,4,24_hours
+5671,office,commercial,1,280000,month,13,pitched,1,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,521,unknown,24,2,200,unknown,0,4,24_hours
+5678,other,residential,0,300000,unknown,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1519,unknown,10,2,200,unknown,0,4,24_hours
+4695,other,residential,0,300000,month,13,pitched,1,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2940,east,27380,6,200,unknown,0,4,24_hours
+2803,other,residential,0,300000,unknown,23,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,8069,east,5476,6,200,unknown,0,4,24_hours
+6001,office,commercial,1,315000,month,30,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,502,unknown,28,2,200,unknown,0,4,24_hours
+6006,office,commercial,1,330000,month,28,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,606,unknown,22,2,200,unknown,0,4,24_hours
+4603,house,residential,0,350000,month,20,pitched,1,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2375,east,5476,6,200,unknown,0,4,24_hours
+5999,office,commercial,1,400000,month,30,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,614,unknown,32,2,200,unknown,0,4,24_hours
+5685,office,commercial,1,400000,month,20,pitched,1,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,532,unknown,9,2,200,unknown,0,4,24_hours
+7378,house,residential,0,400000,month,20,pitched,1,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1021,north,2,2,200,unknown,0,4,24_hours
+5713,office,commercial,1,600000,month,26,pitched,1,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,684,unknown,16,2,200,unknown,0,4,24_hours
+4661,house,residential,0,600000,month,13,pitched,1,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,1177,south,12321,6,200,unknown,0,4,24_hours
+2873,other,residential,0,650000,unknown,16,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,2,car,2568,east,1,7,200,unknown,0,4,24_hours
+6000,office,commercial,1,825000,month,30,pitched,1,2,2,2,0,furnished,bagmati,lalitpur,lalitpur,2080,7.5,car,362,unknown,30,2,200,unknown,0,4,24_hours
+2881,other,residential,0,1000000,unknown,22,pitched,1,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4128,east,2,6,200,unknown,0,4,24_hours
+3174,apartment,residential,0,50000,month,12,pitched,1.5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2070,1,car,3643,south,1500,12,200,unknown,0,4,24_hours
+6990,house,residential,0,70000,month,13,pitched,1.5,1,2,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,1851,north,1711.25,1,200,unknown,0,4,24_hours
+7428,house,residential,0,125000,month,16,marble,1.5,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1781,south,4,2,200,unknown,0,4,24_hours
+7335,commercial,commercial,1,150000,month,12,pitched,1.5,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,unknown,2179,north,3000,17,200,unknown,0,4,24_hours
+7425,house,residential,0,9500000,month,16,pitched,1.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,2481,south,1540.125,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-x-commercial-shutters-rent-in-bajrabarahi-thecho-lalitpur/,shutter,commercial,1,5000,month,10,pitched,2,0,1,1,2,unfurnished,bagmati,lalitpur,lalitpur,2080,4,unknown,2198.5,north,168,2,100,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-rent-in-sitapaila-nagarjun-near-banglamukhi-temple-kathmandu/,room,residential,0,5000,month,10,pitched,2,1,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,unknown,2198.5,west,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-rent-in-tokha-kathmandu/,room,residential,0,5500,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-kharipati-kamal-binayak-bhaktapur/,room,residential,0,6000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-for-rent-in-kadaghari-force-park-kathmandu/,room,residential,0,6000,month,14,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,684.5,2,100,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-dhapakhel-lalitpur/,room,residential,0,6000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,6,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-top-floor-flat-rent-in-duwakot-bhaktapur/,flat,residential,0,6000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+7362,shutter,commercial,1,7000,month,12,pitched,2,4,2,2,1,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,3303,unknown,1,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/single-room-with-private-bathroom-rent-in-kapurdhara-samakhusi-kathmandu/,room,residential,0,7000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-for-rent-in-balaju-chowk-kathmandu/,room,residential,0,7000,month,12,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,west,1026.75,2,50,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-for-office-or-residence-rent-in-gatthaghar-bhaktapur/,room,residential,0,7000,month,10,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,2,unknown,2198.5,north,684.5,2,200,common,1,0,24_hours
+7227,other,residential,0,8000,month,16,pitched,2,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2561,unknown,0,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-room-flat-rent-in-padamsal-bhimishwor-chowk-tarkeshwor-kathmandu/,room,residential,0,8000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-with-private-bathroom-rent-in-thaiba-lalitpur/,room,residential,0,8000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-rent-in-chabahil-kathmandu/,room,residential,0,8000,month,8,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1369,2,250,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-tahakhel-chautara-chapagaun-lalitpur/,room,residential,0,8000,month,14,gravel,2,2,1,0,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south-east,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-tokha-ganesthan-kathmandu/,room,residential,0,9000,month,32,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,west,1026.75,2,1,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-with-private-bathroom-rent-in-imadol-gwarko-balkumari-lalitpur/,room,residential,0,9000,month,8,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south,2738,2,350,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-with-private-bathroom-rent-in-tokha-near-ganeshman-singh-park-kathmandu/,room,residential,0,9000,month,16,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,855.625,2,150,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-commercial-shutter-rent-in-kadaghari-pepsicola-kathmandu/,shutter,commercial,1,9000,month,17.5,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,8,unknown,2198.5,unknown,2566.875,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-room-rent-in-kitini-toukhel-godawari-lalitpur/,room,residential,0,9000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,6,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-lolang-paiyatar-tarakeshwar-kathmandu/,room,residential,0,9000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-rent-in-balkumari-kharibot-near-kmc-lalitpur/,room,residential,0,9000,month,12,pitched,2,1,1,0,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,unknown,2198.5,south-west,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-commercial-room-rent-in-jhochhen-new-road-basantapur-kathmandu/,room,residential,0,9500,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,684.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-rooms-rent-in-mahankal-boudha-kathmandu/,room,residential,0,9500,month,14,pitched,2,2,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1026.75,2,200,unknown,0,0,24_hours
+4309,other,residential,0,10000,month,24,pitched,2,24,2,2,0,unfurnished,gandaki,nawalpur,dumkibas,2080,2,bike,2990,east,6000,2,200,unknown,0,4,24_hours
+4096,other,residential,0,10000,unknown,12,pitched,2,12,2,10,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,4316,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-chyasal-patan-lalitpur/,room,residential,0,10000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,6,unknown,2198.5,unknown,1369,2,800,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-shutter-rent-in-chunikhel-budhanilkantha-kapan-kathmandu/,shutter,commercial,1,10000,month,18,pitched,2,0,1,1,1,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-sharing-bathroom-rent-in-gokarna-gamcha-gokarneshwor-kathmandu/,room,residential,0,10000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-for-rent-in-chardobato-naya-thimi-bhaktapur/,room,residential,0,10000,month,12.5,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-nagadesh-buddha-vihar-madhyapur-thimi-bhaktapur/,room,residential,0,10000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,6,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-sharing-bathroom-flat-rent-in-tahachal-gai-bachha-chowk-kathmandu/,flat,residential,0,10000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,2053.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-top-floor-rent-in-tikathali-lalitpur/,room,residential,0,10000,month,12,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south,1026.75,2,200,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/single-room-rent-in-chabahil-gangahiti-kathmandu/,room,residential,0,10500,month,8,pitched,2,1,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-with-sharing-bathroom-rent-in-basundhara-chowk-kathmandu/,flat,residential,0,11000,month,8,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1026.75,2,100,common,1,0,24_hours
+3555,flat,residential,0,12000,month,20,pitched,2,3,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,3164,east,800,6,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-thankot-kharibot-kathmandu/,flat,residential,0,12000,month,13.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1711.25,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-bista-gaun-chaur-kirtipur-kathmandu/,flat,residential,0,12000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-rent-in-jarankhu-tarakeshwar-kathmandu/,room,residential,0,12000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1197.875,2,250,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-duwakot-bhaktapur-11/,flat,residential,0,12000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-harisiddhi-lalitpur-3/,flat,residential,0,12000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south,1711.25,2,200,separate,0,0,24_hours
+2792,other,residential,0,13000,unknown,16,pitched,2,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4080,south,30700,6,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-room-rent-in-sukul-dhoka-durbar-square-bhaktapur/,room,residential,0,13000,month,20,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,2,unknown,2198.5,east,1026.75,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-matatirtha-chandragiri-kathmandu/,flat,residential,0,13000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-matatirtha-chandragiri-kathmandu-2/,flat,residential,0,13000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-gurjudhara-chandragiri-kathmandu/,flat,residential,0,13000,month,16,gravel,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,2224.625,2,300,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-lubhu-lalitpur-3/,flat,residential,0,13000,month,13,gravel,2,2,1,1,0,unfurnished,bagmati,lalitpur,mahalaxmi,2080,2,unknown,2198.5,west,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-suryabinayak-taudol-bhaktapur/,flat,residential,0,13000,month,13,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,suryabinayak,2080,2,unknown,2198.5,east,2053.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-dandagaun-manamaiju-kathmandu/,flat,residential,0,13500,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+7697,room,residential,0,14000,unknown,13,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,bike,2673,east,1369,17,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-rooms-rent-in-imadol-boje-pokhari-lalitpur/,room,residential,0,14000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,unknown,2198.5,west,855.625,2,300,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-top-floor-with-private-bathroom-flat-rent-in-gongabu-near-new-bus-park-kathmandu/,flat,residential,0,14000,month,16,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dahachowk-chandragiri-kathmandu-2/,flat,residential,0,14000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-lubhu-lamatar-lalitpur-2/,flat,residential,0,14000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south-west,1369,2,500,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-rent-in-saraswatinagar-chabahil-kathmandu/,flat,residential,0,14000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-satungal-chandragiri-kathmandu/,flat,residential,0,14000,month,14,gravel,2,1,1,1,0,unfurnished,bagmati,kathmandu,chandragiri,2080,2,unknown,2198.5,west,1369,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-rent-in-koteshwor-subidhanagar-kathmandu/,flat,residential,0,14000,month,10,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1540.125,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-for-office-or-residence-rent-in-gattaghar-bhaktapur/,room,residential,0,14000,month,33,pitched,2,2,1,0,0,unfurnished,bagmati,bhaktapur,madhyapur thimi,2080,2,unknown,2198.5,south-east,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-rent-in-kharibot-raniban-banasthali-kathmandu/,flat,residential,0,15000,month,14,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,2,unknown,2198.5,north,1026.75,2,150,separate,1,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-for-rent-in-basundhara-kathmandu/,flat,residential,0,15000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,2738,2,200,unknown,0,3,24_hours
+https://nepalpropertybazaar.com/property/2-room-with-private-bathroom-rent-in-kamerotar-thimi-bhaktapur/,room,residential,0,15000,month,30,pitched,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,2,unknown,2198.5,south,855.625,2,100,common,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-sipadol-suryabinayak-bhaktapur-2/,flat,residential,0,15000,month,13,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,3,unknown,2198.5,north,1197.875,2,750,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-rent-in-gaurighat-chabahil-kathmandu/,flat,residential,0,15000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhatkepti-chowk-bista-gaun-kirtipur-kathmandu/,flat,residential,0,15000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bh-flat-rent-in-chundevi-katunje-suryabinayak-bhaktapur/,flat,residential,0,15000,month,10,gravel,2,3,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,4,unknown,2198.5,west,1369,2,800,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-chardobato-thimi-bhaktapur/,flat,residential,0,15000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,3,unknown,2198.5,east,1197.875,2,150,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-gokarneshwor-bp-chowk-kathmandu/,flat,residential,0,15000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-gokarneshwor-kathmandu/,flat,residential,0,15000,month,8,gravel,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1369,2,500,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-katunje-height-suryabinayak-bhaktapur/,flat,residential,0,15000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-ochu-height-imadol-lalitpur-2/,flat,residential,0,15000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-salyansthan-kirtipur-kathmandu/,flat,residential,0,15000,month,24,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,2,unknown,2198.5,east,1026.75,2,650,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-changathali-imadol-lalitpur/,flat,residential,0,15000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/12-shutter-for-rent-in-tilottama-rupandehi/,shutter,commercial,1,15000,month,60,pitched,2,12,4,0,12,unfurnished,lumbini,rupandehi,bhairahwa,2080,12,unknown,2198.5,east,225,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-changathali-lalitpur/,flat,residential,0,15000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,mahalaxmi,2080,2,unknown,2198.5,south-west,1197.875,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-balkot-bhaktapur-2/,flat,residential,0,15000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,suryabinayak,2080,2,unknown,2198.5,unknown,1540.125,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-flat-rent-in-ochu-height-imadol-lalitpur/,flat,residential,0,15000,month,12,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,mahalaxmi,2080,2,unknown,2198.5,west,1540.125,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-budhanilkantha-near-muhan-pokhari-kathmandu/,flat,residential,0,15000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,budhanilkantha,2080,2,unknown,2198.5,south-west,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-semi-furnished-flat-rent-in-chunikhel-tusal-budhanilkantha-kapan-kathmandu/,flat,residential,0,15000,month,13,gravel,2,1,1,1,0,semi furnished,bagmati,kathmandu,budhanilkantha,2080,2,unknown,2198.5,south-east,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-rooms-rent-in-jadibuti-neraphat-kathmandu/,room,residential,0,15000,month,12,pitched,2,2,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,unknown,2198.5,south,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-commercial-space-hall-rent-in-putalisadak-kathmandu/,hall,commercial,1,15000,month,20,pitched,2,1,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south-east,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-thankot-chandragiri-kathmandu-6/,flat,residential,0,16000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,chandragiri,2080,0,unknown,2198.5,unknown,2224.625,2,700,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-thankot-chandragiri-kathmandu-6/,flat,residential,0,16000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,chandragiri,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-satungal-chandragiri-kathmandu-2/,flat,residential,0,16000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-private-bathroom-flat-rent-in-dekocha-bhaktapur/,flat,residential,0,16000,month,34,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,east,1026.75,2,200,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-thecho-lalitpur/,flat,residential,0,16000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-sundarbasti-bhangal-budhanilkantha-kathmandu/,flat,residential,0,16000,month,10,gravel,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1369,2,100,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-duwakot-bhaktapur-10/,flat,residential,0,16000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-attached-bathroom-plus-balcony-flat-rent-in-basundhara-kathmandu-3/,flat,residential,0,16000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bk-attached-bathroom-plus-balcony-flat-rent-in-basundhara-kathmandu/,flat,residential,0,16500,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhapakhel-near-in-sumeru-hospital-lalitpur/,flat,residential,0,17000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2395.75,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-tokha-near-grande-international-hospital-kathmandu/,flat,residential,0,17000,month,18,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-balkot-bhaktapur-13/,flat,residential,0,17000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kantipur-colony-nakhipot-lalitpur/,flat,residential,0,17000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-gaurighat-chabahil-kathmandu-2/,flat,residential,0,18000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/small-commercial-residential-flat-rent-in-patan-gabahal-lalitpur/,flat,residential,0,18000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,6,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-with-private-bathroom-flat-rent-in-basantapur-kasthamandap-kathmandu/,room,residential,0,18000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,unknown,2198.5,east,1822,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-satdobato-lalitpur/,flat,residential,0,18000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhaisepati-lalitpur-8/,flat,residential,0,18000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kirtipur-kathmandu/,flat,residential,0,18000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,3,unknown,2198.5,north-west,4791.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-space-rent-for-office-in-baneshwor-kathmandu/,room,residential,0,18000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,north,1095.2,2,50,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-nakhipot-kantipur-colony-lalitpur/,flat,residential,0,18000,month,13,gravel,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,east,1711.25,2,500,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-plus-shutter-brand-new-flat-rent-in-harshachok-nayathimi-bhaktapur/,flat,residential,0,18000,month,16.5,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-backyard-flat-rent-in-imadol-gwarko-lalitpur/,flat,residential,0,18000,month,10,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south-east,1540.125,2,350,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kapan-akashedhara-kathmandu-2/,flat,residential,0,18000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-thimi-balkot-bhaktapur/,flat,residential,0,18000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-katunje-suryabinayak-bhaktapur/,flat,residential,0,18000,month,13,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,2,unknown,2198.5,east,1369,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-raniban-nagarjun-banasthali-kathmandu/,flat,residential,0,18000,month,16,gravel,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,2053.5,2,400,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-with-private-bathroom-office-flat-rent-in-naxal-kathmandu/,flat,residential,0,18000,month,10,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1369,2,100,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-budhanilkantha-tusal-kathmandu/,flat,residential,0,18000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1711.25,2,400,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-attarkhel-jorpati-gokarneshwor-kathmandu/,flat,residential,0,18000,month,12,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1369,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-ramkot-sitapaila-kathmandu/,flat,residential,0,18000,month,14,gravel,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north-west,1369,2,200,unknown,0,0,24_hours
+2793,office,commercial,1,20000,month,16,pitched,2,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4091,south,3400,6,200,unknown,0,4,24_hours
+8318,other,residential,0,20000,unknown,12,pitched,2,9,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2082,1,car,2169,south,1369,0,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-nearby-kota-devi-temple-taukhel-sitapaila-kathmandu/,flat,residential,0,20000,month,16,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1540.125,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-2-bathroom-flat-rent-in-golfutar-budhanilkantha-kathmandu-2/,flat,residential,0,20000,month,14,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north-east,1369,2,80,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-commercial-floor-for-rent-in-basantapur-kathmandu/,other,residential,0,20000,month,16,pitched,2,0,0,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,855.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-shutter-for-rent-in-main-godawari-highway-toukhel-godawari-lalitpur/,shutter,commercial,1,20000,month,16,pitched,2,0,1,1,1,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,2395.75,2,200,unknown,0,0,tap
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-kalanki-inside-ringroad-kathmandu/,flat,residential,0,20000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1369,2,150,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-sanagaun-imadol-lalitpur-2/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-brand-new-flat-no-house-owner-rent-in-sirutar-bhaktapur/,house,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-narayantar-jorpati-kathmandu-3/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-sanagaun-imadol-lalitpur/,flat,residential,0,20000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhapakhel-nagdaha-lalitpur-2/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-taukhel-ramkot-sitapaila-kathmandu/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-hattiban-near-i-j-pioneer-school-lalitpur/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-brand-new-flat-rent-in-syuchatar-kalanki-kathmandu/,flat,residential,0,20000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-room-flat-rent-in-ramhiti-boudha-kathmandu/,flat,residential,0,20000,month,16.5,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-flat-rent-in-naikap-tinthana-kalanki-kathmandu/,flat,residential,0,20000,month,10,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,chandragiri,2080,0,unknown,2198.5,south-east,2053.5,2,450,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-sorhakhutte-naya-bazaar-kathmandu/,flat,residential,0,20000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south-west,1369,2,80,common,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-hattiban-lalitpur-11/,flat,residential,0,20000,month,16,gravel,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south,1026.75,2,100,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-room-top-floor-flat-rent-in-subidhanagar-tinkune-kathmandu/,flat,residential,0,20000,month,10,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,3422.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-mulpani-nil-barahi-kathmandu/,flat,residential,0,20000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,1369,2,700,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-thimi-kamerotar-bhaktapur/,flat,residential,0,20000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,north,1369,2,500,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-dhungedhara-kalanki-kathmandu/,flat,residential,0,20000,month,16,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-pasikot-budhanilkantha-kathmandu/,flat,residential,0,20000,month,14,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north-east,2053.5,2,400,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-on-gatthaghar-bhaktapur/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-suryadarshan-height-gongabu-tokha-kathmandu/,flat,residential,0,20000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-floor-large-commercial-hall-rent-in-pulchowk-lalitpur/,hall,commercial,1,20000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north,3422.5,2,100,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-balaju-nepaltar-tarkeshwor-kathmandu/,flat,residential,0,20000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1711.25,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-space-rent-in-ghattekulo-chowk-kathmandu/,commercial,commercial,1,20000,month,18,pitched,2,0,1,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-tokha-near-om-shanti-chowk-kathmandu/,flat,residential,0,20000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,tokha,2080,2,unknown,2198.5,north-west,1540.125,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-room-private-bathroom-flat-rent-in-kalimati-kathmandu/,flat,residential,0,21000,month,3,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,west,1711.25,2,300,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-bagdol-lalitpur/,flat,residential,0,21000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south,1197.875,2,400,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-hall-with-private-bathroom-rent-in-kumaripati-lalitpur/,hall,commercial,1,22000,month,16,gravel,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north,4791.5,2,100,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-hall-with-private-bathroom-rent-in-kumaripati-lalitpur/,hall,commercial,1,22000,month,16,gravel,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north,4791.5,2,100,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-balkot-bhaktapur/,flat,residential,0,22000,month,20,pitched,2,3,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,east,1711.25,2,5000,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-hattiban-lalitpur-9/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-tikathali-imadol-lalitpur-8/,flat,residential,0,22000,month,10,gravel,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,east,1711.25,2,200,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhaisepati-bungamati-lalitpur/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kadaghari-thapagaun-gothatar-kathmandu/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-shankhamul-kathmandu/,flat,residential,0,22000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhaisepati-lalitpur-12/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-brand-new-flat-rent-in-gamcha-kirtipur-kathmandu-2/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-mhepi-naya-bazaar-kathmandu-3/,flat,residential,0,22000,month,10,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,1369,2,290,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-private-gate-flat-rent-in-kausaltar-tersatar-thimi-bhaktapur/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-banasthali-kharibot-kathmandu-3/,flat,residential,0,22000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-top-floor-commercial-space-rent-in-chabahil-boudha-kathmandu/,flat,residential,0,22000,month,6,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,1822,2,40,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/1bk-top-floor-flat-with-private-bathroom-rent-in-sinamangal-kathmandu/,flat,residential,0,22000,month,16,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-taudaha-kirtipur-kathmandu/,flat,residential,0,22000,month,10,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,2,unknown,2198.5,north,1369,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-brijeshwori-height-dallu-kathmandu/,flat,residential,0,22000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south-east,4107,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-in-chobar-itagol-kirtipur-kathmandu/,flat,residential,0,22000,month,12,gravel,2,3,1,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,2,unknown,2198.5,south-east,1369,2,200,unknown,0,0,24_hours
+8303,apartment,residential,0,23000,month,13,gravel,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1066,south,1540.125,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-khumaltar-height-satdobato-lalitpur/,flat,residential,0,23000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-in-mandikhatar-ekatabasti-kathmandu/,flat,residential,0,23000,month,20,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,east,2395.75,2,200,separate,1,1,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-kaushaltar-bhaktapur/,flat,residential,0,23000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-brand-new-flat-rent-in-gamcha-kirtipur-kathmandu/,flat,residential,0,23000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kirtipur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-buddhanagar-baneshwor-kathmandu/,flat,residential,0,23000,month,18,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1026.75,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kapan-akashedhara-kathmandu/,flat,residential,0,23000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/4-room-brand-new-flat-rent-in-sanagaun-imadol-lalitpur/,flat,residential,0,23000,month,16.5,pitched,2,4,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-lokanthali-kaushaltar-bhaktapur/,flat,residential,0,23000,month,10,gravel,2,2,1,1,0,unfurnished,bagmati,bhaktapur,madhyapur thimi,2080,2,unknown,2198.5,east,2053.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-balkumari-lalitpur/,flat,residential,0,24000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-ekantakuna-kusunti-lalitpur/,flat,residential,0,24000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-chardobato-chowk-thimi-bhaktapur/,flat,residential,0,24000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,2,unknown,2198.5,north,1369,2,150,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-rent-in-mahadevsthan-koteshwor-kathmandu-2/,flat,residential,0,24000,month,16.5,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+6350,room,residential,0,25000,unknown,26,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,bara,2065,1,car,3862,unknown,2053.5,17,200,unknown,0,4,24_hours
+3829,other,residential,0,25000,unknown,16,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,3743,north,1711.25,2,200,unknown,0,4,24_hours
+3654,flat,residential,0,25000,month,20,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,2,car,1581,east,7.5,7,200,unknown,0,4,24_hours
+8596,commercial,commercial,1,25000,month,8,marble,2,2,2,2,0,unfurnished,gandaki,kaski,jhapa,2081,12.5,bike,930,unknown,3422.5,1,200,unknown,0,4,24_hours
+1774,commercial,commercial,1,25000,month,16,pitched,2,2,1,2,0,unfurnished,gandaki,kaski,pokhara,2076,3,car,2981,east,10952,6,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/spacious-commercial-flat-rent-in-kausaltar-bhaktapur/,flat,residential,0,25000,month,13.5,pitched,2,12,10,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,west,4107,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-shutter-rent-in-main-highway-khumaltar-lalitpur/,shutter,commercial,1,25000,month,16,pitched,2,0,1,1,2,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,376.475,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-shutter-2-bathroom-rent-in-khokana-bhaisepati-lalitpur/,shutter,commercial,1,25000,month,17.5,pitched,2,0,2,1,2,unfurnished,bagmati,lalitpur,lalitpur,2080,8,unknown,2198.5,unknown,2738,2,200,unknown,0,0,tap
+https://nepalpropertybazaar.com/property/showroom-shutter-rent-in-lubhu-lalitpur/,shutter,commercial,1,25000,month,17.5,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,5818.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-sunakothi-lalitpur-3/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-shantinagar-baneshwor-kathmandu/,flat,residential,0,25000,month,3,gravel,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,north,1026.75,2,150,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-duplex-flat-rent-in-gurjudhara-chandragiri-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,3,2,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,2738,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-flat-for-rent-in-sallaghari-srijananagar-bhaktapur/,flat,residential,0,25000,month,16,pitched,2,0,0,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhapasi-basundhara-tokha-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-nakkhu-lalitpur-2/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-top-floor-semi-furnished-flat-rent-in-hattigauda-budhanilkantha-kathmandu/,flat,residential,0,25000,month,16,pitched,2,1,1,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-brand-new-flat-rent-in-sanagaun-imadol-lalitpur/,flat,residential,0,25000,month,16,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north,1540.125,2,80,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-koteshwor-kathmandu-3/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-brand-new-flat-rent-in-sanagaun-imadol-lalitpur/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-narephat-koteshwor-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-bafal-kalanki-kathmandu/,flat,residential,0,25000,month,12,gravel,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1369,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-brand-new-flat-rent-in-mhepi-naya-bazaar-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kirtipur-amritnagar-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-mandikhatar-height-kathmandu/,flat,residential,0,25000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,2053.5,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-in-hattiban-lalitpur-2/,flat,residential,0,25000,month,12,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,east,2053.5,2,150,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/top-floor-commercial-flat-rent-in-sankhamul-kathmandu/,flat,residential,0,25000,month,16.5,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhapasi-tokha-near-grande-international-hospital-kathmandu/,flat,residential,0,25000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,tokha,2080,1,unknown,2198.5,north-west,1026.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kapan-mandikhatar-kathmandu/,flat,residential,0,25000,month,26,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,budhanilkantha,2080,2,unknown,2198.5,north-east,1197.875,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-lazimpat-kathmandu/,flat,residential,0,25000,month,13,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,343,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-imadol-tempo-park-lalitpur/,flat,residential,0,25000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,mahalaxmi,2080,3,unknown,2198.5,east,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhimsengola-baneshwor-kathmandu/,flat,residential,0,25000,month,10,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south,2395.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhobighat-jhamsikhel-lalitpur/,flat,residential,0,26000,month,15,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,north,1711.25,2,300,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-satdobato-chowk-lalitpur/,flat,residential,0,26000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-flat-for-office-rent-in-baluwatar-kathmandu/,flat,residential,0,26000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,3080.25,2,600,separate,1,2,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-ekantakuna-lalitpur/,flat,residential,0,26000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-semi-furnished-flat-rent-in-sanepa-lalitpur/,flat,residential,0,26000,month,16.5,pitched,2,2,2,1,0,semi furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-bhaisepati-gokul-awas-lalitpur/,flat,residential,0,26000,month,16,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,north-east,2053.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-room-commercial-flat-rent-in-kumaripati-lalitpur/,flat,residential,0,27000,month,17.5,pitched,2,3,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,8,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-flat-rent-in-shantinagar-baneshwor-kathmandu-2/,flat,residential,0,27000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-ratopul-gausala-kathmandu/,flat,residential,0,27000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-bagdol-lalitpur/,flat,residential,0,27000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-spacious-flat-rent-in-basundhara-tokha-kathmandu/,flat,residential,0,27000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,1,24_hours
+8948,shutter,commercial,1,28000,month,8,marble,2,2,2,2,1,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,586,east,2395.75,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-commercial-flat-rent-in-tinkune-kathmandu/,flat,residential,0,28000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,8898.5,2,200,separate,1,0,24_hours
+https://nepalpropertybazaar.com/property/4bk-2-bathroom-flat-rent-in-maitrinagar-kalanki-kathmandu/,flat,residential,0,28000,month,15,pitched,2,4,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1369,2,500,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-kapurdhara-chowk-samakhusi-kathmandu/,flat,residential,0,28000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-flat-rent-in-imadol-near-police-station-lalitpur/,flat,residential,0,29000,month,20,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,3,unknown,2198.5,east,2738,2,200,separate,1,0,24_hours
+8812,commercial,commercial,1,30000,month,25,pitched,2,7,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2079,12,bike,873,east,5476,3,200,unknown,0,4,24_hours
+6137,other,residential,0,30000,month,16,pitched,2,2,2,2,0,unfurnished,gandaki,kaski,pokhara,2080,2,bike,2842,unknown,50,2,200,unknown,0,4,24_hours
+4557,house,residential,0,30000,month,12,pitched,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2070,2,bike,4025,south,4,12,200,unknown,0,4,24_hours
+8142,apartment,residential,0,30000,month,13,marble,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,7.5,car,2164,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-srijananagar-sallaghari-bhaktapur/,flat,residential,0,30000,month,13,gravel,2,2,2,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,east,3422.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-space-rent-in-tikathali-lalitpur/,commercial,commercial,1,30000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3423,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/furnished-commercial-flat-for-rent-in-samakhusi-kathmandu/,flat,residential,0,30000,month,16.5,pitched,2,0,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,5,unknown,2198.5,unknown,2566.875,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-shutter-rent-in-tikathali-lalitpur/,shutter,commercial,1,30000,month,15,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,unknown,2198.5,south,1403.225,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-x-commercial-space-rent-in-durbar-square-bhaktapur/,commercial,commercial,1,30000,month,24,pitched,2,0,1,1,2,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,unknown,1095.2,2,200,unknown,1,1,24_hours
+https://nepalpropertybazaar.com/property/1-large-shutter-rent-in-imadol-lalitpur/,shutter,commercial,1,30000,month,18,pitched,2,0,1,1,1,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south,1197.875,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-room-commercial-flat-rent-in-kapan-grament-chowk-kathmandu/,flat,residential,0,30000,month,16.5,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,5,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-semi-commercial-house-rent-in-godamchaur-godawari-lalitpur/,house,residential,0,30000,month,16,pitched,2,7,0,1,0,semi furnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,1095.2,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bk-furnished-top-floor-flat-rent-in-imadol-lalitpur/,flat,residential,0,30000,month,10,pitched,2,2,1,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,east,1369,2,50,separate,0,2,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-kusunti-lalitpur-2/,flat,residential,0,30000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-maharajgunj-chakrapath-kathmandu/,flat,residential,0,30000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-bhaisepati-lalitpur-11/,flat,residential,0,30000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-house-rent-in-sanagaun-siddhipur-lalitpur/,house,residential,0,30000,month,20,pitched,2,6,0,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,1197.875,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bk-studio-apartment-rent-in-boudha-mahankal-kathmandu/,apartment,residential,0,30000,month,15,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1200-sq-ft-commercial-space-rent-in-gaurighat-kathmandu/,commercial,commercial,1,30000,month,17.5,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1200,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/commercial-space-rent-in-gaurighat-kathmandu/,commercial,commercial,1,30000,month,17.5,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1200,2,200,unknown,0,0,tap
+https://nepalpropertybazaar.com/property/2bhk-commercial-flat-rent-in-dillibazaar-kathmandu/,flat,residential,0,30000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/4bk-flat-rent-in-basantapur-kathmandu/,flat,residential,0,30000,month,16.5,pitched,2,4,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-maitidevi-kathmandu/,flat,residential,0,30000,month,12,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,2053.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-gwarko-near-b-b-hospital-lalitpur/,flat,residential,0,30000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,2053.5,2,100,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-semi-furnished-flat-rent-in-tyanglaphat-kirtipur-kathmandu/,flat,residential,0,30000,month,10,pitched,2,1,1,1,0,semi furnished,bagmati,kathmandu,kirtipur,2080,2,unknown,2198.5,south,1369,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-budhanilkantha-kathmandu/,flat,residential,0,30000,month,14,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,budhanilkantha,2080,2,unknown,2198.5,south,1369,2,200,unknown,0,0,24_hours
+1922,flat,residential,0,31000,unknown,16,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,3153,west,10,6,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-pepsicola-near-sun-city-apartments-kathmandu/,flat,residential,0,31000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,4107,2,350,unknown,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-new-baneshwor-kathmandu-3/,flat,residential,0,32000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-for-office-rent-in-battisputali-kathmandu/,flat,residential,0,32000,month,16,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,west,5476,2,350,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/single-commercial-hall-rent-in-maharajgunj-kathmandu/,hall,commercial,1,33000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,588,2,50,separate,0,0,24_hours
+6119,other,residential,0,35000,unknown,13,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,bara,2080,2,bike,2351,unknown,2,2,200,unknown,0,4,24_hours
+6115,apartment,residential,0,35000,unknown,16,pitched,2,2,2,1,0,furnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2053,unknown,2,2,200,unknown,0,4,24_hours
+8582,apartment,residential,0,35000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,859,east,1711.25,2,200,unknown,0,4,24_hours
+7735,apartment,residential,0,35000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1347,south,1026.75,2,200,unknown,0,4,24_hours
+7689,house,residential,0,35000,month,13,pitched,2,1,1,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,2,car,1093,south,1026.75,2,200,unknown,0,4,24_hours
+7551,house,residential,0,35000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1547,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-uttar-dhoka-lazimpat-kathmandu/,flat,residential,0,35000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,north,1540.125,2,50,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-hall-rent-in-bajrabarahi-thecho-lalitpur/,hall,commercial,1,35000,month,17.5,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,8,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-duplex-fully-furnished-flat-rent-in-kalimati-kathmandu/,flat,residential,0,35000,month,8,pitched,2,1,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,west,855.625,2,25,common,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-2-bathroom-fully-furnished-duplex-flat-rent-in-gatthaghar-thimi-bhaktapur/,flat,residential,0,35000,month,16,pitched,2,1,2,1,0,fully furnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,east,1369,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-3-bathroom-flat-rent-in-kupondole-jwagal-lalitpur/,flat,residential,0,35000,month,17.5,pitched,2,3,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,5,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-in-bhaisapati-lalitpur-2/,flat,residential,0,35000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-sorhakhutte-naya-bazaar-kathmandu/,flat,residential,0,35000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-rent-in-bhaisapati-lalitpur/,flat,residential,0,35000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-brand-new-flat-rent-in-kusunti-adarsha-toll-lalitpur/,flat,residential,0,35000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-sanepa-near-star-hospital-lalitpur/,flat,residential,0,35000,month,12,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north-west,2738,2,300,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-lazimpat-kathmandu/,flat,residential,0,35000,month,8,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north,1711.25,2,500,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-kupondole-lalitpur/,flat,residential,0,35000,month,12,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north-west,2738,2,300,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-baneshwor-kathmandu/,flat,residential,0,35000,month,22,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,1026.75,2,200,unknown,0,0,24_hours
+8087,apartment,residential,0,39000,month,20,pitched,2,4,2,1,0,semi-furnished,bagmati,kathmandu,kathmandu,2065,1,car,2838,south east,1,17,200,unknown,0,4,24_hours
+3410,office,commercial,1,40000,unknown,35,pitched,2,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2066,2,bike,2725,east,1000,16,200,unknown,0,4,24_hours
+8295,other,residential,0,40000,unknown,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,car,999,south,1197.875,2,200,unknown,0,4,24_hours
+8143,apartment,residential,0,40000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1858,south,1369,2,200,unknown,0,4,24_hours
+8003,apartment,residential,0,40000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1657,south,1026.75,2,200,unknown,0,4,24_hours
+7775,apartment,residential,0,40000,month,13,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2830,south,1026.75,2,200,unknown,0,4,24_hours
+7745,apartment,residential,0,40000,month,13,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,2142,south,1026.75,2,200,unknown,0,4,24_hours
+7613,house,residential,0,40000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1676,north,1197.875,2,200,unknown,0,4,24_hours
+7573,house,residential,0,40000,month,13,marble,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,car,930,south,1369,2,200,unknown,0,4,24_hours
+7473,house,residential,0,40000,month,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,1793,south,1369,2,200,unknown,0,4,24_hours
+6934,other,residential,0,40000,unknown,26,pitched,2,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,2851,east,2,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/1bhk-fully-furnished-flat-rent-in-hattigauda-budhanilkantha-kathmandu/,flat,residential,0,40000,month,16,pitched,2,1,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,100,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1bhk-fully-furnished-flat-rent-in-hattigauda-budhanilkantha-kathmandu/,flat,residential,0,40000,month,16,pitched,2,1,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/commercial-space-rent-in-nayapati-pipalbot-gokarneshwor-kathmandu/,commercial,commercial,1,40000,month,16,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,west,2738,2,50,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/5-shutter-4-tahara-room-rent-in-dadhikot-magar-gaon-bhaktapur/,shutter,commercial,1,40000,month,25,pitched,2,4,1,1,5,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,west,1369,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-commercial-residential-flat-rent-in-hattiban-dhapakhel-lalitpur/,flat,residential,0,40000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,5,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/commercial-shutter-rent-in-nayapati-pipalbot-gokarneshwor-kathmandu/,shutter,commercial,1,40000,month,16,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,west,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-shutter-rent-in-kumaripati-jawalakhel-lalitpur/,shutter,commercial,1,40000,month,16,gravel,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,10,unknown,2198.5,north,4107,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-large-shutter-with-commercial-space-rent-in-ombahal-chowk-basantapur-new-road-kathmandu/,shutter,commercial,1,40000,month,16,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1711.25,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/commercial-space-with-shutter-rent-in-pulchowk-lalitpur/,shutter,commercial,1,40000,month,16,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south,9240.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-dhobighat-lalitpur-7/,flat,residential,0,40000,month,12,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,north,2053.5,2,220,unknown,1,0,24_hours
+https://nepalpropertybazaar.com/property/4bhk-flat-rent-in-anamnagar-ghattekulo-kathmandu/,flat,residential,0,40000,month,16.5,pitched,2,4,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,8,unknown,2198.5,unknown,3422.5,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-top-floor-flat-rent-in-samakhusi-kathmandu/,flat,residential,0,40000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-rent-in-battisputali-maitidevi-kathmandu/,flat,residential,0,40000,month,16,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,west,5476,2,350,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-bishalnagar-kathmandu/,flat,residential,0,40000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-flat-rent-in-buddhanagar-kathmandu/,flat,residential,0,40000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bh-flat-rent-in-buddhanagar-kathmandu/,flat,residential,0,40000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/5bk-flat-for-office-rent-in-baluwatar-kathmandu/,flat,residential,0,40000,month,12,pitched,2,5,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,3080.25,2,600,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/4-rooms-2-bathroom-flat-rent-for-office-rent-in-satdobato-lalitpur/,flat,residential,0,40000,month,17.5,pitched,2,4,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,5,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-large-commercial-tahara-space-rent-in-changathali-lalitpur/,commercial,commercial,1,40000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,mahalaxmi,2080,2,unknown,2198.5,unknown,1320,2,300,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/3bk-2-bathroom-semi-furnished-flat-rent-in-rabibhawan-kathmandu/,flat,residential,0,40000,month,14,pitched,2,3,2,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,north-west,1711.25,2,200,unknown,0,0,24_hours
+6107,apartment,residential,0,45000,month,16,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1150,east,2,2,200,unknown,0,4,24_hours
+3486,other,residential,0,45000,unknown,16,pitched,2,4,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2074,1,car,2946,west,1800,8,200,unknown,0,4,24_hours
+8631,house,residential,0,45000,month,20,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,409,south,2053.5,2,200,unknown,0,4,24_hours
+3151,office,commercial,1,45000,month,16,pitched,2,2,1,2,0,unfurnished,koshi,sunsari,sunsari,2076,2,bike,3874,east,1500,6,200,unknown,0,4,24_hours
+2259,other,residential,0,45000,unknown,6,gravel,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2068,2,car,4416,south east,1600,14,200,unknown,0,4,24_hours
+1929,house,residential,0,45000,month,13,pitched,2,1,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,3,car,6524,east,1369,6,200,unknown,0,4,24_hours
+7515,apartment,residential,0,45000,month,26,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,2756,south,950,2,200,unknown,0,4,24_hours
+6828,apartment,residential,0,45000,month,14,pitched,2,3,1,1,0,furnished,bagmati,lalitpur,lalitpur,2080,2,bike,3470,south,5476,2,200,unknown,0,4,24_hours
+6562,office,commercial,1,45000,month,13,pitched,2,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,2872,south,5476,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-shutter-rent-in-mathilo-bhangal-ganesh-chowk-budhanilkantha-kathmandu/,shutter,commercial,1,45000,month,16,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/duplex-4-room-commercial-flat-rent-in-koteshwor-kathmandu/,flat,residential,0,45000,month,22,pitched,2,4,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,1369,2,180,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-fully-furnished-apartment-rent-in-dhumbarahi-kathmandu/,flat,residential,0,45000,month,24,pitched,2,2,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,8214,2,150,unknown,1,0,24_hours
+https://nepalpropertybazaar.com/property/2bhkd-fully-furnished-flat-rent-in-basundhara-kathmandu/,flat,residential,0,45000,month,12,pitched,2,2,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,south,3422.5,2,600,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/4bk-commercial-flat-rent-in-tripureshwor-kathmandu/,flat,residential,0,45000,month,20,pitched,2,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,10,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-fully-furnished-apartment-rent-in-jhamsikhel-lalitpur/,apartment,residential,0,45000,month,16.5,pitched,2,2,2,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+8970,flat,residential,0,50000,month,16,pitched,2,4,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,1,car,154,south east,1369,7,200,unknown,0,4,24_hours
+6116,other,residential,0,50000,unknown,13,pitched,2,3,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,3770,unknown,2,2,200,unknown,0,4,24_hours
+8645,apartment,residential,0,50000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,632,south,1711.25,2,200,unknown,0,4,24_hours
+2739,flat,residential,0,50000,month,20,pitched,2,1,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,7.5,car,2339,south,1500,16,200,unknown,0,4,24_hours
+2669,house,residential,0,50000,month,12,pitched,2,1,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,12300,east,1200,6,200,unknown,0,4,24_hours
+7593,house,residential,0,50000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,1915,south,1026.75,2,200,unknown,0,4,24_hours
+7543,house,residential,0,50000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1239,south,1369,2,200,unknown,0,4,24_hours
+7542,house,residential,0,50000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,1364,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-flat-rent-in-baluwatar-kathmandu-2/,flat,residential,0,50000,month,13,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,2053.5,2,450,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/4-room-commercial-flat-rent-in-putalisadak-kathmandu/,flat,residential,0,50000,month,20,pitched,2,4,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,10,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-fully-furnished-flat-rent-in-jhamsikhel-lalitpur-2/,flat,residential,0,50000,month,26,pitched,2,2,2,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,south,1369,2,100,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/4bhk-3-bathroom-flat-rent-in-tarkeshwor-dadagaun-kathmandu/,flat,residential,0,50000,month,14,pitched,2,4,4,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,3422.5,2,300,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-flat-rent-in-maligaun-sano-gaucharan-kathmandu/,flat,residential,0,50000,month,15,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,3,unknown,2198.5,north,3422.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-flat-rent-in-boudha-mahankal-kathmandu/,flat,residential,0,50000,month,16.5,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-fully-furnished-flat-rent-in-dhapasi-basundhara-tokha-kathmandu/,flat,residential,0,50000,month,16.5,pitched,2,2,2,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,2224.625,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/newly-renovated-2-storey-bungalow-house-rent-in-golfutar-budhanilkantha-kathmandu/,house,residential,0,50000,month,20,pitched,2,8,0,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1882.375,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bk-flat-with-5-room-shed-%e0%a4%9f%e0%a4%b9%e0%a4%b0%e0%a4%be-rent-in-satdobato-khumaltar-lalitpur/,flat,residential,0,50000,month,15,pitched,2,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,2738,2,150,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3-5-storey-brand-new-house-rent-in-imadol-rajkulo-lalitpur/,house,residential,0,50000,month,16,pitched,2,6,5,3,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,east,3422.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2bhk-fully-furnished-apartment-rent-in-thado-dhunga-jhamsikhel-lalitpur/,apartment,residential,0,50000,month,18,pitched,2,2,2,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north,1711.25,2,100,separate,0,3,24_hours
+https://nepalpropertybazaar.com/property/2bhk-partly-furnished-duplex-flat-rent-in-panipokhari-kathmandu/,flat,residential,0,50000,month,12,pitched,2,2,3,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,855.625,2,200,unknown,0,0,24_hours
+3919,other,residential,0,55000,month,14,pitched,2,12,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,2700,east,1745.475,6,200,unknown,0,4,24_hours
+8640,apartment,residential,0,55000,month,20,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,642,east,1711.25,2,200,unknown,0,4,24_hours
+8119,apartment,residential,0,55000,month,13,pitched,2,2,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1379,south,1369,2,200,unknown,0,4,24_hours
+7504,house,residential,0,55000,month,13,pitched,2,1,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1681,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3bhkd-2-bathroom-flat-rent-in-kumarigal-chabahil-kathmandu/,flat,residential,0,55000,month,16.5,pitched,2,3,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,6,unknown,2198.5,unknown,2738,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-shutter-on-rent-in-dhapakhel-near-sumeru-hospital-lalitpur/,shutter,commercial,1,55000,month,22,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,6160.5,2,1000,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-residential-commercial-flat-rent-in-tripureshwor-thapathali-kathmandu/,flat,residential,0,55000,month,20,pitched,2,3,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,5,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-shutter-for-rent-in-gabahal-patan-lalitpur/,shutter,commercial,1,55000,month,18,pitched,2,0,1,0,1,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2198.5,unknown,1026.75,2,200,unknown,0,0,tap
+https://nepalpropertybazaar.com/property/2bhk-fully-furnished-flat-rent-in-battisputali-kathmandu/,flat,residential,0,55000,month,13,pitched,2,2,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south-east,2909.125,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-flat-for-office-rent-in-anamnagar-kathamndu/,flat,residential,0,55000,month,14,pitched,2,3,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,5,unknown,2198.5,west,4107,2,200,unknown,0,0,24_hours
+9017,apartment,residential,0,60000,month,13,pitched,2,2,2,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,1,car,81,south,1711.25,2,200,unknown,0,4,24_hours
+8837,house,residential,0,60000,month,26,pitched,2,2,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,369,north,1197.875,2,200,unknown,0,4,24_hours
+8711,house,residential,0,60000,month,13,pitched,2,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,496,south,1369,2,200,unknown,0,4,24_hours
+8578,other,residential,0,60000,unknown,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,601,south,1711.25,2,200,unknown,0,4,24_hours
+2660,other,residential,0,60000,unknown,10,marble,2,10,2,2,0,unfurnished,gandaki,kaski,pokhara,2080,2,bike,6420,north,24642,2,200,unknown,0,4,24_hours
+8425,apartment,residential,0,60000,month,13,gravel,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,923,south,2053.5,2,200,unknown,0,4,24_hours
+8223,other,residential,0,60000,unknown,13,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1253,south,2053.5,2,200,unknown,0,4,24_hours
+8061,other,residential,0,60000,unknown,13,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1749,south,1369,2,200,unknown,0,4,24_hours
+7344,house,residential,0,60000,month,13,pitched,2,4,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2077,2,bike,1960,east,0,5,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/large-shutter-space-rent-in-phutung-tarkeshwor-kathmandu/,shutter,commercial,1,60000,month,32,pitched,2,0,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,25,unknown,2198.5,east,4107,2,200,unknown,0,0,tap
+https://nepalpropertybazaar.com/property/3-storey-house-for-rent-in-maitrinagar-kalanki-kathmandu/,house,residential,0,60000,month,30,pitched,2,4,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,1369,2,800,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/3bhk-fully-furnished-flat-rent-in-lazimpat-kathmandu/,flat,residential,0,60000,month,16.5,pitched,2,3,3,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,5,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-newly-refurbished-house-rent-in-khumaltar-sampang-chowk-lalitpur/,house,residential,0,60000,month,16,pitched,2,5,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,2738,2,150,separate,0,0,24_hours
+8624,other,residential,0,65000,unknown,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,590,south,2053.5,2,200,unknown,0,4,24_hours
+8595,apartment,residential,0,65000,month,13,pitched,2,2,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,613,west,2053.5,2,200,unknown,0,4,24_hours
+2204,office,commercial,1,65000,month,16,pitched,2,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,1,car,2633,west,2400,15,200,unknown,0,4,24_hours
+7972,other,residential,0,65000,unknown,13,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,955,south,1369,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/spacious-commercial-flat-rent-in-kausaltar-bhaktapur-2/,flat,residential,0,65000,month,25,pitched,2,4,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,0,unknown,2198.5,west,2566.875,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-fully-furnished-commercial-flat-rent-in-tusal-chowk-baudha-kathmandu-2/,flat,residential,0,65000,month,22,pitched,2,4,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,1100,2,4,separate,0,2,24_hours
+https://nepalpropertybazaar.com/property/3-storey-house-rent-in-kalanki-mitranagar-kathmandu/,house,residential,0,65000,month,16,pitched,2,12,0,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-storey-bungalow-house-rent-in-kusunti-lalitpur/,house,residential,0,65000,month,20,pitched,2,10,0,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,1369,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-2-bathroom-flat-rent-in-kupondole-lalitpur/,flat,residential,0,65000,month,17.5,pitched,2,0,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-brand-new-semi-furnished-bungalow-house-rent-in-cheudada-dholahiti-height-lalitpur/,house,residential,0,65000,month,12,pitched,2,4,4,1,0,semi furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north-west,1197.875,2,1000,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/5-storey-house-residential-or-commercial-rent-in-mangalbazaar-patan-lalitpur/,house,residential,0,65000,month,20,pitched,2,15,0,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,235.29,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-fully-furnished-commercial-flat-rent-in-tusal-chowk-baudha-kathmandu/,flat,residential,0,65000,month,22,pitched,2,3,1,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,2053.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-2-bathroom-semi-furnished-flat-rent-in-bijeshwori-height-dallu-kathmandu/,flat,residential,0,65000,month,13,pitched,2,3,2,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,south-east,1711.25,2,200,unknown,0,0,24_hours
+5606,apartment,residential,0,66000,month,20,pitched,2,2,2,1,0,furnished,bagmati,lalitpur,lalitpur,2080,1,car,1911,unknown,1400,2,200,unknown,0,4,24_hours
+5583,apartment,residential,0,66000,month,20,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1411,unknown,1300,2,200,unknown,0,4,24_hours
+6135,other,residential,0,70000,unknown,13,pitched,2,3,2,1,0,furnished,bagmati,lalitpur,lalitpur,2080,1,car,2326,unknown,1346,2,200,unknown,0,4,24_hours
+8648,apartment,residential,0,70000,month,20,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1001,south,1711.25,2,200,unknown,0,4,24_hours
+8558,other,residential,0,70000,unknown,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,597,south,1711.25,2,200,unknown,0,4,24_hours
+8033,other,residential,0,70000,unknown,13,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1738,south,1369,2,200,unknown,0,4,24_hours
+7973,other,residential,0,70000,unknown,13,pitched,2,2,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2261,south,1369,2,200,unknown,0,4,24_hours
+7536,house,residential,0,70000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,1540,south,1625.6875,2,200,unknown,0,4,24_hours
+6631,other,residential,0,70000,unknown,20,pitched,2,20,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,2335,south,18139.25,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-x-commercial-flat-rent-in-dhumbarahi-chowk-kathmandu/,flat,residential,0,70000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+8444,other,residential,0,72000,unknown,13,pitched,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,736,south,1540.125,2,200,unknown,0,4,24_hours
+8929,house,residential,0,75000,month,20,pitched,2,1,4,1,0,fully-furnished,bagmati,kathmandu,kathmandu,2080,1,car,223,south,1369,2,200,unknown,0,4,24_hours
+6207,other,residential,0,75000,unknown,20,pitched,2,5,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2685,east,1340,2,200,unknown,0,4,24_hours
+4447,other,residential,0,75000,unknown,10,marble,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,1,car,4695,east,5476,16,200,unknown,0,4,24_hours
+8428,house,residential,0,75000,month,13,gravel,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,609,south,2053.5,2,200,unknown,0,4,24_hours
+8414,house,residential,0,75000,month,20,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,car,1013,south,1369,2,200,unknown,0,4,24_hours
+8382,house,residential,0,75000,month,13,pitched,2,1,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,624,south,1197.875,6,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/large-brand-new-commercial-hall-rent-in-manamaiju-kathmandu-2/,hall,commercial,1,75000,month,30,pitched,2,0,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,east,2000,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/1-5-storey-semi-furnished-house-rent-in-taudaha-kirtipur-kathmandu/,house,residential,0,75000,month,14,pitched,2,3,2,2,0,semi furnished,bagmati,kathmandu,kirtipur,2080,0,unknown,2198.5,north,1711.25,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/3bhk-4-bathroom-semi-furnished-duplex-flat-rent-in-baneshwor-aloknagar-kathmandu/,flat,residential,0,75000,month,12,pitched,2,3,4,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,2738,2,200,separate,0,0,24_hours
+8391,other,residential,0,80000,unknown,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,500,south,1369,2,200,unknown,0,4,24_hours
+7583,house,residential,0,80000,month,13,pitched,2,1,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1709,south east,6160.5,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-fully-furnished-flat-rent-in-bhaisepati-lalitpur/,flat,residential,0,80000,month,14,pitched,2,2,2,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,1711.25,2,300,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-space-rent-in-dhalko-brijeshwori-dallu-kathmandu/,commercial,commercial,1,80000,month,20,pitched,2,1,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,4107,2,50,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/large-brand-new-commercial-hall-rent-in-manamaiju-kathmandu/,hall,commercial,1,80000,month,30,pitched,2,0,2,0,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,east,2000,2,200,unknown,0,0,24_hours
+2498,shutter,commercial,1,85000,month,20,pitched,2,20,2,2,1,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,4370,north east,1200,2,200,unknown,0,4,24_hours
+8549,other,residential,0,85000,unknown,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,570,east,1711.25,2,200,unknown,0,4,24_hours
+8236,other,residential,0,85000,unknown,13,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,bara,2080,1,car,1284,south,2053.5,2,200,unknown,0,4,24_hours
+6484,house,residential,0,85000,month,20,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2077,2,bike,3263,east,2,5,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/4x-large-commercial-hall-rent-in-balkot-bhaktapur/,hall,commercial,1,85000,month,16,pitched,2,0,0,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2080,15,unknown,2198.5,unknown,1150,2,200,unknown,0,0,24_hours
+9063,apartment,residential,0,90000,month,20,pitched,2,2,3,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,1,car,94,south,1300,2,200,unknown,0,4,24_hours
+6088,apartment,residential,0,90000,month,16,pitched,2,4,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2079,2,unknown,1398,unknown,1026.75,3,200,unknown,0,4,24_hours
+8572,other,residential,0,90000,unknown,20,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,513,south,2053.5,2,200,unknown,0,4,24_hours
+6798,house,residential,0,90000,month,20,pitched,2,1,3,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2522,east,2,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/4bhk-3-bathroom-duplex-flat-rent-in-galkopakha-lainchaur-thamel-kathmandu/,flat,residential,0,90000,month,20,pitched,2,4,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,10,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-colony-house-rent-in-bansbari-kathmandu/,house,residential,0,90000,month,10,pitched,2,4,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,1369,2,100,separate,0,1,24_hours
+7822,other,residential,0,100000,unknown,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,999,south,4107,2,200,unknown,0,4,24_hours
+7701,other,residential,0,100000,unknown,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1335,south,4107,2,200,unknown,0,4,24_hours
+7639,other,residential,0,100000,unknown,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1157,south,4107,2,200,unknown,0,4,24_hours
+7582,other,residential,0,100000,unknown,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1611,south,4107,2,200,unknown,0,4,24_hours
+6682,house,residential,0,100000,month,13,pitched,2,1,3,1,0,semi-furnished,bagmati,lalitpur,lalitpur,2081,2,bike,2635,east,2,1,200,unknown,0,4,24_hours
+6681,other,residential,0,100000,unknown,30,pitched,2,30,2,1,0,non-furnished,koshi,sunsari,dharan,2080,4,car,4066,east,10,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/4-storey-house-warehouse-for-rent-in-thaiba-lalitpur-14/,warehouse,commercial,1,100000,month,16,pitched,2,16,0,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,5476,2,450,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/brand-new-3-floor-commercial-space-rent-in-jawalakhel-ekantakuna-lalitpur/,flat,residential,0,100000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,north-east,3080.25,2,200,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-semi-furnished-flat-system-house-rent-in-new-baneshwor-kathmandu/,house,residential,0,100000,month,13,pitched,2,4,3,2,0,semi furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north-west,1369,2,400,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/6b2hk-duplex-semi-furnished-flat-rent-in-baluwatar-kathmandu/,flat,residential,0,100000,month,13,pitched,2,6,2,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,4107,2,450,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-flat-system-house-rent-in-golfutar-budhanilkantha-kathmandu/,house,residential,0,100000,month,16,pitched,2,6,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,north,3422.5,2,200,separate,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-bungalow-house-rent-in-nakhipot-milan-chowk-lalitpur/,house,residential,0,100000,month,8,gravel,2,5,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,3,unknown,2198.5,east,2395.75,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-flat-rent-in-teku-kathmandu/,flat,residential,0,108000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,3422.5,2,200,unknown,0,0,24_hours
+9035,house,residential,0,110000,month,13,pitched,2,1,2,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,1,car,137,south,1197.875,2,200,unknown,0,4,24_hours
+8769,house,residential,0,110000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,298,south,2053.5,2,200,unknown,0,4,24_hours
+6093,apartment,residential,0,110000,month,20,pitched,2,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,car,1713,unknown,5476,2,200,unknown,0,4,24_hours
+8725,house,residential,0,110000,month,20,pitched,2,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2073,1,car,584,south,1540.125,9,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2bhk-2-bathroom-semi-furnished-flat-rent-in-bhaisepati-lalitpur-2/,flat,residential,0,110000,month,14,pitched,2,2,2,1,0,semi furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south-east,2053.5,2,300,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/2-storey-house-rent-in-bansbari-maharajunj-kathmandu/,house,residential,0,110000,month,15,pitched,2,4,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,east,1369,2,200,unknown,0,0,24_hours
+5772,apartment,residential,0,115000,month,20,pitched,2,2,3,1,0,furnished,bagmati,lalitpur,lalitpur,2068,1,car,1485,south west,1120,14,200,unknown,0,4,24_hours
+8589,house,residential,0,115000,month,20,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,237,south,1711.25,2,200,unknown,0,4,24_hours
+9034,house,residential,0,120000,month,13,pitched,2,2,3,1,0,fully-furnished,bagmati,kathmandu,kathmandu,2080,1,car,189,south,1369,2,200,unknown,0,4,24_hours
+5922,apartment,residential,0,120000,month,16,pitched,2,2,2,1,0,furnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,1465,unknown,2,2,200,unknown,0,4,24_hours
+7928,other,residential,0,120000,unknown,13,pitched,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2505,south,1026.75,2,200,unknown,0,4,24_hours
+7785,other,residential,0,120000,unknown,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2190,south,1711.25,2,200,unknown,0,4,24_hours
+7675,other,residential,0,120000,unknown,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1780,south,1711.25,2,200,unknown,0,4,24_hours
+7665,other,residential,0,120000,unknown,13,pitched,2,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1455,south,1197.875,2,200,unknown,0,4,24_hours
+7614,other,residential,0,120000,unknown,13,pitched,2,1,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1566,north,4791.5,2,200,unknown,0,4,24_hours
+7546,house,residential,0,120000,month,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1712,south,1369,2,200,unknown,0,4,24_hours
+7437,house,residential,0,120000,month,13,pitched,2,1,4,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,2,bike,1201,south,1540.125,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3bhk-fully-furnished-new-flat-rent-in-bhaisepati-nakkhu-lalitpur/,flat,residential,0,120000,month,20,pitched,2,3,3,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,west,8214,2,700,separate,0,7,24_hours
+5741,house,residential,0,125000,month,13,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,1343,south,8.5,6,200,unknown,0,4,24_hours
+7521,other,residential,0,125000,unknown,13,pitched,2,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2011,south,1369,2,200,unknown,0,4,24_hours
+7682,flat,residential,0,130000,month,16,pitched,2,8,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,2388,west,10,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-semi-furnished-bungalow-house-rent-in-akashedhara-kapan-kathmandu/,house,residential,0,130000,month,20,pitched,2,12,0,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,15,unknown,2198.5,unknown,1711.25,2,200,unknown,0,0,24_hours
+8886,house,residential,0,150000,month,13,pitched,2,2,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,274,south,1711.25,2,200,unknown,0,4,24_hours
+5732,other,residential,0,150000,month,20,pitched,2,20,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1222,unknown,15,2,200,unknown,0,4,24_hours
+5675,commercial,commercial,1,150000,month,20,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,793,unknown,7,2,200,unknown,0,4,24_hours
+5607,office,commercial,1,150000,unknown,20,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,car,449,west,2395.75,1,200,unknown,0,4,24_hours
+8719,room,residential,0,150000,unknown,40,pitched,2,2,2,2,0,unfurnished,madhesh,parsa,parsa,2067,7.5,car,446,west,2,15,200,unknown,0,4,24_hours
+8130,other,residential,0,150000,unknown,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1276,south,1540.125,2,200,unknown,0,4,24_hours
+7920,other,residential,0,150000,unknown,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1287,south,1197.875,2,200,unknown,0,4,24_hours
+7846,other,residential,0,150000,unknown,13,pitched,2,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1415,north,1197.875,2,200,unknown,0,4,24_hours
+7636,house,residential,0,150000,month,13,pitched,2,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,812,north,1197.875,2,200,unknown,0,4,24_hours
+7495,house,residential,0,150000,month,13,pitched,2,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,1824,south,1026.75,2,200,unknown,0,4,24_hours
+7453,house,residential,0,150000,month,20,pitched,2,1,4,1,0,furnished,bagmati,lalitpur,lalitpur,2080,2,bike,1175,east,2,2,200,unknown,0,4,24_hours
+7055,house,residential,0,150000,month,13,pitched,2,1,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,1,car,1793,east,2395.75,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-flat-rent-in-satdobato-patan-lalitpur/,flat,residential,0,150000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3422.5,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/1-large-commercial-shutter-rent-in-jawlakhel-ekantakuna-lalitpur/,shutter,commercial,1,150000,month,20,pitched,2,0,1,1,1,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3080.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-brand-new-bungalow-house-rent-in-tinchuli-height-boudha-kathmandu/,house,residential,0,150000,month,16,pitched,2,4,4,1,0,semi furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,1711.25,2,200,unknown,0,3,24_hours
+https://nepalpropertybazaar.com/property/large-commercial-space-rent-in-bhaisepati-lalitpur/,flat,residential,0,150000,month,20,pitched,2,0,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3423,2,200,unknown,0,1,24_hours
+https://nepalpropertybazaar.com/property/4bhk-4-bathroom-flat-rent-in-alok-nagar-new-baneshwor-kathmandu/,flat,residential,0,150000,month,16,pitched,2,4,4,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,2,unknown,2198.5,west,2053.5,2,200,unknown,0,0,24_hours
+8663,house,residential,0,160000,month,20,pitched,2,1,2,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,2,car,308,south,1711.25,2,200,unknown,0,4,24_hours
+7832,house,residential,0,160000,month,20,pitched,2,1,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1021,south,1026.75,2,200,unknown,0,4,24_hours
+7726,house,residential,0,160000,month,20,pitched,2,1,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,1333,south,1197.875,2,200,unknown,0,4,24_hours
+7674,house,residential,0,160000,month,13,pitched,2,1,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1221,south,1197.875,2,200,unknown,0,4,24_hours
+7606,house,residential,0,160000,month,13,pitched,2,1,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1270,east,1026.75,2,200,unknown,0,4,24_hours
+7063,house,residential,0,160000,month,13,pitched,2,1,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,843,east,5476,1,200,unknown,0,4,24_hours
+8702,other,residential,0,165000,unknown,20,pitched,2,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,388,south,4449.25,2,200,unknown,0,4,24_hours
+7330,office,commercial,1,165000,month,16,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,bike,2884,north,4000,17,200,unknown,0,4,24_hours
+7497,house,residential,0,170000,month,20,pitched,2,1,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1971,south west,1711.25,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-large-warehouse-with-22-aana-land-rent-in-bafal-syuchatar-kalanki-kathmandu/,warehouse,commercial,1,170000,month,16,pitched,2,0,0,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,7529.5,2,200,unknown,0,0,24_hours
+8598,house,residential,0,175000,month,20,pitched,2,2,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,233,east,1711.25,2,200,unknown,0,4,24_hours
+6543,house,residential,0,175000,month,13,pitched,2,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,car,5367,east,5476,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-bungalow-house-rent-in-jhamsikhel-lalitpur/,house,residential,0,175000,month,20,pitched,2,12,0,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,15,unknown,2198.5,unknown,3080.25,2,200,unknown,0,0,24_hours
+https://nepalpropertybazaar.com/property/2-5-storey-fully-furnished-bungalow-house-rent-in-dhapasi-height-kathmandu/,house,residential,0,180000,month,13,pitched,2,7,5,1,0,fully furnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south,2395.75,2,300,separate,1,5,24_hours
+6476,house,residential,0,190000,month,20,pitched,2,20,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,2398,east,8,2,200,unknown,0,4,24_hours
+8107,apartment,residential,0,200000,month,13,pitched,2,2,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,2630,south,1711.25,2,200,unknown,0,4,24_hours
+7496,house,residential,0,200000,month,13,pitched,2,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1198,south,4107,2,200,unknown,0,4,24_hours
+7056,house,residential,0,200000,month,13,pitched,2,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,1254,east,2738,1,200,unknown,0,4,24_hours
+6493,house,residential,0,200000,month,10,marble,2,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2071,2,bike,2315,unknown,10,11,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/2-5-sotrey-house-rent-in-bhanimandal-lalitpur/,house,residential,0,200000,month,14,pitched,2,6,6,1,0,semi furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,south-west,8214,2,150,unknown,0,1,24_hours
+7451,house,residential,0,220000,month,16,pitched,2,1,4,1,0,furnished,bagmati,lalitpur,lalitpur,2080,2,bike,765,east,2,2,200,unknown,0,4,24_hours
+6010,other,residential,0,240000,month,13,pitched,2,2,5,1,0,furnished,bagmati,lalitpur,lalitpur,2080,4,car,1100,unknown,4107,2,200,unknown,0,4,24_hours
+8805,office,commercial,1,250000,month,30,pitched,2,2,1,1,0,unfurnished,bagmati,kathmandu,kathmandu,2078,2,car,839,south west,1711.25,4,200,unknown,0,4,24_hours
+2284,office,commercial,1,250000,unknown,20,pitched,2,2,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,1,car,2400,south,3000,15,200,unknown,0,4,24_hours
+6735,house,residential,0,250000,month,13,pitched,2,1,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2070,2,bike,2664,south,8214,12,200,unknown,0,4,24_hours
+5714,office,commercial,1,300000,month,26,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,836,unknown,32,2,200,unknown,0,4,24_hours
+8431,house,residential,0,300000,month,13,pitched,2,1,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,529,south,7529.5,2,200,unknown,0,4,24_hours
+8284,house,residential,0,300000,month,13,pitched,2,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,760,south,2738,2,200,unknown,0,4,24_hours
+6687,house,residential,0,300000,month,13,pitched,2,1,3,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,bike,2117,south,1197.875,1,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3-storey-brand-new-bungalow-house-rent-in-naxal-narayanhiti-path-kathmandu/,house,residential,0,300000,month,12,pitched,2,7,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,south-east,4107,2,200,unknown,0,0,24_hours
+6067,other,residential,0,350000,unknown,16,pitched,2,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2071,4,car,4433,north,3764.75,11,200,unknown,0,4,24_hours
+5986,other,residential,0,350000,unknown,30,pitched,2,2,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,4,car,631,unknown,16,1,200,unknown,0,4,24_hours
+8081,house,residential,0,350000,month,16,pitched,2,2,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,2176,south,6845,2,200,unknown,0,4,24_hours
+7868,house,residential,0,350000,month,16,pitched,2,2,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1698,south,6845,2,200,unknown,0,4,24_hours
+https://nepalpropertybazaar.com/property/3-5-storey-commercial-house-rent-in-minbhawan-new-baneshwor-kathmandu/,house,residential,0,375000,month,12,pitched,2,15,7,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,0,unknown,2198.5,unknown,6502.75,2,200,separate,0,1,24_hours
+https://nepalpropertybazaar.com/property/2-boutique-furnished-house-rent-in-khumaltar-lalitpur/,house,residential,0,400000,month,16,pitched,2,4,4,1,0,fully furnished,bagmati,lalitpur,lalitpur,2080,0,unknown,2198.5,unknown,8214,2,75,unknown,0,1,24_hours
+8399,house,residential,0,500000,month,20,pitched,2,1,3,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2080,2,bike,469,south,2053.5,2,200,unknown,0,4,24_hours
+7509,house,residential,0,700000,month,13,pitched,2,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1207,south,4107,2,200,unknown,0,4,24_hours
+6002,office,commercial,1,1000000,month,30,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,494,unknown,22,2,200,unknown,0,4,24_hours
+6816,other,residential,0,1020000,unknown,24,pitched,2,24,2,10,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,2444,east,7871.75,2,200,unknown,0,4,24_hours
+7927,other,residential,0,3500000,aana,10,marble,2,10,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,2710,east,1369,2,200,unknown,0,4,24_hours
+5691,other,residential,0,4500000,unknown,16,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,591,unknown,27380,2,200,unknown,0,4,24_hours
+5692,other,residential,0,5500000,unknown,16,pitched,2,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,678,unknown,32,2,200,unknown,0,4,24_hours
+3826,office,commercial,1,7000,month,20,pitched,2.5,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2066,1,car,3751,south east,7,16,200,unknown,0,4,24_hours
+4080,house,residential,0,25000,month,16,pitched,2.5,10,4,2,0,unfurnished,koshi,sunsari,sunsari,2076,2,bike,1111,west,9,6,200,unknown,0,4,24_hours
+4079,house,residential,0,25000,month,13,pitched,2.5,8,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,1782,east,3,6,200,unknown,0,4,24_hours
+5569,other,residential,0,35000,unknown,20,pitched,2.5,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2077,2,bike,3130,east,855.625,5,200,unknown,0,4,24_hours
+7232,flat,residential,0,40000,month,26,pitched,2.5,1,2,1,0,furnished,bagmati,lalitpur,lalitpur,2080,2,bike,1472,west,1369,2,200,unknown,0,4,24_hours
+7058,house,residential,0,40000,month,20,pitched,2.5,1,4,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2081,2,bike,1607,south,1026.75,1,200,unknown,0,4,24_hours
+3840,house,residential,0,45000,month,13,pitched,2.5,1,3,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2074,2,car,4663,west,1100,8,200,unknown,0,4,24_hours
+7043,house,residential,0,45000,month,20,pitched,2.5,1,4,1,0,semi-furnished,bagmati,kathmandu,kathmandu,2078,2,unknown,2167,west,1369,4,200,unknown,0,4,24_hours
+3839,house,residential,0,48000,month,13,pitched,2.5,6,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,1,car,2926,east,1200,7,200,unknown,0,4,24_hours
+6668,apartment,residential,0,50000,month,12,pitched,2.5,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,5103,south east,1540.125,6,200,unknown,0,4,24_hours
+6117,other,residential,0,50000,unknown,13,pitched,2.5,3,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,3949,unknown,2,2,200,unknown,0,4,24_hours
+8268,other,residential,0,52000,unknown,12,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2079,2,bike,1843,south west,1369,3,200,unknown,0,4,24_hours
+8139,house,residential,0,55000,month,13,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2075,1,car,1054,west,787.175,7,200,unknown,0,4,24_hours
+7994,house,residential,0,55000,month,24,pitched,2.5,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2078,1,car,1422,south,1711.25,4,200,unknown,0,4,24_hours
+6466,house,residential,0,55000,month,16,pitched,2.5,1,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2075,7.5,car,3181,south,4,7,200,unknown,0,4,24_hours
+5873,house,residential,0,60000,month,16,pitched,2.5,1,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,car,3181,west,1403.225,6,200,unknown,0,4,24_hours
+6197,house,residential,0,65000,month,12,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2074,2,car,3092,west,2224.625,8,200,unknown,0,4,24_hours
+5563,house,residential,0,65000,month,15,pitched,2.5,1,6,1,0,unfurnished,bagmati,lalitpur,lalitpur,2075,2,car,4523,north east,1454.5625,7,200,unknown,0,4,24_hours
+5258,other,residential,0,65000,unknown,16,pitched,2.5,3,3,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,2,car,3121,south east,3,6,200,unknown,0,4,24_hours
+3541,other,residential,0,65000,unknown,16,pitched,2.5,7,3,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,4,car,2934,south east,1000,6,200,unknown,0,4,24_hours
+3139,other,residential,0,65000,unknown,16,pitched,2.5,8,3,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,1,car,3201,south east,3,6,200,unknown,0,4,24_hours
+5879,house,residential,0,70000,month,13,pitched,2.5,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2078,4,car,1886,south,2224.625,4,200,unknown,0,4,24_hours
+4559,other,residential,0,70000,month,16,pitched,2.5,1,1,1,0,unfurnished,gandaki,kaski,nagdhunga,2076,2,car,2261,west,11,6,200,unknown,0,4,24_hours
+2419,house,residential,0,70000,month,14,pitched,2.5,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2070,2,bike,7377,south,4,12,200,unknown,0,4,24_hours
+5857,house,residential,0,72000,month,24,pitched,2.5,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1270,south,1882.375,2,200,unknown,0,4,24_hours
+8301,house,residential,0,75000,month,13,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,976,unknown,1369,2,200,unknown,0,4,24_hours
+2923,house,residential,0,80000,month,16,pitched,2.5,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,4108,south east,1882.375,6,200,unknown,0,4,24_hours
+6517,other,residential,0,80000,unknown,10,marble,2.5,1,5,1,0,unfurnished,gandaki,kaski,pokhara,2073,1,car,1765,south,2395.75,9,200,unknown,0,4,24_hours
+8740,house,residential,0,85000,unknown,20,pitched,2.5,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,car,295,east,1369,1,200,unknown,0,4,24_hours
+5852,house,residential,0,90000,month,13,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,4,car,2956,east,0,17,200,unknown,0,4,24_hours
+6731,house,residential,0,90000,month,13,pitched,2.5,1,3,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2981,east,3422.5,1,200,unknown,0,4,24_hours
+4023,house,residential,0,95000,month,16,pitched,2.5,1,6,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,2,car,2273,south,7,15,200,unknown,0,4,24_hours
+5768,other,residential,0,100000,month,16,pitched,2.5,2,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,1,car,1330,east,1026.75,2,200,unknown,0,4,24_hours
+3578,other,residential,0,100000,unknown,20,pitched,2.5,14,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,1,car,5249,east,1882.375,16,200,unknown,0,4,24_hours
+3397,other,residential,0,100000,unknown,16,pitched,2.5,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,2,bike,4226,east,4.2,15,200,unknown,0,4,24_hours
+8571,house,residential,0,100000,month,13,pitched,2.5,2,4,2,0,unfurnished,bagmati,kathmandu,bara,2080,2,bike,304,unknown,1540.125,2,200,unknown,0,4,24_hours
+1904,house,residential,0,120000,month,13,pitched,2.5,10,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2074,2,bike,7432,north east,20,8,200,unknown,0,4,24_hours
+7652,other,residential,0,120000,unknown,13,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1896,south,1711.25,2,200,unknown,0,4,24_hours
+6741,house,residential,0,120000,month,13,pitched,2.5,2,4,1,0,furnished,bagmati,lalitpur,lalitpur,2081,2,unknown,2934,west,4107,1,200,unknown,0,4,24_hours
+5913,other,residential,0,125000,month,20,pitched,2.5,1,6,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,12.5,bike,2098,east,10,1,200,unknown,0,4,24_hours
+6632,house,residential,0,125000,month,20,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,2798,east,2,1,200,unknown,0,4,24_hours
+6489,house,residential,0,125000,month,20,pitched,2.5,2,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,4,car,2844,east,10,1,200,unknown,0,4,24_hours
+9013,house,residential,0,130000,month,12,pitched,2.5,2,6,1,0,semi-furnished,bagmati,kathmandu,kathmandu,2065,2,car,500,east,9.5,17,200,unknown,0,4,24_hours
+3684,house,residential,0,130000,month,20,pitched,2.5,1,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,4,car,3979,north,12,16,200,unknown,0,4,24_hours
+8324,house,residential,0,130000,month,16,pitched,2.5,1,3,1,0,semi-furnished,bagmati,kathmandu,kathmandu,2080,1,car,907,unknown,1540.125,2,200,unknown,0,4,24_hours
+6714,house,residential,0,130000,month,13,marble,2.5,2,4,2,0,furnished,bagmati,kathmandu,kathmandu,2081,2,bike,3237,east,2,1,200,unknown,0,4,24_hours
+2583,house,residential,0,135000,month,8,marble,2.5,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,7.5,car,2685,north east,3764.75,16,200,unknown,0,4,24_hours
+1984,house,residential,0,135000,month,16,pitched,2.5,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,5079,east,3080.25,6,200,unknown,0,4,24_hours
+7185,house,residential,0,135000,month,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1805,unknown,3422.5,2,200,unknown,0,4,24_hours
+5956,house,residential,0,150000,month,13,pitched,2.5,1,4,1,0,fully-furnished,bagmati,lalitpur,lalitpur,2074,1,car,2569,south west,2224.625,8,200,unknown,0,4,24_hours
+5399,house,residential,0,150000,month,20,pitched,2.5,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,car,2171,west,2395.75,16,200,unknown,0,4,24_hours
+2088,house,residential,0,150000,month,16,pitched,2.5,1,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,5101,east,3422.5,6,200,unknown,0,4,24_hours
+8261,house,residential,0,150000,month,13,pitched,2.5,1,3,1,0,semi-furnished,bagmati,kathmandu,kathmandu,2080,1,car,970,south,1711.25,2,200,unknown,0,4,24_hours
+7737,house,residential,0,150000,month,16,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2075,2,bike,1578,north,4107,7,200,unknown,0,4,24_hours
+7345,house,residential,0,150000,month,20,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,2076,unknown,4107,2,200,unknown,0,4,24_hours
+6716,other,residential,0,150000,unknown,13,pitched,2.5,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,3044,east,2,1,200,unknown,0,4,24_hours
+6490,house,residential,0,150000,month,20,pitched,2.5,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,3285,west,2,2,200,unknown,0,4,24_hours
+5877,house,residential,0,170000,month,16,pitched,2.5,1,7,1,0,unfurnished,bagmati,kathmandu,kathmandu,2075,4,car,1664,east,2053.5,7,200,unknown,0,4,24_hours
+3942,other,residential,0,170000,unknown,14,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2076,5,car,6312,east,2395.75,6,200,unknown,0,4,24_hours
+6428,other,residential,0,175000,month,30,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,2,car,6500,unknown,9.5,17,200,unknown,0,4,24_hours
+1962,house,residential,0,175000,month,13,pitched,2.5,10,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,car,4444,south,3593.625,6,200,unknown,0,4,24_hours
+1913,house,residential,0,175000,month,18,pitched,2.5,13,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2068,3,car,3670,east,5476,14,200,unknown,0,4,24_hours
+6829,house,residential,0,175000,month,20,pitched,2.5,1,4,1,0,furnished,bagmati,lalitpur,lalitpur,2078,1,car,3264,east,2395.75,4,200,unknown,0,4,24_hours
+6485,house,residential,0,175000,month,20,pitched,2.5,1,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2078,2,car,2590,unknown,5476,4,200,unknown,0,4,24_hours
+5990,house,residential,0,180000,month,13,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1707,unknown,10,2,200,unknown,0,4,24_hours
+5666,house,residential,0,180000,month,13,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,882,unknown,6160.5,2,200,unknown,0,4,24_hours
+8372,house,residential,0,180000,month,16,pitched,2.5,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,720,unknown,10952,2,200,unknown,0,4,24_hours
+7057,house,residential,0,180000,month,13,pitched,2.5,1,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,1833,east,3422.5,1,200,unknown,0,4,24_hours
+5777,house,residential,0,190000,month,20,pitched,2.5,3,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2071,7.5,car,1739,south east,7187.25,11,200,unknown,0,4,24_hours
+7060,house,residential,0,190000,month,13,pitched,2.5,1,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,1,car,2213,east,2738,1,200,unknown,0,4,24_hours
+5729,other,residential,0,200000,unknown,20,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,686,unknown,4107,2,200,unknown,0,4,24_hours
+5673,house,residential,0,200000,month,13,pitched,2.5,2,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,787,unknown,7187.25,2,200,unknown,0,4,24_hours
+3704,house,residential,0,200000,month,20,pitched,2.5,14,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2072,4,car,3395,south,10952,10,200,unknown,0,4,24_hours
+8469,house,residential,0,200000,month,16,pitched,2.5,2,2,1,0,fully-furnished,bagmati,kathmandu,kathmandu,2080,1,car,434,unknown,2224.625,2,200,unknown,0,4,24_hours
+8420,house,residential,0,200000,month,13,pitched,2.5,1,5,1,0,unfurnished,bagmati,kathmandu,bara,2080,2,car,454,unknown,2,2,200,unknown,0,4,24_hours
+6472,house,residential,0,200000,month,20,pitched,2.5,2,2,2,0,furnished,bagmati,lalitpur,lalitpur,2078,2,bike,1857,east,1882.375,4,200,unknown,0,4,24_hours
+4147,house,residential,0,225000,month,18,pitched,2.5,8,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,4,car,1654,east,1500,6,200,unknown,0,4,24_hours
+3743,house,residential,0,225000,month,20,pitched,2.5,8,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2068,4,car,2306,south east,13690,14,200,unknown,0,4,24_hours
+5993,house,residential,0,230000,month,13,pitched,2.5,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,991,unknown,16,2,200,unknown,0,4,24_hours
+9087,house,residential,0,250000,month,26,pitched,2.5,1,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,7,bike,98,south,3935.875,17,200,unknown,0,4,24_hours
+5730,other,residential,0,250000,unknown,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,756,unknown,20,2,200,unknown,0,4,24_hours
+5707,other,residential,0,250000,unknown,13,pitched,2.5,2,6,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,809,unknown,5133.75,2,200,unknown,0,4,24_hours
+1910,other,residential,0,250000,month,16,pitched,2.5,4,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,3,car,6699,south,0,15,200,unknown,0,4,24_hours
+6473,house,residential,0,250000,month,20,marble,2.5,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2070,2,bike,2675,east,1882.375,12,200,unknown,0,4,24_hours
+5996,other,residential,0,270000,month,14,pitched,2.5,1,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,737,unknown,3422.5,2,200,unknown,0,4,24_hours
+5982,other,residential,0,270000,month,14,pitched,2.5,1,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,car,815,unknown,8,2,200,unknown,0,4,24_hours
+5711,house,residential,0,270000,month,13,pitched,2.5,1,5,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,7.5,car,845,unknown,9583,2,200,unknown,0,4,24_hours
+8569,house,residential,0,275000,month,16,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,283,unknown,1540.125,2,200,unknown,0,4,24_hours
+5710,other,residential,0,280000,unknown,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,887,unknown,7529.5,2,200,unknown,0,4,24_hours
+5663,other,residential,0,280000,unknown,13,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,897,unknown,8214,2,200,unknown,0,4,24_hours
+5994,house,residential,0,290000,month,13,pitched,2.5,2,5,2,0,semi-furnished,bagmati,kathmandu,kathmandu,2080,4,car,625,unknown,6845,2,200,unknown,0,4,24_hours
+6799,house,residential,0,299999,month,20,pitched,2.5,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,bike,2724,south,3.5,2,200,unknown,0,4,24_hours
+5995,other,residential,0,300000,unknown,16,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,584,unknown,12,2,200,unknown,0,4,24_hours
+5981,house,residential,0,300000,month,20,pitched,2.5,2,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,1288,unknown,10952,2,200,unknown,0,4,24_hours
+5731,other,residential,0,300000,unknown,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,758,unknown,10952,2,200,unknown,0,4,24_hours
+5684,other,residential,0,300000,unknown,20,pitched,2.5,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,car,856,unknown,9,2,200,unknown,0,4,24_hours
+5683,other,residential,0,300000,unknown,16,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,bara,2080,7.5,car,704,unknown,24,2,200,unknown,0,4,24_hours
+5669,other,residential,0,300000,unknown,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,997,unknown,8898.5,2,200,unknown,0,4,24_hours
+5662,house,residential,0,300000,month,16,pitched,2.5,2,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,2174,west,10952,2,200,unknown,0,4,24_hours
+7307,house,residential,0,300000,month,28,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,1185,unknown,1,2,200,unknown,0,4,24_hours
+7164,house,residential,0,300000,month,13,pitched,2.5,2,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,2465,east,5476,1,200,unknown,0,4,24_hours
+7089,house,residential,0,300000,month,16,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,1382,west,8214,2,200,unknown,0,4,24_hours
+6077,house,residential,0,320000,month,13,pitched,2.5,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,12.5,bike,2936,west,9240.75,17,200,unknown,0,4,24_hours
+8272,house,residential,0,330000,month,16,pitched,2.5,1,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1734,west,11294.25,2,200,unknown,0,4,24_hours
+5682,other,residential,0,350000,unknown,13,pitched,2.5,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,950,unknown,10952,2,200,unknown,0,4,24_hours
+3003,other,residential,0,350000,month,32,pitched,2.5,1,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2070,7.5,car,4440,west,8,12,200,unknown,0,4,24_hours
+6495,house,residential,0,350000,month,20,pitched,2.5,1,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,car,3857,east,24,1,200,unknown,0,4,24_hours
+5875,office,commercial,1,370000,month,13,pitched,2.5,2,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,3036,south east,10267.5,2,200,unknown,0,4,24_hours
+5712,other,residential,0,400000,unknown,16,pitched,2.5,1,6,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,755,unknown,8214,2,200,unknown,0,4,24_hours
+5708,other,residential,0,400000,unknown,13,pitched,2.5,1,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,826,unknown,16,2,200,unknown,0,4,24_hours
+5676,house,residential,0,400000,month,13,pitched,2.5,2,8,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,753,unknown,10952,2,200,unknown,0,4,24_hours
+8333,house,residential,0,400000,month,20,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,988,south,7529.5,2,200,unknown,0,4,24_hours
+8498,house,residential,0,420000,month,16,pitched,2.5,1,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,902,unknown,800,2,200,unknown,0,4,24_hours
+5210,house,residential,0,500000,month,16,pitched,2.5,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2070,4,car,4260,east,8214,12,200,unknown,0,4,24_hours
+5756,house,residential,0,550000,month,20,pitched,2.5,2,3,1,0,unfurnished,bagmati,kathmandu,kathmandu,2065,12.5,bike,2615,north east,17454.75,17,200,unknown,0,4,24_hours
+5576,other,residential,0,7000000,unknown,13,pitched,2.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2078,2,car,3437,south,2738,4,200,unknown,0,4,24_hours
+3463,office,commercial,1,7000,month,20,pitched,3,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,2550,south east,1,6,200,unknown,0,4,24_hours
+2615,other,residential,0,7000,unknown,13,pitched,3,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,7.5,car,3403,north east,9000,6,200,unknown,0,4,24_hours
+3749,office,commercial,1,10000,unknown,20,pitched,3,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2752,east,1650,6,200,unknown,0,4,24_hours
+2332,flat,residential,0,12000,month,20,pitched,3,1,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2071,3,car,3962,east,1,11,200,unknown,0,4,24_hours
+8815,office,commercial,1,40000,month,16,pitched,3,3,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,1656,east,1369,2,200,unknown,0,4,24_hours
+2078,office,commercial,1,45000,month,16,pitched,3,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2934,east,800,6,200,unknown,0,4,24_hours
+4094,house,residential,0,60000,month,13,pitched,3,3,6,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,car,41776,east,1200,6,200,unknown,0,4,24_hours
+6684,house,residential,0,65000,month,13,pitched,3,2,4,2,0,semi-furnished,bagmati,lalitpur,lalitpur,2081,2,bike,2634,east,2,1,200,unknown,0,4,24_hours
+5829,apartment,residential,0,80000,month,20,pitched,3,4,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,5747,west,2,2,200,unknown,0,4,24_hours
+8864,house,residential,0,90000,month,16,pitched,3,1,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2075,2,car,575,unknown,2053.5,7,200,unknown,0,4,24_hours
+6090,house,residential,0,100000,month,13,pitched,3,3,3,3,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,2156,unknown,1280,1,200,unknown,0,4,24_hours
+5771,apartment,residential,0,100000,month,20,pitched,3,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2067,2,car,2365,north east,1026.75,15,200,unknown,0,4,24_hours
+3666,other,residential,0,100000,unknown,20,pitched,3,2,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2775,south east,3000,6,200,unknown,0,4,24_hours
+6715,other,residential,0,100000,unknown,13,pitched,3,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,2380,east,2,1,200,unknown,0,4,24_hours
+7222,house,residential,0,120000,month,20,pitched,3,3,5,3,0,unfurnished,bagmati,kathmandu,kathmandu,2080,1,car,1517,east,2053.5,2,200,unknown,0,4,24_hours
+6111,other,residential,0,130000,month,30,pitched,3,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,12.5,bike,3274,south east,2150,2,200,unknown,0,4,24_hours
+3485,office,commercial,1,150000,month,16,pitched,3,2,1,2,0,unfurnished,bagmati,kathmandu,bara,2076,7.5,car,2470,north,2500,6,200,unknown,0,4,24_hours
+2452,other,residential,0,150000,unknown,20,pitched,3,1,1,2,0,unfurnished,koshi,morang,morang,2076,3,car,8128,south,4200,6,200,unknown,0,4,24_hours
+7091,house,residential,0,150000,month,20,pitched,3,2,4,2,0,fully-furnished,bagmati,lalitpur,lalitpur,2081,4,car,1689,east,2053.5,1,200,unknown,0,4,24_hours
+5885,house,residential,0,180000,month,13,pitched,3,2,6,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,4,car,1996,east,3764.75,16,200,unknown,0,4,24_hours
+5644,house,residential,0,180000,month,8,marble,3,2,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,880,unknown,13690,2,200,unknown,0,4,24_hours
+4358,other,residential,0,200000,month,20,pitched,3,5,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2066,7.5,car,2541,west,7187.25,16,200,unknown,0,4,24_hours
+2569,other,residential,0,200000,month,20,pitched,3,11,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,3880,east,3,6,200,unknown,0,4,24_hours
+5667,house,residential,0,225000,month,20,pitched,3,1,6,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,638,unknown,7187.25,2,200,unknown,0,4,24_hours
+5670,other,residential,0,240000,unknown,13,pitched,3,3,7,3,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,642,unknown,3080.25,2,200,unknown,0,4,24_hours
+5672,other,residential,0,250000,unknown,13,pitched,3,2,6,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,590,unknown,16,2,200,unknown,0,4,24_hours
+5665,house,residential,0,250000,month,13,pitched,3,2,4,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,610,unknown,4107,2,200,unknown,0,4,24_hours
+7127,house,residential,0,250000,month,13,pitched,3,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2081,2,bike,1775,east,4107,1,200,unknown,0,4,24_hours
+5991,house,residential,0,275000,month,16,pitched,3,1,6,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,863,unknown,5476,2,200,unknown,0,4,24_hours
+5709,house,residential,0,275000,month,13,pitched,3,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,720,unknown,4791.5,2,200,unknown,0,4,24_hours
+5664,house,residential,0,275000,month,13,pitched,3,2,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,797,unknown,5476,2,200,unknown,0,4,24_hours
+8579,house,residential,0,295000,month,16,pitched,3,5,20,1,0,unfurnished,bagmati,lalitpur,lalitpur,2077,12.5,bike,231,east,32,5,200,unknown,0,4,24_hours
+5860,house,residential,0,300000,month,16,pitched,3,1,7,3,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1763,west,5476,2,200,unknown,0,4,24_hours
+5812,house,residential,0,300000,month,16,pitched,3,2,5,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,819,unknown,20,2,200,unknown,0,4,24_hours
+5734,other,residential,0,300000,unknown,13,pitched,3,2,8,1,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,873,unknown,5476,2,200,unknown,0,4,24_hours
+5677,commercial,commercial,1,300000,month,13,pitched,3,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,898,unknown,7,2,200,unknown,0,4,24_hours
+7490,house,residential,0,300000,month,20,pitched,3,3,6,3,0,furnished,bagmati,lalitpur,lalitpur,2080,1,car,1258,west,4791.5,2,200,unknown,0,4,24_hours
+6004,house,residential,0,315000,month,28,pitched,3,2,8,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,1227,unknown,6160.5,2,200,unknown,0,4,24_hours
+3513,commercial,commercial,1,400000,month,60,pitched,3,2,5,2,0,unfurnished,koshi,morang,morang,2076,7.5,car,1131,east,7290,6,200,unknown,0,4,24_hours
+3831,house,residential,0,450000,month,13,pitched,3,15,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,7.5,car,2674,north east,18139.25,16,200,unknown,0,4,24_hours
+8671,house,residential,0,600000,unknown,26,pitched,3,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,7.5,car,503,east,21904,7,200,unknown,0,4,24_hours
+5911,house,residential,0,30000000,unknown,13,pitched,3,1,3,3,0,unfurnished,bagmati,kathmandu,kathmandu,2078,2,car,1738,south east,2139.0625,4,200,unknown,0,4,24_hours
+7110,house,residential,0,40000,month,16,marble,3.5,2,3,2,0,unfurnished,bagmati,makawanpur,hetauda,2080,2,bike,1550,unknown,1026.75,2,200,unknown,0,4,24_hours
+3943,house,residential,0,50000,month,16,pitched,3.5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,2313,east,4,6,200,unknown,0,4,24_hours
+6717,other,residential,0,90000,unknown,13,pitched,3.5,2,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2081,2,bike,3176,east,2,1,200,unknown,0,4,24_hours
+2665,house,residential,0,100000,month,16,pitched,3.5,7,3,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,7.5,car,2026,south,5,16,200,unknown,0,4,24_hours
+8760,house,residential,0,140000,month,10,marble,3.5,2,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2065,4,car,580,north west,1882.375,17,200,unknown,0,4,24_hours
+2029,house,residential,0,140000,month,16,pitched,3.5,15,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,5107,east,4107,6,200,unknown,0,4,24_hours
+4366,house,residential,0,150000,month,30,pitched,3.5,1,4,1,0,unfurnished,bagmati,kathmandu,kathmandu,2070,2,bike,1943,west,1369,12,200,unknown,0,4,24_hours
+3188,house,residential,0,150000,month,16,pitched,3.5,6,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,5507,south west,6845,6,200,unknown,0,4,24_hours
+2983,house,residential,0,150000,month,20,pitched,3.5,15,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2072,1,car,3618,east,5.5,10,200,unknown,0,4,24_hours
+3762,house,residential,0,200000,unknown,16,pitched,3.5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,1,car,1856,east,1500,6,200,unknown,0,4,24_hours
+2325,house,residential,0,200000,month,13,pitched,3.5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2067,2,bike,3573,south east,1500,15,200,unknown,0,4,24_hours
+8513,other,residential,0,249999,month,16,pitched,3.5,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,2,bike,352,east,4791.5,2,200,unknown,0,4,24_hours
+8714,house,residential,0,250000,month,20,pitched,3.5,2,6,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2081,7.5,car,1010,unknown,0,1,200,unknown,0,4,24_hours
+2393,other,residential,0,275000,unknown,22,pitched,3.5,15,4,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3700,east,4791.5,6,200,unknown,0,4,24_hours
+3576,office,commercial,1,500000,month,16,pitched,3.5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2072,7.5,car,1742,east,1500,10,200,unknown,0,4,24_hours
+4457,house,residential,0,550000,month,13,pitched,3.5,3,4,2,0,unfurnished,bagmati,lalitpur,lalitpur,2066,7.5,car,1312,south,10952,16,200,unknown,0,4,24_hours
+3611,flat,residential,0,7500,month,13,pitched,4,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2075,7.5,car,1847,east,2600,7,200,unknown,0,4,24_hours
+2984,office,commercial,1,12500,month,20,pitched,4,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,car,3587,east,1200,6,200,unknown,0,4,24_hours
+3292,shutter,commercial,1,15000,unknown,25,pitched,4,2,2,2,1,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1458,west,2053.5,6,200,unknown,0,4,24_hours
+2443,commercial,commercial,1,20000,month,8,marble,4,1,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2067,2,bike,3647,east,8,15,200,unknown,0,4,24_hours
+4106,house,residential,0,25000,month,20,pitched,4,4,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2489,south,684.5,6,200,unknown,0,4,24_hours
+2634,other,residential,0,35000,unknown,16,pitched,4,4,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2764,west,1200,6,200,unknown,0,4,24_hours
+3396,flat,residential,0,125000,month,16,pitched,4,2,3,2,0,fully-furnished,koshi,lalitpur,kathmandu,2076,1,car,1481,west,2000,6,200,unknown,0,4,24_hours
+3754,house,residential,0,140000,month,20,pitched,4,12,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2073,2,car,1764,north east,1200,9,200,unknown,0,4,24_hours
+6175,apartment,residential,0,170000,month,13,pitched,4,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2075,1,car,2226,east,1000,7,200,unknown,0,4,24_hours
+3594,house,residential,0,170000,month,16,pitched,4,15,1,2,0,unfurnished,bagmati,sindhuli,sindhuli,2076,4,car,2853,east,1711.25,6,200,unknown,0,4,24_hours
+3318,house,residential,0,200000,month,13,pitched,4,5,4,4,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3458,east,5,6,200,unknown,0,4,24_hours
+3185,house,residential,0,200000,month,20,pitched,4,15,6,2,0,unfurnished,bagmati,kavrepalanchok,kavrepalanchok,2076,4,car,5072,north east,10952,6,200,unknown,0,4,24_hours
+3855,house,residential,0,215000,unknown,20,pitched,4,15,7,2,0,unfurnished,bagmati,lalitpur,lalitpur,2075,7.5,car,2406,north east,1500,7,200,unknown,0,4,24_hours
+3043,apartment,residential,0,215000,month,16,pitched,4,2,3,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,3101,east,1500,6,200,unknown,0,4,24_hours
+2791,other,residential,0,330000,unknown,16,pitched,4,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,3286,west,4000,6,200,unknown,0,4,24_hours
+2600,other,residential,0,330000,unknown,16,pitched,4,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2518,west,1200,6,200,unknown,0,4,24_hours
+5687,other,residential,0,350000,unknown,20,pitched,4,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,670,unknown,2395.75,2,200,unknown,0,4,24_hours
+5674,house,residential,0,350000,month,13,pitched,4,3,10,3,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1005,unknown,3422.5,2,200,unknown,0,4,24_hours
+5668,house,residential,0,360000,month,16,pitched,4,1,6,3,0,unfurnished,bagmati,lalitpur,lalitpur,2080,4,car,873,unknown,7529.5,2,200,unknown,0,4,24_hours
+5997,commercial,commercial,1,440000,month,30,pitched,4,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,7.5,car,328,unknown,16,2,200,unknown,0,4,24_hours
+3731,office,commercial,1,450000,unknown,30,pitched,4,2,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,2401,east,16428,6,200,unknown,0,4,24_hours
+6005,commercial,commercial,1,500000,month,16,pitched,4,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,1092,unknown,16,2,200,unknown,0,4,24_hours
+5985,house,residential,0,500000,month,16,pitched,4,2,8,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,7.5,car,566,unknown,6160.5,2,200,unknown,0,4,24_hours
+2593,other,residential,0,550000,month,14,pitched,4,15,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2066,2,bike,2829,east,17,16,200,unknown,0,4,24_hours
+7954,house,residential,0,20000,month,11,marble,4.5,4,6,4,0,unfurnished,bagmati,kathmandu,kathmandu,2071,1,car,1876,north,3764.75,11,200,unknown,0,4,24_hours
+3632,house,residential,0,88000,month,10,marble,4.5,12,7,2,0,unfurnished,bagmati,lalitpur,lalitpur,2070,2,bike,3002,east,1400,12,200,unknown,0,4,24_hours
+2858,house,residential,0,200000,month,13,pitched,4.5,15,8,2,0,unfurnished,madhesh,dolakha,dolakha,2072,2,bike,1889,east,1200,10,200,unknown,0,4,24_hours
+3843,house,residential,0,350000,month,16,pitched,4.5,15,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,1819,east,1500,6,200,unknown,0,4,24_hours
+2601,commercial,commercial,1,50000,month,26,pitched,5,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,5,car,3472,north east,800,6,200,unknown,0,4,24_hours
+4030,other,residential,0,60000,unknown,30,pitched,5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,7.5,car,3948,east,2053.5,6,200,unknown,0,4,24_hours
+3999,commercial,commercial,1,65000,month,20,pitched,5,2,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,3611,north east,6,6,200,unknown,0,4,24_hours
+4128,house,residential,0,65000,month,13,pitched,5,11,5,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,4,car,1707,south east,1711.25,6,200,unknown,0,4,24_hours
+8235,other,residential,0,99000,unknown,20,pitched,5,6,2,1,0,unfurnished,bagmati,kathmandu,kathmandu,2069,2,unknown,1320,south,5,13,200,unknown,0,4,24_hours
+6511,other,residential,0,100000,month,12,pitched,5,40,5,4,0,unfurnished,bagmati,bhaktapur,bhaktapur,2065,2,bike,3528,east,2,17,200,unknown,0,4,24_hours
+2718,other,residential,0,300000,unknown,20,pitched,5,15,7,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,4,car,2473,north,1,6,200,unknown,0,4,24_hours
+5776,house,residential,0,500000,month,22,pitched,5,3,7,1,0,unfurnished,bagmati,lalitpur,lalitpur,2080,12.5,bike,1765,south,9240.75,2,200,unknown,0,4,24_hours
+5679,commercial,commercial,1,500000,month,20,pitched,5,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,511,unknown,8,2,200,unknown,0,4,24_hours
+5992,house,residential,0,700000,month,16,pitched,5,2,18,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,4,car,1609,unknown,18,2,200,unknown,0,4,24_hours
+7240,other,residential,0,500000,unknown,20,pitched,5.5,2,11,1,0,unfurnished,bagmati,kathmandu,kathmandu,2077,1,car,2134,south east,3422.5,5,200,unknown,0,4,24_hours
+6463,other,residential,0,550000,unknown,12,pitched,5.5,2,11,1,0,unfurnished,bagmati,kathmandu,kathmandu,2078,2,unknown,4263,south east,3422.5,4,200,unknown,0,4,24_hours
+3802,office,commercial,1,8500,unknown,40,pitched,6,2,1,2,0,unfurnished,bagmati,bhaktapur,bhaktapur,2076,7.5,car,3275,south,24,6,200,unknown,0,4,24_hours
+3022,commercial,commercial,1,13600,unknown,16,pitched,6,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,1,car,2727,east,3695,6,200,unknown,0,4,24_hours
+6245,flat,residential,0,23000,month,10,marble,6,5,1,1,0,unfurnished,bagmati,bhaktapur,bhaktapur,2077,1,car,3957,unknown,2053.5,5,200,unknown,0,4,24_hours
+5689,commercial,commercial,1,40000,month,16,pitched,6,2,2,2,0,unfurnished,bagmati,lalitpur,lalitpur,2080,2,unknown,599,unknown,15,2,200,unknown,0,4,24_hours
+6044,apartment,residential,0,50000,month,20,pitched,6,7,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2077,1,car,1763,east,0,5,200,unknown,0,4,24_hours
+2790,other,residential,0,50000,month,20,pitched,6,6,6,2,0,unfurnished,gandaki,kaski,pokhara,2076,7.5,car,3258,east,1100,6,200,unknown,0,4,24_hours
+2786,commercial,commercial,1,75000,unknown,20,pitched,6,2,8,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,2,bike,2561,east,16,6,200,unknown,0,4,24_hours
+2525,other,residential,0,75000,unknown,12,pitched,6,1,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,3015,south east,171.125,6,200,unknown,0,4,24_hours
+3790,office,commercial,1,100000,month,16,pitched,6,2,3,1,0,unfurnished,bagmati,lalitpur,lalitpur,2076,7.5,car,3252,north east,1500,6,200,unknown,0,4,24_hours
+5998,other,residential,0,1680000,unknown,20,pitched,6,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,7.5,car,710,unknown,16,2,200,unknown,0,4,24_hours
+5690,commercial,commercial,1,30000,month,16,pitched,7,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,593,unknown,32,2,200,unknown,0,4,24_hours
+5497,apartment,residential,0,55000,month,12,pitched,7,5,1,1,0,unfurnished,bagmati,lalitpur,lalitpur,2075,1,car,2107,south,1369,7,200,unknown,0,4,24_hours
+1760,office,commercial,1,300000,month,20,pitched,7,2,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2069,1,car,4233,north,1500,13,200,unknown,0,4,24_hours
+5688,other,residential,0,350000,unknown,16,pitched,7,2,2,2,0,unfurnished,bagmati,kathmandu,kathmandu,2080,12.5,bike,783,unknown,20,2,200,unknown,0,4,24_hours
+1857,commercial,commercial,1,350000,month,12,pitched,7,15,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2072,2,bike,4229,north east,3000,10,200,unknown,0,4,24_hours
+2607,commercial,commercial,1,365000,unknown,20,pitched,7,2,1,2,0,unfurnished,bagmati,lalitpur,lalitpur,2076,4,car,2191,east,16,6,200,unknown,0,4,24_hours
+4575,office,commercial,1,100000,unknown,50,pitched,8,15,8,5,0,unfurnished,bagmati,lalitpur,lalitpur,2076,7.5,car,3512,east,33,6,200,unknown,0,4,24_hours
+2163,other,residential,0,425000,month,20,pitched,8,15,5,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,3,car,4703,north east,3000,6,200,unknown,0,4,24_hours
+2661,commercial,commercial,1,5500000,month,20,pitched,8,1,1,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,2,bike,1408,east,2,6,200,unknown,0,4,24_hours
+3479,other,residential,0,20000,unknown,20,pitched,9,2,8,2,0,unfurnished,bagmati,kathmandu,kathmandu,2076,7.5,car,2235,north west,2,6,200,unknown,0,4,24_hours
+5835,apartment,residential,0,241000,month,26,pitched,10,2,1,1,0,furnished,bagmati,lalitpur,lalitpur,2067,2,car,2058,north east,1620,15,200,unknown,0,4,24_hours
+6045,apartment,residential,0,90000,month,20,pitched,20,2,2,1,0,unfurnished,bagmati,lalitpur,lalitpur,2066,1,car,1415,east,1100,16,200,unknown,0,4,24_hours
+6467,house,residential,0,500000,month,20,pitched,20,20,20,5,0,unfurnished,bagmati,kathmandu,budhanilkantha,2080,2,unknown,2219,east,5,2,200,unknown,0,4,24_hours
