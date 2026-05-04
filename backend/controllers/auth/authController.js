@@ -223,7 +223,18 @@ exports.registerUser = async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists with this email." })
+        const otp = generateOtp();
+        const hashedOtp = await bcrypt.hash(otp, 10);
+        existingUser.otp = hashedOtp;
+        existingUser.otpExpiry = Date.now() + 1 * 60 * 1000;
+        sendEmail({
+            email: email,
+            subject: "OTP for HouseRentalNepal registration",
+            message: `Your OTP for registration is: ${otp}`
+        })
+        existingUser.isOtpVerified = false; 
+        await existingUser.save();
+        return res.status(400).json({ message: "User already exists with this email." })
     }
 
 // console.log("hello")
