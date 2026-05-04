@@ -194,7 +194,7 @@ const Listing = () => {
       <div className="max-padd-container flex flex-col sm:flex-row gap-8 mb-16">
         {/* Left Side - Filters */}
         <div className="sticky top-20 bg-secondary/10 ring-1 ring-slate-900/5 p-4 sm:min-w-60 rounded-xl h-fit">          {/* Sort by price - order */}
-          <div className="py-3 mt-4">
+          <div className="py-3">
             <h5 className="h5 mb-3">Sort By</h5>
             <select 
               onChange={(e) => setSortType(e.target.value)}

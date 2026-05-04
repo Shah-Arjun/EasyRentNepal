@@ -183,6 +183,9 @@ const Header = () => {
                       </div>
                     {showProfileMenu && (
                       <div className="absolute right-0 top-12 w-48 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5">
+                        <div className="px-4 py-2 bg-slate-50 border-b text-xs text-slate-600 font-medium">
+                          Current Role: <span className="text-secondary font-bold">{isOwner ? "OWNER" : "TENANT"}</span>
+                        </div>
                         {!isOwner && (
                           <button 
                             onClick={() => { navigate('/my-bookings'); setShowProfileMenu(false); }}
@@ -191,12 +194,22 @@ const Header = () => {
                             <FontAwesomeIcon icon={faCalendarCheck} /> My Bookings
                           </button>
                         )}
-                        <button 
-                          onClick={() => { toggleRole(); setShowProfileMenu(false); }}
-                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2"
-                        >
-                          <FontAwesomeIcon icon={faRightLeft} /> {isOwner ? "Switch to Tenant" : "Switch to Owner"}
-                        </button>
+                        {userProfile?.role?.length > 1 ? (
+                          <button 
+                            onClick={() => { toggleRole(); setShowProfileMenu(false); }}
+                            className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2 text-blue-600 font-medium"
+                          >
+                            <FontAwesomeIcon icon={faRightLeft} /> Switch to {isOwner ? "Tenant" : "Owner"}
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={() => { setShowAgencyReg(true); setShowProfileMenu(false); }}
+                            className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2 text-blue-600 font-medium"
+                          >
+                            <FontAwesomeIcon icon={faRightLeft} /> Rent Your Property
+                          </button>
+                        )
+                      }
                         <hr />
                         <button 
                           onClick={handleLogout}

@@ -15,17 +15,38 @@ export const profileService = (axiosInstance) => {
     // Update profile
     updateProfile: async (profileData) => {
       try {
-        const { data } = await axiosInstance.patch('/profile/update', profileData)
+        const { data } = await axiosInstance.patch('/profile/me', profileData)
         return data
       } catch (error) {
         throw error.response?.data || error.message
       }
     },
 
+    
     // Delete account
     deleteAccount: async () => {
       try {
-        const { data } = await axiosInstance.delete('/profile/delete')
+        const { data } = await axiosInstance.delete('/profile/me')
+        return data
+      } catch (error) {
+        throw error.response?.data || error.message
+      }
+    },
+
+    // Toggle role
+    toggleRole: async () => {
+      try {
+        const { data } = await axiosInstance.patch('/profile/toggle-role')
+        return data
+      } catch (error) {
+        throw error.response?.data || error.message
+      }
+    },
+    
+    // Update password
+    updatePassword: async (passwordData) => {
+      try {
+        const { data } = await axiosInstance.patch('/profile/me/password', passwordData)
         return data
       } catch (error) {
         throw error.response?.data || error.message

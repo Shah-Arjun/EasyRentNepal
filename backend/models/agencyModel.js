@@ -1,31 +1,57 @@
 const mongoose = require("mongoose");
 
+
 const agencySchema = new mongoose.Schema({
     name: { type: String, required: true },
-    contact: { type: String, required: true },
     email: { type: String, required: true },
-    address: { type: String, required: true },
-    city: { type: String, required: true },
+    contact: { type: String, required: true },
+    location: {
+        province: { type: String },
+        district: { type: String },
+        city: { type: String },
+        tole: { type: String },
+    },
 
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
+        unique: true
     },
 
-    // for khalti
-    // khaltiNumber: { type: String },
-    // khaltiQR : {
-    //     qrUrl: String,
-    //     qrPublicId: String
-    // },
+    paymentMethods: {
+        khalti: {
+            isEnabled: { type: Boolean, default: false },
+            number: { type: String },
+            qr: {
+              url: { type: String },
+              public_id: { type: String }
+            }
+        },
 
-    otp: { type: String },
-    isOtpVerified: { type: Boolean, default: false },
-    otpExpiry: { type: Date }
+        esewa: {
+            isEnabled: { type: Boolean, default: false },
+            number: { type: String },
+            qr: {
+              url: { type: String },
+              public_id: { type: String }
+            }
+        }
+    },
 
+    otp: {
+        type: String,
+    },
+    isOtpVerified: {
+        type: Boolean,
+        default: false
+    },
+    otpExpiry: {
+        type: Date,
+    },
 }, { timestamps: true });
 
-const Agency = mongoose.model("Agency", agencySchema);
 
+
+const Agency = mongoose.model("Agency", agencySchema);
 module.exports = Agency;

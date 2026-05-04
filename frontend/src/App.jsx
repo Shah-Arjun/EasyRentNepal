@@ -30,7 +30,7 @@ import VerifyOtp from './components/VerifyOtp';
 
 const App = () => {
   const location = useLocation();
-  const { showAgencyReg, isLoggedIn, loading } = useAppContext();
+  const { showAgencyReg, isLoggedIn, loading, userProfile, navigate } = useAppContext();
 
 
   const isOwnerPath = location.pathname.startsWith('/owner');
@@ -40,7 +40,18 @@ const App = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-
+  // Auto-redirect logged-in users based on role
+  useEffect(() => {
+    if (isLoggedIn && userProfile && location.pathname === '/') {
+      const userRole = userProfile?.currentActiveRole || 
+        (Array.isArray(userProfile?.role) ? userProfile?.role?.[0] : userProfile?.role);
+      if (userRole === 'owner') {
+        navigate('/owner', { replace: true });
+      } else if (userRole === 'tenant') {
+        navigate('/listing', { replace: true });
+      }
+    }
+  }, [isLoggedIn, userProfile, location.pathname, navigate]);
 
   return (
     <main>
@@ -48,7 +59,7 @@ const App = () => {
 
       {!isOwnerPath && !isAuthPath && <Header />}
 
-      {showAgencyReg && <AgencyReg />}
+      { showAgencyReg && <AgencyReg />}
 
       <Routes>
         {/* Public Routes */}
@@ -60,7 +71,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
 
         {/* Protected Tenant Routes */}
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute allowedRoles={['tenant']} />}>
           <Route path="/my-bookings" element={<MyBookings />} />
         </Route>
 
@@ -70,7 +81,7 @@ const App = () => {
         <Route path="/verify-otp" element={<VerifyOtp />} />
 
         {/* Protected Owner Routes with Layout */}
-        <Route element={<ProtectedRoute requiredRole="owner" />}>
+        <Route element={<ProtectedRoute allowedRoles={['owner']} />}>
           <Route path="/owner" element={<Sidebar />}>
             <Route index element={<Dashboard />} />
             <Route path="add-property" element={<AddProperty />} />

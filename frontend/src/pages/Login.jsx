@@ -35,7 +35,9 @@ const Login = () => {
 
       if (response.data.success) {
         const user = await loadUserData();
-        const userRole = user?.role || response?.data?.user?.role;
+        const currentRole = user?.currentActiveRole || 
+          (Array.isArray(user?.role) ? user?.role?.[0] : user?.role);
+        const userRole = currentRole || response?.data?.user?.role;
 
         toast.success('Logged in successfully');
 

@@ -139,11 +139,8 @@ const propertySchema = new mongoose.Schema(
 
     owner: {
       type: mongoose.Schema.Types.ObjectId, 
-      ref: 'User',
-      // phone: { type: String, },
-      // email: { type: String, lowercase: true },
-      // profileImage: String
-      // required: true
+      ref: 'Agency',
+      required: true
     },
 
     amenities: [String],  //wifi, water, ect

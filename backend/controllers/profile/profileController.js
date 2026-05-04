@@ -1,13 +1,17 @@
 const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
 const { sendTokenCookie, generateToken, cookieOptions } = require('../../utils/tokenUtils')
+const Agency = require('../../models/agencyModel')
+
+
 
 
 // GET MY PROFILE CONTROLLER --> for all users
 exports.getMyProfile = async(req, res) => {
     const userId = req.user.id      // from isAuthenticated middleware
+    const currentActiveRole = req.user.role  // role from decoded token (current active role)
 
-    // const myProfile = await User.findById(userId).select(['-password', '-__v']).populate('wishList')    //if want to populate
+    // Fetch from User collection only. Owners are stored as Users with role='owner'
     const myProfile = await User.findById(userId).select(['-password', '-__v'])
 
     if(!myProfile){
@@ -20,9 +24,15 @@ exports.getMyProfile = async(req, res) => {
     res.status(200).json({
         success: true,
         message: "Profile fetched successfully",
-        user: myProfile
+        user: {
+            ...myProfile.toObject(),
+            currentActiveRole: currentActiveRole,  // The role currently active (from token)
+            role: myProfile.role  // All available roles
+        }
     })
 }
+
+
 
 
 
@@ -82,12 +92,29 @@ exports.updateMyProfile = async(req, res) => {
     if (req.body.phone) updateFields.phoneNumber = req.body.phone;
     // Special handling for profileImage mapping from profileImg
     if (req.body.profileImg) updateFields.profileImage = req.body.profileImg;
-    
+
+    // Handle role updates with append/remove semantics
+    if (Object.prototype.hasOwnProperty.call(req.body, 'role')) {
+      const desiredRole = req.body.role;
+      const user = await User.findById(userId).select('role');
+      const currentRoles = Array.isArray(user.role) ? user.role.slice() : (user.role ? [user.role] : []);
+
+      if (desiredRole === 'owner') {
+        if (!currentRoles.includes('owner')) currentRoles.push('owner');
+      } else if (desiredRole === 'tenant') {
+        // downgrade to tenant only
+        currentRoles.length = 0;
+        currentRoles.push('tenant');
+      }
+
+      updateFields.role = currentRoles;
+    }
+
     Object.keys(req.body).forEach(key => {
-        // Only include fields that are in allowedFields and not already handled by special mapping
-        if (allowedFields.includes(key) && key !== 'phone' && key !== 'profileImg') {
-            updateFields[key] = req.body[key];
-        }
+      // Only include fields that are in allowedFields and not already handled by special mapping
+      if (allowedFields.includes(key) && key !== 'phone' && key !== 'profileImg' && key !== 'role') {
+        updateFields[key] = req.body[key];
+      }
     });
 
     const updatedProfile = await User.findByIdAndUpdate(userId, updateFields, {
@@ -133,3 +160,66 @@ exports.deleteMyProfile = async(req,res) => {
         data: null
     })
 }
+
+
+
+
+// TOGGLE ROLE CONTROLLER --> switches between owner and tenant
+exports.toggleProfileRole = async (req, res) => {
+    const userId = req.user.id;
+    const currentRole = req.user.role;
+
+    try {
+        let newRole;
+        
+        // Always look up the user in User collection
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        if(currentRole === 'tenant') {
+            // Check if user is registered as owner
+            if (!user.role.includes('owner')) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Register as owner first to switch role."
+                });
+            }
+            // check if agency exists
+            const agency = await Agency.findOne({ owner: userId });
+            if(!agency) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Agency not found. Complete owner registration."
+                });
+            }
+
+            newRole = 'owner';
+
+        } else if(currentRole === 'owner') {
+            if (!user.role.includes('tenant')) {
+                return res.status(400).json({
+                    success: false,
+                    message: "You don't have tenant role"
+                });
+            }
+            newRole = 'tenant';
+        }
+
+        // ALWAYS use USER ID for token generation (not Agency ID)
+        sendTokenCookie(res, 200, `Role switched to ${newRole} successfully`, {
+            _id: userId, 
+            role: newRole
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
