@@ -21,6 +21,7 @@ const Register = () => {
     const [userData, setUserData] = useState({
         name: '', email: '', password: '', phone: '', role: 'tenant', location: { province: '', district: '', city: '', tole: '' }
     });
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const api = useAxios();
 
@@ -44,6 +45,8 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setLoading(true)
+        
         try {
             const response = await api.post("/auth/register", userData);
 
@@ -56,6 +59,7 @@ const Register = () => {
                 });
             }
         } catch (error) {
+            setLoading(false)
             const status = error.response?.status;
             const message = error.response?.data?.message;
 
@@ -175,9 +179,10 @@ const Register = () => {
             {/* Button */}
             <button
                 type="submit"
+                disabled={loading}
                 className="btn-secondary w-full rounded-xl py-2.5 sm:py-3 text-sm sm:text-base font-bold shadow-lg shadow-secondary/20 active:scale-[0.98]"
             >
-                Register
+                {loading ? "Registering..." : "Register"}
             </button>
             </form>
 
