@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+
+const provinceEnum = [
+  "Koshi",
+  "Madhesh",
+  "Bagmati",
+  "Gandaki",
+  "Lumbini",
+  "Karnali",
+  "Sudurpashchim",
+];
+
+
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -14,16 +27,6 @@ const userSchema = new mongoose.Schema(
       match: [/^\S+@\S+\.\S+$/, "Please provide a valid email"],
     },
 
-    // firstName: {
-    //   type: String,
-    //   trim: true,
-    // },
-
-    // lastName: {
-    //   type: String,
-    //   trim: true,
-    // },
-
     phoneNumber: {
       type: String,
       //select: false,      //this field will not be returned in any query, hidden by default
@@ -36,36 +39,27 @@ const userSchema = new mongoose.Schema(
     },
 
     role: {
-      type: String,
-      enum: ["tenant", "owner", "admin"],
-      default: "tenant",
+      type: [String],
+      enum: ["tenant", "owner"],
+      default: ["tenant"],
     },
 
-    // gender: {
-    //   type: String,
-    //   enum: ["male", "female", "unknown"],
-    //   default: "unknown",
-    // },
-
-    location: {         //store tracked location by website
-      type: String,
-      trim: true,
+    location: {
+        province: { type: String, enum: provinceEnum },
+        district: { type: String },
+        city: { type: String },
+        tole: { type: String },
     },
 
     profileImage: {
       url: {           //to display image of particular url
         type: String,
-        //default: "https://www.flaticon.com/free-icon/user_149071?term=avatar&page=1&position=3&origin=tag&related_id=149071"
+        default: "https://www.flaticon.com/free-icon/user_149071?term=avatar&page=1&position=3&origin=tag&related_id=149071"
       },
       public_id: {   //to work with cloudinary
         type: String,
       },
     },
-
-    // isVerified: {
-    //   type: Boolean,
-    //   default: false,
-    // },
 
     preferences: {
       location: [String],      //array of string
@@ -88,6 +82,8 @@ const userSchema = new mongoose.Schema(
       type: Date,
       // select: false
     },
+
+
 
     // propertyList: {    //propertyModel
     //   type: Array,

@@ -46,9 +46,9 @@ const generateToken = (id, role) => {
 
 // send login token
 const sendTokenCookie = (res, statusCode, message, user) => {
-    // console.log(user)
+  // console.log(user)
   const token = generateToken(user._id, user.role);
-//   console.log("from sendToken -> " ,token)
+  // console.log("from sendToken -> " ,token)
   res.status(statusCode)
     .cookie(COOKIE_NAME, token, cookieOptions())
     .json({ 

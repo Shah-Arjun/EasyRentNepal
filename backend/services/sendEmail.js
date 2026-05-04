@@ -1,6 +1,4 @@
 const nodemailer = require('nodemailer');
-const { options } = require('../routes/auth/authRoutes');
-const { text } = require('express');
 
 
 const sendEmail = async (options) => {

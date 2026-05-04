@@ -212,12 +212,12 @@ exports.resetPassword = async (req, res) => {
 //register using otp
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password, phone, role} = req.body
+    const { name, email, phone, password, role, location } = req.body
     
-    if(!name || !email || !password || !phone){
+    if(!name || !email || !password || !phone || !location || !location.province || !location.district || !location.city ){
         return res.status(400).json({
             success: false,
-            message: "Name, email, password, phoneNumber must be provided"
+            message: "Name, email, password, phoneNumber and location details must be provided"
         })
     }
 
@@ -236,12 +236,16 @@ exports.registerUser = async (req, res) => {
     const user = await User.create({
       name,
       email,
+      role: role || "tenant",
       password: hashedPassword,
+      phoneNumber: phone,
+      location,
       otp: hashedOtp,
-      otpExpiry: Date.now() + 5 * 60 * 1000,   // 5 min
       isOtpVerified: false,
+      otpExpiry: Date.now() + 1 * 60 * 1000,   // 1 min
     });
 
+    // console.log("from register controller")
     await sendEmail({
         email: email,
         subject: "OTP for HouseRentalNepal tenant registration",
@@ -275,7 +279,7 @@ exports.verifyRegisterOtp = async (req, res) => {
       return res.status(400).json({ message: "Already verified" });
     }
 
-    if (Date.now() > user.otpExpiry) {
+    if (otp && Date.now() > user.otpExpiry) {
       return res.status(400).json({success:false, message: "OTP expired" });
     }
 
@@ -316,7 +320,7 @@ exports.resendOtp = async (req, res) => {
     const hashedOtp = await bcrypt.hash(otp, 10);
 
     user.otp = hashedOtp;
-    user.otpExpiry = Date.now() + 5 * 60 * 1000;
+    user.otpExpiry = Date.now() + 1 * 60 * 1000;
 
     await user.save();
 
