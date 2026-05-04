@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAppContext } from "../context/AppContext";
 
 const VerifyOtp = () => {
   const length = 4;
@@ -13,8 +15,24 @@ const VerifyOtp = () => {
   const inputsRef = useRef([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const { loadUserData } = useAppContext();
 
-  const email = location.state?.email || localStorage.getItem("verifyEmail");
+  const email = location.state?.email || localStorage.getItem("verifyEmail")
+  const role = location.state?.role || localStorage.getItem("verifyRole")
+
+
+
+  useEffect(() => {
+    if (email) {
+      localStorage.setItem("verifyEmail", email);
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (role) {
+      localStorage.setItem("verifyRole", role);
+    }
+  }, [role]);
 
 
 
@@ -41,6 +59,8 @@ const VerifyOtp = () => {
       return;
     }
 
+
+
     const interval = setInterval(() => {
       setTimer((prev) => prev - 1);
     }, 1000);
@@ -58,21 +78,35 @@ const VerifyOtp = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/register/verify-otp`,
-        { email, otp: finalOtp }
+      console.log("🔐 Verifying OTP for:", role)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/${role === 'tenant' ? 'auth/register' : 'agency'}/verify-otp`, 
+        { email, otp: finalOtp },
+        { withCredentials: true }
       );
 
-      alert(res.data.message);
+      toast.success(res.data.message);
+      console.log("✅ OTP verified successfully")
 
       localStorage.removeItem("verifyEmail");
-      navigate("/login");
+      localStorage.removeItem("verifyRole");
+
+      if (role && role === "tenant") {
+        navigate("/login");
+      } else if(role === "owner") {
+        // Reload user data to refresh the context with new role
+        console.log("📊 Reloading user data after agency OTP verification...")
+        await loadUserData()
+        console.log("🚀 Navigating to /owner")
+        navigate("/owner");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       const msg = err.response?.data?.message;
 
-      alert(msg || "Error verifying OTP");
+      toast.error(msg || "Error verifying OTP");
 
-      if (msg === "OTP expired") {
+      if (err.status === 400 || msg === "OTP expired") {
         setOtp(new Array(length).fill(""));
         setCanResend(true);
       }
@@ -152,11 +186,11 @@ const VerifyOtp = () => {
   const resendOtp = async () => {
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/resend-otp`,
+        `${import.meta.env.VITE_API_URL}/${role === 'tenant' ? 'auth/register' : 'agency'}/resend-otp`,
         { email }
       );
 
-      alert(res.data.message);
+      toast.success(res.data.message);
 
       setOtp(new Array(length).fill(""));
       inputsRef.current[0]?.focus();
@@ -164,7 +198,7 @@ const VerifyOtp = () => {
       setTimer(60);
       setCanResend(false);
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to resend OTP");
+      toast.error(err.response?.data?.message || "Failed to resend OTP");
     }
   };
 
@@ -176,9 +210,11 @@ const VerifyOtp = () => {
     return (
       <div style={{ textAlign: "center", marginTop: "100px" }}>
         <h3>Session expired</h3>
-        <button onClick={() => navigate("/register")}>
-          Go to Register
-        </button>
+        {role === "tenant" ? (
+          <button onClick={() => navigate("/register")}>Go to Register</button>
+        ) : (
+          <button onClick={() => navigate("/login")}>Go to Login</button>
+        )}
       </div>
     );
   }
