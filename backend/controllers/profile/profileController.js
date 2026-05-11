@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
-const { sendTokenCookie, generateToken, cookieOptions } = require('../../utils/tokenUtils')
+const { sendUserTokenCookie, generateToken, cookieOptions, sendToggleTokenCookie } = require('../../utils/tokenUtils')
 const Agency = require('../../models/agencyModel')
 
 
@@ -66,7 +66,7 @@ exports.changePassword = async (req, res) => {
     await userFound.save();
 
     // send new token (important after password change)
-    sendTokenCookie(res, 200, 'Password changed successfully', userFound);
+    sendUserTokenCookie(res, 200, 'Password changed successfully', userFound);
 
   } catch (error) {
     res.status(500).json({
@@ -211,7 +211,7 @@ exports.toggleProfileRole = async (req, res) => {
         }
 
         // ALWAYS use USER ID for token generation (not Agency ID)
-        sendTokenCookie(res, 200, `Role switched to ${newRole} successfully`, {
+        sendToggleTokenCookie(res, 200, `Role switched to ${newRole} successfully`, {
             _id: userId, 
             role: newRole
         });

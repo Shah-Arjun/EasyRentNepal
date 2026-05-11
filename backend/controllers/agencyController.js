@@ -3,7 +3,7 @@ const Agency = require('../models/agencyModel');
 const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../services/sendEmail');
 const User = require('../models/userModel');
-const { destroyCookie, sendTokenCookie } = require('../utils/tokenUtils');
+const { destroyCookie, sendTokenCookie, sendOwnerTokenCookie } = require('../utils/tokenUtils');
 
 
 
@@ -125,7 +125,7 @@ exports.verifyAgencyRegisterOtp = async (req, res) => {
     if (agency.isOtpVerified) {
         destroyCookie(res, 'auth_token');  // Clear any existing auth token cookie on OTP verification (important if user had a previous session)
         const cookieData = { _id: agency._id, email: agency.email, role: 'owner' };
-        return sendTokenCookie(res, 200, 'Agency registered successfully', cookieData);
+        return sendOwnerTokenCookie(res, 200, 'Agency registered successfully', cookieData);
     }
 
     if (Date.now() > agency.otpExpiry) {
@@ -161,13 +161,10 @@ exports.verifyAgencyRegisterOtp = async (req, res) => {
     
     await User.findByIdAndUpdate(tenant._id, { $addToSet: { role: 'owner' } }); // Add 'owner' role to user if not already present, dont overwrite or create duplicate roles
 
-
-
-
     destroyCookie(res, 'auth_token'); // Clear any existing auth token cookie on OTP verification (important if user had a previous session)
     // ALWAYS use the actual User._id, not Agency._id
     const cookieData = { _id: tenant._id, email: tenant.email, role: 'owner' };
-    return sendTokenCookie(res, 200, 'Agency registered successfully', cookieData);
+    return sendOwnerTokenCookie(res, 200, 'Agency registered successfully', cookieData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../../models/userModel')
 const sendEmail = require('../../services/sendEmail')
-const { sendTokenCookie, destroyCookie } = require('../../utils/tokenUtils')
+const { destroyCookie, sendUserTokenCookie } = require('../../utils/tokenUtils')
 const generateOtp = require('../../utils/generateOtp')
 
 
@@ -46,7 +46,7 @@ exports.loginUser = async(req, res) => {
 
     // if matched, generate token and send it using helper function
     if(isPwMatched){
-        sendTokenCookie(res, 200, 'Login successful', userFound);
+        sendUserTokenCookie(res, 200, 'Login successful', userFound);
     } else {
         res.status(404).json({
             success: false,
