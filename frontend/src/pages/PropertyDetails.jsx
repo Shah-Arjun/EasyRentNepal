@@ -7,6 +7,8 @@ import axios from 'axios';
 import Item from '../components/Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { toast } from 'react-toastify';
+
 
 
 
@@ -70,11 +72,11 @@ const PropertyDetails = () => {
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         if (!isLoggedIn) {
-            alert("Please login to submit a review");
+            toast.error("Please login to submit a review");
             return;
         }
         if (userProfile?.role !== 'tenant') {
-            alert("Only tenants can submit reviews");
+            toast.error("Only tenants can submit reviews");
             return;
         }
 
@@ -90,7 +92,7 @@ const PropertyDetails = () => {
             }
         } catch (error) {
             console.error("Error submitting review:", error);
-            alert(error.message || "Failed to submit review.");
+            toast.error(error.message || "Failed to submit review.");
         } finally {
             setReviewLoading(false);
         }
@@ -114,7 +116,7 @@ const PropertyDetails = () => {
             }
         } catch (error) {
             console.error("Error deleting review:", error)
-            alert(error.message || "Failed to delete review")
+            toast.error(error.message || "Failed to delete review")
         } finally {
             setReviewLoading(false)
         }
@@ -155,7 +157,7 @@ const PropertyDetails = () => {
             return;
         }
         if (userProfile?.role !== 'tenant') {
-            alert("Only tenants can book properties");
+            toast.error("Only tenants can book properties");
             return;
         }
         setShowBookingModal(true);
