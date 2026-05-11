@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { assets } from "../assets/data";
 
 const PropertyImages = ({ property }) => {
   const [hoveredIndex, setHoveredIndex] = useState(0)

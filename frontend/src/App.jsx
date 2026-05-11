@@ -9,12 +9,12 @@ import Blog from './pages/Blog';
 import BlogDetails from './pages/BlogDetails';
 import Contact from './pages/Contact';
 import PropertyDetails from './pages/PropertyDetails';
-import MyBookings from './pages/MyBookings';
 import AgencyReg from './components/AgencyReg';
 import { useAppContext } from './context/AppContext';
 
 import Sidebar from './components/owner/Sidebar';
-import Dashboard from './pages/owner/Dashboard';
+import TenantDashboardLayout from './layout/TenantDashboardLayout';
+import OwnerDashboard from './pages/owner/Dashboard';
 import AddProperty from './pages/owner/AddProperty';
 import ListProperty from './pages/owner/ListProperty';
 import Login from './pages/Login';
@@ -22,19 +22,23 @@ import Register from './pages/Register';
 import MapView from './components/MapView';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import ProtectedRoute from './components/ProtectedRoute';
 import VerifyOtp from './components/VerifyOtp';
+import TenantDashboard from './pages/tenant/Dashboard';
+import Bookings from './pages/tenant/Bookings';
+import Watchlist from './pages/tenant/Watchlist';
+import Payments from './pages/tenant/Payments';
 
 
 
 const App = () => {
   const location = useLocation();
-  const { showAgencyReg, isLoggedIn, loading, userProfile, navigate } = useAppContext();
+  const { showAgencyReg, isLoggedIn, userProfile, navigate } = useAppContext();
 
 
   const isOwnerPath = location.pathname.startsWith('/owner');
-  const isAuthPath = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/verify-otp';
+  const isTenantPath = location.pathname.startsWith('/tenant');
+  const isAuthPath = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/verify-otp' || isTenantPath;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,7 +52,7 @@ const App = () => {
       if (userRole === 'owner') {
         navigate('/owner', { replace: true });
       } else if (userRole === 'tenant') {
-        navigate('/listing', { replace: true });
+        navigate('/tenant', { replace: true });
       }
     }
   }, [isLoggedIn, userProfile, location.pathname, navigate]);
@@ -70,9 +74,18 @@ const App = () => {
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/contact" element={<Contact />} />
 
+
         {/* Protected Tenant Routes */}
         <Route element={<ProtectedRoute allowedRoles={['tenant']} />}>
-          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/tenant" element={<TenantDashboardLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            
+            <Route path="dashboard" element={<TenantDashboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="watchlist" element={<Watchlist />} />
+            <Route path="payments" element={<Payments />} />
+          </Route>
+
         </Route>
 
         {/* Auth Routes */}
@@ -83,7 +96,7 @@ const App = () => {
         {/* Protected Owner Routes with Layout */}
         <Route element={<ProtectedRoute allowedRoles={['owner']} />}>
           <Route path="/owner" element={<Sidebar />}>
-            <Route index element={<Dashboard />} />
+            <Route index element={<OwnerDashboard />} />
             <Route path="add-property" element={<AddProperty />} />
             <Route path="list-property" element={<ListProperty />} />
             <Route path="map" element={<MapView />} />

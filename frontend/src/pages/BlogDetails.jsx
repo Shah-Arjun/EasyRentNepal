@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { blogs, assets } from '../assets/data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCalendar, faTag, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 const BlogDetails = () => {
     const { id } = useParams()

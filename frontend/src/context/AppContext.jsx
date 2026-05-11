@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, {
     createContext,
     useCallback,
@@ -12,6 +13,7 @@ import propertyService from '../services/propertyService'
 import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
 import reviewService from '../services/reviewService'
+import tenantService from '../services/tenantService'
 
 const AppContext = createContext()
 
@@ -28,7 +30,6 @@ export const AppContextProvider = ({ children }) => {
     const [isOwner, setIsOwner] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [authLoading, setAuthLoading] = useState(true)
-    const [activeRole, setActiveRole] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -39,6 +40,7 @@ export const AppContextProvider = ({ children }) => {
     const wishlistServices = useMemo(() => wishlistService(api), [api])
     const profileServices  = useMemo(() => profileService(api),  [api])
     const reviewServices   = useMemo(() => reviewService(api),   [api])
+    const tenantServices   = useMemo(() => tenantService(api),   [api])
 
     // ─── Helpers ─────────────────────────────────────────────────────────────
 
@@ -353,6 +355,7 @@ export const AppContextProvider = ({ children }) => {
         wishlistServices,
         profileServices,
         reviewServices,
+        tenantServices,
     }), [
         navigate,
         currency,
@@ -381,6 +384,7 @@ export const AppContextProvider = ({ children }) => {
         wishlistServices,
         profileServices,
         reviewServices,
+        tenantServices,
     ])
 
     return (
