@@ -1,5 +1,5 @@
 const Property = require("../../models/propertyModel")
-const User = require("../../models/userModel")
+const Wishlist = require("../../models/wishlistModel")
 
 
 
@@ -22,18 +22,17 @@ exports.addToWishlist = async (req, res) => {
         })
     }
 
-    const user = await User.findById(userId)
+    const existing = await Wishlist.findOne({ userId, propertyId })
 
     // if the property is already in wishlist then return message
-    if(user.wishList.includes(propertyId)){
+    if(existing){
         return res.status(403).json({
             message: "This property is already in your wishlist"
         })
     }
 
     //if not in wishlist then add it
-    user.wishList.push(propertyId)
-    await user.save()
+    await Wishlist.create({ userId, propertyId })
 
     return res.status(200).json({
         success: true,
@@ -47,24 +46,28 @@ exports.addToWishlist = async (req, res) => {
 exports.getMyWishlist = async(req, res) => {
     const userId = req.user.id
 
-    const userData = await User.findById(userId).select("-password -__v").populate({
-        path: 'wishList',
-        select: "-__v"
-    })
+        const wishlist = await Wishlist.find({ userId })
+            .populate({
+                path: 'propertyId',
+                select: '-__v'
+            })
+            .sort({ createdAt: -1 })
 
-    // console.log("\nuser data: \n", userData)
-
-    if(userData.wishList.length == 0){
+        if(wishlist.length == 0){
         return res.status(404).json({
             message: "Your wishlist is empty",
             data: []
         })
     }
 
+        const properties = wishlist
+            .map(item => item.propertyId)
+            .filter(Boolean)
+
     return res.status(200).json({
         success: true,
         message: "Wishlist data fetched successfully",
-        data: userData.wishList
+                data: properties
     })
 }
 
@@ -84,13 +87,7 @@ exports.deletePropertyFromWishlist = async(req, res) => {
         })
     }
 
-    // console.log("property--->\n", property)
-
-    // get user wishlist
-    const userData = await User.findById(userId)
-    userData.wishList = userData.wishList.filter(pId => pId != propertyId)
-
-    await userData.save()
+    await Wishlist.deleteOne({ userId, propertyId })
 
     return res.status(200).json({
         success: true,

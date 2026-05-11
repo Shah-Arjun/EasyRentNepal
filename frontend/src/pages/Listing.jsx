@@ -3,6 +3,7 @@ import { useAppContext } from "../context/AppContext";
 import Item from "../components/Item";
 import { useSearchParams } from "react-router-dom";
 import { assets, cities } from "../assets/data";
+import ItemSkeleton from "../components/ItemSkeleton";
 
 
 
@@ -301,9 +302,10 @@ const Listing = () => {
 
           {/* listings */}
           {loading ? (
-            <div className="flexCenter flex-col mt-32 w-full">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary"></div>
-              <p className="mt-4 text-gray-400 medium-14">Searching for properties...</p>
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mt-8">
+              {Array(12).fill(null).map((_, idx) => (
+                <ItemSkeleton key={`skeleton-${idx}`} />
+              ))}
             </div>
           ) : currentItems.length > 0 ? (
             // show filtered and paginated properties
