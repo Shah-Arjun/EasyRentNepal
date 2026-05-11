@@ -6,11 +6,13 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import { useAppContext } from '../context/AppContext';
 import Item from './Item';
+import ItemSkeleton from './ItemSkeleton';
 
 
 const FeaturedProperties = () => {
 
   const { properties } = useAppContext()
+  const { loading } = useAppContext()
 
 
   const isFeatured = properties.filter(p => p.isFeatured === true)
@@ -20,7 +22,7 @@ const FeaturedProperties = () => {
     <section className="max-padd-container py-16 xl:py-22 ">
       <h2 className='h2'>Featured Properties</h2>
       <div className='flexBetween mt-8 mb-6'>
-        <h5><span className='font-bold'>Displaying 1-6</span> from {isFeatured.length}+ featured properties</h5>
+        <h5><span className='font-bold'>Displaying 1-6</span> from {loading ? '...' : isFeatured.length}+ featured properties</h5>
         <Link to={'/listing'} onClick={() => window.scrollTo({ top:0, behavior:'smooth' })} className='hg-secondary/10 ring-1 ring-slate-900/15 text-white text-2xl rounded-md p-2 flexCenter'>
           <img src={assets.sliders} alt="" />
         </Link>
@@ -51,12 +53,19 @@ const FeaturedProperties = () => {
         className="h-[488px] md:h-[533px] xl:h-[422px] mt-5"
       >
 
-        {/* slice takes only 1st 6 items from properties array */}
-        {isFeatured.slice(0, 6).map((property) => (             
-          <SwiperSlide key={property._id}>
-            <Item property={property} />
-          </SwiperSlide>
-        ))}
+        {loading ? (
+          Array(6).fill(null).map((_, idx) => (
+            <SwiperSlide key={`skeleton-${idx}`}>
+              <ItemSkeleton />
+            </SwiperSlide>
+          ))
+        ) : (
+          isFeatured.slice(0, 6).map((property) => (             
+            <SwiperSlide key={property._id}>
+              <Item property={property} />
+            </SwiperSlide>
+          ))
+        )}
 
       </Swiper>
     </section>
