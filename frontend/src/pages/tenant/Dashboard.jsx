@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import Item from '../../components/Item'
+import ProfileCard from '../../components/dashboard/ProfileCard'
 
 export default function Dashboard() {
-  const { tenantServices, currency } = useAppContext()
+  const { tenantServices, currency, userProfile } = useAppContext()
   const [dashboardData, setDashboardData] = useState({
     stats: {
       totalBookings: 0,
@@ -51,10 +52,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className='bg-white rounded-2xl shadow-sm p-4 md:p-6'>
+    <div className='min-h-full rounded-3xl bg-linear-to-br from-[#fffbee] via-white to-[#f0f9ff] p-4 md:p-6 lg:p-8'>
       <div className='mb-6'>
         <h1 className='text-2xl md:text-3xl font-bold text-slate-800'>Tenant Dashboard</h1>
         <p className='text-slate-500 mt-1'>Overview of your bookings, wishlist, payments, and reviews.</p>
+      </div>
+
+      <div className='mb-6'>
+        <ProfileCard user={userProfile} title='Tenant Profile' onEdit={() => {}} />
       </div>
 
       {error && (

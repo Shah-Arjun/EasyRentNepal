@@ -14,8 +14,15 @@ import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
 import reviewService from '../services/reviewService'
 import tenantService from '../services/tenantService'
+import { normalizeRole, normalizeRoles, getActiveRole, hasRole } from '../utils/authRole'
 
 const AppContext = createContext()
+
+const buildFullAddress = (location = {}) => {
+    return [location.tole, location.city, location.district, location.province]
+        .filter(Boolean)
+        .join(', ')
+}
 
 export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY
@@ -100,12 +107,21 @@ export const AppContextProvider = ({ children }) => {
             const response = await profileServices.getProfile()
             if (response?.success) {
                 const user = response.user
-                setUserProfile(user)
-                // Use currentActiveRole for determining if user is currently in owner mode
-                const currentRole = user?.currentActiveRole || user?.role?.[0] || user?.role
+                const currentRole = getActiveRole(user)
+                setUserProfile({
+                    ...user,
+                    role: normalizeRoles(user?.role),
+                    currentActiveRole: currentRole,
+                    fullAddress: user?.fullAddress || buildFullAddress(user?.location),
+                })
                 setIsOwner(currentRole === 'owner')
                 setIsLoggedIn(true)
-                return user
+                return {
+                    ...user,
+                    role: normalizeRoles(user?.role),
+                    currentActiveRole: currentRole,
+                    fullAddress: user?.fullAddress || buildFullAddress(user?.location),
+                }
             }
         } catch (err) {
             const status = err?.status ?? err?.response?.status
@@ -186,9 +202,15 @@ export const AppContextProvider = ({ children }) => {
         }
 
         // Parallel fetch for role-specific data
-        const sideLoads = [getWishlist()]
+        const sideLoads = []
 
-        if (user.role?.includes('owner')) {
+        if (getActiveRole(user) === 'tenant' || hasRole(user, 'tenant')) {
+            sideLoads.push(getWishlist())
+        } else {
+            sideLoads.push(getWishlist())
+        }
+
+        if (getActiveRole(user) === 'owner' || hasRole(user, 'owner')) {
             sideLoads.push(getOwnerProperties())
             sideLoads.push(
                 api.get('/agency/my-agency')
@@ -243,36 +265,18 @@ export const AppContextProvider = ({ children }) => {
 
         try {
             setLoading(true)
-            console.log('🔄 Starting role toggle...')
-            
             const toggleResponse = await profileServices.toggleRole()
-            console.log('📋 Toggle response:', toggleResponse)
             
             if (toggleResponse?.success) {
-                // Small delay to ensure token is updated server-side
-                await new Promise(resolve => setTimeout(resolve, 500))
-                
-                const profileRes = await profileServices.getProfile()
-                console.log('📋 Profile response:', profileRes)
-                
-                // Use currentActiveRole from backend, fallback to extracting from role array
-                const newRole = profileRes.user?.currentActiveRole || 
-                    (Array.isArray(profileRes.user?.role) 
-                        ? profileRes.user?.role?.[0] 
-                        : profileRes.user?.role)
-                
-                console.log('🎯 New role extracted:', newRole)
-                
-                setUserProfile(profileRes.user)
-                setIsOwner(newRole === 'owner')
-                
-                // Reset agency state when switching roles
-                if(newRole === 'owner') {
-                    console.log('👤 Switching to OWNER role')
-                    // Fetch agency for owner role
+                const nextUser = toggleResponse.user || await getUserProfile()
+                const nextRole = getActiveRole(nextUser)
+
+                setUserProfile(nextUser)
+                setIsOwner(nextRole === 'owner')
+
+                if (nextRole === 'owner') {
                     try {
                         const agencyRes = await api.get('/agency/my-agency')
-                        console.log('🏢 Agency response:', agencyRes.data)
                         if (agencyRes.data?.success) {
                             setAgency(agencyRes.data.agency)
                             setShowAgencyReg(false)
@@ -281,30 +285,26 @@ export const AppContextProvider = ({ children }) => {
                             setShowAgencyReg(true)
                         }
                     } catch (agencyErr) {
-                        console.log('🏢 Agency fetch error:', agencyErr.response?.status)
                         if (agencyErr.response?.status === 404) {
                             setAgency(null)
                             setShowAgencyReg(true)
                         }
                     }
-                    console.log('🚀 Navigating to /owner')
-                    navigate('/owner')
+                    navigate('/owner', { replace: true })
                 } else {
-                    console.log('👥 Switching to TENANT role')
                     setAgency(null)
                     setShowAgencyReg(false)
-                    console.log('🚀 Navigating to /listing')
-                    navigate('/listing')
+                    navigate('/tenant/dashboard', { replace: true })
                 }
             } else {
-                console.error('❌ Toggle failed:', toggleResponse?.message)
+                console.error('Toggle failed:', toggleResponse?.message)
             }
         } catch (err) {
-            console.error('❌ Error during role toggle:', err)
+            console.error('Error during role toggle:', err)
         } finally {
             setLoading(false)
         }
-    }, [userProfile, profileServices, navigate, api])
+    }, [userProfile, profileServices, navigate, api, getUserProfile])
 
 
 

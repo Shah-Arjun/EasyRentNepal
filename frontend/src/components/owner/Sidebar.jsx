@@ -4,11 +4,14 @@ import { assets } from '../../assets/data'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { getActiveRole, normalizeRoles } from '../../utils/authRole'
 
 const Sidebar = () => {
   const { userProfile, toggleRole, logout } = useAppContext()
   const [showProfileMenu, setShowProfileMenu] = useState(false)
   const profileMenuRef = useRef(null)
+  const availableRoles = normalizeRoles(userProfile?.role)
+  const activeRole = getActiveRole(userProfile)
 
   const navItems = [
     {
@@ -56,7 +59,7 @@ const Sidebar = () => {
 
   return (
     <div className='bg-linear-to-r from-[#fffbee] to-white'>
-      <div className='mx-auto max-w-[1440px] flex flex-col md:flex-row'>
+      <div className='mx-auto max-w-360 flex flex-col md:flex-row'>
         {/* Sidebar */}
         <div ref={profileMenuRef} className='max-md:flexCenter flex flex-col justify-between bg-white sm:m-3 md:min-w-[20%] md:min-h-[97vh] rounded-xl shadow'>
           <div className='flex flex-col gap-y-6 max-md:items-center md:flex-col md:pt-5'>
@@ -70,22 +73,27 @@ const Sidebar = () => {
               <div className='md:hidden flex items-center gap-3 md:bg-primary rounded-b-xl p-2 pl-5 lg:pl-10 md:mt-10 relative'>
                 <button
                   onClick={() => setShowProfileMenu((prev) => !prev)}
-                  className="w-[45px] h-[45px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
+                  className="w-11.25 h-11.25 bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
                 >
                   {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
                 </button>
                 <div className='text-sm font-semibold text-gray-800 capitalize'>
                   {userProfile?.name || 'User'}
+                  <p className='text-xs text-slate-500 capitalize'>{activeRole}</p>
                 </div>
                 {showProfileMenu && (
                   <div className='absolute left-5 top-14 w-52 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5'>
-                    <button
-                      onClick={handleSwitchToTenant}
-                      className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
-                    >
-                      <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
-                    </button>
-                    <hr />
+                    {availableRoles.includes('tenant') && (
+                      <>
+                        <button
+                          onClick={handleSwitchToTenant}
+                          className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
+                        >
+                          <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
+                        </button>
+                        <hr />
+                      </>
+                    )}
                     <button
                       onClick={handleLogout}
                       className='w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-slate-100 font-medium flex items-center gap-2'
@@ -113,22 +121,27 @@ const Sidebar = () => {
           <div className='hidden md:flex items-center gap-3 md:bg-primary border-t border-slate-900/15 rounded-b-xl p-2 pl-5 lg:pl-10 md:mt-10 relative'>
             <button
               onClick={() => setShowProfileMenu((prev) => !prev)}
-              className="w-[45px] h-[45px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
+              className="w-11.25 h-11.25 bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
             >
               {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
             </button>
             <div className='text-sm font-semibold text-gray-800 capitalize'>
               {userProfile?.name || 'User'}
+              <p className='text-xs text-slate-500 capitalize'>{activeRole}</p>
             </div>
             {showProfileMenu && (
               <div className='absolute left-5 bottom-16 w-52 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5'>
-                <button
-                  onClick={handleSwitchToTenant}
-                  className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
-                >
-                  <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
-                </button>
-                <hr />
+                {availableRoles.includes('tenant') && (
+                  <>
+                    <button
+                      onClick={handleSwitchToTenant}
+                      className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
+                    >
+                      <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
+                    </button>
+                    <hr />
+                  </>
+                )}
                 <button
                   onClick={handleLogout}
                   className='w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-slate-100 font-medium flex items-center gap-2'

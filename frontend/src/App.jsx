@@ -44,19 +44,6 @@ const App = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-  // Auto-redirect logged-in users based on role
-  useEffect(() => {
-    if (isLoggedIn && userProfile && location.pathname === '/') {
-      const userRole = userProfile?.currentActiveRole || 
-        (Array.isArray(userProfile?.role) ? userProfile?.role?.[0] : userProfile?.role);
-      if (userRole === 'owner') {
-        navigate('/owner', { replace: true });
-      } else if (userRole === 'tenant') {
-        navigate('/tenant', { replace: true });
-      }
-    }
-  }, [isLoggedIn, userProfile, location.pathname, navigate]);
-
   return (
     <main>
       <ToastContainer position="bottom-right" />

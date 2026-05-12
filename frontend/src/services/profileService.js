@@ -8,7 +8,11 @@ export const profileService = (axiosInstance) => {
         const { data } = await axiosInstance.get('/profile/me')
         return data
       } catch (error) {
-        throw error.response?.data || error.message
+        const payload = error.response?.data || { message: error.message }
+        const normalizedError = new Error(payload.message || error.message)
+        normalizedError.status = error.response?.status
+        normalizedError.data = payload
+        throw normalizedError
       }
     },
 
@@ -18,7 +22,11 @@ export const profileService = (axiosInstance) => {
         const { data } = await axiosInstance.patch('/profile/me', profileData)
         return data
       } catch (error) {
-        throw error.response?.data || error.message
+        const payload = error.response?.data || { message: error.message }
+        const normalizedError = new Error(payload.message || error.message)
+        normalizedError.status = error.response?.status
+        normalizedError.data = payload
+        throw normalizedError
       }
     },
 
@@ -29,7 +37,11 @@ export const profileService = (axiosInstance) => {
         const { data } = await axiosInstance.delete('/profile/me')
         return data
       } catch (error) {
-        throw error.response?.data || error.message
+        const payload = error.response?.data || { message: error.message }
+        const normalizedError = new Error(payload.message || error.message)
+        normalizedError.status = error.response?.status
+        normalizedError.data = payload
+        throw normalizedError
       }
     },
 
@@ -39,7 +51,11 @@ export const profileService = (axiosInstance) => {
         const { data } = await axiosInstance.patch('/profile/toggle-role')
         return data
       } catch (error) {
-        throw error.response?.data || error.message
+        const payload = error.response?.data || { message: error.message }
+        const normalizedError = new Error(payload.message || error.message)
+        normalizedError.status = error.response?.status
+        normalizedError.data = payload
+        throw normalizedError
       }
     },
     
@@ -49,7 +65,11 @@ export const profileService = (axiosInstance) => {
         const { data } = await axiosInstance.patch('/profile/me/password', passwordData)
         return data
       } catch (error) {
-        throw error.response?.data || error.message
+        const payload = error.response?.data || { message: error.message }
+        const normalizedError = new Error(payload.message || error.message)
+        normalizedError.status = error.response?.status
+        normalizedError.data = payload
+        throw normalizedError
       }
     }
   }

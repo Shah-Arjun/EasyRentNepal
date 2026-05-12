@@ -1,11 +1,12 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
+import { getActiveRole } from '../utils/authRole';
 
 
 
 const roleHomeMap = {
-  tenant: '/',
+  tenant: '/tenant/dashboard',
   owner: '/owner',
 };
 
@@ -29,10 +30,7 @@ const normalizeRoles = (requiredRole, allowedRoles) => {
 const ProtectedRoute = ({ requiredRole = null, allowedRoles = null }) => {
   const { isLoggedIn, userProfile, authLoading } = useAppContext();
   const location = useLocation();
-  
-  // Use currentActiveRole if available, otherwise extract from role array
-  const userRole = userProfile?.currentActiveRole || 
-    (Array.isArray(userProfile?.role) ? userProfile?.role?.[0] : userProfile?.role);
+  const userRole = getActiveRole(userProfile);
   
   const permittedRoles = normalizeRoles(requiredRole, allowedRoles);
 

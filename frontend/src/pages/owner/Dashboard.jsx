@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext';
 import { assets } from '../../assets/data'
+import ProfileCard from '../../components/dashboard/ProfileCard'
 
 const Dashboard = () => {
-  const { currency, propertyServices } = useAppContext()
+  const { currency, propertyServices, userProfile } = useAppContext()
 
   const [dashboardData, setDashboardData] = useState({
     stats: {
@@ -43,7 +44,11 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='md:px-8 py-6 xl:py-8 m-1 sm:m-3 h-[97vh] overflow-y-scroll lg:w-11/12 bg-white shadow rounded-xl'>
+    <div className='min-h-full w-full rounded-3xl bg-linear-to-br from-[#fffbee] via-white to-[#f0f9ff] p-4 md:p-6 lg:p-8'>
+      <div className='mb-6'>
+        <ProfileCard user={userProfile} title='Owner Profile' onEdit={() => {}} />
+      </div>
+
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-8'>
         <div className='flexStart gap-7 p-6 bg-[#fff4d2] rounded-2xl border border-[#fef08a] shadow-sm'>
           <div className='bg-white/50 p-3 rounded-xl'>
