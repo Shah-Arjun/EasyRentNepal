@@ -1,2 +1,28 @@
 .vscode/*
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+ml-services/venv/
+ml-services/__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db

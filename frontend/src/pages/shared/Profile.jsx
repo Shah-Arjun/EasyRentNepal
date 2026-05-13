@@ -515,9 +515,9 @@ export default function Profile() {
       <SectionCard title="Account Details" icon={Shield}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { label: 'User ID',    value: userProfile?._id || 'N/A' },
+            { label: 'User ID',    value: userProfile?._id || 'EPN-001' },
             { label: 'Joined',     value: userProfile?.createdAt ? new Date(userProfile.createdAt).toLocaleDateString() : 'N/A' },
-            { label: 'OTP Verified', value: userProfile?.isOtpVerified ? '✅ Verified' : '❌ Not Verified' },
+            { label: 'Account Status', value: userProfile?.isOtpVerified ? '✅ Active' : '❌ Not active' },
             { label: 'Full Address', value: [
                 userProfile?.location?.tole, userProfile?.location?.city,
                 userProfile?.location?.district, userProfile?.location?.province
