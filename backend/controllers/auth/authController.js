@@ -18,13 +18,10 @@ exports.loginUser = async(req, res) => {
             message: "Email, password must be provided"
         })
     }
-
     // console.log(req.body)
 
-    
     // checks if user exist 
     const userFound = await User.findOne({ email: email }).select("+password")
-
 
     // if user not found i.e. not registered
     if(!userFound){
@@ -39,7 +36,6 @@ exports.loginUser = async(req, res) => {
             message: "Please verify your account first"
         })
     }
-
 
     // match check the password if user exists
     const isPwMatched = bcrypt.compareSync(password, userFound.password)
@@ -57,7 +53,6 @@ exports.loginUser = async(req, res) => {
 
 
 
-
 // LOGOUT USER
 exports.logoutUser = async(req, res) => {
         destroyCookie(res);
@@ -66,9 +61,6 @@ exports.logoutUser = async(req, res) => {
             message: 'Logged out successfully'
         });
 }
-
-
-
 
 
 
@@ -95,12 +87,14 @@ exports.forgetPassword = async(req, res) => {
     const otp = generateOtp()
 
     // save otp in db
-    userExist[0].otp = otp
+    userExist[0].otp = bcrypt.hashSync(otp, 10)
+    userExist[0].isOtpVerified = false
+    userExist[0].otpExpiry = Date.now() + 1 * 60 * 1000;   // 1 min
     await userExist[0].save()
 
     await sendEmail({
         email: email,
-        subject: "OTP for HouseRentalNepal password reset",
+        subject: "OTP for EasyRentNepal password reset",
         message: `${otp}`
     })
 
@@ -124,8 +118,7 @@ exports.verifyOtp = async (req, res) => {
         })
     }
 
-
-    //CHECKS if otp is registered or not
+    //CHECKS if user is registered or not
     const userExist = await User.find({email : email})
     if(userExist.length == 0){
         return res.status(404).json({
@@ -134,7 +127,7 @@ exports.verifyOtp = async (req, res) => {
     }
 
     // checks if the otp matched or not
-    if(userExist[0].otp !== otp) {
+    if(!bcrypt.compareSync(otp, userExist[0].otp)) {
         res.status(400).json({
             message: "Invalid OTP. Try again"
         })
@@ -144,8 +137,9 @@ exports.verifyOtp = async (req, res) => {
         })
 
         //dispose OTP after verifyed so cannot be used same otp next time
-        userExist[0].otp = undefined
+        userExist[0].otp = null
         userExist[0].isOtpVerified = true
+        userExist[0].otpExpiry = null
         await userExist[0].save()
     }
 
@@ -187,15 +181,12 @@ exports.resetPassword = async (req, res) => {
     
     //replace the password with newPassword in db--> save hashed password
     userExist[0].password = bcrypt.hashSync(newPassword, 10)
-    userExist[0].isOtpVerified = false
     await userExist[0].save()
 
     res.status(200).json({
         message: "Password changed successfully"
     })
 }
-
-
 
 
 
