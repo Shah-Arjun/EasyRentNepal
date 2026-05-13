@@ -66,12 +66,14 @@ const Sidebar = () => {
         {/* Logo */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
           <Link to="/" className="flex items-center gap-3">
-            <img
-              src={assets.logoImg}
-              alt="Logo"
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
+            <img src={assets.logoDuplicate} alt="Logo" className="h-9 w-auto object-contain" />
+            <div>
+              <p className="font-bold text-slate-800 text-sm leading-tight">EasyRental</p>
+              <p className="text-[10px] text-secondary font-semibold uppercase tracking-widest">
+                Nepal
+              </p>
+            </div>
+        </Link>
           <button
             onClick={() => setSidebarOpen(false)}
             className="md:hidden p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition"

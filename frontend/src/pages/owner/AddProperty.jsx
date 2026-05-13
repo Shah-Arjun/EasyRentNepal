@@ -6,13 +6,13 @@ import useAxios from "../../hooks/useAxios";
 
 //  ======================================== Constants & Enums =======================================
 const provinceEnum = [
-  "Koshi Pradesh",
-  "Madhesh Pradesh",
-  "Bagmati Pradesh",
-  "Gandaki Pradesh",
-  "Lumbini Pradesh",
-  "Karnali Pradesh",
-  "Sudurpashchim Pradesh",
+  "Koshi",
+  "Madhesh",
+  "Bagmati",
+  "Gandaki",
+  "Lumbini",
+  "Karnali",
+  "Sudurpashchim",
 ];
 
 const categories = [
@@ -182,6 +182,12 @@ const AddProperty = () => {
   const [error, setError] = useState("");
   const [dragActive, setDragActive] = useState(false);
 
+  // ── Rent prediction state ─────────────────────────────────────────────────
+  const [predictLoading, setPredictLoading] = useState(false);
+  const [predictError, setPredictError] = useState("");
+  const [predictedRent, setPredictedRent] = useState(null); // number | null
+  const [rentAccepted, setRentAccepted] = useState(false);
+
 
 
 
@@ -304,6 +310,10 @@ useEffect(() => {
           setError("Property description is required");
           return false;
         }
+        if (formData.images.length === 0) {
+          setError("Please upload at least 1 property image");
+          return false;
+        }
         return true;
 
       case 3:   // price
@@ -323,6 +333,121 @@ useEffect(() => {
   };
 
   const handlePrevStep = () => setActiveTab((t) => Math.max(0, t - 1));
+
+
+  // ── Rent prediction helpers ───────────────────────────────────────────────
+
+  /** Map AddProperty formData → FastAPI PropertyInput shape */
+  const buildPredictPayload = () => {
+    // --- parking ---
+    const parkingStr = formData.parking || "None";
+    let parking_type = "None";
+    let parking_no   = 0;
+    if (parkingStr.startsWith("Motorcycle")) {
+      parking_type = "Bike Parking";
+      const range  = parkingStr.split(" ")[1] || "1";
+      parking_no   = range.includes("-") ? parseInt(range.split("-")[0]) : parseInt(range);
+    } else if (parkingStr.startsWith("Car") || parkingStr.startsWith("Cars")) {
+      parking_type = "Car Parking";
+      const parts  = parkingStr.split(" ");
+      const range  = parts[1] || "1";
+      parking_no   = range.includes("-") ? parseInt(range.split("-")[0]) : parseInt(range);
+    } else if (parkingStr === "Other") {
+      parking_type = "Other";
+      parking_no   = 1;
+    }
+
+    // --- province → state (strip " Pradesh") ---
+    const state = (formData.location.province || "Bagmati").replace(" Pradesh", "");
+
+    // --- age ---
+    const currentYear = new Date().getFullYear();
+    const builtYear   = formData.builtYear ? parseInt(formData.builtYear) : currentYear - 5;
+    const age         = Math.max(0, currentYear - builtYear);
+
+    // --- area → sqft conversion ---
+    const unitToSqft  = { sqft: 1, sqm: 10.764, aana: 342.25, ropani: 5476, haath: 6.25, feet: 1, other: 1 };
+    const rawArea     = parseFloat(formData.builtArea.value) || 500;
+    const area_sqft   = rawArea * (unitToSqft[formData.builtArea.unit] ?? 1);
+
+    // --- furnishing ---
+    const furnishMap  = { "unfurnished": "Unfurnished", "semi-furnished": "Semi Furnished", "fully-furnished": "Fully Furnished" };
+
+    return {
+      property_type:      formData.category || "Room",
+      usage_type:         "Rent",
+      road_type:          "pitched",
+      parking_type,
+      facing:             formData.facing || "East",
+      furnishing:         furnishMap[formData.furnishedStatus] ?? "Unfurnished",
+      state,
+      district:           formData.location.district   || "Kathmandu",
+      city:               formData.location.municipality || "Kathmandu",
+      water_supply:       "Yes",
+      road_size_ft:       parseFloat(formData.roadSize.value) || 0,
+      no_of_flat:         parseInt(formData.noOfFlat)   || 1,
+      rooms:              parseInt(formData.bedrooms)   || 1,
+      bath:               parseInt(formData.bathrooms)  || 1,
+      kitchen:            parseInt(formData.kitchen)    || 1,
+      shutter:            formData.category === "Shutter" ? 1 : 0,
+      parking_no,
+      area_sqft:          Math.round(area_sqft),
+      age,
+      transport_distance: 0,
+      service_charge:     0,
+      amenities_count:    formData.amenities.length,
+    };
+  };
+
+  const handlePredictRent = async () => {
+    setPredictError("");
+    setPredictedRent(null);
+    setRentAccepted(false);
+
+    // Basic guard — need at least district + city
+    if (!formData.location.district || !formData.location.municipality) {
+      setPredictError("Please fill in District and Municipality (Step 1) before predicting.");
+      return;
+    }
+
+    setPredictLoading(true);
+    try {
+      const payload  = buildPredictPayload();
+      const response = await fetch("http://localhost:8000/predict-rent", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.detail || `Server error (${response.status})`);
+      }
+
+      const result = await response.json();
+      setPredictedRent(result.predicted_monthly_rent);
+    } catch (err) {
+      const isNetErr = err.message?.includes("fetch") || err.name === "TypeError";
+      setPredictError(
+        isNetErr
+          ? "Could not reach the ML service. Make sure it is running on port 8000."
+          : err.message || "Prediction failed. Please try again."
+      );
+    } finally {
+      setPredictLoading(false);
+    }
+  };
+
+  const handleAcceptRent = () => {
+    if (!predictedRent) return;
+    handleNestedChange("price", "value", String(Math.round(predictedRent)));
+    setRentAccepted(true);
+  };
+
+  const handleOverrideRent = () => {
+    setPredictedRent(null);
+    setRentAccepted(false);
+  };
 
 
 
@@ -367,9 +492,10 @@ useEffect(() => {
       // Images
       formData.images.forEach((file) => data.append("images", file));
 
-      const response = await api.post("/property/addProperty", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // ⚠️  Do NOT set Content-Type manually — Axios auto-sets
+      //     'multipart/form-data; boundary=...' when body is FormData.
+      //     Overriding it strips the boundary and breaks Multer parsing.
+      const response = await api.post("/property/addProperty", data);
 
       if (response.data.success) {
         alert("Property listed successfully!");
@@ -688,7 +814,7 @@ useEffect(() => {
                   <Input
                     type="number"
                     min="1900"
-                    max={new Date().getFullYear() + 5}
+                    max="2083"
                     name="builtYear"
                     value={formData.builtYear}
                     onChange={handleInputChange}
@@ -883,18 +1009,142 @@ useEffect(() => {
 
           {/* ,,,,,,,,,,, TAB 3: Price ,,,,,,,,,,, */}
           <div className={activeTab === 3 ? "block space-y-8 animate-in fade-in duration-500" : "hidden"}>
-            <div className="mt-8">
+
+            {/* ── AI Rent Prediction card ───────────────────────────────── */}
+            <div className="rounded-2xl border-2 border-dashed border-secondary/40 bg-gradient-to-br from-amber-50/60 to-white p-6">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    {/* sparkle icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-secondary">
+                      <path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+                    </svg>
+                    <h3 className="font-bold text-slate-800 text-[15px]">AI Rent Predictor</h3>
+                  </div>
+                  <p className="text-[13px] text-gray-400 leading-relaxed max-w-sm">
+                    Our ML model analyses your property details and suggests an optimal monthly rent based on real Nepal market data.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handlePredictRent}
+                  disabled={predictLoading}
+                  className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary text-slate-900 font-semibold text-[14px] hover:bg-amber-400 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shadow-secondary/30"
+                >
+                  {predictLoading ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Predicting…
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                        <path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
+                      </svg>
+                      Predict Rent
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Predict error */}
+              {predictError && (
+                <div className="mb-4 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mt-0.5 flex-shrink-0">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                  </svg>
+                  {predictError}
+                </div>
+              )}
+
+              {/* Prediction result */}
+              {predictedRent !== null && (
+                <div className={`rounded-xl border-2 p-5 transition-all ${
+                  rentAccepted ? "border-green-300 bg-green-50" : "border-secondary/50 bg-amber-50/60"
+                }`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                      <p className="text-[12px] font-bold uppercase tracking-widest text-slate-500 mb-1">
+                        Predicted Monthly Rent
+                      </p>
+                      <p className="text-3xl font-bold text-slate-900">
+                        NPR {predictedRent.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+                        <span className="text-[13px] text-slate-400 font-normal ml-2">/ month</span>
+                      </p>
+                      {rentAccepted && (
+                        <p className="text-[13px] text-green-700 font-semibold mt-1 flex items-center gap-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
+                          </svg>
+                          Rent accepted — applied to price field
+                        </p>
+                      )}
+                    </div>
+
+                    {!rentAccepted ? (
+                      <div className="flex gap-2 flex-shrink-0">
+                        <button
+                          type="button"
+                          onClick={handleAcceptRent}
+                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-secondary text-slate-900 font-semibold text-[13px] hover:bg-amber-400 transition"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                            <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                          </svg>
+                          Use This Rent
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleOverrideRent}
+                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 font-semibold text-[13px] hover:bg-slate-50 transition"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                            <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                          </svg>
+                          Enter Manually
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={handleOverrideRent}
+                        className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-600 font-medium text-[13px] hover:bg-slate-50 transition flex-shrink-0"
+                      >
+                        Override
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Placeholder when no prediction yet */}
+              {predictedRent === null && !predictLoading && !predictError && (
+                <p className="text-center text-[13px] text-slate-400 italic py-2">
+                  Click <strong className="text-secondary">Predict Rent</strong> to get an AI-suggested price for your property.
+                </p>
+              )}
+            </div>
+
+            {/* ── Manual price inputs ───────────────────────────────────── */}
+            <div>
               <SectionTitle title="Pricing Strategy" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <Label required>Price Value</Label>
+                  <Label required>Price Value (NPR)</Label>
                   <Input
                     type="number"
                     min="0"
                     value={formData.price.value}
-                    onChange={(e) => handleNestedChange("price", "value", e.target.value)}
+                    onChange={(e) => { handleNestedChange("price", "value", e.target.value); setRentAccepted(false); }}
                     placeholder="e.g., 25000"
                   />
+                  {rentAccepted && (
+                    <p className="text-[12px] text-green-600 mt-1 font-medium">↑ Filled from AI prediction</p>
+                  )}
                 </div>
                 <div>
                   <Label>Currency</Label>
