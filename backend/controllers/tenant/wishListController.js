@@ -54,7 +54,7 @@ exports.getMyWishlist = async(req, res) => {
             .sort({ createdAt: -1 })
 
         if(wishlist.length == 0){
-        return res.status(404).json({
+        return res.status(200).json({
             message: "Your wishlist is empty",
             data: []
         })
