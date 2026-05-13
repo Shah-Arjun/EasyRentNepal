@@ -8,6 +8,7 @@ import Item from '../components/Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
+import { getActiveRole, hasRole } from '../utils/authRole';
 
 
 
@@ -32,6 +33,7 @@ const PropertyDetails = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+    const activeRole = getActiveRole(userProfile);
 
     const fetchReviews = async () => {
         try {
@@ -54,7 +56,10 @@ const PropertyDetails = () => {
                 setProperty(foundProperty || null);
             } catch (error) {
                 console.error('Error fetching property details:', error);
-                setProperty(null);
+                const status = error?.status || error?.response?.status;
+                if (status === 404) {
+                    setProperty(null);
+                }
             } finally {
                 setLoading(false);
             }
@@ -75,7 +80,7 @@ const PropertyDetails = () => {
             toast.error("Please login to submit a review");
             return;
         }
-        if (userProfile?.role !== 'tenant') {
+        if (activeRole !== 'tenant') {
             toast.error("Only tenants can submit reviews");
             return;
         }
@@ -149,6 +154,9 @@ const PropertyDetails = () => {
         if (property?._id) fetchRecommendedProperties();
     }, [property?._id]);
 
+
+
+    
     // Handle Book Now
     const handleBookNow = () => {
         if (!isLoggedIn) {
@@ -156,7 +164,7 @@ const PropertyDetails = () => {
             navigate('/login');
             return;
         }
-        if (userProfile?.role !== 'tenant') {
+        if (activeRole !== 'tenant') {
             toast.error("Only tenants can book properties");
             return;
         }
@@ -221,7 +229,7 @@ const PropertyDetails = () => {
             if (paymentRes.success) {
                 alert("Booking and payment proof submitted successfully! Await owner confirmation.");
                 setShowBookingModal(false);
-                navigate('/tenant-dashboard');
+                navigate('/tenant/dashboard');
             }
         } catch (error) {
             console.error("Booking/Payment error:", error);
@@ -237,7 +245,7 @@ const PropertyDetails = () => {
 
     if (loading) {
         return (
-            <div className='bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28 h-screen flex items-center justify-center'>
+            <div className='bg-linear-to-r from-[#fffbee] to-white py-16 pt-28 h-screen flex items-center justify-center'>
                 <div className='text-center'>
                     <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-secondary mx-auto'></div>
                     <p className='mt-4 text-gray-500'>Loading property details...</p>
@@ -248,7 +256,7 @@ const PropertyDetails = () => {
 
     if (!property) {
         return (
-            <div className='bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28 h-screen flex items-center justify-center'>
+            <div className='bg-linear-to-r from-[#fffbee] to-white py-16 pt-28 h-screen flex items-center justify-center'>
                 <p className='text-xl text-gray-500'>Property not found</p>
             </div>
         );
@@ -259,7 +267,7 @@ const PropertyDetails = () => {
 
     return (
         <>
-            <div className='bg-gradient-to-r from-[#fffbee] to-white py-16 pt-28'>
+            <div className='bg-linear-to-r from-[#fffbee] to-white py-16 pt-28'>
                 <div className='max-padd-container'>
                     <PropertyImages property={property} />
 
@@ -447,7 +455,7 @@ const PropertyDetails = () => {
                                 )}
                             </div>
                                 {/* reviews list and form */}
-                                {isLoggedIn && userProfile?.role === 'tenant' && !hasReviewed && property.owner?._id !== userProfile?._id && (
+                                {isLoggedIn && hasRole(userProfile, 'tenant') && !hasReviewed && property.owner?._id !== userProfile?._id && (
                                     <div className='p-6 rounded-xl bg-secondary/5 border border-secondary/20'>
                                         <h4 className='h4 mb-4'>Write a Review</h4>
                                         <form onSubmit={handleReviewSubmit} className='flex flex-col gap-4'>
@@ -487,7 +495,7 @@ const PropertyDetails = () => {
 
 
 
-                                {isLoggedIn && userProfile?.role === 'tenant' && hasReviewed && (
+                                {isLoggedIn && hasRole(userProfile, 'tenant') && hasReviewed && (
                                     <div className='p-4 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm'>
                                         You have already reviewed this property. Thank you!
                                     </div>

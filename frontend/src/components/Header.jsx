@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { useAppContext } from "../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faRightLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { normalizeRoles } from "../utils/authRole";
 
 
 const Header = () => {
@@ -15,6 +16,7 @@ const Header = () => {
   const profileMenuRef = useRef(null);
   const location = useLocation();
   const { navigate, isOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
+  const availableRoles = normalizeRoles(userProfile?.role)
 
   const handleLogout = () => {
     logout();
@@ -113,7 +115,7 @@ const Header = () => {
             {/* My Bookings icon for tenant */}
             {isLoggedIn && !isOwner && (
               <Link
-                to="/my-bookings"
+                to="/tenant/bookings"
                 className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
                 title="My Bookings"
               >
@@ -171,7 +173,7 @@ const Header = () => {
                     <div className="relative">
                       <button 
                         onClick={() => setShowProfileMenu(!showProfileMenu)}
-                        className="w-[42px] h-[42px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-lg"
+                        className="w-10.5 h-10.5 bg-secondary text-white rounded-full flexCenter font-bold uppercase text-lg"
                       >
                         {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
                       </button>
@@ -188,13 +190,13 @@ const Header = () => {
                         </div>
                         {!isOwner && (
                           <button 
-                            onClick={() => { navigate('/my-bookings'); setShowProfileMenu(false); }}
+                            onClick={() => { navigate('/tenant/bookings'); setShowProfileMenu(false); }}
                             className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2"
                           >
                             <FontAwesomeIcon icon={faCalendarCheck} /> My Bookings
                           </button>
                         )}
-                        {userProfile?.role?.length > 1 ? (
+                        {availableRoles.length > 1 ? (
                           <button 
                             onClick={() => { toggleRole(); setShowProfileMenu(false); }}
                             className="w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2 text-blue-600 font-medium"

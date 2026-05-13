@@ -5,11 +5,12 @@ import useAxios from '../hooks/useAxios';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { getActiveRole } from '../utils/authRole';
 
 
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ email: '', password: '', role: 'tenant' });
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const { loadUserData } = useAppContext();
   const navigate = useNavigate();
@@ -35,15 +36,14 @@ const Login = () => {
 
       if (response.data.success) {
         const user = await loadUserData();
-        const currentRole = user?.currentActiveRole || 
-          (Array.isArray(user?.role) ? user?.role?.[0] : user?.role);
+        const currentRole = getActiveRole(user);
         const userRole = currentRole || response?.data?.user?.role;
 
         toast.success('Logged in successfully');
 
         // Redirect based on role
         if (userRole === 'owner') navigate('/owner');
-        else if (userRole === 'tenant') navigate('/listing');
+        else if (userRole === 'tenant') navigate('/tenant/dashboard');
         else navigate('/');
       }
     } catch (error) {

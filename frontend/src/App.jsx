@@ -28,34 +28,23 @@ import TenantDashboard from './pages/tenant/Dashboard';
 import Bookings from './pages/tenant/Bookings';
 import Watchlist from './pages/tenant/Watchlist';
 import Payments from './pages/tenant/Payments';
-
-
+import Profile from './pages/shared/Profile';
 
 const App = () => {
   const location = useLocation();
   const { showAgencyReg, isLoggedIn, userProfile, navigate } = useAppContext();
 
-
   const isOwnerPath = location.pathname.startsWith('/owner');
   const isTenantPath = location.pathname.startsWith('/tenant');
-  const isAuthPath = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/verify-otp' || isTenantPath;
+  const isAuthPath =
+    location.pathname === '/login' ||
+    location.pathname === '/register' ||
+    location.pathname === '/verify-otp' ||
+    isTenantPath;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
-
-  // Auto-redirect logged-in users based on role
-  useEffect(() => {
-    if (isLoggedIn && userProfile && location.pathname === '/') {
-      const userRole = userProfile?.currentActiveRole || 
-        (Array.isArray(userProfile?.role) ? userProfile?.role?.[0] : userProfile?.role);
-      if (userRole === 'owner') {
-        navigate('/owner', { replace: true });
-      } else if (userRole === 'tenant') {
-        navigate('/tenant', { replace: true });
-      }
-    }
-  }, [isLoggedIn, userProfile, location.pathname, navigate]);
 
   return (
     <main>
@@ -63,48 +52,54 @@ const App = () => {
 
       {!isOwnerPath && !isAuthPath && <Header />}
 
-      { showAgencyReg && <AgencyReg />}
+      {showAgencyReg && <AgencyReg />}
 
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/listing" element={<Listing />} />
+        <Route path="/"           element={<Home />} />
+        <Route path="/listing"    element={<Listing />} />
         <Route path="/listing/:id" element={<PropertyDetails />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetails />} />
-        <Route path="/contact" element={<Contact />} />
-
+        <Route path="/blog"       element={<Blog />} />
+        <Route path="/blog/:id"   element={<BlogDetails />} />
+        <Route path="/contact"    element={<Contact />} />
 
         {/* Protected Tenant Routes */}
         <Route element={<ProtectedRoute allowedRoles={['tenant']} />}>
           <Route path="/tenant" element={<TenantDashboardLayout />}>
-            <Route index element={<Navigate to="dashboard" replace />} />
-            
-            <Route path="dashboard" element={<TenantDashboard />} />
-            <Route path="bookings" element={<Bookings />} />
-            <Route path="watchlist" element={<Watchlist />} />
-            <Route path="payments" element={<Payments />} />
+            <Route index                element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard"     element={<TenantDashboard />} />
+            <Route path="bookings"      element={<Bookings />} />
+            <Route path="watchlist"     element={<Watchlist />} />
+            <Route path="payments"      element={<Payments />} />
+            <Route path="profile"       element={<Profile />} />
           </Route>
-
         </Route>
 
         {/* Auth Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login"      element={<Login />} />
+        <Route path="/register"   element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
 
         {/* Protected Owner Routes with Layout */}
         <Route element={<ProtectedRoute allowedRoles={['owner']} />}>
           <Route path="/owner" element={<Sidebar />}>
-            <Route index element={<OwnerDashboard />} />
-            <Route path="add-property" element={<AddProperty />} />
-            <Route path="list-property" element={<ListProperty />} />
-            <Route path="map" element={<MapView />} />
+            <Route index                    element={<OwnerDashboard />} />
+            <Route path="add-property"      element={<AddProperty />} />
+            <Route path="list-property"     element={<ListProperty />} />
+            <Route path="map"               element={<MapView />} />
+            <Route path="profile"           element={<Profile />} />
           </Route>
         </Route>
 
         {/* Unauthorized / Fallback */}
-        <Route path="/unauthorized" element={<div className="p-10 text-center">You don't have permission to access this page.</div>} />
+        <Route
+          path="/unauthorized"
+          element={
+            <div className="p-10 text-center">
+              You don't have permission to access this page.
+            </div>
+          }
+        />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
 

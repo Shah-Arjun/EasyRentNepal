@@ -1,145 +1,183 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import { assets } from '../../assets/data'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { getActiveRole, normalizeRoles } from '../../utils/authRole'
+import {
+  LayoutDashboard,
+  PlusSquare,
+  List,
+  Map,
+  UserCircle,
+  Menu,
+  X,
+  LogOut,
+  ArrowRightLeft,
+  Home,
+} from 'lucide-react'
+
+const navItems = [
+  { path: '/owner',               label: 'Dashboard',     icon: LayoutDashboard, end: true },
+  { path: '/owner/add-property',  label: 'Add Property',  icon: PlusSquare,      end: false },
+  { path: '/owner/list-property', label: 'My Properties', icon: List,            end: false },
+  { path: '/owner/profile',       label: 'Profile',       icon: UserCircle,      end: false },
+]
 
 const Sidebar = () => {
   const { userProfile, toggleRole, logout } = useAppContext()
-  const [showProfileMenu, setShowProfileMenu] = useState(false)
-  const profileMenuRef = useRef(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const availableRoles = normalizeRoles(userProfile?.role)
+  const activeRole = getActiveRole(userProfile)
 
-  const navItems = [
-    {
-      path: '/owner',
-      label: "Dashboard",
-      icon: assets.dashboard
-    },
-    {
-      path: '/owner/add-property',
-      label: "Add Property",
-      icon: assets.housePlus
-    },
-    {
-      path: '/owner/list-property',
-      label: "List Property",
-      icon: assets.list
-    },
-  ]
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
-        setShowProfileMenu(false)
-      }
-    }
-
-    if (showProfileMenu) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [showProfileMenu])
+  const initials = userProfile?.name
+    ? userProfile.name.trim().split(/\s+/).map((w) => w[0]).join('').toUpperCase().slice(0, 2)
+    : 'U'
 
   const handleSwitchToTenant = async () => {
-    setShowProfileMenu(false)
+    setSidebarOpen(false)
     await toggleRole()
   }
 
   const handleLogout = async () => {
-    setShowProfileMenu(false)
+    setSidebarOpen(false)
     await logout()
   }
 
   return (
-    <div className='bg-linear-to-r from-[#fffbee] to-white'>
-      <div className='mx-auto max-w-[1440px] flex flex-col md:flex-row'>
-        {/* Sidebar */}
-        <div ref={profileMenuRef} className='max-md:flexCenter flex flex-col justify-between bg-white sm:m-3 md:min-w-[20%] md:min-h-[97vh] rounded-xl shadow'>
-          <div className='flex flex-col gap-y-6 max-md:items-center md:flex-col md:pt-5'>
-            {/* Logo and Profile */}
-            <div className='w-full flex justify-between md:flex-col'>
-              <div className='flex flex-1 p-3 lg:pl-8'>
-                <Link to={'/'}>
-                  <img src={assets.logoImg} alt="Logo" className='h-28 lg:h-36 w-auto object-contain' />
-                </Link>
-              </div>
-              <div className='md:hidden flex items-center gap-3 md:bg-primary rounded-b-xl p-2 pl-5 lg:pl-10 md:mt-10 relative'>
-                <button
-                  onClick={() => setShowProfileMenu((prev) => !prev)}
-                  className="w-[45px] h-[45px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
-                >
-                  {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
-                </button>
-                <div className='text-sm font-semibold text-gray-800 capitalize'>
-                  {userProfile?.name || 'User'}
-                </div>
-                {showProfileMenu && (
-                  <div className='absolute left-5 top-14 w-52 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5'>
-                    <button
-                      onClick={handleSwitchToTenant}
-                      className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
-                    >
-                      <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
-                    </button>
-                    <hr />
-                    <button
-                      onClick={handleLogout}
-                      className='w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-slate-100 font-medium flex items-center gap-2'
-                    >
-                      <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-                    </button>
-                  </div>
-                )}
-              </div>
+    <div className="flex h-screen overflow-hidden bg-slate-50">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* ── Sidebar panel ─────────────────────────────────────────── */}
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200
+          flex flex-col overflow-y-auto shadow-lg
+          transform transition-transform duration-300 ease-in-out
+          md:relative md:translate-x-0 md:flex-shrink-0
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}
+      >
+        {/* Logo */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={assets.logoDuplicate} alt="Logo" className="h-9 w-auto object-contain" />
+            <div>
+              <p className="font-bold text-slate-800 text-sm leading-tight">EasyRental</p>
+              <p className="text-[10px] text-secondary font-semibold uppercase tracking-widest">
+                Nepal
+              </p>
             </div>
-            <div className='flex md:flex-col md:gap-x-5 gap-y-8 md:mt-4'>
-              {navItems.map(link => (
-                <NavLink
-                  key={link.label}
-                  to={link.path}
-                  end={link.path === '/owner'}
-                  className={({ isActive }) => isActive ? "flexStart gap-x-2 p-5 lg:pl-12 bold-13 sm:text-sm! cursor-pointer h-10 bg-secondary/10 max-md:border-b-4 md:border-r-4 border-secondary" : "flexStart gap-x-2 lg:pl-12 p-5 bold-13 sm:text-sm! cursor-pointer h-10 rounded-xl"}
-                >
-                  <img src={link.icon} alt={link.label} className='hidden md:block' width={18} />
-                  <div>{link.label}</div>
-                </NavLink>
-              ))}
-            </div>
-          </div>
-          <div className='hidden md:flex items-center gap-3 md:bg-primary border-t border-slate-900/15 rounded-b-xl p-2 pl-5 lg:pl-10 md:mt-10 relative'>
-            <button
-              onClick={() => setShowProfileMenu((prev) => !prev)}
-              className="w-[45px] h-[45px] bg-secondary text-white rounded-full flexCenter font-bold uppercase text-xl"
-            >
-              {userProfile?.name ? userProfile.name.charAt(0) : 'U'}
-            </button>
-            <div className='text-sm font-semibold text-gray-800 capitalize'>
-              {userProfile?.name || 'User'}
-            </div>
-            {showProfileMenu && (
-              <div className='absolute left-5 bottom-16 w-52 bg-white shadow-md rounded-md overflow-hidden z-50 ring-1 ring-slate-900/5'>
-                <button
-                  onClick={handleSwitchToTenant}
-                  className='w-full text-left px-4 py-3 text-sm hover:bg-slate-100 flex items-center gap-2'
-                >
-                  <FontAwesomeIcon icon={faRightLeft} /> Switch to Tenant
-                </button>
-                <hr />
-                <button
-                  onClick={handleLogout}
-                  className='w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-slate-100 font-medium flex items-center gap-2'
-                >
-                  <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-                </button>
-              </div>
+        </Link>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="md:hidden p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition"
+            aria-label="Close sidebar"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* User info card */}
+        <div className="mx-4 mt-4 rounded-2xl bg-gradient-to-br from-secondary/20 to-amber-50 border border-secondary/30 p-4 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-sm flex-shrink-0 overflow-hidden shadow">
+            {userProfile?.profileImage?.url ? (
+              <img
+                src={userProfile.profileImage.url}
+                alt={userProfile?.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span>{initials}</span>
             )}
           </div>
+          <div className="min-w-0">
+            <p className="font-semibold text-slate-800 text-sm truncate">
+              {userProfile?.name || 'User'}
+            </p>
+            <p className="text-xs text-secondary font-medium capitalize">{activeRole}</p>
+          </div>
         </div>
-        <Outlet />
+
+        {/* Nav links */}
+        <nav className="flex-1 px-3 mt-5 space-y-1">
+          <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            Menu
+          </p>
+          {navItems.map((item) => {
+            const Icon = item.icon
+            return (
+              <NavLink
+                key={item.label}
+                to={item.path}
+                end={item.end}
+                onClick={() => setSidebarOpen(false)}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                    isActive
+                      ? 'bg-secondary text-slate-900 shadow-sm shadow-secondary/30'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`
+                }
+              >
+                <Icon size={18} />
+                {item.label}
+              </NavLink>
+            )
+          })}
+        </nav>
+
+        {/* Bottom actions */}
+        <div className="px-3 pb-5 mt-4 border-t border-slate-100 pt-3 space-y-1">
+          <Link
+            to="/"
+            onClick={() => setSidebarOpen(false)}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+          >
+            <Home size={18} />
+            Back to Home
+          </Link>
+          {availableRoles.includes('tenant') && (
+            <button
+              onClick={handleSwitchToTenant}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+            >
+              <ArrowRightLeft size={18} />
+              Switch to Tenant
+            </button>
+          )}
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 hover:text-red-600 transition"
+          >
+            <LogOut size={18} />
+            Logout
+          </button>
+        </div>
+      </aside>
+
+      {/* ── Main content — scrollable ──────────────────────────────── */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Mobile topbar */}
+        <div className="sticky top-0 z-30 flex items-center gap-3 bg-white border-b border-slate-200 px-4 py-3 md:hidden shadow-sm">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition"
+            aria-label="Open sidebar"
+          >
+            <Menu size={20} />
+          </button>
+          <span className="font-bold text-slate-800 text-sm">Owner Dashboard</span>
+        </div>
+
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+          <Outlet />
+        </main>
       </div>
     </div>
   )

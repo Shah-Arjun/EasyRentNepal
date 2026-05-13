@@ -46,9 +46,9 @@ exports.loginUser = async(req, res) => {
 
     // if matched, generate token and send it using helper function
     if(isPwMatched){
-        sendUserTokenCookie(res, 200, 'Login successful', userFound);
+        sendUserTokenCookie(res, 200, 'Login successful', userFound, req.body.role);
     } else {
-        res.status(404).json({
+        res.status(401).json({
             success: false,
             message: "Invalid credentials"
         })
@@ -60,19 +60,11 @@ exports.loginUser = async(req, res) => {
 
 // LOGOUT USER
 exports.logoutUser = async(req, res) => {
-    const isDestroyed = destroyCookie(res);
-
-      if (isDestroyed) {
-    return res.json({
-      success: true,
-      message: 'Logged out successfully'
-    });
-  }
-
-  return res.status(500).json({
-    success: false,
-    message: 'Failed to logout'
-  });
+        destroyCookie(res);
+        return res.status(200).json({
+            success: true,
+            message: 'Logged out successfully'
+        });
 }
 
 

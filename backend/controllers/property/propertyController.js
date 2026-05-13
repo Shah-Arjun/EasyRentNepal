@@ -245,8 +245,9 @@ exports.getSingleProperty = async(req, res) => {
       })
     }
 
-    // Also find the agency associated with the owner
-    const agency = await Agency.findOne({ owner: property.owner._id });
+    // Also find the agency associated with the owner, if the owner still exists
+    const ownerId = property.owner?._id || property.owner;
+    const agency = ownerId ? await Agency.findOne({ owner: ownerId }) : null;
 
     // Calculate average rating
     const reviews = await Review.find({ propertyId: id });

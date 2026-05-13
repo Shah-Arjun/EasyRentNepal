@@ -1,7 +1,13 @@
 const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
-const { sendUserTokenCookie, generateToken, cookieOptions, sendToggleTokenCookie } = require('../../utils/tokenUtils')
+const { sendUserTokenCookie, generateToken, cookieOptions, sendToggleTokenCookie, normalizeRoles } = require('../../utils/tokenUtils')
 const Agency = require('../../models/agencyModel')
+
+const buildFullAddress = (location = {}) => {
+    return [location.tole, location.city, location.district, location.province]
+        .filter(Boolean)
+        .join(', ')
+}
 
 
 
@@ -26,8 +32,10 @@ exports.getMyProfile = async(req, res) => {
         message: "Profile fetched successfully",
         user: {
             ...myProfile.toObject(),
-            currentActiveRole: currentActiveRole,  // The role currently active (from token)
-            role: myProfile.role  // All available roles
+            role: normalizeRoles(myProfile.role),
+            currentActiveRole: currentActiveRole,
+            fullAddress: buildFullAddress(myProfile.location),
+            joinedDate: myProfile.createdAt,
         }
     })
 }
@@ -86,12 +94,14 @@ exports.updateMyProfile = async(req, res) => {
     
     // Create an update object with only fields that are provided
     const updateFields = {};
-    const allowedFields = ['name', 'email', 'phone', 'location', 'profileImg', 'role']; // Changed profileImage to profileImg to match req.body
+    const allowedFields = ['name', 'email', 'phone', 'phoneNumber', 'location', 'profileImg', 'profileImage', 'role'];
 
     // Special handling for phoneNumber mapping from phone
     if (req.body.phone) updateFields.phoneNumber = req.body.phone;
+    if (req.body.phoneNumber) updateFields.phoneNumber = req.body.phoneNumber;
     // Special handling for profileImage mapping from profileImg
     if (req.body.profileImg) updateFields.profileImage = req.body.profileImg;
+    if (req.body.profileImage) updateFields.profileImage = req.body.profileImage;
 
     // Handle role updates with append/remove semantics
     if (Object.prototype.hasOwnProperty.call(req.body, 'role')) {
@@ -123,13 +133,20 @@ exports.updateMyProfile = async(req, res) => {
     }).select(['-password', '-__v'])
 
     // Refresh auth cookie so role-based middleware sees the latest role immediately.
-    const refreshedToken = generateToken(updatedProfile._id, updatedProfile.role)
+    const refreshedRole = Array.isArray(updateFields.role) ? updateFields.role[0] : (updateFields.role || req.user.role)
+    const refreshedToken = generateToken(updatedProfile._id, refreshedRole)
     res.cookie('auth_token', refreshedToken, cookieOptions())
 
     res.status(200).json({
         success: true,
         message: "Profile updated successfully",
-        user: updatedProfile
+        user: {
+            ...updatedProfile.toObject(),
+            role: normalizeRoles(updatedProfile.role),
+            currentActiveRole: req.user.role,
+            fullAddress: buildFullAddress(updatedProfile.location),
+            joinedDate: updatedProfile.createdAt,
+        }
     })
 }
 
@@ -170,7 +187,7 @@ exports.toggleProfileRole = async (req, res) => {
     const currentRole = req.user.role;
 
     try {
-        let newRole;
+        let newRole, newUserData;
         
         // Always look up the user in User collection
         const user = await User.findById(userId);
@@ -183,7 +200,7 @@ exports.toggleProfileRole = async (req, res) => {
 
         if(currentRole === 'tenant') {
             // Check if user is registered as owner
-            if (!user.role.includes('owner')) {
+            if (!normalizeRoles(user.role).includes('owner')) {
                 return res.status(400).json({
                     success: false,
                     message: "Register as owner first to switch role."
@@ -197,11 +214,11 @@ exports.toggleProfileRole = async (req, res) => {
                     message: "Agency not found. Complete owner registration."
                 });
             }
-
+            
             newRole = 'owner';
 
         } else if(currentRole === 'owner') {
-            if (!user.role.includes('tenant')) {
+            if (!normalizeRoles(user.role).includes('tenant')) {
                 return res.status(400).json({
                     success: false,
                     message: "You don't have tenant role"
@@ -210,11 +227,10 @@ exports.toggleProfileRole = async (req, res) => {
             newRole = 'tenant';
         }
 
+        const refreshedProfile = await User.findById(userId).select(['-password', '-__v'])
+
         // ALWAYS use USER ID for token generation (not Agency ID)
-        sendToggleTokenCookie(res, 200, `Role switched to ${newRole} successfully`, {
-            _id: userId, 
-            role: newRole
-        });
+        sendToggleTokenCookie(res, 200, `Role switched to ${newRole} successfully`, refreshedProfile, newRole);
 
     } catch (error) {
         res.status(500).json({
