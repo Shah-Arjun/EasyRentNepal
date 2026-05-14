@@ -29,6 +29,7 @@ import Bookings from './pages/tenant/Bookings';
 import Watchlist from './pages/tenant/Watchlist';
 import Payments from './pages/tenant/Payments';
 import Profile from './pages/shared/Profile';
+import OwnerBookings from './pages/owner/Bookings';
 
 const App = () => {
   const location = useLocation();
@@ -86,6 +87,7 @@ const App = () => {
             <Route index                    element={<OwnerDashboard />} />
             <Route path="add-property"      element={<AddProperty />} />
             <Route path="list-property"     element={<ListProperty />} />
+            <Route path="bookings"          element={<OwnerBookings />} />
             <Route path="map"               element={<MapView />} />
             <Route path="profile"           element={<Profile />} />
           </Route>

@@ -15,6 +15,7 @@ const reviewsRoutes = require("./routes/tenant/reviewsRoutes")
 const tenantDashboardRoutes = require("./routes/tenant/dashboardRoutes")
 const agencyRoutes = require("./routes/agencyRoute")
 const predictionRoutes = require('./routes/prediction');
+const bookingRoutes = require('./routes/booking/bookingRoutes');
 
 
 
@@ -56,6 +57,7 @@ app.use("/api/reviews", reviewsRoutes)
 app.use("/api/tenant", tenantDashboardRoutes)
 app.use("/api/agency", agencyRoutes)
 app.use("/api/prediction", predictionRoutes)
+app.use("/api/bookings", bookingRoutes)
 
 
 

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import { assets } from '../../assets/data'
 import { Link } from 'react-router-dom'
-import { Home, Star, MessageSquare, ArrowRight } from 'lucide-react'
+import { Home, Star, MessageSquare, ArrowRight, ClipboardList, Bell } from 'lucide-react'
 
 const Dashboard = () => {
-  const { currency, propertyServices, userProfile } = useAppContext()
+  const { currency, propertyServices, bookingServices, userProfile } = useAppContext()
 
   const [dashboardData, setDashboardData] = useState({
     stats: { totalProperties: 0, totalReviews: 0, averageRating: 0 },
@@ -13,12 +13,18 @@ const Dashboard = () => {
     properties: [],
   })
   const [loading, setLoading] = useState(true)
+  const [pendingCount, setPendingCount] = useState(0)
 
   const getDashboardData = async () => {
     try {
       setLoading(true)
-      const response = await propertyServices.getOwnerDashboardData()
-      if (response.success) setDashboardData(response)
+      const [propRes, bookingRes] = await Promise.all([
+        propertyServices.getOwnerDashboardData(),
+        bookingServices.getOwnerBookings().catch(() => ({ data: [] })),
+      ])
+      if (propRes.success) setDashboardData(propRes)
+      const pending = (bookingRes?.data || []).filter(b => b.status === 'pending').length
+      setPendingCount(pending)
     } catch (error) {
       console.error('Error fetching dashboard data:', error)
     } finally {
@@ -54,8 +60,27 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* ── Pending booking alert ────────────────────────────────── */}
+      {pendingCount > 0 && (
+        <Link
+          to="/owner/bookings"
+          className="flex items-center gap-3 bg-amber-50 border border-amber-300 rounded-2xl px-5 py-4 hover:bg-amber-100 transition group"
+        >
+          <div className="w-10 h-10 bg-amber-200 rounded-xl flex items-center justify-center flex-shrink-0">
+            <Bell size={18} className="text-amber-800" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="font-bold text-amber-900 text-sm">
+              {pendingCount} pending booking request{pendingCount > 1 ? 's' : ''} awaiting your review
+            </p>
+            <p className="text-amber-700 text-xs mt-0.5">Review payment proofs and approve or reject bookings.</p>
+          </div>
+          <ArrowRight size={16} className="text-amber-600 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+        </Link>
+      )}
+
       {/* ── Stat cards ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <StatCard
           icon={<Home size={20} className="text-amber-600" />}
           bg="bg-amber-50 border-amber-100"
@@ -74,6 +99,14 @@ const Dashboard = () => {
           label="Total Reviews"
           value={totalReviews.toString().padStart(2, '0')}
         />
+        <Link to="/owner/bookings" className="block">
+          <StatCard
+            icon={<ClipboardList size={20} className="text-violet-600" />}
+            bg="bg-violet-50 border-violet-100"
+            label="Pending Bookings"
+            value={pendingCount.toString().padStart(2, '0')}
+          />
+        </Link>
       </div>
 
       {/* ── Content grid ───────────────────────────────────────────── */}

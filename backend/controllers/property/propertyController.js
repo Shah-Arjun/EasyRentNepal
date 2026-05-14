@@ -319,6 +319,51 @@ exports.deleteProperty = async(req, res) => {
 
 
 
+// UPDATE PROPERTY STATUS
+exports.updatePropertyStatus = async(req, res) => {
+  try {
+    const ownerId = req.user.id;
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = ['Pending', 'Available', 'Sold', 'Rented', 'Rejected', 'Expired'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status value"
+      });
+    }
+
+    const property = await Property.findOneAndUpdate(
+      { _id: id, owner: ownerId },
+      { status },
+      { new: true }
+    );
+
+    if(!property){
+      return res.status(404).json({
+        success: false,
+        message: "Property not found or unauthorized to update"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Property status updated successfully",
+      property
+    });
+  } catch (error) {
+    console.error("Error updating property status:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error while updating status"
+    });
+  }
+}
+
+
+
+
 // GET OWNER DASHBOARD DATA
 exports.getOwnerDashboardData = async(req, res) => {
   try {
@@ -353,6 +398,8 @@ exports.getOwnerDashboardData = async(req, res) => {
         _id: p._id,
         title: p.title,
         price: p.price,
+        status: p.status,
+        location: p.location,
         images: p.images
       }))
     });

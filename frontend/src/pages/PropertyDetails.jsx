@@ -14,7 +14,7 @@ import { getActiveRole, hasRole } from '../utils/authRole';
 
 
 const PropertyDetails = () => {
-    const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn, bookingServices, paymentServices } = useAppContext();
+    const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn, bookingServices } = useAppContext();
     const [property, setProperty] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [recommendedItems, setRecommendedItems] = useState([]);
@@ -27,9 +27,12 @@ const PropertyDetails = () => {
     // Booking form state
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState('Khalti');
     const [proofImage, setProofImage] = useState(null);
     const [proofPreview, setProofPreview] = useState(null);
     const [submitting, setSubmitting] = useState(false);
+    const [bookingError, setBookingError] = useState('');
+    const [bookingSuccess, setBookingSuccess] = useState(false);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -188,55 +191,59 @@ const PropertyDetails = () => {
 
 
 
-    // Submit Booking + Payment (manual proof)
+    // Submit Booking + Payment proof
     const handlePaymentSubmit = async () => {
+        setBookingError('');
         if (!startDate || !endDate) {
-            alert("Please select start and end dates");
+            setBookingError('Please select move-in and move-out dates.');
+            return;
+        }
+        if (new Date(endDate) <= new Date(startDate)) {
+            setBookingError('Move-out date must be after move-in date.');
             return;
         }
         if (!proofImage) {
-            alert("Please upload payment proof");
+            setBookingError('Please upload your payment proof screenshot.');
             return;
         }
 
         try {
             setSubmitting(true);
 
-            // 1. Create Booking
-            const bookingData = {
-                property: id,
-                startDate,
-                endDate,
-                totalAmount: property.price?.value || 0,
-            };
-
-            const bookingRes = await bookingServices.createBooking(bookingData);
-
-            if (!bookingRes.success) throw new Error("Failed to create booking");
-
-            // 2. Create Payment with proof
             const formData = new FormData();
-            formData.append('tenantId', userProfile._id);
-            formData.append('ownerId', property.owner?._id);
-            formData.append('amount', property.price?.value || 0);
-            formData.append('method', 'Khalti'); // or let user choose
-            formData.append('status', 'pending');
+            formData.append('propertyId', id);
+            formData.append('startDate', startDate);
+            formData.append('endDate', endDate);
+            formData.append('paymentMethod', paymentMethod);
             formData.append('proofImage', proofImage);
-            // Optionally link to booking: formData.append('bookingId', bookingRes.booking._id);
 
-            const paymentRes = await paymentServices.createPayment(formData);
+            const res = await bookingServices.createBooking(formData);
 
-            if (paymentRes.success) {
-                alert("Booking and payment proof submitted successfully! Await owner confirmation.");
-                setShowBookingModal(false);
-                navigate('/tenant/dashboard');
+            if (res.success) {
+                setBookingSuccess(true);
+                setTimeout(() => {
+                    setShowBookingModal(false);
+                    setBookingSuccess(false);
+                    navigate('/tenant/bookings');
+                }, 2000);
             }
         } catch (error) {
-            console.error("Booking/Payment error:", error);
-            alert(error.message || "Failed to submit. Please try again.");
+            console.error('Booking error:', error);
+            setBookingError(error?.message || 'Failed to submit booking. Please try again.');
         } finally {
             setSubmitting(false);
         }
+    };
+
+    const resetBookingModal = () => {
+        setStartDate('');
+        setEndDate('');
+        setProofImage(null);
+        setProofPreview(null);
+        setBookingError('');
+        setBookingSuccess(false);
+        setPaymentMethod('Khalti');
+        setShowBookingModal(false);
     };
 
 
@@ -293,7 +300,12 @@ const PropertyDetails = () => {
                                     <span className='px-4 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium'>
                                         {property.category} • {property.listingType}
                                     </span>
-                                    <div className='flex items-center gap-1 text-amber-500'>
+                                    <span className={`px-4 py-1 rounded-full text-sm font-medium ${
+                                        (property.status === 'Rented' || property.status === 'Sold') ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'
+                                    }`}>
+                                        {(property.status === 'Rented' || property.status === 'Sold') ? 'Booked' : 'Available'}
+                                    </span>
+                                    <div className='flex items-center gap-1 text-amber-500 ml-auto sm:ml-0'>
                                         {property.averageRating > 0 ? property.averageRating.toFixed(1) : 'New'}
                                         <img src={assets.star} alt="" width={18} />
                                         <span className='text-gray-500 text-sm'>({property.totalReviews || 0})</span>
@@ -597,83 +609,165 @@ const PropertyDetails = () => {
                 </div>
             </div>
 
-            {/* Booking & Payment Modal */}
+            {/* ── Booking & Payment Modal ─────────────────────────────── */}
             {showBookingModal && (
-                <div className='fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4'>
-                    <div className='bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-auto'>
-                        <div className='p-8'>
-                            <div className='flex justify-between items-center mb-6'>
-                                <h3 className='h3'>Book This Property</h3>
-                                <button onClick={() => setShowBookingModal(false)} className='text-3xl text-gray-400 hover:text-gray-600'>&times;</button>
+                <div className='fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4'>
+                    <div className='bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-auto shadow-2xl'>
+                        <div className='p-7'>
+
+                            {/* Header */}
+                            <div className='flex justify-between items-center mb-5'>
+                                <div>
+                                    <h3 className='text-xl font-bold text-slate-800'>Book This Property</h3>
+                                    <p className='text-sm text-slate-500 mt-0.5'>{property.title}</p>
+                                </div>
+                                <button
+                                    onClick={resetBookingModal}
+                                    className='w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 text-lg transition'
+                                >
+                                    ×
+                                </button>
                             </div>
 
-                            <div className='space-y-6'>
-                                <div>
-                                    <label className='block text-sm font-medium mb-1.5'>Move-in Date</label>
-                                    <input
-                                        type="date"
-                                        value={startDate}
-                                        min={today}
-                                        onChange={(e) => setStartDate(e.target.value)}
-                                        className='w-full p-3 border rounded-2xl focus:ring-2 focus:ring-secondary outline-none'
-                                        required
-                                    />
+                            {/* Success state */}
+                            {bookingSuccess ? (
+                                <div className='py-10 text-center'>
+                                    <div className='w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4'>
+                                        <svg className='w-8 h-8 text-emerald-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                                        </svg>
+                                    </div>
+                                    <h4 className='text-lg font-bold text-slate-800'>Booking Submitted!</h4>
+                                    <p className='text-sm text-slate-500 mt-2'>Your request is pending owner approval. Redirecting to bookings…</p>
                                 </div>
+                            ) : (
+                                <div className='space-y-5'>
 
-                                <div>
-                                    <label className='block text-sm font-medium mb-1.5'>Move-out / End Date (if applicable)</label>
-                                    <input
-                                        type="date"
-                                        value={endDate}
-                                        onChange={(e) => setEndDate(e.target.value)}
-                                        className='w-full p-3 border rounded-2xl focus:ring-2 focus:ring-secondary outline-none'
-                                    />
-                                </div>
-
-                                <div>
-                                    <p className='font-medium mb-2'>Payment Details (Khalti)</p>
-                                    <div className='bg-amber-50 border border-amber-200 p-5 rounded-2xl text-center'>
-                                        <p className='text-sm text-gray-600 mb-3'>Scan & Pay using Khalti</p>
-                                        {/* Replace with your actual Khalti QR image or merchant ID */}
-                                        <div className='mx-auto w-48 h-48 bg-gray-200 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-400 mb-3'>
-                                            <p className='text-xs text-gray-500 text-center'>Khalti QR Code<br />(Merchant QR Here)</p>
+                                    {/* Error banner */}
+                                    {bookingError && (
+                                        <div className='rounded-xl bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm'>
+                                            {bookingError}
                                         </div>
-                                        <p className='font-mono text-sm'>Khalti ID: <span className='font-semibold'>9807307132</span></p>
-                                        <p className='text-xs text-gray-500 mt-1'>Amount: {currency}{property.price?.value?.toLocaleString()}</p>
-                                    </div>
-                                </div>
+                                    )}
 
-                                <div>
-                                    <label className='block text-sm font-medium mb-2'>Upload Payment Proof</label>
-                                    <div className='border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center'>
-                                        {proofPreview ? (
-                                            <img src={proofPreview} alt="preview" className='mx-auto max-h-52 rounded-xl' />
-                                        ) : (
-                                            <div>
-                                                <p className='text-gray-500 text-sm'>Drag & drop or click to upload screenshot/receipt</p>
+                                    {/* Dates */}
+                                    <div className='grid grid-cols-2 gap-3'>
+                                        <div>
+                                            <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-in Date</label>
+                                            <input
+                                                type='date'
+                                                value={startDate}
+                                                min={today}
+                                                onChange={(e) => setStartDate(e.target.value)}
+                                                className='w-full p-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-secondary outline-none'
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-out Date</label>
+                                            <input
+                                                type='date'
+                                                value={endDate}
+                                                min={startDate || today}
+                                                onChange={(e) => setEndDate(e.target.value)}
+                                                className='w-full p-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-secondary outline-none'
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Payment method selector */}
+                                    <div>
+                                        <label className='block text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide'>Payment Method</label>
+                                        <div className='flex gap-2'>
+                                            {['Khalti', 'eSewa'].map((m) => (
+                                                <button
+                                                    key={m}
+                                                    type='button'
+                                                    onClick={() => setPaymentMethod(m)}
+                                                    className={`flex-1 py-2 rounded-xl text-sm font-semibold border-2 transition ${
+                                                        paymentMethod === m
+                                                            ? 'border-secondary bg-secondary/10 text-slate-800'
+                                                            : 'border-slate-200 text-slate-500 hover:border-slate-300'
+                                                    }`}
+                                                >
+                                                    {m}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* QR / payment info */}
+                                    <div className='bg-amber-50 border border-amber-200 rounded-2xl p-4'>
+                                        <p className='text-xs font-semibold text-amber-800 uppercase tracking-wide mb-3'>
+                                            Scan & Pay via {paymentMethod}
+                                        </p>
+                                        <div className='flex items-center gap-4'>
+                                            <div className='w-28 h-28 bg-white rounded-xl flex items-center justify-center border-2 border-dashed border-amber-300 flex-shrink-0'>
+                                                <p className='text-[10px] text-slate-400 text-center leading-tight'>
+                                                    {paymentMethod}<br/>QR Code<br/>Here
+                                                </p>
                                             </div>
-                                        )}
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleProofUpload}
-                                            className='mt-3 text-sm'
-                                        />
+                                            <div className='space-y-1'>
+                                                <p className='text-xs text-slate-500'>
+                                                    {paymentMethod} ID / Number:
+                                                </p>
+                                                <p className='font-mono font-bold text-slate-800'>
+                                                    {paymentMethod === 'Khalti' ? '9807307132' : '9807307132'}
+                                                </p>
+                                                <p className='text-xs text-slate-500 mt-2'>Amount to Pay:</p>
+                                                <p className='text-lg font-bold text-secondary'>
+                                                    {currency}{property.price?.value?.toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    {/* Proof upload */}
+                                    <div>
+                                        <label className='block text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide'>
+                                            Upload Payment Screenshot <span className='text-red-500'>*</span>
+                                        </label>
+                                        <label className='block cursor-pointer'>
+                                            <div className={`border-2 border-dashed rounded-2xl p-4 text-center transition ${
+                                                proofPreview ? 'border-emerald-300 bg-emerald-50' : 'border-slate-300 hover:border-secondary hover:bg-secondary/5'
+                                            }`}>
+                                                {proofPreview ? (
+                                                    <div>
+                                                        <img src={proofPreview} alt='proof preview' className='mx-auto max-h-40 rounded-lg object-contain mb-2' />
+                                                        <p className='text-xs text-emerald-600 font-medium'>✓ Screenshot uploaded — click to change</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className='py-4'>
+                                                        <svg className='w-8 h-8 text-slate-400 mx-auto mb-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' />
+                                                        </svg>
+                                                        <p className='text-sm text-slate-500'>Click to upload payment screenshot</p>
+                                                        <p className='text-xs text-slate-400 mt-1'>JPG, PNG, WebP (max 5MB)</p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <input
+                                                type='file'
+                                                accept='image/*'
+                                                onChange={handleProofUpload}
+                                                className='hidden'
+                                            />
+                                        </label>
+                                    </div>
+
+                                    {/* Submit */}
+                                    <button
+                                        onClick={handlePaymentSubmit}
+                                        disabled={submitting}
+                                        className='w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all text-sm'
+                                    >
+                                        {submitting ? 'Submitting…' : 'I Have Paid — Submit Booking Request'}
+                                    </button>
+
+                                    <p className='text-center text-xs text-slate-400'>
+                                        Your booking is pending until the owner verifies the payment proof.
+                                    </p>
                                 </div>
-                            </div>
-
-                            <button
-                                onClick={handlePaymentSubmit}
-                                disabled={submitting}
-                                className='mt-8 w-full py-4 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-semibold rounded-2xl transition-all'
-                            >
-                                {submitting ? "Submitting..." : "I Have Paid - Submit Proof"}
-                            </button>
-
-                            <p className='text-center text-xs text-gray-500 mt-4'>
-                                Your booking will be confirmed after owner reviews the payment proof.
-                            </p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -682,4 +776,4 @@ const PropertyDetails = () => {
     );
 };
 
-export default PropertyDetails;
+export default PropertyDetails;

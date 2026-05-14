@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 
 const ListProperty = () => {
-  const { ownerProperties, currency, deleteProperty, loading } = useAppContext()
+  const { ownerProperties, currency, deleteProperty, updateProperty, loading } = useAppContext()
   const [localProperties, setLocalProperties] = useState([])
 
 
@@ -69,13 +69,35 @@ const ListProperty = () => {
                   {currency}{property.price?.value || 'N/A'}
                 </div>
                 <div className='text-center bold-14'>
-                  <span className={`px-3 py-1 rounded-full text-sm ${
-                    property.status === 'Available' 
-                      ? 'bg-green-100 text-green-700' 
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {property.status || 'Pending'}
-                  </span>
+                  <select 
+                    value={property.status || 'Pending'}
+                    onChange={async (e) => {
+                      const newStatus = e.target.value;
+                      const confirmed = window.confirm(`Are you sure you want to change the status to ${newStatus}?`);
+                      if (confirmed) {
+                        const success = await updateProperty(property._id, { status: newStatus });
+                        if (success) {
+                          setLocalProperties(prev => prev.map(p => p._id === property._id ? { ...p, status: newStatus } : p));
+                          alert('Status updated successfully');
+                        } else {
+                          alert('Failed to update status');
+                        }
+                      }
+                    }}
+                    className={`px-3 py-1 rounded-full text-sm outline-none cursor-pointer ${
+                      property.status === 'Available' ? 'bg-green-100 text-green-700' :
+                      property.status === 'Rented' ? 'bg-blue-100 text-blue-700' :
+                      property.status === 'Sold' ? 'bg-gray-200 text-gray-700' :
+                      'bg-yellow-100 text-yellow-700'
+                    }`}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
+                    <option value="Rented">Rented</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Expired">Expired</option>
+                  </select>
                 </div>
                 <div className='flex justify-center'>
                   <button 

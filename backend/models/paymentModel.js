@@ -8,16 +8,28 @@ const paymentSchema = new mongoose.Schema(
     //   required: true,
     // },
 
+    bookingId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Booking",
+      index: true,
+    },
+
     tenantId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      // required: true,
+      required: true,
     },
 
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      // required: true,
+      required: true,
+    },
+
+    propertyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
+      required: true,
     },
 
     amount: {
