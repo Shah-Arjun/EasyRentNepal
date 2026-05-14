@@ -85,18 +85,15 @@ const ListProperty = () => {
                       }
                     }}
                     className={`px-3 py-1 rounded-full text-sm outline-none cursor-pointer ${
-                      property.status === 'Available' ? 'bg-green-100 text-green-700' :
+                      property.status === 'Available' ? 'bg-emerald-100 text-emerald-700' :
                       property.status === 'Rented' ? 'bg-blue-100 text-blue-700' :
-                      property.status === 'Sold' ? 'bg-gray-200 text-gray-700' :
-                      'bg-yellow-100 text-yellow-700'
+                      property.status === 'Sold' ? 'bg-rose-100 text-rose-700' :
+                      'bg-slate-100 text-slate-700'
                     }`}
                   >
-                    <option value="Pending">Pending</option>
                     <option value="Available">Available</option>
                     <option value="Sold">Sold</option>
                     <option value="Rented">Rented</option>
-                    <option value="Rejected">Rejected</option>
-                    <option value="Expired">Expired</option>
                   </select>
                 </div>
                 <div className='flex justify-center'>

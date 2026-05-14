@@ -25,9 +25,11 @@ const Item = ({ property }) => {
           <div className="flexBetween items-center gap-2">
             <h4 className='h4 line-clamp-1 flex-1'>{property.title}</h4>
             <span className={`px-2 py-1 text-[10px] uppercase font-bold rounded-full whitespace-nowrap ${
-              (property.status === 'Rented' || property.status === 'Sold') ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'
+              property.status === 'Sold' ? 'bg-rose-100 text-rose-700' :
+              property.status === 'Rented' ? 'bg-indigo-100 text-indigo-700' :
+              'bg-emerald-100 text-emerald-700'
             }`}>
-              {(property.status === 'Rented' || property.status === 'Sold') ? 'Booked' : 'Available'}
+              {property.status === 'Sold' ? 'Sold' : property.status === 'Rented' ? 'Booked' : 'Available'}
             </span>
           </div>
           <div className="flexCenter gap-4 py-2">
