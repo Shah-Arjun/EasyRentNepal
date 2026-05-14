@@ -225,10 +225,7 @@ exports.registerUser = async (req, res) => {
 
 
     if (existingUser && !existingUser.isOtpVerified) {
-      // Optional: prevent OTP spam (30 sec cooldown)
-      const now = Date.now();
-
-      if ( existingUser.otpExpiry && existingUser.otpExpiry > now - 30 * 1000 ) {
+      if ( existingUser.otpExpiry && existingUser.otpExpiry > Date.now() ) {
         return res.status(200).json({
           success: true,
           message: "Please wait before requesting another OTP.",
@@ -252,7 +249,7 @@ exports.registerUser = async (req, res) => {
       existingUser.location = location;
 
       existingUser.otp = hashedOtp;
-      existingUser.otpExpiry = Date.now() + 1 * 60 * 1000;
+      existingUser.otpExpiry = Date.now() + 5 * 60 * 1000;
 
       await existingUser.save();
 
@@ -293,7 +290,7 @@ exports.registerUser = async (req, res) => {
 
       otp: hashedOtp,
       isOtpVerified: false,
-      otpExpiry: Date.now() + 1 * 60 * 1000,
+      otpExpiry: Date.now() + 5 * 60 * 1000,
     });
 
     // Send OTP Email (background)
