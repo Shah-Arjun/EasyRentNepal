@@ -18,7 +18,7 @@ app = FastAPI(
 #  CORS – allow the Vite dev server(frontend) and any deployed frontend  to call FastApi
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # tighten to your domain in production
+    allow_origins=["*", "https://easy-rent-nepal.vercel.app", "http://localhost:5173"],          # tighten to your domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
