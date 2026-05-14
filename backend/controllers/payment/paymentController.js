@@ -10,10 +10,10 @@ exports.createPayment = async (req, res) => {
     const property = await Property.findById(propertyId).populate("owner");
 
     const payment = await Payment.create({
-      tenant: req.user.id,
-      owner: property.owner._id,
-      property: propertyId,
-      amount: property.price,
+      tenantId: req.user.id,
+      ownerId: property.owner._id,
+      propertyId: propertyId,
+      amount: property.price.value,
       status: "pending"
     });
 
@@ -34,8 +34,8 @@ exports.createPayment = async (req, res) => {
 
 // View incoming payments --> by owner
 exports.getOwnerPayments = async (req, res) => {
-  const payments = await Payment.find({ owner: req.user.id })
-    .populate("tenant property");
+  const payments = await Payment.find({ ownerId: req.user.id })
+    .populate("tenantId propertyId");
 
   res.json(payments);
 };

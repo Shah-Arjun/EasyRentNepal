@@ -1,4 +1,4 @@
-const { addProperty, getProperties, getSingleProperty, getOwnerProperties, deleteProperty, getOwnerDashboardData } = require('../../controllers/property/propertyController')
+const { addProperty, getProperties, getSingleProperty, getOwnerProperties, deleteProperty, getOwnerDashboardData, updatePropertyStatus } = require('../../controllers/property/propertyController')
 const catchAsync = require('../../services/catchAsync')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
@@ -46,6 +46,7 @@ router.route('/recommend/:id').get(catchAsync(getSimilarRecommendProperties))
 router.route('/:id')
     .get(catchAsync(getSingleProperty))
     .delete(isAuthenticated, restrictTo('owner'), catchAsync(deleteProperty))
+    .patch(isAuthenticated, restrictTo('owner'), catchAsync(updatePropertyStatus))
 
 
 module.exports = router
