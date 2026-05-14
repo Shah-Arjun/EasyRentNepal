@@ -38,7 +38,7 @@ exports.loginUser = async(req, res) => {
     }
 
     // match check the password if user exists
-    const isPwMatched = bcrypt.compareSync(password, userFound.password)
+    const isPwMatched = await bcrypt.compare(password, userFound.password)
 
     // if matched, generate token and send it using helper function
     if(isPwMatched){
@@ -87,16 +87,16 @@ exports.forgetPassword = async(req, res) => {
     const otp = generateOtp()
 
     // save otp in db
-    userExist[0].otp = bcrypt.hashSync(otp, 10)
+    userExist[0].otp = await bcrypt.hash(otp, 10)
     userExist[0].isOtpVerified = false
     userExist[0].otpExpiry = Date.now() + 1 * 60 * 1000;   // 1 min
     await userExist[0].save()
 
-    await sendEmail({
+    sendEmail({
         email: email,
         subject: "OTP for EasyRentNepal password reset",
         message: `${otp}`
-    })
+    }).catch(err => console.error("Forget password email error:", err));
 
     res.status(200).json({
         message: "OTP sent successfully."
@@ -127,7 +127,8 @@ exports.verifyOtp = async (req, res) => {
     }
 
     // checks if the otp matched or not
-    if(!bcrypt.compareSync(otp, userExist[0].otp)) {
+    const isOtpMatched = await bcrypt.compare(otp, userExist[0].otp);
+    if(!isOtpMatched) {
         res.status(400).json({
             message: "Invalid OTP. Try again"
         })
@@ -180,7 +181,7 @@ exports.resetPassword = async (req, res) => {
     }
     
     //replace the password with newPassword in db--> save hashed password
-    userExist[0].password = bcrypt.hashSync(newPassword, 10)
+    userExist[0].password = await bcrypt.hash(newPassword, 10)
     await userExist[0].save()
 
     res.status(200).json({
@@ -221,12 +222,14 @@ exports.registerUser = async (req, res) => {
     }
 
 // console.log("hello")
-    const hashedPassword = await bcrypt.hash(password, 10)
     const otp = generateOtp();
 
-    const hashedOtp = await bcrypt.hash(otp, 10)
+    // Parallelize password and OTP hashing for better performance
+    const [hashedPassword, hashedOtp] = await Promise.all([
+        bcrypt.hash(password, 10),
+        bcrypt.hash(otp, 10)
+    ]);
 
-// console.log("hash",hashedOtp)
     const user = await User.create({
       name,
       email,
@@ -239,12 +242,12 @@ exports.registerUser = async (req, res) => {
       otpExpiry: Date.now() + 1 * 60 * 1000,   // 1 min
     });
 
-    // console.log("from register controller")
-    await sendEmail({
+    // Send email without awaiting to speed up response, but catch errors
+    sendEmail({
         email: email,
         subject: "OTP for HouseRentalNepal tenant registration",
         message: `${otp}`
-    })
+    }).catch(err => console.error("Registration email error:", err));
 
     res.status(201).json({ 
       success: true,
@@ -318,15 +321,15 @@ exports.resendOtp = async (req, res) => {
 
     await user.save();
 
-    await sendEmail({
+    sendEmail({
         email: email,
         subject: "OTP for HouseRentalNepal registration",
         message: `${otp}`
-    })
+    }).catch(err => console.error("Resend OTP email error:", err));
 
     res.status(200).json({
-      success: true,
-      message: "OTP resent for house rental registration",
+        success: true,
+        message: "OTP resent for house rental registration",
     });
 
   } catch (error) {
