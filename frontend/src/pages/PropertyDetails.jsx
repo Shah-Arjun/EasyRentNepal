@@ -14,7 +14,7 @@ import { getActiveRole, hasRole } from '../utils/authRole';
 
 
 const PropertyDetails = () => {
-    const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn, bookingServices } = useAppContext();
+    const { properties, currency, propertyServices, reviewServices, userProfile, isLoggedIn, bookingServices, wishlist, toggleWishlist } = useAppContext();
     const [property, setProperty] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [recommendedItems, setRecommendedItems] = useState([]);
@@ -534,12 +534,47 @@ const PropertyDetails = () => {
                         {/* Right Sidebar */}
                         <div className='flex-1 max-w-sm xl:sticky xl:top-8 self-start'>
                             <div className='p-6 rounded-2xl border border-slate-900/10 bg-white'>
-                                <button
-                                    onClick={handleBookNow}
-                                    className='w-full py-4 bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 text-lg transition-all active:scale-[0.98]'
-                                >
-                                    <span>Book Now</span>
-                                </button>
+                                <div className='flex gap-2'>
+                                    <button
+                                        onClick={handleBookNow}
+                                        className='flex-1 py-4 bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 text-lg transition-all active:scale-[0.98]'
+                                    >
+                                        <span>Book Now</span>
+                                    </button>
+                                    
+                                    <button
+                                        onClick={() => {
+                                            if (!isLoggedIn) {
+                                                navigate('/login');
+                                                return;
+                                            }
+                                            if (activeRole !== 'tenant') {
+                                                toast.error("Only tenants can use the wishlist");
+                                                return;
+                                            }
+                                            toggleWishlist(property._id);
+                                            const isWished = wishlist?.some(item => item._id === property._id);
+                                            toast.success(isWished ? 'Removed from wishlist' : 'Added to wishlist');
+                                        }}
+                                        className='px-5 py-4 border-2 border-slate-200 hover:border-rose-200 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-2xl flex items-center justify-center transition-all active:scale-[0.98] group'
+                                        title="Wishlist"
+                                    >
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            viewBox="0 0 24 24" 
+                                            fill={wishlist?.some(item => item._id === property._id) ? "currentColor" : "none"} 
+                                            stroke="currentColor" 
+                                            strokeWidth="2" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            className={`w-6 h-6 transition-transform duration-300 group-active:scale-75 ${
+                                                wishlist?.some(item => item._id === property._id) ? 'text-rose-500' : ''
+                                            }`}
+                                        >
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
 
                                 {/* Contact Owner (existing) */}
                                 <h4 className="h4 mb3 mt-5">Contact Owner</h4>

@@ -4,7 +4,7 @@ import { assets } from '../assets/data'
 import { useAppContext } from "../context/AppContext";
 
 const Item = ({ property }) => {
-  const { currency } = useAppContext()
+  const { currency, wishlist, toggleWishlist } = useAppContext()
   return (
     <Link to={`/listing/` + property._id}
       className='block rounded-lg bg-white ring-1 ring-slate-900/5'
@@ -13,6 +13,36 @@ const Item = ({ property }) => {
       <div className='relative'>
         <img src={property.images[0]?.url || property?.images[0] || "https://propertynepal.com/images/properties/1026/168405890059.jpg"} alt={property.title}
           className='h-[13rem] w-full aspect-square object-cover rounded-t-xl'/>
+        
+        {/* Wishlist Toggle Button */}
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleWishlist(property._id);
+            const isWished = wishlist.some(item => item._id === property._id);
+            import('react-toastify').then(({ toast }) => {
+              toast.success(isWished ? 'Removed from wishlist' : 'Added to wishlist');
+            });
+          }}
+          className='absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm shadow-sm transition-all z-10 group'
+          title={wishlist?.some(item => item._id === property._id) ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            fill={wishlist?.some(item => item._id === property._id) ? "currentColor" : "none"} 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className={`w-5 h-5 transition-transform duration-300 group-active:scale-75 ${
+              wishlist?.some(item => item._id === property._id) ? 'text-rose-500' : 'text-slate-600 hover:text-rose-500'
+            }`}
+          >
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
       </div>
       {/* Info */}
       <div className="p-3">

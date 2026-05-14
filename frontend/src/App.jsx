@@ -27,7 +27,7 @@ import VerifyOtp from './components/VerifyOtp';
 import TenantDashboard from './pages/tenant/Dashboard';
 import Bookings from './pages/tenant/Bookings';
 import Watchlist from './pages/tenant/Watchlist';
-import Payments from './pages/tenant/Payments';
+// import Payments from './pages/tenant/Payments';
 import Profile from './pages/shared/Profile';
 import OwnerBookings from './pages/owner/Bookings';
 
@@ -71,7 +71,7 @@ const App = () => {
             <Route path="dashboard"     element={<TenantDashboard />} />
             <Route path="bookings"      element={<Bookings />} />
             <Route path="watchlist"     element={<Watchlist />} />
-            <Route path="payments"      element={<Payments />} />
+            {/* <Route path="payments"      element={<Payments />} /> */}
             <Route path="profile"       element={<Profile />} />
           </Route>
         </Route>

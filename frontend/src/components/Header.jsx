@@ -15,7 +15,7 @@ const Header = () => {
   // const [showSearch, setShowSearch] = useState(false);
   const profileMenuRef = useRef(null);
   const location = useLocation();
-  const { navigate, isOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg } = useAppContext();
+  const { navigate, isOwner, isLoggedIn, userProfile, logout, toggleRole, agency, setShowAgencyReg, wishlist } = useAppContext();
   const availableRoles = normalizeRoles(userProfile?.role)
 
   const handleLogout = () => {
@@ -112,15 +112,24 @@ const Header = () => {
               )
             )}
 
-            {/* My Bookings icon for tenant */}
+            {/* Wishlist icon for tenant */}
             {isLoggedIn && !isOwner && (
               <Link
-                to="/tenant/bookings"
+                to="/tenant/watchlist"
                 className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
-                title="My Bookings"
+                title="My Wishlist"
               >
-                <FontAwesomeIcon icon={faCalendarCheck} className="text-black/80 w-5 h-5" />
-                <span className="hidden sm:block text-[14px] font-medium text-black">My Bookings</span>
+                <div className="relative flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-rose-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                  {wishlist?.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                      {wishlist.length}
+                    </span>
+                  )}
+                </div>
+                <span className="hidden sm:block text-[14px] font-medium text-black">Wishlist</span>
               </Link>
             )}
             
