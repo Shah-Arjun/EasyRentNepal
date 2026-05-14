@@ -1,4 +1,4 @@
-const { addProperty, getProperties, getSingleProperty, getOwnerProperties, deleteProperty, getOwnerDashboardData, updatePropertyStatus } = require('../../controllers/property/propertyController')
+const { addProperty, getProperties, getSingleProperty, getOwnerProperties, deleteProperty, getOwnerDashboardData, updatePropertyStatus, editProperty } = require('../../controllers/property/propertyController')
 const catchAsync = require('../../services/catchAsync')
 const isAuthenticated = require('../../middleware/isAuthenticated')
 const restrictTo = require('../../middleware/restrictTo')
@@ -43,10 +43,26 @@ router.route('/owner').get(isAuthenticated, restrictTo('owner'), catchAsync(getO
 router.route('/owner-dashboard').get(isAuthenticated, restrictTo('owner'), catchAsync(getOwnerDashboardData))
 router.route('/search').get(catchAsync(getRecommendPropertiesBySearchTerm))
 router.route('/recommend/:id').get(catchAsync(getSimilarRecommendProperties))
+
 router.route('/:id')
     .get(catchAsync(getSingleProperty))
     .delete(isAuthenticated, restrictTo('owner'), catchAsync(deleteProperty))
     .patch(isAuthenticated, restrictTo('owner'), catchAsync(updatePropertyStatus))
+    .put(
+      isAuthenticated,
+      restrictTo('owner'),
+      upload.array('images', 5),
+      catchAsync(editProperty),
+      (err, req, res, next) => {
+        if (err instanceof multer.MulterError) {
+          return res.status(400).json({
+            success: false,
+            message: `Upload error: ${err.message}`,
+          })
+        }
+        next(err)
+      }
+    )
 
 
-module.exports = router
+module.exports = router

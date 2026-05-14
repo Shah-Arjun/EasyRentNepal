@@ -16,6 +16,7 @@ import Sidebar from './components/owner/Sidebar';
 import TenantDashboardLayout from './layout/TenantDashboardLayout';
 import OwnerDashboard from './pages/owner/Dashboard';
 import AddProperty from './pages/owner/AddProperty';
+import EditProperty from './pages/owner/EditProperty';
 import ListProperty from './pages/owner/ListProperty';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -27,9 +28,12 @@ import VerifyOtp from './components/VerifyOtp';
 import TenantDashboard from './pages/tenant/Dashboard';
 import Bookings from './pages/tenant/Bookings';
 import Watchlist from './pages/tenant/Watchlist';
-import Payments from './pages/tenant/Payments';
+// import Payments from './pages/tenant/Payments';
 import Profile from './pages/shared/Profile';
 import OwnerBookings from './pages/owner/Bookings';
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyOtpForReset from './pages/VerifyOtpForReset';
+import ResetPassword from './pages/ResetPassword';
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +45,9 @@ const App = () => {
     location.pathname === '/login' ||
     location.pathname === '/register' ||
     location.pathname === '/verify-otp' ||
+    location.pathname === '/forgot-password' ||
+    location.pathname === '/verify-reset-otp' ||
+    location.pathname === '/reset-password' ||
     isTenantPath;
 
   useEffect(() => {
@@ -71,7 +78,7 @@ const App = () => {
             <Route path="dashboard"     element={<TenantDashboard />} />
             <Route path="bookings"      element={<Bookings />} />
             <Route path="watchlist"     element={<Watchlist />} />
-            <Route path="payments"      element={<Payments />} />
+            {/* <Route path="payments"      element={<Payments />} /> */}
             <Route path="profile"       element={<Profile />} />
           </Route>
         </Route>
@@ -80,12 +87,16 @@ const App = () => {
         <Route path="/login"      element={<Login />} />
         <Route path="/register"   element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-reset-otp" element={<VerifyOtpForReset />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Protected Owner Routes with Layout */}
         <Route element={<ProtectedRoute allowedRoles={['owner']} />}>
           <Route path="/owner" element={<Sidebar />}>
             <Route index                    element={<OwnerDashboard />} />
             <Route path="add-property"      element={<AddProperty />} />
+            <Route path="edit-property/:id" element={<EditProperty />} />
             <Route path="list-property"     element={<ListProperty />} />
             <Route path="bookings"          element={<OwnerBookings />} />
             <Route path="map"               element={<MapView />} />

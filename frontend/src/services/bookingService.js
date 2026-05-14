@@ -32,10 +32,10 @@ export const bookingService = (axiosInstance) => {
       }
     },
 
-    // Owner: approve or reject a booking
-    updateBookingStatus: async (bookingId, action, reason = '') => {
+    // Owner: dynamically update booking/payment/property status
+    updateBookingStatus: async (bookingId, updates) => {
       try {
-        const { data } = await axiosInstance.patch(`/bookings/${bookingId}/status`, { action, reason });
+        const { data } = await axiosInstance.patch(`/bookings/${bookingId}/status`, updates);
         return data;
       } catch (error) {
         throw error.response?.data || error.message;

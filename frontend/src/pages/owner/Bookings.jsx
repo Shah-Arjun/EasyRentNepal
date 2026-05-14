@@ -36,33 +36,34 @@ export default function OwnerBookings() {
 
   useEffect(() => { loadBookings() }, [loadBookings])
 
-  const handleApprove = async (bookingId) => {
-    if (!window.confirm('Approve this booking? The property status will be updated to Rented/Sold and all other pending bookings for this property will be rejected.')) return
-    try {
-      setActionLoading(bookingId)
-      await bookingServices.updateBookingStatus(bookingId, 'approve')
-      await loadBookings()
-    } catch (err) {
-      alert(err?.message || 'Failed to approve booking.')
-    } finally {
-      setActionLoading(null)
+  const handleStatusUpdate = async (bookingId, field, value) => {
+    let updates = {};
+    if (field === 'bookingStatus') {
+      if (value === 'approved') {
+        if (!window.confirm('Approve this booking? This will update the property status to Rented/Sold and reject other pending bookings.')) return;
+      }
+      if (value === 'rejected') {
+        const reason = window.prompt('Reason for rejection (optional):');
+        if (reason === null) return; // User cancelled prompt
+        updates.reason = reason;
+      }
+      updates.bookingStatus = value;
+    } else if (field === 'paymentStatus') {
+      updates.paymentStatus = value;
+    } else if (field === 'propertyStatus') {
+      updates.propertyStatus = value;
     }
-  }
 
-  const handleRejectSubmit = async () => {
-    if (!rejectModal) return
     try {
-      setActionLoading(rejectModal.bookingId)
-      await bookingServices.updateBookingStatus(rejectModal.bookingId, 'reject', rejectReason)
-      setRejectModal(null)
-      setRejectReason('')
-      await loadBookings()
+      setActionLoading(bookingId);
+      await bookingServices.updateBookingStatus(bookingId, updates);
+      await loadBookings();
     } catch (err) {
-      alert(err?.message || 'Failed to reject booking.')
+      alert(err?.message || 'Failed to update status.');
     } finally {
-      setActionLoading(null)
+      setActionLoading(null);
     }
-  }
+  };
 
   const filtered = filter === 'all' ? bookings : bookings.filter(b => b.status === filter)
 
@@ -130,138 +131,168 @@ export default function OwnerBookings() {
                 className='bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow'
               >
                 {/* Property info bar */}
-                <div className='bg-slate-50 border-b border-slate-100 px-5 py-3 flex items-center justify-between gap-3'>
-                  <div className='flex items-center gap-3'>
-                    {booking.property?.images?.[0]?.url && (
-                      <img
-                        src={booking.property.images[0].url}
-                        alt={booking.property.title}
-                        className='w-10 h-10 rounded-lg object-cover flex-shrink-0'
-                      />
-                    )}
-                    <div className='min-w-0'>
-                      <p className='font-semibold text-slate-800 text-sm truncate'>{booking.property?.title || 'Property'}</p>
-                      <p className='text-xs text-slate-500'>
-                        {booking.property?.location?.municipality}, {booking.property?.location?.district}
-                      </p>
-                    </div>
-                  </div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${style.bg} ${style.text} flex-shrink-0`}>
-                    {style.label}
-                  </span>
-                </div>
+                <div className="overflow-x-auto rounded-xl border border-slate-200">
 
-                <div className='p-5 grid grid-cols-1 md:grid-cols-2 gap-5'>
-                  {/* Tenant info */}
-                  <div className='space-y-3'>
-                    <h4 className='text-xs font-bold text-slate-400 uppercase tracking-wide flex items-center gap-1.5'>
-                      <User size={12} /> Tenant
-                    </h4>
-                    <div className='flex items-center gap-3'>
-                      {booking.tenant?.profileImage?.url ? (
-                        <img src={booking.tenant.profileImage.url} alt='' className='w-9 h-9 rounded-full object-cover border border-slate-200' />
-                      ) : (
-                        <div className='w-9 h-9 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold text-sm'>
-                          {booking.tenant?.name?.[0]?.toUpperCase() || 'T'}
-                        </div>
-                      )}
-                      <div>
-                        <p className='font-semibold text-slate-800 text-sm'>{booking.tenant?.name || 'Tenant'}</p>
-                        <p className='text-xs text-slate-500'>{booking.tenant?.email}</p>
-                        {booking.tenant?.phoneNumber && (
-                          <p className='text-xs text-slate-500'>{booking.tenant.phoneNumber}</p>
-                        )}
-                      </div>
-                    </div>
+                  <table className="min-w-full text-sm text-left">
 
-                    <div className='flex items-center gap-2 text-sm text-slate-600'>
-                      <CalendarDays size={14} className='text-slate-400' />
-                      <span>
-                        {new Date(booking.startDate).toLocaleDateString()} →{' '}
-                        {new Date(booking.endDate).toLocaleDateString()}
-                      </span>
-                    </div>
+                    {/* HEADER */}
+                    <thead className="bg-slate-50 text-slate-600 uppercase text-xs">
+                      <tr>
+                        <th className="p-3">Property ID</th>
+                        <th className="p-3">Property</th>
+                        <th className="p-3">Tenant</th>
+                        <th className="p-3">Booking Dates</th>
+                        <th className="p-3">Amount</th>
+                        <th className="p-3">Payment</th>
+                        <th className="p-3">Proof</th>
+                        <th className="p-3">Booking Status</th>
+                        <th className="p-3">Payment Status</th>
+                        <th className="p-3">Property Status</th>
+                      </tr>
+                    </thead>
 
-                    <div className='flex items-center gap-2 text-sm font-semibold text-secondary'>
-                      <CreditCard size={14} />
-                      <span>{currency}{booking.totalAmount?.toLocaleString()}</span>
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                        booking.paymentStatus === 'paid' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
-                      }`}>
-                        Payment: {booking.paymentStatus || 'pending'}
-                      </span>
-                    </div>
+                    {/* BODY */}
+                    <tbody>
 
-                    <p className='text-xs text-slate-400'>
-                      Submitted {new Date(booking.createdAt).toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </p>
-                  </div>
+                      <tr className="border-t">
 
-                  {/* Payment proof + actions */}
-                  <div className='space-y-3'>
-                    <h4 className='text-xs font-bold text-slate-400 uppercase tracking-wide flex items-center gap-1.5'>
-                      <Eye size={12} /> Payment Proof
-                    </h4>
+                        {/* Property ID */}
+                        <td className="p-3 font-semibold text-slate-700">
+                          ERN-01
+                        </td>
 
-                    {booking.payment?.proofImage?.url ? (
-                      <div
-                        className='relative rounded-xl overflow-hidden border border-slate-200 cursor-pointer group'
-                        onClick={() => setProofModal({ url: booking.payment.proofImage.url })}
-                      >
-                        <img
-                          src={booking.payment.proofImage.url}
-                          alt='Payment proof'
-                          className='w-full h-32 object-cover group-hover:opacity-90 transition'
-                        />
-                        <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/30'>
-                          <span className='text-white text-sm font-semibold bg-black/50 px-3 py-1 rounded-full'>Click to enlarge</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className='rounded-xl border-2 border-dashed border-slate-200 h-24 flex items-center justify-center'>
-                        <p className='text-xs text-slate-400'>No proof uploaded</p>
-                      </div>
-                    )}
+                        {/* Property */}
+                        <td className="p-3">
+                          <div className="flex items-center gap-2">
+                            {booking.property?.images?.[0]?.url && (
+                              <img
+                                src={booking.property.images[0].url}
+                                className="w-10 h-10 rounded-lg object-cover"
+                              />
+                            )}
+                            <div>
+                              <p className="font-semibold text-slate-800">
+                                {booking.property?.title || "Property"}
+                              </p>
+                              <p className="text-xs text-slate-500">
+                                {booking.property?.location?.municipality},{" "}
+                                {booking.property?.location?.district}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
 
-                    {/* Action buttons — only for pending */}
-                    {isPending && (
-                      <div className='flex gap-2 mt-2'>
-                        <button
-                          onClick={() => handleApprove(booking._id)}
-                          disabled={isProcessing}
-                          className='flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-200 text-white text-sm font-semibold transition'
-                        >
-                          <CheckCircle size={15} />
-                          {isProcessing ? 'Processing…' : 'Approve'}
-                        </button>
-                        <button
-                          onClick={() => setRejectModal({ bookingId: booking._id })}
-                          disabled={isProcessing}
-                          className='flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-red-500 hover:bg-red-600 disabled:bg-slate-200 text-white text-sm font-semibold transition'
-                        >
-                          <XCircle size={15} />
-                          Reject
-                        </button>
-                      </div>
-                    )}
+                        {/* Tenant */}
+                        <td className="p-3">
+                          <div>
+                            <p className="font-semibold">{booking.tenant?.name}</p>
+                            <p className="text-xs text-slate-500">
+                              {booking.tenant?.email}
+                            </p>
+                          </div>
+                        </td>
 
-                    {/* Approved message */}
-                    {booking.status === 'approved' && (
-                      <p className='text-xs text-emerald-600 font-medium flex items-center gap-1'>
-                        <CheckCircle size={12} /> Approved on {new Date(booking.approvedAt).toLocaleDateString()}
-                      </p>
-                    )}
+                        {/* Dates */}
+                        <td className="p-3 text-xs text-slate-600">
+                          {new Date(booking.startDate).toLocaleDateString()} →{" "}
+                          {new Date(booking.endDate).toLocaleDateString()}
+                        </td>
 
-                    {/* Rejected message */}
-                    {booking.status === 'rejected' && (
-                      <div className='text-xs text-red-600 space-y-0.5'>
-                        <p className='font-medium flex items-center gap-1'><XCircle size={12} /> Rejected</p>
-                        {booking.rejectionReason && (
-                          <p className='text-slate-500'>Reason: {booking.rejectionReason}</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                        {/* Amount */}
+                        <td className="p-3 font-semibold text-secondary">
+                          {currency}{booking.totalAmount?.toLocaleString()}
+                        </td>
+
+                        {/* Payment */}
+                        <td className="p-3">
+                          <span className={`px-2 py-1 text-xs rounded-full font-medium ${
+                            booking.paymentStatus === "paid"
+                              ? "bg-emerald-100 text-emerald-700"
+                              : "bg-amber-100 text-amber-700"
+                          }`}>
+                            {booking.paymentStatus || "pending"}
+                          </span>
+                        </td>
+
+                        {/* Proof */}
+                        <td className="p-3">
+                          {booking.payment?.proofImage?.url ? (
+                            <img
+                              src={booking.payment.proofImage.url}
+                              className="w-12 h-12 rounded-md object-cover cursor-pointer"
+                              onClick={() =>
+                                setProofModal({
+                                  url: booking.payment.proofImage.url,
+                                })
+                              }
+                            />
+                          ) : (
+                            <span className="text-xs text-slate-400">
+                              No proof
+                            </span>
+                          )}
+                        </td>
+
+                        {/* Booking Status */}
+                        <td className="p-3">
+                          <select
+                            value={booking.status}
+                            onChange={(e) =>
+                              handleStatusUpdate(
+                                booking._id,
+                                "bookingStatus",
+                                e.target.value
+                              )
+                            }
+                            className="border p-1 rounded"
+                          >
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                          </select>
+                        </td>
+
+                        {/* Payment Status */}
+                        <td className="p-3">
+                          <select
+                            value={booking.paymentStatus || "pending"}
+                            onChange={(e) =>
+                              handleStatusUpdate(
+                                booking._id,
+                                "paymentStatus",
+                                e.target.value
+                              )
+                            }
+                            className="border p-1 rounded"
+                          >
+                            <option value="pending">Pending</option>
+                            <option value="paid">Paid</option>
+                          </select>
+                        </td>
+
+                        {/* Property Status */}
+                        <td className="p-3">
+                          <select
+                            value={booking.property?.status || "Available"}
+                            onChange={(e) =>
+                              handleStatusUpdate(
+                                booking._id,
+                                "propertyStatus",
+                                e.target.value
+                              )
+                            }
+                            className="border p-1 rounded"
+                          >
+                            <option value="Available">Available</option>
+                            <option value="Rented">Rented</option>
+                            <option value="Sold">Sold</option>
+                          </select>
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
+import { Link } from 'react-router-dom'
 
 const ListProperty = () => {
   const { ownerProperties, currency, deleteProperty, updateProperty, loading } = useAppContext()
@@ -11,6 +12,7 @@ const ListProperty = () => {
  useEffect(() => {
    setLocalProperties(ownerProperties)
  }, [ownerProperties])
+
 
 
 
@@ -85,21 +87,28 @@ const ListProperty = () => {
                       }
                     }}
                     className={`px-3 py-1 rounded-full text-sm outline-none cursor-pointer ${
-                      property.status === 'Available' ? 'bg-green-100 text-green-700' :
+                      property.status === 'Available' ? 'bg-emerald-100 text-emerald-700' :
                       property.status === 'Rented' ? 'bg-blue-100 text-blue-700' :
-                      property.status === 'Sold' ? 'bg-gray-200 text-gray-700' :
-                      'bg-yellow-100 text-yellow-700'
+                      property.status === 'Sold' ? 'bg-rose-100 text-rose-700' :
+                      'bg-slate-100 text-slate-700'
                     }`}
                   >
-                    <option value="Pending">Pending</option>
                     <option value="Available">Available</option>
                     <option value="Sold">Sold</option>
                     <option value="Rented">Rented</option>
-                    <option value="Rejected">Rejected</option>
-                    <option value="Expired">Expired</option>
                   </select>
                 </div>
-                <div className='flex justify-center'>
+                <div className='flex justify-center gap-2'>
+                  <Link 
+                    to={`/owner/edit-property/${property._id}`}
+                    className='p-1.5 rounded-lg bg-blue-100/50 text-blue-500 hover:bg-blue-500 hover:text-white transition-all ring-1 ring-blue-500/30'
+                    title="Edit Property"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                      <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                      <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+                    </svg>
+                  </Link>
                   <button 
                     onClick={() => handleDelete(property._id)}
                     className='p-1.5 rounded-lg bg-red-100/50 text-red-500 hover:bg-red-500 hover:text-white transition-all ring-1 ring-red-500/30'

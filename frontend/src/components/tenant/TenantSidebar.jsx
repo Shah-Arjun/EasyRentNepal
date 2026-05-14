@@ -18,7 +18,6 @@ const menu = [
   { name: "Dashboard",  path: "/tenant/dashboard", icon: LayoutDashboard },
   { name: "Bookings",   path: "/tenant/bookings",  icon: CalendarCheck },
   { name: "Watchlist",  path: "/tenant/watchlist", icon: Heart },
-  { name: "Payments",   path: "/tenant/payments",  icon: CreditCard },
   { name: "Profile",    path: "/tenant/profile",   icon: UserCircle },
 ];
 
