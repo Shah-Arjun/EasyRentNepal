@@ -53,7 +53,7 @@ exports.createBooking = async (req, res) => {
       endDate,
       totalAmount: property.price?.value || 0,
       status: 'pending',
-      paymentStatus: proofImageData ? 'paid' : 'pending',
+      paymentStatus: 'pending',
     });
 
     // Create linked Payment record
@@ -137,16 +137,12 @@ exports.getOwnerBookings = async (req, res) => {
 };
 
 
-// ─── OWNER: Approve or Reject a booking ─────────────────────────────────────
+// ─── OWNER: Update booking and payment status dynamically ────────────────────
 exports.updateBookingStatus = async (req, res) => {
   try {
     const ownerId = req.user.id;
     const { bookingId } = req.params;
-    const { action, reason } = req.body; // action: 'approve' | 'reject'
-
-    if (!['approve', 'reject'].includes(action)) {
-      return res.status(400).json({ success: false, message: "Action must be 'approve' or 'reject'" });
-    }
+    const { bookingStatus, paymentStatus, propertyStatus, reason } = req.body;
 
     const booking = await Booking.findOne({ _id: bookingId, owner: ownerId });
     if (!booking) {
@@ -158,47 +154,64 @@ exports.updateBookingStatus = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Associated property not found' });
     }
 
-    if (action === 'approve') {
-      // Approve booking
-      booking.status = 'approved';
-      booking.approvedAt = new Date();
-      booking.paymentStatus = 'paid';
+    let newPropertyStatus = propertyStatus || property.status;
 
-      // Update property status based on listing type
-      const newPropertyStatus = property.listingType === 'Sale' ? 'Sold' : 'Rented';
+    // Handle booking status update
+    if (bookingStatus && bookingStatus !== booking.status) {
+      booking.status = bookingStatus;
+      
+      if (bookingStatus === 'approved') {
+        booking.approvedAt = new Date();
+        // If not manually overriding property status, set to Booked/Rented
+        if (!propertyStatus) {
+          newPropertyStatus = property.listingType === 'Sale' ? 'Sold' : 'Rented';
+        }
+        
+        // Reject any other pending bookings for the same property
+        await Booking.updateMany(
+          { property: booking.property, _id: { $ne: booking._id }, status: 'pending' },
+          { status: 'rejected', rejectedAt: new Date(), rejectionReason: 'Property was booked by another tenant' }
+        );
+      } else if (bookingStatus === 'rejected') {
+        booking.rejectedAt = new Date();
+        if (reason) booking.rejectionReason = reason;
+        
+        // If changing Approved -> Rejected, revert property to Available
+        if (!propertyStatus) {
+          newPropertyStatus = 'Available';
+        }
+      } else if (bookingStatus === 'pending') {
+        // If changing Approved -> Pending, revert property to Available
+        if (!propertyStatus) {
+          newPropertyStatus = 'Available';
+        }
+      }
+    }
+
+    // Handle payment status update
+    if (paymentStatus && paymentStatus !== booking.paymentStatus) {
+      booking.paymentStatus = paymentStatus;
+      // Update linked payment collection if necessary
+      let mappedPaymentStatus = paymentStatus;
+      if (paymentStatus === 'paid') mappedPaymentStatus = 'confirmed';
+      await Payment.findOneAndUpdate({ bookingId: booking._id }, { status: mappedPaymentStatus });
+    }
+
+    // Handle property status update
+    if (newPropertyStatus !== property.status) {
       property.status = newPropertyStatus;
-
-      // Update linked payment
-      await Payment.findOneAndUpdate({ bookingId: booking._id }, { status: 'confirmed' });
-
-      // Reject any other pending bookings for the same property
-      await Booking.updateMany(
-        { property: booking.property, _id: { $ne: booking._id }, status: 'pending' },
-        { status: 'rejected', rejectedAt: new Date(), rejectionReason: 'Property was booked by another tenant' }
-      );
-    } else {
-      // Reject booking
-      booking.status = 'rejected';
-      booking.rejectedAt = new Date();
-      if (reason) booking.rejectionReason = reason;
-
-      // Make property available again
-      property.status = 'Available';
-
-      // Update linked payment
-      await Payment.findOneAndUpdate({ bookingId: booking._id }, { status: 'rejected' });
+      await property.save();
     }
 
     await booking.save();
-    await property.save();
 
     const updated = await Booking.findById(booking._id)
-      .populate('tenant', 'name email phoneNumber')
-      .populate('property', 'title images price status');
+      .populate('tenant', 'name email phoneNumber profileImage')
+      .populate('property', 'title images price status location category listingType');
 
     res.status(200).json({
       success: true,
-      message: `Booking ${action === 'approve' ? 'approved' : 'rejected'} successfully`,
+      message: 'Status updated successfully',
       booking: updated,
       propertyStatus: property.status,
     });
