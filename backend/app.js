@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 const connectMongoDB = require("./database/db")
 const cookieParser = require('cookie-parser');
-require('dotenv').config();   // ⚠️ Must be FIRST - loads .env before any other module reads env vars
+require('dotenv').config(); 
 
 
 //routes import
@@ -22,16 +22,16 @@ const predictionRoutes = require('./routes/prediction');
 // middleware
 app.use(cors({
   origin: [
+    "https://easy-rent-nepal.vercel.app",
     "http://localhost:5173",
     "http://localhost:5174",
-    "http://localhost:3000",
-    "http://localhost:5000",
     process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true
 }))
 app.use(express.json({ limit: '100mb' }))         //helps express to understand/parse JSON
 app.use(express.urlencoded({ extended: true, limit: '100mb' }))     //handles data from frontend but doesnot handle file, we need multer for file
+app.use(cookieParser());
 
 
 
@@ -45,9 +45,6 @@ app.get("/", (req, res) => {
   res.send("Hello, this is home page");
 });
 
-
-
-app.use(cookieParser());
 
 
 //APIs

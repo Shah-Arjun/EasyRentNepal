@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import { toast } from "react-toastify";
 
 
 
@@ -262,6 +263,8 @@ useEffect(() => {
   };
 
 
+
+  
   const removeImage = (index) => {
     // Revoke immediately to avoid leaking the object URL
     URL.revokeObjectURL(formData.images[index].preview);
@@ -328,6 +331,8 @@ useEffect(() => {
     }
   };
 
+
+
   const handleNextStep = () => {
     if (validateStep(activeTab)) setActiveTab((t) => Math.min(steps.length - 1, t + 1));
   };
@@ -335,9 +340,12 @@ useEffect(() => {
   const handlePrevStep = () => setActiveTab((t) => Math.max(0, t - 1));
 
 
+
+
+
   // ── Rent prediction helpers ───────────────────────────────────────────────
 
-  /** Map AddProperty formData → FastAPI PropertyInput shape */
+  /** Map AddProperty formData --> FastAPI PropertyInput shape */
   const buildPredictPayload = () => {
     // --- parking ---
     const parkingStr = formData.parking || "None";
@@ -365,7 +373,7 @@ useEffect(() => {
     const builtYear   = formData.builtYear ? parseInt(formData.builtYear) : currentYear - 5;
     const age         = Math.max(0, currentYear - builtYear);
 
-    // --- area → sqft conversion ---
+    // --- area --> sqft conversion ---
     const unitToSqft  = { sqft: 1, sqm: 10.764, aana: 342.25, ropani: 5476, haath: 6.25, feet: 1, other: 1 };
     const rawArea     = parseFloat(formData.builtArea.value) || 500;
     const area_sqft   = rawArea * (unitToSqft[formData.builtArea.unit] ?? 1);
@@ -399,12 +407,15 @@ useEffect(() => {
     };
   };
 
+
+
+
   const handlePredictRent = async () => {
     setPredictError("");
     setPredictedRent(null);
     setRentAccepted(false);
 
-    // Basic guard — need at least district + city
+    // Basic guard — need at least district + city of location
     if (!formData.location.district || !formData.location.municipality) {
       setPredictError("Please fill in District and Municipality (Step 1) before predicting.");
       return;
@@ -413,7 +424,7 @@ useEffect(() => {
     setPredictLoading(true);
     try {
       const payload  = buildPredictPayload();
-      const response = await fetch("http://localhost:8000/predict-rent", {
+      const response = await fetch(`${import.meta.env.VITE_ML_API_URL}/predict-rent`, {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify(payload),
@@ -430,7 +441,7 @@ useEffect(() => {
       const isNetErr = err.message?.includes("fetch") || err.name === "TypeError";
       setPredictError(
         isNetErr
-          ? "Could not reach the ML service. Make sure it is running on port 8000."
+          ? "Could not reach the ML service. Server error."
           : err.message || "Prediction failed. Please try again."
       );
     } finally {
@@ -492,13 +503,13 @@ useEffect(() => {
       // Images
       formData.images.forEach((file) => data.append("images", file));
 
-      // ⚠️  Do NOT set Content-Type manually — Axios auto-sets
+      //   Do NOT set Content-Type manually — Axios auto-sets
       //     'multipart/form-data; boundary=...' when body is FormData.
       //     Overriding it strips the boundary and breaks Multer parsing.
       const response = await api.post("/property/addProperty", data);
 
       if (response.data.success) {
-        alert("Property listed successfully!");
+        toast.success("Property listed successfully!");
         navigate("/owner/list-property");
       }
     } catch (err) {

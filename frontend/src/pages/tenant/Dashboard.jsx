@@ -64,18 +64,12 @@ export default function Dashboard() {
             Tenant Dashboard
           </p>
           <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
-            Welcome back, {userProfile?.name?.split(' ')[0] || 'Tenant'} 👋
+            Welcome back, {userProfile?.name?.split(' ')[0] || 'Tenant'}
           </h1>
           <p className="text-slate-500 text-sm mt-1">
             Overview of your bookings, payments, and saved properties.
           </p>
         </div>
-        <Link
-          to="/listing"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary text-slate-900 font-semibold text-sm hover:bg-amber-400 transition shadow-sm shadow-secondary/30 flex-shrink-0"
-        >
-          Browse Properties <ArrowRight size={16} />
-        </Link>
       </div>
 
       {/* ── Error banner ───────────────────────────────────────────── */}

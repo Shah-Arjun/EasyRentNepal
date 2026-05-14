@@ -46,18 +46,12 @@ const Dashboard = () => {
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Owner Dashboard</p>
           <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
-            Welcome back, {userProfile?.name?.split(' ')[0] || 'Owner'} 👋
+            Welcome back, {userProfile?.name?.split(' ')[0] || 'Owner'}
           </h1>
           <p className="text-slate-500 text-sm mt-1">
             Here's an overview of your properties and reviews.
           </p>
         </div>
-        <Link
-          to="/owner/add-property"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary text-slate-900 font-semibold text-sm hover:bg-amber-400 transition shadow-sm shadow-secondary/30 flex-shrink-0"
-        >
-          Add Property <ArrowRight size={16} />
-        </Link>
       </div>
 
       {/* ── Stat cards ─────────────────────────────────────────────── */}
