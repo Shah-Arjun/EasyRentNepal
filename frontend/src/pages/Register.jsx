@@ -75,6 +75,8 @@ const Register = () => {
             }
 
             toast.error(message || "Registration failed");
+        } finally {
+            setLoading(false)
         }
     };
 
