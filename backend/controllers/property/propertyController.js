@@ -2,6 +2,7 @@
 const Agency = require("../../models/agencyModel");
 const Property = require("../../models/propertyModel");
 const Review = require("../../models/reviewModel");
+const { createNewPropertyEmbeddingWhiteAdding } = require("../../utils/createNewPropertyEmbeddingWhileAdding");
 const uploadToCloudinary = require("../../utils/uploadToCloudinary");
 
 
@@ -167,7 +168,7 @@ exports.addProperty = async (req, res) => {
     videoUrl,
     images: imagesWithPrimary,
     amenities: Array.isArray(amenities) ? amenities : [],
-    status: status || "Pending",
+    status: status || "Available",
   };
 
   // console.log("property data ready to save--", propertyData)
@@ -176,7 +177,14 @@ exports.addProperty = async (req, res) => {
   // SAVE TO DATABASE
   let result;
   try {
-    result = await Property.create(propertyData);
+      result = await Property.create(propertyData);
+
+      const embedding = await createNewPropertyEmbeddingWhiteAdding(result);
+
+  if (embedding) {
+      result.plot_embedding = embedding;
+      await result.save();
+  }
   } catch (error) {
     console.error("Database Error:", error);
     if (error.name === "ValidationError") {
@@ -205,9 +213,123 @@ exports.addProperty = async (req, res) => {
 
 
 
+// EDIT PROPERTY  --> owner
+exports.editProperty = async (req, res) => {
+  const ownerId = req.user.id;
+  const { id } = req.params;
+
+  // Simple fields
+  const {
+    title, category, listingType, noOfFlat, bedrooms, bathrooms, bathroomType, bedCount,
+    living, kitchen, parking, furnishedStatus, builtYear, facing, fullDescription, videoUrl, status,
+  } = req.body;
+
+  // JSON fields
+  let price, location, builtArea, landArea, roadSize, amenities, retainedImages;
+
+  try {
+    price = JSON.parse(req.body.price);
+    location = JSON.parse(req.body.location);
+    builtArea = JSON.parse(req.body.builtArea);
+    landArea = JSON.parse(req.body.landArea);
+    roadSize = JSON.parse(req.body.roadSize);
+    amenities = JSON.parse(req.body.amenities);
+    retainedImages = JSON.parse(req.body.retainedImages || "[]");
+  } catch (err) {
+    return res.status(400).json({ success: false, message: "Invalid form data format" });
+  }
+
+  // FILE VALIDATION
+  const files = req.files || [];
+
+  if (retainedImages.length + files.length === 0) {
+    return res.status(400).json({ success: false, message: "At least 1 image is required" });
+  }
+
+  if (retainedImages.length + files.length > 5) {
+    return res.status(400).json({ success: false, message: "Max 5 images allowed" });
+  }
+
+  const MAX_SIZE = 5 * 1024 * 1024;
+  for (const file of files) {
+    if (!file.mimetype.startsWith("image/")) {
+      return res.status(400).json({ success: false, message: "Only image files are allowed" });
+    }
+    if (file.size > MAX_SIZE) {
+      return res.status(400).json({ success: false, message: "Each image must be less than 5MB" });
+    }
+  }
+
+  // FIELD VALIDATION
+  if (!title?.trim() || !fullDescription?.trim() || !price?.value || price.value <= 0) {
+    return res.status(400).json({ success: false, message: "Title, description and valid price are required" });
+  }
+
+  if (!location?.province || !location?.district || !location?.municipality) {
+    return res.status(400).json({ success: false, message: "Complete location details are required" });
+  }
+
+  // Find Property
+  let property = await Property.findOne({ _id: id, owner: ownerId });
+  if (!property) {
+    return res.status(404).json({ success: false, message: "Property not found or unauthorized to edit" });
+  }
+
+  // UPLOAD NEW IMAGES
+  let uploadedImages = [];
+  try {
+    if (files.length > 0) {
+      uploadedImages = await Promise.all(
+        files.map((file) => uploadToCloudinary(file.buffer, "house-rental-properties"))
+      );
+    }
+  } catch (err) {
+    console.error("Cloudinary Error:", err);
+    return res.status(500).json({ success: false, message: "Image upload failed" });
+  }
+
+  // Combine Images
+  const allImages = [...retainedImages, ...uploadedImages].map((img, index) => ({
+    ...img,
+    isPrimary: index === 0,
+  }));
+
+  // Update Data
+  const propertyData = {
+    title: title.trim(),
+    category: category === "Shutter/Shop" ? "Shutter" : category,
+    listingType, noOfFlat, bedrooms, bathrooms, bathroomType, bedCount,
+    living, kitchen, parking, furnishedStatus, builtYear, builtArea, landArea,
+    facing, price, location, roadSize, fullDescription: fullDescription.trim(), videoUrl,
+    images: allImages, amenities: Array.isArray(amenities) ? amenities : [],
+    status: status || property.status,
+  };
+
+  try {
+    property = await Property.findOneAndUpdate({ _id: id, owner: ownerId }, propertyData, { new: true, runValidators: true });
+    
+    // update embeddings
+    const embedding = await createNewPropertyEmbeddingWhiteAdding(property);
+    if (embedding) {
+      property.plot_embedding = embedding;
+      await property.save();
+    }
+
+    return res.status(200).json({ success: true, message: "Property updated successfully", data: property });
+  } catch (error) {
+    console.error("Database Error:", error);
+    if (error.name === "ValidationError") {
+      const firstError = Object.values(error.errors)[0]?.message;
+      return res.status(400).json({ success: false, message: firstError || "Invalid property data" });
+    }
+    return res.status(500).json({ success: false, message: "Database error while updating property" });
+  }
+};
+
+
 // GET ALL PROPERTY --> admin, tenant
 exports.getProperties = async(req, res) => {
-  const properties = await Property.find().populate('owner', 'name email phoneNumber')    //returns array of properties
+  const properties = await Property.find().populate('owner', 'name email phoneNumber').select('-plot_embedding')    //returns array of properties
   if(properties.length === 0){
     return res.status(400).json({
       success: false,
@@ -236,7 +358,7 @@ exports.getSingleProperty = async(req, res) => {
   }
   
   try {
-    const property = await Property.findById(id).populate('owner', 'name email phoneNumber profileImage');
+    const property = await Property.findById(id).populate('owner', 'name email phoneNumber profileImage').select('-plot_embedding')
 
     if(!property){
       return res.status(404).json({
