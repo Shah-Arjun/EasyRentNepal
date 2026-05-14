@@ -147,8 +147,8 @@ const propertySchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ['Pending', 'Available', 'Sold', 'Rented', 'Rejected', 'Expired'],
-      default: 'Pending'
+      enum: ['Available', 'Sold', 'Rented'],
+      default: 'Available'
     },
     isFeatured: { type: Boolean, default: false },
     views: { type: Number, default: 0 },
