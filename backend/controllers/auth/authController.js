@@ -256,12 +256,12 @@ exports.registerUser = async (req, res) => {
 
       await existingUser.save();
 
-      // Send OTP Email
-      await sendEmail({
+      // Send OTP Email (background)
+      sendEmail({
         email: email,
         subject: "OTP for EasyRentNepal Registration",
         message: `Your OTP is: ${otp}`,
-      });
+      }).catch(err => console.error("Register OTP email error:", err));
 
       return res.status(200).json({
         success: true,
@@ -296,12 +296,12 @@ exports.registerUser = async (req, res) => {
       otpExpiry: Date.now() + 1 * 60 * 1000,
     });
 
-    // Send OTP Email
-    await sendEmail({
+    // Send OTP Email (background)
+    sendEmail({
       email: email,
       subject: "OTP for EasyRentNepal Registration",
       message: `Your OTP is: ${otp}`,
-    });
+    }).catch(err => console.error("New user OTP email error:", err));
 
     return res.status(201).json({
       success: true,
