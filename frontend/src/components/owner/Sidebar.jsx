@@ -14,13 +14,15 @@ import {
   LogOut,
   ArrowRightLeft,
   Home,
+  ClipboardList,
 } from 'lucide-react'
 
 const navItems = [
-  { path: '/owner',               label: 'Dashboard',     icon: LayoutDashboard, end: true },
-  { path: '/owner/add-property',  label: 'Add Property',  icon: PlusSquare,      end: false },
-  { path: '/owner/list-property', label: 'My Properties', icon: List,            end: false },
-  { path: '/owner/profile',       label: 'Profile',       icon: UserCircle,      end: false },
+  { path: '/owner',                label: 'Dashboard',       icon: LayoutDashboard, end: true  },
+  { path: '/owner/add-property',  label: 'Add Property',    icon: PlusSquare,      end: false },
+  { path: '/owner/list-property', label: 'My Properties',   icon: List,            end: false },
+  { path: '/owner/bookings',      label: 'Booking Requests',icon: ClipboardList,   end: false },
+  { path: '/owner/profile',       label: 'Profile',         icon: UserCircle,      end: false },
 ]
 
 const Sidebar = () => {

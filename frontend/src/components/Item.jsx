@@ -22,7 +22,14 @@ const Item = ({ property }) => {
             {currency}{property.price?.rent || property.price?.value || '0'}.00
           </div>
           </div>
-          <h4 className='h4 line-clamp-1'>{property.title}</h4>
+          <div className="flexBetween items-center gap-2">
+            <h4 className='h4 line-clamp-1 flex-1'>{property.title}</h4>
+            <span className={`px-2 py-1 text-[10px] uppercase font-bold rounded-full whitespace-nowrap ${
+              (property.status === 'Rented' || property.status === 'Sold') ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'
+            }`}>
+              {(property.status === 'Rented' || property.status === 'Sold') ? 'Booked' : 'Available'}
+            </span>
+          </div>
           <div className="flexCenter gap-4 py-2">
             <p className='flexCenter gap-x-2 border-r border-slate-900/5 pr-4 font-[500]'>
               <img src={assets.bed} alt="facilitiesIcon" width={21} />

@@ -14,6 +14,7 @@ import wishlistService from '../services/wishlistService'
 import profileService from '../services/profileService'
 import reviewService from '../services/reviewService'
 import tenantService from '../services/tenantService'
+import bookingService from '../services/bookingService'
 import { normalizeRole, normalizeRoles, getActiveRole, hasRole } from '../utils/authRole'
 
 const AppContext = createContext()
@@ -48,6 +49,7 @@ export const AppContextProvider = ({ children }) => {
     const profileServices  = useMemo(() => profileService(api),  [api])
     const reviewServices   = useMemo(() => reviewService(api),   [api])
     const tenantServices   = useMemo(() => tenantService(api),   [api])
+    const bookingServices  = useMemo(() => bookingService(api),  [api])
 
     // ─── Helpers ─────────────────────────────────────────────────────────────
 
@@ -160,6 +162,17 @@ export const AppContextProvider = ({ children }) => {
             return true
         } catch (err) {
             console.error('Error deleting property:', err)
+            return false
+        }
+    }, [propertyServices, getOwnerProperties])
+
+    const updateProperty = useCallback(async (propertyId, propertyData) => {
+        try {
+            await propertyServices.updateProperty(propertyId, propertyData)
+            await getOwnerProperties()
+            return true
+        } catch (err) {
+            console.error('Error updating property:', err)
             return false
         }
     }, [propertyServices, getOwnerProperties])
@@ -345,6 +358,7 @@ export const AppContextProvider = ({ children }) => {
         getUserProfile,
         getWishlist,
         deleteProperty,
+        updateProperty,
         toggleWishlist,
         loadUserData,
         logout,
@@ -356,6 +370,7 @@ export const AppContextProvider = ({ children }) => {
         profileServices,
         reviewServices,
         tenantServices,
+        bookingServices,
     }), [
         navigate,
         currency,
@@ -375,6 +390,7 @@ export const AppContextProvider = ({ children }) => {
         getUserProfile,
         getWishlist,
         deleteProperty,
+        updateProperty,
         toggleWishlist,
         loadUserData,
         logout,
@@ -385,6 +401,7 @@ export const AppContextProvider = ({ children }) => {
         profileServices,
         reviewServices,
         tenantServices,
+        bookingServices,
     ])
 
     return (
