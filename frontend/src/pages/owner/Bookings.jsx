@@ -36,33 +36,34 @@ export default function OwnerBookings() {
 
   useEffect(() => { loadBookings() }, [loadBookings])
 
-  const handleApprove = async (bookingId) => {
-    if (!window.confirm('Approve this booking? The property status will be updated to Rented/Sold and all other pending bookings for this property will be rejected.')) return
-    try {
-      setActionLoading(bookingId)
-      await bookingServices.updateBookingStatus(bookingId, 'approve')
-      await loadBookings()
-    } catch (err) {
-      alert(err?.message || 'Failed to approve booking.')
-    } finally {
-      setActionLoading(null)
+  const handleStatusUpdate = async (bookingId, field, value) => {
+    let updates = {};
+    if (field === 'bookingStatus') {
+      if (value === 'approved') {
+        if (!window.confirm('Approve this booking? This will update the property status to Rented/Sold and reject other pending bookings.')) return;
+      }
+      if (value === 'rejected') {
+        const reason = window.prompt('Reason for rejection (optional):');
+        if (reason === null) return; // User cancelled prompt
+        updates.reason = reason;
+      }
+      updates.bookingStatus = value;
+    } else if (field === 'paymentStatus') {
+      updates.paymentStatus = value;
+    } else if (field === 'propertyStatus') {
+      updates.propertyStatus = value;
     }
-  }
 
-  const handleRejectSubmit = async () => {
-    if (!rejectModal) return
     try {
-      setActionLoading(rejectModal.bookingId)
-      await bookingServices.updateBookingStatus(rejectModal.bookingId, 'reject', rejectReason)
-      setRejectModal(null)
-      setRejectReason('')
-      await loadBookings()
+      setActionLoading(bookingId);
+      await bookingServices.updateBookingStatus(bookingId, updates);
+      await loadBookings();
     } catch (err) {
-      alert(err?.message || 'Failed to reject booking.')
+      alert(err?.message || 'Failed to update status.');
     } finally {
-      setActionLoading(null)
+      setActionLoading(null);
     }
-  }
+  };
 
   const filtered = filter === 'all' ? bookings : bookings.filter(b => b.status === filter)
 
@@ -223,42 +224,55 @@ export default function OwnerBookings() {
                       </div>
                     )}
 
-                    {/* Action buttons — only for pending */}
-                    {isPending && (
-                      <div className='flex gap-2 mt-2'>
-                        <button
-                          onClick={() => handleApprove(booking._id)}
+                    {/* Action dropdowns */}
+                    <div className='bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3 mt-2'>
+                      <div className='flex items-center justify-between text-sm'>
+                        <span className='font-semibold text-slate-600'>Booking Status</span>
+                        <select
+                          value={booking.status}
+                          onChange={(e) => handleStatusUpdate(booking._id, 'bookingStatus', e.target.value)}
                           disabled={isProcessing}
-                          className='flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-200 text-white text-sm font-semibold transition'
+                          className='p-1.5 rounded-lg border border-slate-200 bg-white font-medium text-slate-800 outline-none focus:ring-2 focus:ring-secondary min-w-[120px]'
                         >
-                          <CheckCircle size={15} />
-                          {isProcessing ? 'Processing…' : 'Approve'}
-                        </button>
-                        <button
-                          onClick={() => setRejectModal({ bookingId: booking._id })}
-                          disabled={isProcessing}
-                          className='flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-red-500 hover:bg-red-600 disabled:bg-slate-200 text-white text-sm font-semibold transition'
-                        >
-                          <XCircle size={15} />
-                          Reject
-                        </button>
+                          <option value='pending'>Pending</option>
+                          <option value='approved'>Approved</option>
+                          <option value='rejected'>Rejected</option>
+                        </select>
                       </div>
-                    )}
 
-                    {/* Approved message */}
-                    {booking.status === 'approved' && (
-                      <p className='text-xs text-emerald-600 font-medium flex items-center gap-1'>
-                        <CheckCircle size={12} /> Approved on {new Date(booking.approvedAt).toLocaleDateString()}
-                      </p>
-                    )}
+                      <div className='flex items-center justify-between text-sm'>
+                        <span className='font-semibold text-slate-600'>Payment Status</span>
+                        <select
+                          value={booking.paymentStatus || 'pending'}
+                          onChange={(e) => handleStatusUpdate(booking._id, 'paymentStatus', e.target.value)}
+                          disabled={isProcessing}
+                          className='p-1.5 rounded-lg border border-slate-200 bg-white font-medium text-slate-800 outline-none focus:ring-2 focus:ring-secondary min-w-[120px]'
+                        >
+                          <option value='pending'>Pending / Not Received</option>
+                          <option value='paid'>Paid / Received</option>
+                        </select>
+                      </div>
+
+                      <div className='flex items-center justify-between text-sm'>
+                        <span className='font-semibold text-slate-600'>Property Status</span>
+                        <select
+                          value={booking.property?.status || 'Available'}
+                          onChange={(e) => handleStatusUpdate(booking._id, 'propertyStatus', e.target.value)}
+                          disabled={isProcessing}
+                          className='p-1.5 rounded-lg border border-slate-200 bg-white font-medium text-slate-800 outline-none focus:ring-2 focus:ring-secondary min-w-[120px]'
+                        >
+                          <option value='Available'>Available</option>
+                          <option value='Rented'>Rented</option>
+                          <option value='Sold'>Sold</option>
+                          <option value='Pending'>Pending</option>
+                        </select>
+                      </div>
+                    </div>
 
                     {/* Rejected message */}
-                    {booking.status === 'rejected' && (
-                      <div className='text-xs text-red-600 space-y-0.5'>
-                        <p className='font-medium flex items-center gap-1'><XCircle size={12} /> Rejected</p>
-                        {booking.rejectionReason && (
-                          <p className='text-slate-500'>Reason: {booking.rejectionReason}</p>
-                        )}
+                    {booking.status === 'rejected' && booking.rejectionReason && (
+                      <div className='text-xs text-red-600 space-y-0.5 mt-2'>
+                        <p className='text-slate-500'>Rejection Reason: {booking.rejectionReason}</p>
                       </div>
                     )}
                   </div>
