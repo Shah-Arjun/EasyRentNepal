@@ -53,6 +53,7 @@ const Register = () => {
             //  Success (OTP sent)
             if (response.data.success) {
                 localStorage.setItem("verifyEmail", userData.email);
+                localStorage.setItem("verifyRole", userData.role);
                 toast.success(response.data.message || "OTP sent to email. Please verify.");
                 navigate("/verify-otp", {
                     state: { email: userData.email, role: userData.role },
@@ -60,19 +61,19 @@ const Register = () => {
             }
         } catch (error) {
             setLoading(false)
-            const status = error.response?.status;
+            // const status = error.response?.status;
             const message = error.response?.data?.message;
 
-            // If user already exists → still go to OTP page
-            if (status === 400 && message?.includes("already exists")) {
-                toast.info("User already exists. Please verify OTP sent to your email.");
-                localStorage.setItem("verifyEmail", userData.email);
-                localStorage.setItem("verifyRole", userData.role);
-                navigate("/verify-otp", {
-                    state: { email: userData.email, role: userData.role },
-                });
-                return;
-            }
+            // // If user already exists → still go to OTP page
+            // if (status === 400 && message?.includes("already exists")) {
+            //     toast.info("User already exists. Please verify OTP sent to your email.");
+            //     localStorage.setItem("verifyEmail", userData.email);
+            //     localStorage.setItem("verifyRole", userData.role);
+            //     navigate("/verify-otp", {
+            //         state: { email: userData.email, role: userData.role },
+            //     });
+            //     return;
+            // }
 
             toast.error(message || "Registration failed");
         } finally {

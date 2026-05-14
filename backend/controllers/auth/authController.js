@@ -196,66 +196,127 @@ exports.resetPassword = async (req, res) => {
 //register using otp
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, phone, password, role, location } = req.body
-    
-    if(!name || !email || !password || !phone || !location || !location.province || !location.district || !location.city ){
-        return res.status(400).json({
-            success: false,
-            message: "Name, email, password, phoneNumber and location details must be provided"
-        })
+    const { name, email, phone, password, role, location } = req.body;
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !phone ||
+      !location ||
+      !location.province ||
+      !location.district ||
+      !location.city
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Name, email, password, phone number and location details are required",
+      });
     }
 
     const existingUser = await User.findOne({ email });
-    if (existingUser) {
-        const otp = generateOtp();
-        const hashedOtp = await bcrypt.hash(otp, 10);
-        existingUser.otp = hashedOtp;
-        existingUser.otpExpiry = Date.now() + 1 * 60 * 1000;
-        sendEmail({
-            email: email,
-            subject: "OTP for HouseRentalNepal registration",
-            message: `Your OTP for registration is: ${otp}`
-        })
-        existingUser.isOtpVerified = false; 
-        await existingUser.save();
-        return res.status(400).json({ message: "User already exists with this email." })
+
+    if (existingUser && existingUser.isOtpVerified) {
+      return res.status(400).json({
+        success: false,
+        message: "User already exists. Please login.",
+      });
     }
 
-// console.log("hello")
+
+    if (existingUser && !existingUser.isOtpVerified) {
+      // Optional: prevent OTP spam (30 sec cooldown)
+      const now = Date.now();
+
+      if ( existingUser.otpExpiry && existingUser.otpExpiry > now - 30 * 1000 ) {
+        return res.status(200).json({
+          success: true,
+          message: "Please wait before requesting another OTP.",
+        });
+      }
+
+      // Generate new OTP
+      const otp = generateOtp();
+
+      // Hash OTP + Password
+      const [hashedOtp, hashedPassword] = await Promise.all([
+        bcrypt.hash(otp, 10),
+        bcrypt.hash(password, 10),
+      ]);
+
+      // Update existing user
+      existingUser.name = name;
+      existingUser.phoneNumber = phone;
+      existingUser.password = hashedPassword;
+      existingUser.role = role || existingUser.role;
+      existingUser.location = location;
+
+      existingUser.otp = hashedOtp;
+      existingUser.otpExpiry = Date.now() + 1 * 60 * 1000;
+
+      await existingUser.save();
+
+      // Send OTP Email
+      await sendEmail({
+        email: email,
+        subject: "OTP for EasyRentNepal Registration",
+        message: `Your OTP is: ${otp}`,
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: "User already exists but not verified. New OTP sent.",
+      });
+    }
+
+    // =========================================================
+    // CASE 3: NEW USER REGISTRATION
+    // =========================================================
+
+    // Generate OTP
     const otp = generateOtp();
 
-    // Parallelize password and OTP hashing for better performance
+    // Hash Password + OTP in parallel
     const [hashedPassword, hashedOtp] = await Promise.all([
-        bcrypt.hash(password, 10),
-        bcrypt.hash(otp, 10)
+      bcrypt.hash(password, 10),
+      bcrypt.hash(otp, 10),
     ]);
 
+    // Create User
     const user = await User.create({
       name,
-      email,
+      email: email,
       role: role || "tenant",
       password: hashedPassword,
       phoneNumber: phone,
       location,
+
       otp: hashedOtp,
       isOtpVerified: false,
-      otpExpiry: Date.now() + 1 * 60 * 1000,   // 1 min
+      otpExpiry: Date.now() + 1 * 60 * 1000,
     });
 
-    // Send email without awaiting to speed up response, but catch errors
-    sendEmail({
-        email: email,
-        subject: "OTP for HouseRentalNepal tenant registration",
-        message: `${otp}`
-    }).catch(err => console.error("Registration email error:", err));
+    // Send OTP Email
+    await sendEmail({
+      email: email,
+      subject: "OTP for EasyRentNepal Registration",
+      message: `Your OTP is: ${otp}`,
+    });
 
-    res.status(201).json({ 
+    return res.status(201).json({
       success: true,
-      message: "OTP sent to email",
+      message: "OTP sent to your email.",
+      userId: user._id,
     });
 
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    console.error("Register Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message,
+    });
   }
 };
 
