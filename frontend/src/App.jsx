@@ -16,6 +16,7 @@ import Sidebar from './components/owner/Sidebar';
 import TenantDashboardLayout from './layout/TenantDashboardLayout';
 import OwnerDashboard from './pages/owner/Dashboard';
 import AddProperty from './pages/owner/AddProperty';
+import EditProperty from './pages/owner/EditProperty';
 import ListProperty from './pages/owner/ListProperty';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -86,6 +87,7 @@ const App = () => {
           <Route path="/owner" element={<Sidebar />}>
             <Route index                    element={<OwnerDashboard />} />
             <Route path="add-property"      element={<AddProperty />} />
+            <Route path="edit-property/:id" element={<EditProperty />} />
             <Route path="list-property"     element={<ListProperty />} />
             <Route path="bookings"          element={<OwnerBookings />} />
             <Route path="map"               element={<MapView />} />

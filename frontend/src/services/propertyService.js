@@ -52,6 +52,16 @@ export const propertyService = (axiosInstance) => {
       }
     },
 
+    // Full property edit with images
+    editProperty: async (propertyId, formData) => {
+      try {
+        const { data } = await axiosInstance.put(`/property/${propertyId}`, formData)
+        return data
+      } catch (error) {
+        throw error.response?.data || error.message
+      }
+    },
+
     // Delete property
     deleteProperty: async (propertyId) => {
       try {

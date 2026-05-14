@@ -177,6 +177,17 @@ export const AppContextProvider = ({ children }) => {
         }
     }, [propertyServices, getOwnerProperties])
 
+    const editProperty = useCallback(async (propertyId, formData) => {
+        try {
+            const res = await propertyServices.editProperty(propertyId, formData)
+            await getOwnerProperties()
+            return res
+        } catch (err) {
+            console.error('Error editing property:', err)
+            throw err
+        }
+    }, [propertyServices, getOwnerProperties])
+
 
 
 
@@ -359,6 +370,7 @@ export const AppContextProvider = ({ children }) => {
         getWishlist,
         deleteProperty,
         updateProperty,
+        editProperty,
         toggleWishlist,
         loadUserData,
         logout,
@@ -391,6 +403,7 @@ export const AppContextProvider = ({ children }) => {
         getWishlist,
         deleteProperty,
         updateProperty,
+        editProperty,
         toggleWishlist,
         loadUserData,
         logout,
