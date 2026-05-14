@@ -31,6 +31,9 @@ import Watchlist from './pages/tenant/Watchlist';
 // import Payments from './pages/tenant/Payments';
 import Profile from './pages/shared/Profile';
 import OwnerBookings from './pages/owner/Bookings';
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyOtpForReset from './pages/VerifyOtpForReset';
+import ResetPassword from './pages/ResetPassword';
 
 const App = () => {
   const location = useLocation();
@@ -42,6 +45,9 @@ const App = () => {
     location.pathname === '/login' ||
     location.pathname === '/register' ||
     location.pathname === '/verify-otp' ||
+    location.pathname === '/forgot-password' ||
+    location.pathname === '/verify-reset-otp' ||
+    location.pathname === '/reset-password' ||
     isTenantPath;
 
   useEffect(() => {
@@ -81,6 +87,9 @@ const App = () => {
         <Route path="/login"      element={<Login />} />
         <Route path="/register"   element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-reset-otp" element={<VerifyOtpForReset />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Protected Owner Routes with Layout */}
         <Route element={<ProtectedRoute allowedRoles={['owner']} />}>
