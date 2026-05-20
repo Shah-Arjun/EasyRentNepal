@@ -6,9 +6,11 @@ const router = express.Router();
 
 
 
+const upload = require('../../middleware/upload')
+
 router.route('/me')
 .get(isAuthenticated, catchAsync(getMyProfile))
-.patch(isAuthenticated, catchAsync(updateMyProfile))
+.patch(isAuthenticated, upload.single('qrImage'), catchAsync(updateMyProfile))
 .delete(isAuthenticated, catchAsync(deleteMyProfile));
 
 router.route('/me/password').patch(isAuthenticated, catchAsync(changePassword));

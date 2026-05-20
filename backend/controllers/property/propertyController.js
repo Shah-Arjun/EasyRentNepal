@@ -10,7 +10,11 @@ const uploadToCloudinary = require("../../utils/uploadToCloudinary");
 
 // create room / ADD PROPERTY  --> owner
 exports.addProperty = async (req, res) => {
-  const ownerId = req.user.id;
+  const userId = req.user.id;
+
+  const owner = await Agency.findOne({ owner: userId })
+
+  console.log('hhhh---', owner._id)
 
   // Simple fields
   const {
@@ -143,9 +147,8 @@ exports.addProperty = async (req, res) => {
 
   // CLEAN DATA
   const propertyData = {
-    owner: ownerId,
+    owner: owner._id,
     title: title.trim(),
-    // Keep backward compatibility with older clients using "Shutter/Shop".
     category: category === "Shutter/Shop" ? "Shutter" : category,
     listingType,
     noOfFlat,
@@ -171,7 +174,7 @@ exports.addProperty = async (req, res) => {
     status: status || "Available",
   };
 
-  // console.log("property data ready to save--", propertyData)
+  console.log("property data ready to save--", propertyData)
 
 
   // SAVE TO DATABASE
@@ -215,8 +218,11 @@ exports.addProperty = async (req, res) => {
 
 // EDIT PROPERTY  --> owner
 exports.editProperty = async (req, res) => {
-  const ownerId = req.user.id;
+  const userId = req.user.id;
   const { id } = req.params;
+
+  const owner = await Agency.findOne({ owner: userId })
+  const ownerId = owner._id;
 
   // Simple fields
   const {
@@ -327,9 +333,11 @@ exports.editProperty = async (req, res) => {
 };
 
 
+
+
 // GET ALL PROPERTY --> admin, tenant
 exports.getProperties = async(req, res) => {
-  const properties = await Property.find().populate('owner', 'name email phoneNumber').select('-plot_embedding')    //returns array of properties
+  const properties = await Property.find().populate('owner').select('-plot_embedding')    //returns array of properties
   if(properties.length === 0){
     return res.status(400).json({
       success: false,
@@ -358,7 +366,7 @@ exports.getSingleProperty = async(req, res) => {
   }
   
   try {
-    const property = await Property.findById(id).populate('owner', 'name email phoneNumber profileImage').select('-plot_embedding')
+    const property = await Property.findById(id).populate('owner', 'name email contact profileImage').select('-plot_embedding')
 
     if(!property){
       return res.status(404).json({
@@ -386,6 +394,8 @@ exports.getSingleProperty = async(req, res) => {
       totalReviews
     };
 
+    console.log("property with agency--", propertyWithAgency)
+
     return res.status(200).json({
       success: true,
       message: "Property found",
@@ -405,8 +415,10 @@ exports.getSingleProperty = async(req, res) => {
 
 // GET OWNER PROPERTIES
 exports.getOwnerProperties = async(req, res) => {
-  const ownerId = req.user.id;
-  
+  const userId = req.user.id;
+  const owner = await Agency.findOne({ owner: userId })
+
+  const ownerId = owner._id;
   const properties = await Property.find({ owner: ownerId });
 
   res.status(200).json({
@@ -420,9 +432,11 @@ exports.getOwnerProperties = async(req, res) => {
 
 // DELETE PROPERTY
 exports.deleteProperty = async(req, res) => {
-  const ownerId = req.user.id;
+  const userId = req.user.id;
   const { id } = req.params;
+  const owner = await Agency.findOne({ owner: userId })
 
+  const ownerId = owner._id;
   const property = await Property.findOneAndDelete({ _id: id, owner: ownerId });
 
   if(!property){
@@ -444,11 +458,11 @@ exports.deleteProperty = async(req, res) => {
 // UPDATE PROPERTY STATUS
 exports.updatePropertyStatus = async(req, res) => {
   try {
-    const ownerId = req.user.id;
+    const userId = req.user.id;
     const { id } = req.params;
     const { status } = req.body;
 
-    const validStatuses = ['Pending', 'Available', 'Sold', 'Rented', 'Rejected', 'Expired'];
+    const validStatuses = ['Available', 'Sold', 'Rented'];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({
         success: false,
@@ -456,6 +470,8 @@ exports.updatePropertyStatus = async(req, res) => {
       });
     }
 
+    const owner = await Agency.findOne({ owner: userId })
+    const ownerId = owner._id;
     const property = await Property.findOneAndUpdate(
       { _id: id, owner: ownerId },
       { status },
@@ -489,10 +505,19 @@ exports.updatePropertyStatus = async(req, res) => {
 // GET OWNER DASHBOARD DATA
 exports.getOwnerDashboardData = async(req, res) => {
   try {
-    const ownerId = req.user.id;
-    
-    // 1. Get all properties for this owner
-    const properties = await Property.find({ owner: ownerId });
+    const userId = req.user.id;
+
+    // Properties are stored against the Agency _id, not the User _id.
+    const agency = await Agency.findOne({ owner: userId });
+    if (!agency) {
+      return res.status(404).json({
+        success: false,
+        message: "Agency not found for this owner"
+      });
+    }
+
+    // 1. Get all properties for this owner agency
+    const properties = await Property.find({ owner: agency._id });
     const propertyIds = properties.map(p => p._id);
     
     // 2. Get all reviews for these properties
