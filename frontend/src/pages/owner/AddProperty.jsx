@@ -150,9 +150,9 @@ const AddProperty = () => {
     title: "",
     category: "Room",
     listingType: "Rent",
-    noOfFlat: "1",
-    bedrooms: 1,
-    bathrooms: 1,
+    noOfFlat: "0",
+    bedrooms: 0,
+    bathrooms: 0,
     bathroomType: "shared",
     bedCount: 0,
     living: 0,
@@ -502,6 +502,8 @@ useEffect(() => {
 
       // Images
       formData.images.forEach((file) => data.append("images", file));
+
+      console.log("Submitting property from frontend---", data);
 
       //   Do NOT set Content-Type manually — Axios auto-sets
       //     'multipart/form-data; boundary=...' when body is FormData.

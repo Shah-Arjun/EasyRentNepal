@@ -376,7 +376,7 @@ export const dummyBookingsData = [
     "totalPrice": 12000,
     "guests": 2,
     "status": "active",
-    "paymentMethod": "Khalti",
+    "paymentMethod": "eSewa",
     "isPaid": true,
     "createdAt": "2025-04-10T06:41:20.501Z",
     "updatedAt": "2025-04-10T06:41:20.501Z",

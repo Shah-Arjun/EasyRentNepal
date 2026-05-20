@@ -4,7 +4,7 @@ import { assets } from '../assets/data'
 import { useAppContext } from "../context/AppContext";
 
 const Item = ({ property }) => {
-  const { currency, wishlist, toggleWishlist } = useAppContext()
+  const { currency, wishlist, toggleWishlist, isLoggedIn } = useAppContext()
   return (
     <Link to={`/listing/` + property._id}
       className='block rounded-lg bg-white ring-1 ring-slate-900/5'
@@ -19,6 +19,12 @@ const Item = ({ property }) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            if (!isLoggedIn) {
+              import('react-toastify').then(({ toast }) => {
+                toast.info("Please login first to keep properties in your wishlist.");
+              });
+              return;
+            }
             toggleWishlist(property._id);
             const isWished = wishlist.some(item => item._id === property._id);
             import('react-toastify').then(({ toast }) => {

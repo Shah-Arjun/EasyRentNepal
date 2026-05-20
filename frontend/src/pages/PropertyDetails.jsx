@@ -27,7 +27,7 @@ const PropertyDetails = () => {
     // Booking form state
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('Khalti');
+    // const [paymentMethod, setPaymentMethod] = useState('Khalti');
     const [proofImage, setProofImage] = useState(null);
     const [proofPreview, setProofPreview] = useState(null);
     const [submitting, setSubmitting] = useState(false);
@@ -155,6 +155,9 @@ const PropertyDetails = () => {
 
     useEffect(() => {
         if (property?._id) fetchRecommendedProperties();
+
+                console.log("propertydetail---", property)
+
     }, [property?._id]);
 
 
@@ -214,7 +217,7 @@ const PropertyDetails = () => {
             formData.append('propertyId', id);
             formData.append('startDate', startDate);
             formData.append('endDate', endDate);
-            formData.append('paymentMethod', paymentMethod);
+            formData.append('paymentMethod', 'QR Code');  // since we're showing account details, we can just label it as "QR Code" for simplicity
             formData.append('proofImage', proofImage);
 
             const res = await bookingServices.createBooking(formData);
@@ -242,7 +245,7 @@ const PropertyDetails = () => {
         setProofPreview(null);
         setBookingError('');
         setBookingSuccess(false);
-        setPaymentMethod('Khalti');
+        // setPaymentMethod('Khalti');
         setShowBookingModal(false);
     };
 
@@ -267,6 +270,8 @@ const PropertyDetails = () => {
                 <p className='text-xl text-gray-500'>Property not found</p>
             </div>
         );
+    } else {
+        console.log("property detail is : ", property)
     }
 
 
@@ -576,18 +581,9 @@ const PropertyDetails = () => {
                                     </button>
                                 </div>
 
-                                {/* Contact Owner (existing) */}
-                                <h4 className="h4 mb3 mt-5">Contact Owner</h4>
-                                <form className='flex flex-col gap-4'>
-                                    <input type="text" placeholder='Your Name' className='p-2 py-1 border border-gray-300 rounded-md text-sm' required />
-                                    <input type="email" placeholder='Your Email' className='p-2 py-1 border border-gray-300 rounded-md text-sm' required />
-                                    <textarea rows={4} placeholder='Your Message' className='p-2 py-1 border border-gray-300 rounded-md text-sm' required />
-                                    <button type="submit" className="btn-secondary rounded-lg py-1.5">Send Message</button>
-                                </form>
-
                                 <h4 className="h4 mt-8 mb-4">For Renting Contact</h4>
                                 <div className='text-sm divide-y divide-gray-500/30 border border-gray-500/30 rounded'>
-                                    {/* Your existing contact info block */}
+                                    {/* contact info block */}
                                     <div className='flex item-start justify-between p-3'>
                                         <div>
                                             <div className='flex items-center space-x-2'>
@@ -605,7 +601,7 @@ const PropertyDetails = () => {
                                         <div className='bg-green-500/20 p-1 rounded-full border-green-500/30'>
                                             <img src={assets.phone} alt="" width={14} />
                                         </div>
-                                        <p className='regular-14'>{property.agency?.contact || property.owner?.phoneNumber || 'N/A'}</p>
+                                        <p className='regular-14'>{property.agency?.contact || property.owner?.contact || 'N/A'}</p>
                                     </div>
                                     <div className='flexStart gap-2 p-1.5'>
                                         <div className='bg-green-500/20 p-1 rounded-full border-green-500/30'>
@@ -613,15 +609,14 @@ const PropertyDetails = () => {
                                         </div>
                                         <p className='regular-14'>{property.agency?.email || property.owner?.email || 'N/A'}</p>
                                     </div>
-                                    <div className='flex items-center divide-x divide-gray-500/30'>
-                                        <button className='flex items-center justify-center gap-2 w-1/2 py-3 cursor-pointer '>
-                                            <img src={assets.mail} alt="" width={19} />
-                                            Send Email
-                                        </button>
-                                        <button className='flex items-center justify-center gap-2 w-1/2 py-3 cursor-pointer '>
+                                    <div className="flex justify-center p-4">
+                                        <a
+                                            href={`tel:${property?.owner?.contact}`}
+                                            className="flex items-center justify-center gap-2 px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition"
+                                        >
                                             <img src={assets.phone} alt="" width={19} />
                                             Call Now
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -711,8 +706,8 @@ const PropertyDetails = () => {
 
                                     {/* Payment method selector */}
                                     <div>
-                                        <label className='block text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide'>Payment Method</label>
-                                        <div className='flex gap-2'>
+                                        <label className='block text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide'>Account Details</label>
+                                        {/* <div className='flex gap-2'>
                                             {['Khalti', 'eSewa'].map((m) => (
                                                 <button
                                                     key={m}
@@ -727,34 +722,55 @@ const PropertyDetails = () => {
                                                     {m}
                                                 </button>
                                             ))}
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     {/* QR / payment info */}
-                                    <div className='bg-amber-50 border border-amber-200 rounded-2xl p-4'>
-                                        <p className='text-xs font-semibold text-amber-800 uppercase tracking-wide mb-3'>
-                                            Scan & Pay via {paymentMethod}
-                                        </p>
-                                        <div className='flex items-center gap-4'>
-                                            <div className='w-28 h-28 bg-white rounded-xl flex items-center justify-center border-2 border-dashed border-amber-300 flex-shrink-0'>
-                                                <p className='text-[10px] text-slate-400 text-center leading-tight'>
-                                                    {paymentMethod}<br/>QR Code<br/>Here
+                                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+
+                                            {/* LEFT INFO */}
+                                            <div className="space-y-2 flex-1">
+                                                <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-4">
+                                                    Scan & Pay with QR Code
                                                 </p>
+                                            <p className="font-mono text-slate-800 text-sm">
+                                                eSewa ID:{" "}
+                                                <span className="font-semibold">
+                                                {property?.owner?.esewaId || "N/A"}
+                                                </span>
+                                            </p>
+                                            <p className="text-xs text-slate-500">
+                                                Amount to Pay:
+                                            </p>
+                                            <p className="text-lg font-bold text-secondary">
+                                                {currency}{property.price?.value?.toLocaleString()}
+                                            </p>
                                             </div>
-                                            <div className='space-y-1'>
-                                                <p className='text-xs text-slate-500'>
-                                                    {paymentMethod} ID / Number:
+
+                                            {/* RIGHT QR */}
+                                            <div className="flex-shrink-0 mx-auto sm:mx-0">
+
+                                            <div className="w-42 h-42 sm:w-40 sm:h-40 bg-white rounded-xl border-2 border-dashed border-amber-300 overflow-hidden flex items-center justify-center shadow-sm">
+
+                                                {property?.owner?.esewaQr?.url ? (
+                                                <img
+                                                    src={property.owner.esewaQr.url}
+                                                    alt="eSewa QR"
+                                                    className="w-full h-full object-contain p-1"
+                                                />
+                                                ) : (
+                                                <p className="text-[10px] text-slate-400 text-center">
+                                                    QR Code<br />Not Available
                                                 </p>
-                                                <p className='font-mono font-bold text-slate-800'>
-                                                    {paymentMethod === 'Khalti' ? '9807307132' : '9807307132'}
-                                                </p>
-                                                <p className='text-xs text-slate-500 mt-2'>Amount to Pay:</p>
-                                                <p className='text-lg font-bold text-secondary'>
-                                                    {currency}{property.price?.value?.toLocaleString()}
-                                                </p>
+                                                )}
+
                                             </div>
+
+                                            </div>
+
                                         </div>
-                                    </div>
+                                        </div>
 
                                     {/* Proof upload */}
                                     <div>
@@ -811,4 +827,4 @@ const PropertyDetails = () => {
     );
 };
 
-export default PropertyDetails;
+export default PropertyDetails;
