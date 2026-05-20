@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const User = require('../../models/userModel')
 const { sendUserTokenCookie, generateToken, cookieOptions, sendToggleTokenCookie, normalizeRoles } = require('../../utils/tokenUtils')
 const Agency = require('../../models/agencyModel')
+const uploadToCloudinary = require('../../utils/uploadToCloudinary')
 
 const buildFullAddress = (location = {}) => {
     return [location.tole, location.city, location.district, location.province]
@@ -132,6 +133,33 @@ exports.updateMyProfile = async(req, res) => {
         runValidators : true    //validate the frontend data according to User model/schema
     }).select(['-password', '-__v'])
 
+    // Update agency payment fields if user has owner role
+    let updatedAgency = null;
+    if (normalizeRoles(updatedProfile.role).includes('owner')) {
+        const { esewaId } = req.body;
+        const agencyUpdate = {};
+        
+        if (esewaId !== undefined) agencyUpdate.esewaId = esewaId;
+        
+        if (req.file) {
+            const qrResult = await uploadToCloudinary(req.file.buffer, "agency-esewa-qr");
+            agencyUpdate.esewaQr = {
+                url: qrResult.url,
+                public_id: qrResult.public_id,
+            };
+        }
+        
+        if (Object.keys(agencyUpdate).length > 0 || req.file) {
+            updatedAgency = await Agency.findOneAndUpdate(
+                { owner: userId },
+                { $set: agencyUpdate },
+                { new: true, runValidators: true }
+            );
+        } else {
+            updatedAgency = await Agency.findOne({ owner: userId });
+        }
+    }
+
     // Refresh auth cookie so role-based middleware sees the latest role immediately.
     const refreshedRole = Array.isArray(updateFields.role) ? updateFields.role[0] : (updateFields.role || req.user.role)
     const refreshedToken = generateToken(updatedProfile._id, refreshedRole)
@@ -146,7 +174,8 @@ exports.updateMyProfile = async(req, res) => {
             currentActiveRole: req.user.role,
             fullAddress: buildFullAddress(updatedProfile.location),
             joinedDate: updatedProfile.createdAt,
-        }
+        },
+        ...(updatedAgency ? { agency: updatedAgency } : {})
     })
 }
 

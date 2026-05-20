@@ -19,24 +19,14 @@ const agencySchema = new mongoose.Schema({
         unique: true
     },
 
-    paymentMethods: {
-        khalti: {
-            isEnabled: { type: Boolean, default: false },
-            number: { type: String },
-            qr: {
-              url: { type: String },
-              public_id: { type: String }
-            }
-        },
+    esewaId: {
+        type: String,
+        required: true
+    },
 
-        esewa: {
-            isEnabled: { type: Boolean, default: false },
-            number: { type: String },
-            qr: {
-              url: { type: String },
-              public_id: { type: String }
-            }
-        }
+    esewaQr: {
+        url: { type: String, required: true },
+        public_id: { type: String, required: true }
     },
 
     otp: {

@@ -4,24 +4,38 @@ const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../services/sendEmail');
 const User = require('../models/userModel');
 const { destroyCookie, sendTokenCookie, sendOwnerTokenCookie } = require('../utils/tokenUtils');
+const uploadToCloudinary = require('../utils/uploadToCloudinary');
 
 
 
 // REGISTER AGENCY
 exports.registerAgency = async (req, res) => {
   try {
-    const { name, contact, email, role, location } = req.body;
+    const { name, contact, email, role, location, esewaId } = req.body;
     const tenantId = req.user.id;
 
-
-    if (!name || !email || !contact || !location || !location.province || !location.district ||!location.city) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
+    let parsedLocation = {};
+    if (typeof location === 'string') {
+      try {
+        parsedLocation = JSON.parse(location);
+      } catch (err) {
+        // Ignored — location may arrive as flat fields
+      }
+    } else if (location && typeof location === 'object') {
+      parsedLocation = location;
     }
 
-    // console.log("form reg agency ", req.body);          //debug
+    const province = parsedLocation.province || req.body.province || (req.body.location && req.body.location.province);
+    const district = parsedLocation.district || req.body.district || (req.body.location && req.body.location.district);
+    const city = parsedLocation.city || req.body.city || (req.body.location && req.body.location.city);
+    const tole = parsedLocation.tole || req.body.tole || (req.body.location && req.body.location.tole) || "";
+
+    if (!name || !email || !contact || !province || !district || !city || !esewaId) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required (including eSewa ID)",
+      });
+    }
 
     // Get user (source of truth)
     const tenant = await User.findById(tenantId);
@@ -32,22 +46,38 @@ exports.registerAgency = async (req, res) => {
       });
     }
 
-    // Check if user already has an agency
+    // Check if user already has an agency (retry registration)
     const existingAgency = await Agency.findOne({ owner: tenantId });
     if (existingAgency) {
         const otp = generateOtp();
         const hashedOtp = await bcrypt.hash(otp, 10);
 
-        const agency = await Agency.findOneAndUpdate({ owner: tenantId }, {
+        const qrResult = req.file ? await uploadToCloudinary(req.file.buffer, "agency-esewa-qr") : undefined;
+
+        const updateFields = {
+            name,
+            email,
+            contact,
+            location: { province, district, city, tole },
+            esewaId,
             otp: hashedOtp,
-            otpExpiry: Date.now() + 1 * 60 * 1000, // OTP valid for 1 minute,
+            otpExpiry: Date.now() + 1 * 60 * 1000,
             isOtpVerified: false,
-        }, { returnDocument: 'after' });
+        };
+
+        if (qrResult) {
+            updateFields.esewaQr = {
+                url: qrResult.url,
+                public_id: qrResult.public_id,
+            };
+        }
+
+        await Agency.findOneAndUpdate({ owner: tenantId }, updateFields, { returnDocument: 'after' });
 
         await sendEmail({
-        email: email,
-        subject: "OTP for HouseRentalNepal agency registration",
-        message: `${otp}`,
+          email: email,
+          subject: "OTP for EasyRentNepal agency registration",
+          message: `${otp}`,
         });
 
         return res.status(400).json({
@@ -56,7 +86,7 @@ exports.registerAgency = async (req, res) => {
         });
     }
 
-    //  Use logged-in user's email (not from frontend)
+    // Email must match user's registered email
     if (tenant && tenant.email !== email) {
       return res.status(400).json({
         success: false,
@@ -64,30 +94,40 @@ exports.registerAgency = async (req, res) => {
       });
     }
 
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "eSewa QR Image upload is required",
+      });
+    }
+
     const otp = generateOtp();
     const hashedOtp = await bcrypt.hash(otp, 10);
+
+    const qrResult = await uploadToCloudinary(req.file.buffer, "agency-esewa-qr");
 
     const agency = await Agency.create({
       name,
       email,
       contact,
-      location: {
-        province: location.province,
-        district: location.district,
-        city: location.city,
-        tole: location.tole || "",
+      location: { province, district, city, tole },
+      esewaId,
+      esewaQr: {
+        url: qrResult.url,
+        public_id: qrResult.public_id,
       },
       owner: tenantId,
       otp: hashedOtp,
-      otpExpiry: Date.now() + 1 * 60 * 1000, // OTP valid for 1 minute,
+      otpExpiry: Date.now() + 1 * 60 * 1000,
       isOtpVerified: false,
     });
 
-    await User.findByIdAndUpdate(tenantId, { $addToSet: { role: 'owner' } }); // Add 'owner' role to user if not already present, dont overwrite or create duplicate roles
+    // Add 'owner' role to user
+    await User.findByIdAndUpdate(tenantId, { $addToSet: { role: 'owner' } });
 
     await sendEmail({
       email: email,
-      subject: "OTP for HouseRentalNepal agency registration",
+      subject: "OTP for EasyRentNepal agency registration",
       message: `${otp}`,
     });
 
@@ -105,10 +145,6 @@ exports.registerAgency = async (req, res) => {
 };
 
 
-
-
-
-
 // VERIFY OTP
 exports.verifyAgencyRegisterOtp = async (req, res) => {
   try {
@@ -123,7 +159,7 @@ exports.verifyAgencyRegisterOtp = async (req, res) => {
     if (!agency) return res.status(404).json({ message: "Agency not found" });
 
     if (agency.isOtpVerified) {
-        destroyCookie(res, 'auth_token');  // Clear any existing auth token cookie on OTP verification (important if user had a previous session)
+        destroyCookie(res, 'auth_token');
         const cookieData = { _id: agency._id, email: agency.email, role: 'owner' };
         return sendOwnerTokenCookie(res, 200, 'Agency registered successfully', cookieData);
     }
@@ -144,25 +180,9 @@ exports.verifyAgencyRegisterOtp = async (req, res) => {
 
     await agency.save();
 
-    // Add 'owner' role to the user if not already present
-    // try {
-    //   const user = await User.findById(agency.owner).select('+role');
-    //   if (user) {
-    //     const roles = Array.isArray(user.role) ? user.role.slice() : (user.role ? [user.role] : []);
-    //     if (!roles.includes('owner')) {
-    //       roles.push('owner');
-    //       user.role = roles;
-    //       await user.save();
-    //     }
-    //   }
-    // } catch (err) {
-    //   console.error('Error appending owner role to user:', err.message);
-    // }
-    
-    await User.findByIdAndUpdate(tenant._id, { $addToSet: { role: 'owner' } }); // Add 'owner' role to user if not already present, dont overwrite or create duplicate roles
+    await User.findByIdAndUpdate(tenant._id, { $addToSet: { role: 'owner' } });
 
-    destroyCookie(res, 'auth_token'); // Clear any existing auth token cookie on OTP verification (important if user had a previous session)
-    // ALWAYS use the actual User._id, not Agency._id
+    destroyCookie(res, 'auth_token');
     const cookieData = { _id: tenant._id, email: tenant.email, role: 'owner' };
     return sendOwnerTokenCookie(res, 200, 'Agency registered successfully', cookieData);
   } catch (error) {
@@ -191,20 +211,19 @@ exports.resendOtp = async (req, res) => {
 
     await sendEmail({
         email: email,
-        subject: "OTP for HouseRentalNepal agency registration",
+        subject: "OTP for EasyRentNepal agency registration",
         message: `${otp}`
     })
 
     res.status(200).json({
       success: true,
-      message: "OTP resent for house rental agency registration",
+      message: "OTP resent for agency registration",
     });
 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 
 

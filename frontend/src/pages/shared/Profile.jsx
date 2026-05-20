@@ -15,6 +15,7 @@ import {
   Loader2,
   CheckCircle,
   Shield,
+  CreditCard,
 } from 'lucide-react'
 
 const PROVINCES = [
@@ -96,13 +97,18 @@ function SelectField({ label, id, value, onChange, options, placeholder }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Profile() {
-  const { userProfile, profileServices, getUserProfile } = useAppContext()
+  const { userProfile, profileServices, getUserProfile, agency, setAgency } = useAppContext()
 
   // ── Profile form state ────────────────────────────────────────────────────
   const [form, setForm] = useState({
     name: '', email: '', phoneNumber: '',
     province: '', district: '', city: '', tole: '',
   })
+
+  // ── Agency payment state ──────────────────────────────────────────────────
+  const [esewaId, setEsewaId] = useState('')
+  const [qrImage, setQrImage] = useState(null)
+  const [qrPreview, setQrPreview] = useState('')
   const [formErrors, setFormErrors] = useState({})
   const [profileSaving, setProfileSaving] = useState(false)
   const [profileSuccess, setProfileSuccess] = useState(false)
@@ -136,6 +142,14 @@ export default function Profile() {
       userProfile?.profileImage?.url || userProfile?.profileImage || ''
     )
   }, [userProfile])
+
+  // ── Sync agency → form ────────────────────────────────────────────────────
+  useEffect(() => {
+    if (agency) {
+      setEsewaId(agency.esewaId || '')
+      setQrPreview(agency.esewaQr?.url || '')
+    }
+  }, [agency])
 
   const activeRole = getActiveRole(userProfile)
 
@@ -189,24 +203,58 @@ export default function Profile() {
     e.preventDefault()
     const errors = validateProfile()
     if (Object.keys(errors).length) { setFormErrors(errors); return }
+
+    if (activeRole === 'owner') {
+      if (!esewaId.trim()) {
+        toast.error('eSewa ID is required')
+        return
+      }
+      if (!qrPreview) {
+        toast.error('eSewa QR Image is required')
+        return
+      }
+    }
+
     setFormErrors({})
     setProfileSaving(true)
     setProfileSuccess(false)
     try {
-      const payload = {
-        name:        form.name.trim(),
-        email:       form.email.trim(),
-        phoneNumber: form.phoneNumber.trim(),
-        location: {
+      let payload;
+      if (activeRole === 'owner') {
+        payload = new FormData();
+        payload.append('name', form.name.trim());
+        payload.append('email', form.email.trim());
+        payload.append('phoneNumber', form.phoneNumber.trim());
+        payload.append('location', JSON.stringify({
           province: form.province,
           district: form.district.trim(),
           city:     form.city.trim(),
           tole:     form.tole.trim(),
-        },
+        }));
+        payload.append('esewaId', esewaId.trim());
+        if (qrImage) {
+          payload.append('qrImage', qrImage);
+        }
+      } else {
+        payload = {
+          name:        form.name.trim(),
+          email:       form.email.trim(),
+          phoneNumber: form.phoneNumber.trim(),
+          location: {
+            province: form.province,
+            district: form.district.trim(),
+            city:     form.city.trim(),
+            tole:     form.tole.trim(),
+          },
+        }
       }
+
       const res = await profileServices.updateProfile(payload)
       if (res?.success) {
         await getUserProfile()
+        if (res.agency) {
+          setAgency(res.agency)
+        }
         setProfileSuccess(true)
         toast.success('Profile updated successfully!')
         setTimeout(() => setProfileSuccess(false), 3000)
@@ -415,6 +463,67 @@ export default function Profile() {
           </div>
         </form>
       </SectionCard>
+
+      {/* ── Payment Information ────────────────────────────────────────── */}
+      {activeRole === 'owner' && (
+        <SectionCard title="eSewa Payment Information" icon={CreditCard}>
+          <div className="flex flex-col gap-5">
+            {/* eSewa ID */}
+            <InputField
+              label="eSewa ID / Phone"
+              id="esewaId"
+              value={esewaId}
+              onChange={(e) => setEsewaId(e.target.value)}
+              placeholder="e.g. 9807XXXXXX"
+              required
+            />
+
+            {/* eSewa QR Image */}
+            <div>
+              <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">
+                eSewa QR Code <span className="text-red-400 ml-0.5">*</span>
+              </label>
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <label className="w-full sm:w-auto flex-1 cursor-pointer">
+                  <div className="border-2 border-dashed border-slate-300 hover:border-green-400 hover:bg-green-50/30 rounded-xl p-4 text-center transition bg-slate-50">
+                    <div className="text-xl mb-1">📱</div>
+                    <span className="text-sm text-slate-600">
+                      {qrPreview ? 'Click to replace QR image' : 'Click to upload eSewa QR'}
+                    </span>
+                    <p className="text-[11px] text-slate-400 mt-0.5">PNG, JPG (max 5MB)</p>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          if (!file.type.startsWith('image/')) {
+                            toast.error('Please upload an image file')
+                            return
+                          }
+                          setQrImage(file)
+                          const reader = new FileReader()
+                          reader.onload = () => setQrPreview(reader.result)
+                          reader.readAsDataURL(file)
+                        }
+                      }}
+                      className="hidden"
+                    />
+                  </div>
+                </label>
+                {qrPreview && (
+                  <div className="relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-green-200 bg-white shadow flex-shrink-0">
+                    <img src={qrPreview} alt="eSewa QR" className="w-full h-full object-contain" />
+                    <div className="absolute bottom-0 inset-x-0 bg-green-600/80 text-white text-[9px] text-center py-0.5 font-semibold">
+                      eSewa QR
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </SectionCard>
+      )}
 
       {/* ── Change password ────────────────────────────────────────────── */}
       <SectionCard title="Change Password" icon={Lock}>
