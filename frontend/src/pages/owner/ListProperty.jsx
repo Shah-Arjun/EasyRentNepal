@@ -52,8 +52,8 @@ const ListProperty = () => {
             </div>
           ) : localProperties && localProperties.length > 0 ? (
             localProperties.map((property, index) => (
-              <div key={property._id} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-6 py-3 bg-secondary/5 text-gray-50 medium-14 font-semibold border-b border-slate-900/15'>
-                <div className='hidden lg:block'>{index + 1}</div>
+              <div key={property._id} className='flex justify-between items-center flex-wrap gap-2 sm:grid grid-cols-[2fr_2fr_1fr_1fr_0.5fr] lg:grid-cols-[0.5fr_2fr_2fr_1fr_1fr_0.5fr] px-4 py-3 bg-secondary/5 text-gray-50 medium-14 font-semibold border-b border-slate-900/15'>
+                <div className='hidden lg:block'>{property.propertyId}</div>
                 <div className='flexStart gap-x-2 rounded-lg'>
                   <div className='overflow-hidden rounded-lg'>
                     <img 

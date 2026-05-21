@@ -123,7 +123,6 @@ const PropertyDetails = () => {
                 }
             }
         } catch (error) {
-            console.error("Error deleting review:", error)
             toast.error(error.message || "Failed to delete review")
         } finally {
             setReviewLoading(false)
@@ -291,6 +290,9 @@ const PropertyDetails = () => {
                                 </div>
 
                                 <div className='flex items-center gap-4 mt-3'>
+                                    <span className='text-sm font-medium text-gray-500'>
+                                        ID: {property.propertyId}
+                                    </span>
                                     <span className='px-4 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium'>
                                         {property.category} • {property.listingType}
                                     </span>
