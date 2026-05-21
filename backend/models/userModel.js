@@ -95,6 +95,23 @@ const userSchema = new mongoose.Schema(
     //   default: [],
     // }
     
+    userPreferences: {
+      category: { type: String, default: "" },
+      listingType: { type: String, default: "" },
+      district: { type: String, default: "" },
+      municipality: { type: String, default: "" },
+      preferredAreas: { type: [String], default: [] },
+      minPrice: { type: Number, default: 0 },
+      maxPrice: { type: Number, default: 0 },
+      bedrooms: { type: Number, default: 0 },
+      bathrooms: { type: Number, default: 0 },
+      furnishedStatus: { type: String, default: "" },
+      facing: { type: String, default: "" },
+      searchHistory: { type: [String], default: [] },
+      recentSearch: { type: String, default: "" },
+      wishlistCategories: { type: [String], default: [] },
+      viewedCategories: { type: [String], default: [] }
+    },
   },
   {
     timestamps: true,

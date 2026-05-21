@@ -337,7 +337,7 @@ exports.editProperty = async (req, res) => {
 
 // GET ALL PROPERTY --> admin, tenant
 exports.getProperties = async(req, res) => {
-  const properties = await Property.find().populate('owner').select('-plot_embedding')    //returns array of properties
+  const properties = await Property.find().populate('owner').select('-plot_embedding').sort({ createdAt: -1 })    //returns array of properties sorted by newest first
   if(properties.length === 0){
     return res.status(400).json({
       success: false,
@@ -366,13 +366,24 @@ exports.getSingleProperty = async(req, res) => {
   }
   
   try {
-    const property = await Property.findById(id).populate('owner', 'name email contact profileImage').select('-plot_embedding')
+    // Increment the property views count
+    const property = await Property.findByIdAndUpdate(id, { $inc: { views: 1 } }, { new: true })
+      .populate('owner', 'name email contact profileImage')
+      .select('-plot_embedding');
 
     if(!property){
       return res.status(404).json({
         success: false,
         message: "No property found with that id"
       })
+    }
+
+    // If a logged-in user viewed the property, update their viewedCategories
+    if (req.user && req.user.id) {
+      const User = require("../../models/userModel");
+      await User.findByIdAndUpdate(req.user.id, {
+        $addToSet: { "userPreferences.viewedCategories": property.category }
+      }).catch(err => console.error("Error updating viewedCategories preference:", err));
     }
 
     // Also find the agency associated with the owner, if the owner still exists

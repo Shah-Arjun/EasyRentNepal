@@ -79,8 +79,15 @@ exports.getRecommendPropertiesBySearchTerm = async (req, res) => {
         const aggregationPipeline = getAggregationPipeline(plot_embedding);      // calls aggregation pipeline function to build the vector search query based on embeddings
         
         const searchResult = await Property.aggregate(aggregationPipeline)      // runs the vector search on MongoDB and converts results to an array.
-                           
         
+        // If a logged-in user is searching, update their searchHistory and recentSearch preferences
+        if (req.user && req.user.id) {
+            const User = require("../../models/userModel");
+            await User.findByIdAndUpdate(req.user.id, {
+                $set: { "userPreferences.recentSearch": query.trim() },
+                $addToSet: { "userPreferences.searchHistory": query.trim() }
+            }).catch(err => console.error("Error updating search preference:", err));
+        }
 
         res.status(200).json({
             success: true,
@@ -95,4 +102,41 @@ exports.getRecommendPropertiesBySearchTerm = async (req, res) => {
             error: error.message
         });
     }
-}
+};
+
+// GET recommended properties using cosine similarity algorithm based on userPreferences or req.body.preferences
+exports.getPropertiesRecommendations = async (req, res) => {
+    try {
+        let preferences = {};
+
+        if (req.user && req.user.id) {
+            const User = require("../../models/userModel");
+            const user = await User.findById(req.user.id);
+            if (user && user.userPreferences) {
+                preferences = user.userPreferences.toObject ? user.userPreferences.toObject() : user.userPreferences;
+            }
+        }
+
+        // If request body has specific preferences, override/merge them
+        if (req.body && req.body.preferences) {
+            preferences = { ...preferences, ...req.body.preferences };
+        }
+
+        const { getRecommendedProperties } = require("../../services/recommendationService");
+        const recommended = await getRecommendedProperties(preferences, req.user ? req.user.id : null);
+
+        res.status(200).json({
+            success: true,
+            message: "Properties recommended successfully",
+            count: recommended.length,
+            data: recommended
+        });
+    } catch (error) {
+        console.error("Error in getPropertiesRecommendations:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            error: error.message
+        });
+    }
+};
