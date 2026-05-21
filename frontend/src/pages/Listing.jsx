@@ -4,7 +4,7 @@ import Item from "../components/Item";
 import { useSearchParams } from "react-router-dom";
 import { assets, cities } from "../assets/data";
 import ItemSkeleton from "../components/ItemSkeleton";
-
+import RecommendedProperties from "../components/RecommendedProperties";
 
 
 const Listing = () => {
@@ -342,7 +342,12 @@ const Listing = () => {
           )}
         </div>
       </div>
+
+      {/* Recommended For You — personalized AI recommendations based on user preferences */}
+      <div className="pb-16">
+        <RecommendedProperties />
+      </div>
     </div>
   );
 };
-export default Listing;
+export default Listing;
