@@ -80,6 +80,16 @@ export const propertyService = (axiosInstance) => {
       } catch (error) {
         throw error.response?.data || error.message
       }
+    },
+
+    // Get recommended properties based on user preferences or custom body
+    getRecommendations: async (preferences = {}) => {
+      try {
+        const { data } = await axiosInstance.post('/property/recommend', { preferences })
+        return data
+      } catch (error) {
+        throw error.response?.data || error.message
+      }
     }
   }
 }

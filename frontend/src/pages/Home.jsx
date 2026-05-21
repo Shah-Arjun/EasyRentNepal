@@ -1,6 +1,7 @@
 import Hero from '../components/Hero'
 import About from '../components/About'
 import FeaturedProperties from '../components/FeaturedProperties'
+import RecommendedProperties from '../components/RecommendedProperties'
 import Faq from '../components/Faq'
 import Cta from '../components/Cta'
 import Testimonial from '../components/Testimonial'
@@ -11,6 +12,7 @@ const Home = () => {
       <Hero />
       <About />
       <FeaturedProperties />
+      <RecommendedProperties />
       <Faq />
       <Cta />
       <Testimonial />
