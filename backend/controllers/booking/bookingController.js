@@ -9,23 +9,26 @@ const uploadToCloudinary = require('../../utils/uploadToCloudinary');
 exports.createBooking = async (req, res) => {
   try {
     console.log("Create booking hit ");
-    // console.log(req.user);
-    // console.log(req.body);
     const tenantId = req.user.id;
-
-    // console.log(req.user.id);
     const { propertyId, startDate } = req.body;
 
     if (!propertyId) {
       return res.status(400).json({ success: false, message: 'Property is required' });
     }
 
-    const property = await Property.findById(propertyId);
+    // Populate owner (Agency) to get the owner's User ID
+    const property = await Property.findById(propertyId).populate('owner');
     if (!property) {
       return res.status(404).json({ success: false, message: 'Property not found' });
     }
 
-    if (String(property.owner._id) === tenantId) {
+    if (!property.owner || !property.owner.owner) {
+      return res.status(400).json({ success: false, message: 'Property owner / Agency association not found' });
+    }
+
+    const ownerUserId = property.owner.owner;
+
+    if (String(ownerUserId) === tenantId) {
       return res.status(400).json({ success: false, message: 'You cannot book your own property' });
     }
 
@@ -46,10 +49,10 @@ exports.createBooking = async (req, res) => {
       proofImageData = await uploadToCloudinary(req.file.buffer, 'booking-proofs');
     }
 
-    // Create Booking
+    // Create Booking storing the owner's User ID
     const booking = await Booking.create({
       tenant: tenantId,
-      owner: property.owner._id,
+      owner: ownerUserId,
       property: propertyId,
       startDate: new Date(startDate),
       totalAmount: property.price?.value || 0,
@@ -57,10 +60,10 @@ exports.createBooking = async (req, res) => {
       paymentStatus: 'pending',
     });
 
-    // Create linked Payment record
+    // Create linked Payment record storing the owner's User ID
     await Payment.create({
       tenantId,
-      ownerId: property.owner._id,
+      ownerId: ownerUserId,
       propertyId,
       bookingId: booking._id,
       amount: property.price?.value || 0,
@@ -85,10 +88,23 @@ exports.getTenantBookings = async (req, res) => {
   try {
     const tenantId = req.user.id;
 
-    const bookings = await Booking.find({ tenant: tenantId, isDeleted: { $ne: true } })
-      .populate('property', 'title images price location status category listingType')
-      .populate('owner', 'name email phoneNumber')
-      .sort({ createdAt: -1 });
+    const bookings = await Booking.find({
+      tenant: tenantId,
+      isDeleted: { $ne: true }
+    })
+    .populate({
+      path: "property",
+      select: "propertyId title images price location status category listingType owner",
+      populate: {
+        path: "owner",
+        model: "Agency",
+        select: "name email contact"
+      }
+    })
+    .sort({ createdAt: -1 });
+
+      // console.log(bookings)
+
 
     // Attach payment proof for each booking
     const bookingIds = bookings.map((b) => b._id);
@@ -113,10 +129,25 @@ exports.getTenantBookings = async (req, res) => {
 exports.getOwnerBookings = async (req, res) => {
   try {
     const ownerId = req.user.id;
+    const Agency = require('../../models/agencyModel');
 
-    const bookings = await Booking.find({ owner: ownerId, isDeleted: { $ne: true } })
+    // Find the agency owned by the logged-in owner User
+    const agency = await Agency.findOne({ owner: ownerId });
+
+    // Retrieve bookings owned by either the owner's User ID or their Agency ID
+    const query = { isDeleted: { $ne: true } };
+    if (agency) {
+      query.$or = [
+        { owner: ownerId },
+        { owner: agency._id }
+      ];
+    } else {
+      query.owner = ownerId;
+    }
+
+    const bookings = await Booking.find(query)
       .populate('tenant', 'name email phoneNumber profileImage')
-      .populate('property', 'title images price location status category listingType')
+      .populate('property', 'propertyId title images price location status category listingType')
       .sort({ createdAt: -1 });
 
     // Attach payment proof
@@ -138,14 +169,28 @@ exports.getOwnerBookings = async (req, res) => {
 };
 
 
-// ─── OWNER: Update booking and payment status dynamically ────────────────────
 exports.updateBookingStatus = async (req, res) => {
   try {
     const ownerId = req.user.id;
     const { bookingId } = req.params;
     const { bookingStatus, paymentStatus, propertyStatus, reason } = req.body;
+    const Agency = require('../../models/agencyModel');
 
-    const booking = await Booking.findOne({ _id: bookingId, owner: ownerId });
+    // Find the agency owned by the logged-in owner User
+    const agency = await Agency.findOne({ owner: ownerId });
+
+    // Ensure the owner can only access bookings belonging to them (by User ID or Agency ID)
+    const query = { _id: bookingId };
+    if (agency) {
+      query.$or = [
+        { owner: ownerId },
+        { owner: agency._id }
+      ];
+    } else {
+      query.owner = ownerId;
+    }
+
+    const booking = await Booking.findOne(query);
     if (!booking) {
       return res.status(404).json({ success: false, message: 'Booking not found or unauthorised' });
     }

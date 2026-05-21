@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const generatePropertyId = require("../utils/generatePropertyId");
 
 const provinceEnum = [
   "Koshi",
@@ -14,6 +15,13 @@ const provinceEnum = [
 
 const propertySchema = new mongoose.Schema(
   {
+    propertyId: {
+      type: String,
+      unique: true,
+      sparse: true,
+      index: true,
+    },
+
     //Basic
     title: {
       type: String,
@@ -182,6 +190,14 @@ propertySchema.index({
   'location.tole': 'text'
 }, {
   weights: { title: 10, fullDescription: 5, 'location.municipality': 3, 'location.district': 2 }
+});
+
+
+// to generate unique propertyId before saving
+propertySchema.pre("save", async function () {
+  if (!this.propertyId) {
+    this.propertyId = await generatePropertyId();
+  }
 });
 
 
