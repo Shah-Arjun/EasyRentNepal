@@ -3,6 +3,8 @@ const Payment = require('../../models/paymentModel');
 const Property = require('../../models/propertyModel');
 const uploadToCloudinary = require('../../utils/uploadToCloudinary');
 
+
+
 // ─── TENANT: Create booking + upload proof ───────────────────────────────────
 exports.createBooking = async (req, res) => {
   try {
@@ -12,10 +14,10 @@ exports.createBooking = async (req, res) => {
     const tenantId = req.user.id;
 
     // console.log(req.user.id);
-    const { propertyId, startDate, endDate } = req.body;
+    const { propertyId, startDate } = req.body;
 
-    if (!propertyId || !startDate || !endDate) {
-      return res.status(400).json({ success: false, message: 'Property, startDate and endDate are required' });
+    if (!propertyId) {
+      return res.status(400).json({ success: false, message: 'Property is required' });
     }
 
     const property = await Property.findById(propertyId);
@@ -49,8 +51,7 @@ exports.createBooking = async (req, res) => {
       tenant: tenantId,
       owner: property.owner._id,
       property: propertyId,
-      startDate,
-      endDate,
+      startDate: new Date(startDate),
       totalAmount: property.price?.value || 0,
       status: 'pending',
       paymentStatus: 'pending',
