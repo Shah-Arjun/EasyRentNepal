@@ -153,6 +153,8 @@ const PropertyDetails = () => {
 
 
     useEffect(() => {
+// console.log(property)
+
         if (property?._id) fetchRecommendedProperties();
     }, [property?._id]);
 
@@ -417,7 +419,24 @@ const PropertyDetails = () => {
                                     <h4 className='h4 mb-3'>Full Description</h4>
                                     <p className='text-gray-700 leading-relaxed'>{property.fullDescription}</p>
                                 </div>
+
+                                {/* youtube video url */}
+                                {property.videoUrl && (
+                                    <div className='mt-10'>
+                                    <h4 className='h4 mb-3'>YouTube Video</h4>
+
+                                    <a
+                                    href={property.videoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className='inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline break-all'
+                                    >
+                                    Click to watch the video tour
+                                    </a>
+                                </div>
+                                )}
                             </div>
+
 
                             {/* Reviews Section */}
                             <div className='p-6 rounded-2xl border border-slate-900/10 bg-white'>
