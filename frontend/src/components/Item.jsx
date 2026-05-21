@@ -14,25 +14,25 @@ const Item = ({ property }) => {
         <img src={property.images[0]?.url || property?.images[0] || "https://propertynepal.com/images/properties/1026/168405890059.jpg"} alt={property.title}
           className='h-[13rem] w-full aspect-square object-cover rounded-t-xl'/>
         
-        {/* Wishlist Toggle Button */}
+        {/* Watchlist Toggle Button */}
         <button 
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             if (!isLoggedIn) {
               import('react-toastify').then(({ toast }) => {
-                toast.info("Please login first to keep properties in your wishlist.");
+                toast.info("Please login first to keep properties in your Watchlist.");
               });
               return;
             }
             toggleWishlist(property._id);
             const isWished = wishlist.some(item => item._id === property._id);
             import('react-toastify').then(({ toast }) => {
-              toast.success(isWished ? 'Removed from wishlist' : 'Added to wishlist');
+              toast.success(isWished ? 'Removed from Watchlist' : 'Added to Watchlist');
             });
           }}
           className='absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm shadow-sm transition-all z-10 group'
-          title={wishlist?.some(item => item._id === property._id) ? "Remove from wishlist" : "Add to wishlist"}
+          title={wishlist?.some(item => item._id === property._id) ? "Remove from Watchlist" : "Add to Watchlist"}
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

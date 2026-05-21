@@ -197,14 +197,6 @@ const PropertyDetails = () => {
     // Submit Booking + Payment proof
     const handlePaymentSubmit = async () => {
         setBookingError('');
-        if (!startDate || !endDate) {
-            setBookingError('Please select move-in and move-out dates.');
-            return;
-        }
-        if (new Date(endDate) <= new Date(startDate)) {
-            setBookingError('Move-out date must be after move-in date.');
-            return;
-        }
         if (!proofImage) {
             setBookingError('Please upload your payment proof screenshot.');
             return;
@@ -215,8 +207,8 @@ const PropertyDetails = () => {
 
             const formData = new FormData();
             formData.append('propertyId', id);
-            formData.append('startDate', startDate);
-            formData.append('endDate', endDate);
+            // formData.append('startDate', startDate);
+            // formData.append('endDate', endDate);
             formData.append('paymentMethod', 'QR Code');  // since we're showing account details, we can just label it as "QR Code" for simplicity
             formData.append('proofImage', proofImage);
 
@@ -554,15 +546,15 @@ const PropertyDetails = () => {
                                                 return;
                                             }
                                             if (activeRole !== 'tenant') {
-                                                toast.error("Only tenants can use the wishlist");
+                                                toast.error("Only tenants can use the watchlist");
                                                 return;
                                             }
                                             toggleWishlist(property._id);
                                             const isWished = wishlist?.some(item => item._id === property._id);
-                                            toast.success(isWished ? 'Removed from wishlist' : 'Added to wishlist');
+                                            toast.success(isWished ? 'Removed from watchlist' : 'Added to watchlist');
                                         }}
                                         className='px-5 py-4 border-2 border-slate-200 hover:border-rose-200 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-2xl flex items-center justify-center transition-all active:scale-[0.98] group'
-                                        title="Wishlist"
+                                        title="Watchlist"
                                     >
                                         <svg 
                                             xmlns="http://www.w3.org/2000/svg" 
@@ -624,6 +616,8 @@ const PropertyDetails = () => {
                     </div>
                 </div>
 
+
+
                 {/* Recommended Properties */}
                 <div className="max-padd-container py-20">
                     <h3 className='h3 mb-8'>Recommended For You</h3>
@@ -681,7 +675,7 @@ const PropertyDetails = () => {
                                     )}
 
                                     {/* Dates */}
-                                    <div className='grid grid-cols-2 gap-3'>
+                                    {/* <div className='grid grid-cols-2 gap-3'>
                                         <div>
                                             <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-in Date</label>
                                             <input
@@ -702,7 +696,8 @@ const PropertyDetails = () => {
                                                 className='w-full p-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-secondary outline-none'
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
+
 
                                     {/* Payment method selector */}
                                     <div>
