@@ -4,7 +4,7 @@ import Item from "../components/Item";
 import { useSearchParams } from "react-router-dom";
 import { assets, cities } from "../assets/data";
 import ItemSkeleton from "../components/ItemSkeleton";
-
+import RecommendedProperties from "../components/RecommendedProperties";
 
 
 const Listing = () => {
@@ -13,7 +13,7 @@ const Listing = () => {
   const [category, setCategory] = useState([]);
   const [bedrooms, setBedrooms] = useState('');
   const [priceRange, setPriceRange] = useState([]);
-  const [sortType, setSortType] = useState('Relevant');
+  const [sortType, setSortType] = useState('Newest');
   const [searchParams, setSearchParams] = useSearchParams();      //to get searched text from url
   const searchText = searchParams.get("location") || "";  //get from Hero section search and store search text from url  eg. /listing?location=Kathmandu
   const [locationInput, setLocationInput] = useState(searchText);   // to control the input field value
@@ -125,8 +125,9 @@ const Listing = () => {
       case 'High to Low':
         setFilterProperties(tempProperties.sort((a,b) => (b.price?.value || 0) - (a.price?.value || 0)));
         break;
+      case 'Newest':
       default:
-        setFilterProperties(tempProperties);
+        setFilterProperties(tempProperties.sort((a,b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)));
         break;
     }
   };
@@ -198,10 +199,11 @@ const Listing = () => {
           <div className="py-3">
             <h5 className="h5 mb-3">Sort By</h5>
             <select 
+              value={sortType}
               onChange={(e) => setSortType(e.target.value)}
               className="bg-secondary/10 border border-slate-900/10 outline-none text-gray-30 medium-14 h-8 w-full rounded px-2"
             >
-              <option value="Relevant">Relevant</option>
+              <option value="Newest">Newest First</option>
               <option value="Low to High">Low to High</option>
               <option value="High to Low">High to Low</option>
             </select>
@@ -340,7 +342,12 @@ const Listing = () => {
           )}
         </div>
       </div>
+
+      {/* Recommended For You — personalized AI recommendations based on user preferences */}
+      <div className="pb-16">
+        <RecommendedProperties />
+      </div>
     </div>
   );
 };
-export default Listing;
+export default Listing;

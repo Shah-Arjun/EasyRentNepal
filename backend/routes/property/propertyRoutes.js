@@ -10,12 +10,14 @@ const {
 } = require("../../controllers/property/propertyController");
 const catchAsync = require("../../services/catchAsync");
 const isAuthenticated = require("../../middleware/isAuthenticated");
+const isOptionalAuthenticated = require("../../middleware/isOptionalAuthenticated");
 const restrictTo = require("../../middleware/restrictTo");
 const upload = require("../../middleware/upload");
 const multer = require("multer");
 const {
   getSimilarRecommendProperties,
   getRecommendPropertiesBySearchTerm,
+  getPropertiesRecommendations,
 } = require("../../controllers/property/recommendController");
 
 const router = require("express").Router();
@@ -51,12 +53,13 @@ router
   .route("/owner-dashboard")
   .get(isAuthenticated, restrictTo("owner"), catchAsync(getOwnerDashboardData));
   
-router.route("/search").get(catchAsync(getRecommendPropertiesBySearchTerm));
+router.route("/search").get(isOptionalAuthenticated, catchAsync(getRecommendPropertiesBySearchTerm));
+router.route("/recommend").post(isOptionalAuthenticated, catchAsync(getPropertiesRecommendations));
 router.route("/recommend/:id").get(catchAsync(getSimilarRecommendProperties));
 
 router
   .route("/:id")
-  .get(catchAsync(getSingleProperty))
+  .get(isOptionalAuthenticated, catchAsync(getSingleProperty))
   .delete(isAuthenticated, restrictTo("owner"), catchAsync(deleteProperty))
   .patch(isAuthenticated, restrictTo("owner"), catchAsync(updatePropertyStatus))
   .put(isAuthenticated, restrictTo("owner"), upload.array("images", 5), catchAsync(editProperty),

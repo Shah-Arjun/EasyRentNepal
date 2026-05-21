@@ -34,6 +34,12 @@ exports.addToWishlist = async (req, res) => {
     //if not in wishlist then add it
     await Wishlist.create({ userId, propertyId })
 
+    // Update user preferences to include the wishlisted property's category
+    const User = require("../../models/userModel");
+    await User.findByIdAndUpdate(userId, {
+        $addToSet: { "userPreferences.wishlistCategories": propertyExist.category }
+    }).catch(err => console.error("Error updating wishlistCategories preference:", err));
+
     return res.status(200).json({
         success: true,
         message: "Property added to wishlist",

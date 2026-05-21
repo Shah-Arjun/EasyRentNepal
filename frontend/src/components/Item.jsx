@@ -14,6 +14,27 @@ const Item = ({ property }) => {
         <img src={property.images[0]?.url || property?.images[0] || "https://propertynepal.com/images/properties/1026/168405890059.jpg"} alt={property.title}
           className='h-[13rem] w-full aspect-square object-cover rounded-t-xl'/>
         
+        {/* Similarity Match Badge */}
+        {property.similarityScore !== undefined && (
+          property.isTrendingFallback ? (
+            <div className='absolute top-3 left-3 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[11px] font-extrabold shadow-lg flex items-center gap-1.5 backdrop-blur-sm bg-opacity-95 border border-white/20 transition-all duration-300 hover:scale-105'>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-100"></span>
+              </span>
+              <span>Trending</span>
+            </div>
+          ) : (
+            <div className='absolute top-3 left-3 px-2.5 py-1 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[11px] font-extrabold shadow-lg flex items-center gap-1 backdrop-blur-sm bg-opacity-95 border border-white/20 transition-all duration-300 hover:scale-105'>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-100"></span>
+              </span>
+              <span>{Math.round(property.similarityScore * 100)}% Match</span>
+            </div>
+          )
+        )}
+        
         {/* Watchlist Toggle Button */}
         <button 
           onClick={(e) => {
