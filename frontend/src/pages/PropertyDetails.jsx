@@ -26,7 +26,7 @@ const PropertyDetails = () => {
 
     // Booking form state
     const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    // const [endDate, setEndDate] = useState('');
     // const [paymentMethod, setPaymentMethod] = useState('Khalti');
     const [proofImage, setProofImage] = useState(null);
     const [proofPreview, setProofPreview] = useState(null);
@@ -155,9 +155,6 @@ const PropertyDetails = () => {
 
     useEffect(() => {
         if (property?._id) fetchRecommendedProperties();
-
-                console.log("propertydetail---", property)
-
     }, [property?._id]);
 
 
@@ -207,7 +204,7 @@ const PropertyDetails = () => {
 
             const formData = new FormData();
             formData.append('propertyId', id);
-            // formData.append('startDate', startDate);
+            formData.append('startDate', startDate);
             // formData.append('endDate', endDate);
             formData.append('paymentMethod', 'QR Code');  // since we're showing account details, we can just label it as "QR Code" for simplicity
             formData.append('proofImage', proofImage);
@@ -232,7 +229,7 @@ const PropertyDetails = () => {
 
     const resetBookingModal = () => {
         setStartDate('');
-        setEndDate('');
+        // setEndDate('');
         setProofImage(null);
         setProofPreview(null);
         setBookingError('');
@@ -675,9 +672,9 @@ const PropertyDetails = () => {
                                     )}
 
                                     {/* Dates */}
-                                    {/* <div className='grid grid-cols-2 gap-3'>
+                                    <div className='flex flex-col'>
+                                        <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-in Date</label>
                                         <div>
-                                            <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-in Date</label>
                                             <input
                                                 type='date'
                                                 value={startDate}
@@ -686,7 +683,7 @@ const PropertyDetails = () => {
                                                 className='w-full p-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-secondary outline-none'
                                             />
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <label className='block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide'>Move-out Date</label>
                                             <input
                                                 type='date'
@@ -695,8 +692,8 @@ const PropertyDetails = () => {
                                                 onChange={(e) => setEndDate(e.target.value)}
                                                 className='w-full p-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-secondary outline-none'
                                             />
-                                        </div>
-                                    </div> */}
+                                        </div> */}
+                                    </div>
 
 
                                     {/* Payment method selector */}
