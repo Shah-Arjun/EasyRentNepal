@@ -14,7 +14,7 @@ exports.addProperty = async (req, res) => {
 
   const owner = await Agency.findOne({ owner: userId })
 
-  console.log('hhhh---', owner._id)
+  // console.log('hhhh---', owner._id)
 
   // Simple fields
   const {

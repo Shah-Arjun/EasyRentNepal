@@ -34,7 +34,17 @@ export default function OwnerBookings() {
     }
   }, [bookingServices])
 
-  useEffect(() => { loadBookings() }, [loadBookings])
+
+
+  useEffect(() => { 
+
+    console.log("booking req--", bookings)
+
+    loadBookings() 
+  }, [loadBookings])
+
+
+
 
   const handleStatusUpdate = async (bookingId, field, value) => {
     let updates = {};
@@ -141,7 +151,7 @@ export default function OwnerBookings() {
                         <th className="p-3">Property ID</th>
                         <th className="p-3">Property</th>
                         <th className="p-3">Tenant</th>
-                        <th className="p-3">Booking Dates</th>
+                        <th className="p-3">Start Date</th>
                         <th className="p-3">Amount</th>
                         <th className="p-3">Payment</th>
                         <th className="p-3">Proof</th>
@@ -158,7 +168,7 @@ export default function OwnerBookings() {
 
                         {/* Property ID */}
                         <td className="p-3 font-semibold text-slate-700">
-                          ERN-01
+                          {booking.property?.propertyId}
                         </td>
 
                         {/* Property */}
@@ -192,10 +202,9 @@ export default function OwnerBookings() {
                           </div>
                         </td>
 
-                        {/* Dates */}
-                        <td className="p-3 text-xs text-slate-600">
-                          {new Date(booking.startDate).toLocaleDateString()} →{" "}
-                          {new Date(booking.endDate).toLocaleDateString()}
+                        {/* Start Date */}
+                        <td className="p-3 text-xs text-slate-600 font-medium">
+                          {booking.startDate ? new Date(booking.startDate).toLocaleDateString() : 'N/A'}
                         </td>
 
                         {/* Amount */}

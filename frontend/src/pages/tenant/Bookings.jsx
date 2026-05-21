@@ -69,8 +69,9 @@ export default function Bookings() {
           {/* TABLE HEADER */}
           <thead className="bg-slate-50 text-slate-600 text-xs uppercase">
             <tr>
+              <th className="p-3">Property ID</th>
               <th className="p-3">Property</th>
-              <th className="p-3">Dates</th>
+              <th className="p-3">Start Date</th>
               <th className="p-3">Amount</th>
               <th className="p-3">Payment</th>
               <th className="p-3">Status</th>
@@ -90,6 +91,11 @@ export default function Bookings() {
 
               return (
                 <tr key={booking._id} className="border-t hover:bg-slate-50 transition">
+
+                  {/* Property ID */}
+                  <td className="p-3 font-medium text-md text-slate-500 whitespace-nowrap">
+                    {booking.property?.propertyId}
+                  </td>
 
                   {/* Property */}
                   <td className="p-3">
@@ -112,10 +118,9 @@ export default function Bookings() {
                     </div>
                   </td>
 
-                  {/* Dates */}
-                  <td className="p-3 text-xs text-slate-600 whitespace-nowrap">
-                    {new Date(booking.startDate).toLocaleDateString()} →{" "}
-                    {new Date(booking.endDate).toLocaleDateString()}
+                  {/* Start Date */}
+                  <td className="p-3 text-xs text-slate-600 whitespace-nowrap font-medium">
+                    {booking.startDate ? new Date(booking.startDate).toLocaleDateString() : 'N/A'}
                   </td>
 
                   {/* Amount */}
@@ -140,9 +145,9 @@ export default function Bookings() {
 
                   {/* Owner */}
                   <td className="p-3 text-xs text-slate-600">
-                    {booking.owner?.name || "-"}
-                    {booking.owner?.phoneNumber && (
-                      <div className="text-slate-400">{booking.owner.phoneNumber}</div>
+                    {booking.owner?.name || booking.property.owner.name}
+                    {booking.property?.owner?.contact && (
+                      <div className="text-slate-400">{booking.property.owner.contact}</div>
                     )}
                   </td>
 

@@ -30,21 +30,7 @@ const bookingSchema = new mongoose.Schema(
 
     startDate: {
       type: Date,
-      required: [true, "Start date is required"],
-      // index: true
     },
-
-    endDate: {
-      type: Date,
-      required: [true, "End date is required"],
-      // index: true
-    },
-
-    // snapshot of rent at booking time (for history)
-    // rentAtBooking: {
-    //   type: Number,
-    //   required: true
-    // },
 
     status: {
       type: String,
