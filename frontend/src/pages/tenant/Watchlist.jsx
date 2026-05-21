@@ -11,9 +11,9 @@ export default function Watchlist() {
   const handleRemove = async (propertyId) => {
     try {
       await toggleWishlist(propertyId);
-      toast.success("Removed from wishlist");
+      toast.success("Removed from watchlist");
     } catch (error) {
-      toast.error("Failed to remove from wishlist");
+      toast.error("Failed to remove from watchlist");
     }
   };
 
@@ -28,7 +28,7 @@ export default function Watchlist() {
           <Heart size={24} className="fill-current" />
         </div>
         <div>
-          <h1 className='text-2xl font-bold text-slate-800'>My Wishlist</h1>
+          <h1 className='text-2xl font-bold text-slate-800'>My Watchlist</h1>
           <p className='text-slate-500 text-sm'>You have {wishlist?.length || 0} saved properties</p>
         </div>
       </div>
@@ -36,7 +36,7 @@ export default function Watchlist() {
       {(!wishlist || wishlist.length === 0) ? (
         <div className='flex flex-col items-center justify-center py-20 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200'>
           <Heart size={48} className='text-slate-300 mb-4' />
-          <h3 className='text-lg font-semibold text-slate-700 mb-1'>Your wishlist is empty</h3>
+          <h3 className='text-lg font-semibold text-slate-700 mb-1'>Your watchlist is empty</h3>
           <p className='text-slate-500 mb-6 max-w-sm'>Start exploring properties and click the heart icon to save them here for later.</p>
           <Link
             to='/listing'

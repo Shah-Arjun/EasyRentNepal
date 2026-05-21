@@ -112,12 +112,12 @@ const Header = () => {
               )
             )}
 
-            {/* Wishlist icon for tenant */}
+            {/* Watchlist icon for tenant */}
             {isLoggedIn && !isOwner && (
               <Link
                 to="/tenant/watchlist"
                 className={`flex items-center gap-2 ${active ? "bg-secondary" : "bg-primary"} ring-1 ring-slate-900/10 px-4 py-2 rounded-full hover:scale-105 transition-all cursor-pointer`}
-                title="My Wishlist"
+                title="My Watchlist"
               >
                 <div className="relative flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-rose-500">
@@ -129,7 +129,7 @@ const Header = () => {
                     </span>
                   )}
                 </div>
-                <span className="hidden sm:block text-[14px] font-medium text-black">Wishlist</span>
+                <span className="hidden sm:block text-[14px] font-medium text-black">Watchlist</span>
               </Link>
             )}
             
