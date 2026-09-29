@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 
-const reviewSchema = new mongoose.Schema(
-  {
+const reviewSchema = new mongoose.Schema({
     userId: {         //foreign key
       type: Schema.Types.ObjectId,    //for tenantId referenced to User model, stores tenant id
       ref: "User",
@@ -43,7 +42,6 @@ const reviewSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
-
 
 
 const Review = mongoose.model("Review", reviewSchema)
