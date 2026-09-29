@@ -11,10 +11,7 @@ const provinceEnum = [
   "Sudurpashchim",
 ];
 
-
-
-const propertySchema = new mongoose.Schema(
-  {
+const propertySchema = new mongoose.Schema({
     propertyId: {
       type: String,
       unique: true,
@@ -42,12 +39,10 @@ const propertySchema = new mongoose.Schema(
       default: 'Rent',
       required: true,
     },
-
     averageRating: {
       type: Number,
       default: 0
     },
-
     totalReviews: {
       type: Number,
       default: 0
@@ -172,12 +167,10 @@ const propertySchema = new mongoose.Schema(
 });
 
 
-
 // Indexes
 propertySchema.index({ status: 1, category: 1, listingType: 1 });
 propertySchema.index({ 'location.district': 1, 'location.municipality': 1 });
 propertySchema.index({ 'price.value': 1 });
-
 
 
 // Full-text search (weighted)
@@ -199,8 +192,6 @@ propertySchema.pre("save", async function () {
     this.propertyId = await generatePropertyId();
   }
 });
-
-
 
 
 const Property = mongoose.model('Property', propertySchema);
