@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const provinceEnum = [
   "Koshi",
   "Madhesh",
@@ -12,45 +11,37 @@ const provinceEnum = [
 ];
 
 
-
-const userSchema = new mongoose.Schema(
-  {
+const userSchema = new mongoose.Schema({
     name: {
       type: String,
       trim: true,
     },
-
     email: {
       type: String,
       lowercase: true,
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please provide a valid email"],
     },
-
     phoneNumber: {
       type: String,
       //select: false,      //this field will not be returned in any query, hidden by default
     },
-
     password: {
       type: String,
       minlength: 8,
       select: false,
     },
-
     role: {
       type: [String],
       enum: ["tenant", "owner"],
       default: ["tenant"],
     },
-
     location: {
         province: { type: String, enum: provinceEnum },
         district: { type: String },
         city: { type: String },
         tole: { type: String },
     },
-
     profileImage: {
       url: {           //to display image of particular url
         type: String,
@@ -60,19 +51,16 @@ const userSchema = new mongoose.Schema(
         type: String,
       },
     },
-
     preferences: {
       location: [String],      //array of string
       priceRange: { min: Number, max: Number },
       propertyType: [String],
       amenities: [String],
     },
-
     otp: {
       type: String,
       // select: false
     },
-
     isOtpVerified: {
       type: Boolean,
       default: false,
@@ -82,7 +70,6 @@ const userSchema = new mongoose.Schema(
       type: Date,
       // select: false
     },
-
 
 
     // propertyList: {    //propertyModel
