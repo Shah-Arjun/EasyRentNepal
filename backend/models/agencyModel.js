@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const agencySchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
@@ -11,24 +10,20 @@ const agencySchema = new mongoose.Schema({
         city: { type: String },
         tole: { type: String },
     },
-
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
         unique: true
     },
-
     esewaId: {
         type: String,
         required: true
     },
-
     esewaQr: {
         url: { type: String, required: true },
         public_id: { type: String, required: true }
     },
-
     otp: {
         type: String,
     },
@@ -39,8 +34,9 @@ const agencySchema = new mongoose.Schema({
     otpExpiry: {
         type: Date,
     },
-}, { timestamps: true });
-
+}, { 
+    timestamps: true
+});
 
 
 const Agency = mongoose.model("Agency", agencySchema);
