@@ -2,9 +2,7 @@
 
 const mongoose = require("mongoose");
 
-
-const userActivitySchema = new mongoose.Schema(
-  {
+const userActivitySchema = new mongoose.Schema({
     // id of User(tenant) whose behavior is being tracked
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -13,8 +11,6 @@ const userActivitySchema = new mongoose.Schema(
       required: true,
       index: true
     },
-
-
 
     // Search history (used for recommendation signals)
     searches: [
@@ -32,7 +28,6 @@ const userActivitySchema = new mongoose.Schema(
       },
     ],
 
-
     // Properties viewed by user
     viewedProperties: [
       {
@@ -46,8 +41,6 @@ const userActivitySchema = new mongoose.Schema(
         },
       },
     ],
-
-
 
     // tracks CTA , Contact owner, Book now clicked (strong interest signal)
     clicks: [
@@ -63,8 +56,6 @@ const userActivitySchema = new mongoose.Schema(
       },
     ],
 
-
-
     //  Successful bookings (strongest signal)
     bookings: [
       {
@@ -79,7 +70,6 @@ const userActivitySchema = new mongoose.Schema(
       },
     ],
 
-
     //extra info
     signalWeight: Number,
     sessionId: String,
@@ -88,14 +78,11 @@ const userActivitySchema = new mongoose.Schema(
     geoCity: String,
     geoLat: Number,
     geoLng: Number
-
-
   },
   {
     timestamps: true,      //updated time
   }
 );
-
 
 
 module.exports = mongoose.model("UserActivity", userActivitySchema);
